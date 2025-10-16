@@ -587,7 +587,6 @@ const config = {
     enableServiceWorker: !isLocal,
     environment: isLocal ? 'local' : (isDevelopment ? 'development' : 'production')
 };
-        // 環境配置
 
 
         console.log(`運行環境: ${config.environment}, PWA: ${config.enablePWA ? '啟用' : '禁用'}`);
@@ -753,12 +752,6 @@ const config = {
                 questionCount = maxAvailable;
             }
         }
-
-        // ========== 事件監聽器初始化 ==========
-
-// 然後才是 initEventListeners 函數
-    // 事件監聽器內容
-
 
         // 初始化事件監聽
         function initEventListeners() {
@@ -1461,8 +1454,6 @@ function checkForUpdates() {
             
             // 直接使用內建題庫
             loadQuestionBank();
-            
-     
         }
 
         // 啟動應用程式
