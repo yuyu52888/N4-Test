@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<!-- PWA Meta Tags -->
+<meta name="theme-color" content="#3498db">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="日文N4測驗">
+
+<!-- Icons -->
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日文N4單字與文法測驗系統</title>
+    <style>
+        /* 您的CSS樣式保持不變 */
+        * {
+            box-sizing: border-box;
+            font-family: "Microsoft JhengHei", "Segoe UI", sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+        .home-screen, .quiz-screen, .result-screen, .history-screen {
+            display: none;
+        }
+        .home-screen.active, .quiz-screen.active, .result-screen.active, .history-screen.active {
+            display: block;
+        }
+        .home-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .home-btn {
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        .home-btn:hover {
+            background-color: #2980b9;
+        }
+        .home-btn.exit {
+            background-color: #e74c3c;
+        }
+        .home-btn.exit:hover {
+            background-color: #c0392b;
+        }
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .question-number {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        .kanji {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e74c3c;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option:hover {
+            background-color: #f0f0f0;
+        }
+        .option.selected {
+            background-color: #d6eaf8;
+            border-color: #3498db;
+        }
+        .option.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        .option.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+        }
+        .explanation {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f4fc;
+            border-radius: 5px;
+            display: none;
+        }
+        .explanation.show {
+            display: block;
+        }
+        .explanation-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        .option-explanation {
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 12px 25px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+        button.restart {
+            background-color: #e67e22;
+        }
+        button.restart:hover {
+            background-color: #d35400;
+        }
+        .stats {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #2c3e50;
+        }
+        .timer {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #e8f4fc;
+        }
+        .result-title {
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .wrong-questions {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .wrong-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #e74c3c;
+        }
+        .history-list {
+            margin-top: 20px;
+        }
+        .history-item {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+        .history-date {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .history-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .history-stat {
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            padding: 5px;
+        }
+        .question-count-selector {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .count-btn {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .count-btn.active {
+            background-color: #27ae60;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+          .container {
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+          }
+          
+          h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+          }
+          
+          .home-btn, button {
+            padding: 18px;
+            font-size: 16px;
+          }
+          
+          .question-text {
+            font-size: 16px;
+          }
+          
+          .kanji {
+            font-size: 20px;
+          }
+          
+          .option {
+            padding: 15px;
+            font-size: 16px;
+          }
+          
+          .button-container {
+            flex-direction: column;
+            gap: 10px;
+          }
+          
+          .button-container button {
+            width: 100%;
+          }
+          
+          .history-stats {
+            flex-direction: column;
+          }
+          
+          .history-stat {
+            min-width: 100%;
+            text-align: left;
+            margin-bottom: 5px;
+          }
+        }
+
+        /* 防止手機上點擊高亮 */
+        * {
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 改善觸摸體驗 */
+        button, .option {
+          touch-action: manipulation;
+        }
+        /* 添加更新狀態樣式 */
+        .update-indicator {
+          position: fixed;
+          top: 10px;
+          right: 10px;
+          width: 10px;
+          height: 10px;
+          background-color: #2ecc71;
+          border-radius: 50%;
+          z-index: 1001;
+          animation: pulse 2s infinite;
+        }
+
+        .update-indicator.outdated {
+          background-color: #e74c3c;
+        }
+
+        @keyframes pulse {
+          0% { opacity: 1; }
+          50% { opacity: 0.5; }
+          100% { opacity: 1; }
+        }
+
+        /* 更新按鈕 */
+        .home-btn.update {
+          background-color: #2ecc71;
+        }
+
+        .home-btn.update:hover {
+          background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>日文N4單字與文法測驗系統</h1>
+        
+        <!-- 首頁 -->
+        <div id="home-screen" class="home-screen active">
+            <div class="home-buttons">
+                <button id="start-quiz-btn" class="home-btn">開始測驗</button>
+                
+                <div class="question-count-selector">
+                    <p>選擇題目數量：</p>
+                    <button id="count-30-btn" class="count-btn active">30題</button>
+                    <button id="count-50-btn" class="count-btn">50題</button>
+                </div>
+                
+                <button id="view-history-btn" class="home-btn">歷史紀錄查詢</button>
+                <button id="exit-btn" class="home-btn exit">結束測驗</button>
+            </div>
+        </div>
+        
+        <!-- 測驗頁面 -->
+        <div id="quiz-screen" class="quiz-screen">
+            <div class="stats">
+                <span id="progress">第 1 題 / 共 10 題</span>
+                <span id="score">得分: 0/0</span>
+                <span id="timer" class="timer">時間: 00:00</span>
+            </div>
+            
+            <div id="quiz-container">
+                <!-- 題目將由JavaScript動態生成 -->
+            </div>
+            
+            <div class="button-container">
+                <button id="prev-btn" disabled>上一題</button>
+                <button id="next-btn">下一題</button>
+                <button id="submit-btn" style="display: none;">提交答案</button>
+                <button id="back-home-btn" class="restart">返回首頁</button>
+            </div>
+        </div>
+        
+        <!-- 結果頁面 -->
+        <div id="result-screen" class="result-screen">
+            <div id="result" class="result">
+                <!-- 測驗結果將在這裡顯示 -->
+            </div>
+            
+            <div class="button-container">
+                <button id="restart-btn" class="restart">重新開始測驗</button>
+                <button id="result-back-home-btn">返回首頁</button>
+            </div>
+        </div>
+        
+        <!-- 歷史紀錄頁面 -->
+        <div id="history-screen" class="history-screen">
+            <h2>測驗歷史紀錄</h2>
+            
+            <div id="history-list" class="history-list">
+                <!-- 歷史紀錄將在這裡顯示 -->
+            </div>
+            
+            <div class="button-container">
+                <button id="history-back-home-btn">返回首頁</button>
+                <button id="clear-history-btn" class="restart">清除歷史紀錄</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 應用狀態 - 添加版本控制
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let isAnswered = [];
+        let score = 0;
+        let wrongQuestions = [];
+        let selectedQuestions = [];
+        let shuffledQuestions = [];
+        let questionCount = 30;
+        let timerInterval = null;
+        let startTime = null;
+        let elapsedTime = 0;
+        let history = JSON.parse(localStorage.getItem('n4QuizHistory')) || [];
+        let questionBankVersion = localStorage.getItem('questionBankVersion') || '0';
+        let lastUpdateCheck = localStorage.getItem('lastUpdateCheck') || 0;
+
+        // DOM元素
+        const homeScreen = document.getElementById('home-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const historyScreen = document.getElementById('history-screen');
+        
+        const startQuizBtn = document.getElementById('start-quiz-btn');
+        const viewHistoryBtn = document.getElementById('view-history-btn');
+        const exitBtn = document.getElementById('exit-btn');
+        const count30Btn = document.getElementById('count-30-btn');
+        const count50Btn = document.getElementById('count-50-btn');
+        
+        const quizContainer = document.getElementById('quiz-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const backHomeBtn = document.getElementById('back-home-btn');
+        
+        const restartBtn = document.getElementById('restart-btn');
+        const resultBackHomeBtn = document.getElementById('result-back-home-btn');
+        
+        const historyBackHomeBtn = document.getElementById('history-back-home-btn');
+        const clearHistoryBtn = document.getElementById('clear-history-btn');
+        
+        const progressElement = document.getElementById('progress');
+        const scoreElement = document.getElementById('score');
+        const timerElement = document.getElementById('timer');
+        const resultElement = document.getElementById('result');
+        const historyListElement = document.getElementById('history-list');
+
+        // 初始化事件監聽
+        function initEventListeners() {
+            // 首頁按鈕
+            startQuizBtn.addEventListener('click', startQuiz);
+            viewHistoryBtn.addEventListener('click', showHistory);
+            exitBtn.addEventListener('click', exitApp);
+            count30Btn.addEventListener('click', () => setQuestionCount(30));
+            count50Btn.addEventListener('click', () => setQuestionCount(50));
+            
+            // 測驗頁面按鈕
+            prevBtn.addEventListener('click', prevQuestion);
+            nextBtn.addEventListener('click', nextQuestion);
+            submitBtn.addEventListener('click', submitQuiz);
+            backHomeBtn.addEventListener('click', backToHome);
+            
+            // 結果頁面按鈕
+            restartBtn.addEventListener('click', restartQuiz);
+            resultBackHomeBtn.addEventListener('click', backToHome);
+            
+            // 歷史紀錄頁面按鈕
+            historyBackHomeBtn.addEventListener('click', backToHome);
+            clearHistoryBtn.addEventListener('click', clearHistory);
+        }
+
+        // 設定題目數量
+        function setQuestionCount(count) {
+            questionCount = count;
+            count30Btn.classList.toggle('active', count === 30);
+            count50Btn.classList.toggle('active', count === 50);
+        }
+
+        // 加載題庫
+        async function loadQuestionBank() {
+            try {
+                console.log('正在加載題庫...');
+                
+                // 添加時間戳防止緩存
+                const timestamp = new Date().getTime();
+                const response = await fetch(`question_bank.js?t=${timestamp}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const scriptContent = await response.text();
+                
+                // 動態執行題庫腳本
+                const script = document.createElement('script');
+                script.textContent = scriptContent;
+                document.head.appendChild(script);
+                
+                console.log('題庫加載成功，題目數量:', window.questionBank ? window.questionBank.length : 0);
+                
+                // 檢查題庫版本更新
+                checkQuestionBankUpdate();
+                
+            } catch (error) {
+                console.error('題庫加載失敗:', error);
+                // 嘗試使用緩存的題庫
+                loadCachedQuestionBank();
+            }
+        }
+
+        // 檢查題庫版本更新
+        function checkQuestionBankUpdate() {
+            const now = new Date().getTime();
+            const oneDay = 24 * 60 * 60 * 1000; // 1天的毫秒數
+            
+            // 如果超過1天沒有檢查更新，或者強制更新
+            if (now - lastUpdateCheck > oneDay || !localStorage.getItem('cachedQuestionBank')) {
+                console.log('檢查題庫更新...');
+                updateQuestionBankCache();
+            } else {
+                console.log('使用緩存的題庫版本');
+            }
+            
+            localStorage.setItem('lastUpdateCheck', now.toString());
+        }
+
+        // 更新題庫緩存
+        function updateQuestionBankCache() {
+            if (window.questionBank && window.questionBank.length > 0) {
+                const newVersion = generateQuestionBankVersion(window.questionBank);
+                const currentVersion = localStorage.getItem('questionBankVersion');
+                
+                if (newVersion !== currentVersion) {
+                    console.log('發現新版本題庫，更新緩存');
+                    
+                    // 緩存題庫數據
+                    localStorage.setItem('cachedQuestionBank', JSON.stringify(window.questionBank));
+                    localStorage.setItem('questionBankVersion', newVersion);
+                    
+                    showUpdateNotification('題庫已更新到最新版本！');
+                } else {
+                    console.log('題庫已是最新版本');
+                }
+            }
+        }
+
+        // 加載緩存的題庫
+        function loadCachedQuestionBank() {
+            try {
+                const cached = localStorage.getItem('cachedQuestionBank');
+                if (cached) {
+                    window.questionBank = JSON.parse(cached);
+                    console.log('使用緩存題庫，題目數量:', window.questionBank.length);
+                    showUpdateNotification('使用離線題庫模式');
+                } else {
+                    console.error('沒有可用的題庫數據');
+                    showUpdateNotification('題庫加載失敗，請檢查網路連接');
+                }
+            } catch (error) {
+                console.error('加載緩存題庫失敗:', error);
+            }
+        }
+
+        // 生成題庫版本標識
+        function generateQuestionBankVersion(bank) {
+            const contentString = JSON.stringify(bank);
+            let hash = 0;
+            for (let i = 0; i < contentString.length; i++) {
+                const char = contentString.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return 'v1.' + Math.abs(hash).toString(16).substring(0, 8);
+        }
+
+        // 顯示更新通知
+        function showUpdateNotification(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #3498db;
+                color: white;
+                padding: 10px 15px;
+                border-radius: 5px;
+                z-index: 1000;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    document.body.removeChild(toast);
+                }
+            }, 3000);
+        }
+
+        // 手動檢查更新函數
+        function checkForUpdates() {
+            console.log('手動檢查題庫更新...');
+            lastUpdateCheck = 0;
+            localStorage.setItem('lastUpdateCheck', '0');
+            loadQuestionBank();
+        }
+
+        // 在首頁添加更新檢查按鈕
+        function addUpdateButton() {
+            const homeButtons = document.querySelector('.home-buttons');
+            // 檢查是否已經有更新按鈕
+            if (!document.getElementById('update-btn')) {
+                const updateBtn = document.createElement('button');
+                updateBtn.id = 'update-btn';
+                updateBtn.className = 'home-btn update';
+                updateBtn.textContent = '檢查題庫更新';
+                updateBtn.addEventListener('click', checkForUpdates);
+                
+                // 插入到開始測驗按鈕後面
+                homeButtons.insertBefore(updateBtn, homeButtons.children[1].nextSibling);
+            }
+        }
+
+        // 開始計時
+        function startTimer() {
+            startTime = new Date();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        // 更新計時器
+        function updateTimer() {
+            const now = new Date();
+            elapsedTime = Math.floor((now - startTime) / 1000);
+            
+            const minutes = Math.floor(elapsedTime / 60);
+            const seconds = elapsedTime % 60;
+            
+            timerElement.textContent = `時間: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // 停止計時
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        // 顯示歷史紀錄
+        function showHistory() {
+            displayHistory();
+            showScreen(historyScreen);
+        }
+
+        // 顯示歷史紀錄內容
+        function displayHistory() {
+            if (history.length === 0) {
+                historyListElement.innerHTML = '<p>尚無測驗紀錄</p>';
+                return;
+            }
+            
+            let historyHTML = '';
+            
+            history.forEach((record, index) => {
+                const date = new Date(record.date).toLocaleString('zh-TW');
+                
+                // 計算各題型的錯誤數量
+                const errorTypes = {
+                    reading: 0,
+                    writing: 0,
+                    vocabulary: 0,
+                    synonym: 0,
+                    grammar: 0,
+                    reorder: 0
+                };
+                
+                record.wrongQuestions.forEach(questionId => {
+                    const question = window.questionBank.find(q => q.id === questionId);
+                    if (question && errorTypes.hasOwnProperty(question.type)) {
+                        errorTypes[question.type]++;
+                    }
+                });
+                
+                historyHTML += `
+                    <div class="history-item">
+                        <div class="history-date">測驗 ${index + 1} - ${date}</div>
+                        <div class="history-stats">
+                            <div class="history-stat">答對題數: ${record.score}/${record.total}</div>
+                            <div class="history-stat">用時: ${formatTime(record.time)}</div>
+                            <div class="history-stat">漢字讀音錯誤: ${errorTypes.reading}</div>
+                            <div class="history-stat">漢字書寫錯誤: ${errorTypes.writing}</div>
+                            <div class="history-stat">詞語填空錯誤: ${errorTypes.vocabulary}</div>
+                            <div class="history-stat">近義詞替換錯誤: ${errorTypes.synonym}</div>
+                            <div class="history-stat">文法選擇錯誤: ${errorTypes.grammar}</div>
+                            <div class="history-stat">句子重組錯誤: ${errorTypes.reorder}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            historyListElement.innerHTML = historyHTML;
+        }
+
+        // 格式化時間顯示
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // 清除歷史紀錄
+        function clearHistory() {
+            if (confirm('確定要清除所有歷史紀錄嗎？')) {
+                history = [];
+                localStorage.setItem('n4QuizHistory', JSON.stringify(history));
+                displayHistory();
+            }
+        }
+
+        // 結束應用程式
+        function exitApp() {
+            if (confirm('確定要結束測驗嗎？')) {
+                window.close();
+            }
+        }
+
+        // 返回首頁
+        function backToHome() {
+            stopTimer();
+            showScreen(homeScreen);
+        }
+
+        // 顯示指定畫面
+        function showScreen(screen) {
+            homeScreen.classList.remove('active');
+            quizScreen.classList.remove('active');
+            resultScreen.classList.remove('active');
+            historyScreen.classList.remove('active');
+            
+            screen.classList.add('active');
+        }
+
+        // 隨機打亂陣列
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        // 隨機打亂選項順序
+        function shuffleOptions(question) {
+            const optionsWithIndex = question.options.map((option, index) => ({...option, originalIndex: index}));
+            const shuffledOptions = shuffleArray(optionsWithIndex);
+            
+            // 更新正確答案的索引
+            const newCorrectAnswerIndex = shuffledOptions.findIndex(option => option.originalIndex === question.correctAnswer);
+            
+            return {
+                ...question,
+                options: shuffledOptions.map(option => ({text: option.text, explanation: option.explanation})),
+                correctAnswer: newCorrectAnswerIndex
+            };
+        }
+
+        // 顯示題目
+        function displayQuestion(index) {
+            const question = shuffledQuestions[index];
+            let questionHTML = '';
+            
+            // 根據題型生成不同的HTML
+            switch(question.type) {
+                case "reading":
+                    questionHTML = generateReadingQuestion(question, index);
+                    break;
+                case "writing":
+                    questionHTML = generateWritingQuestion(question, index);
+                    break;
+                case "vocabulary":
+                    questionHTML = generateVocabularyQuestion(question, index);
+                    break;
+                case "synonym":
+                    questionHTML = generateSynonymQuestion(question, index);
+                    break;
+                case "grammar":
+                    questionHTML = generateGrammarQuestion(question, index);
+                    break;
+                case "reorder":
+                    questionHTML = generateReorderQuestion(question, index);
+                    break;
+            }
+            
+            const explanationClass = isAnswered[index] ? 'explanation show' : 'explanation';
+            questionHTML += `
+                <div class="${explanationClass}">
+                    <div class="explanation-title">解說：</div>
+                    ${isAnswered[index] ? generateOptionExplanations(question) : question.options[question.correctAnswer].explanation}
+                </div>
+            `;
+            
+            quizContainer.innerHTML = questionHTML;
+        }
+
+        // 生成選項解析
+        function generateOptionExplanations(question) {
+            let explanationsHTML = '';
+            
+            question.options.forEach((option, i) => {
+                const isCorrect = i === question.correctAnswer;
+                const isSelected = userAnswers[currentQuestionIndex] === i;
+                
+                explanationsHTML += `
+                    <div class="option-explanation" style="${isCorrect ? 'border-left: 4px solid #28a745;' : isSelected ? 'border-left: 4px solid #dc3545;' : ''}">
+                        <strong>選項 ${i+1}: ${option.text}</strong><br>
+                        ${option.explanation}
+                    </div>
+                `;
+            });
+            
+            return explanationsHTML;
+        }
+
+        // 生成漢字讀音題型
+        function generateReadingQuestion(question, index) {
+            let optionsHTML = '';
+            
+            question.options.forEach((option, i) => {
+                const isSelected = userAnswers[index] === i;
+                const isCorrect = isAnswered[index] && i === question.correctAnswer;
+                const isIncorrect = isAnswered[index] && isSelected && i !== question.correctAnswer;
+                
+                let optionClass = 'option';
+                if (isSelected) optionClass += ' selected';
+                if (isCorrect) optionClass += ' correct';
+                if (isIncorrect) optionClass += ' incorrect';
+                
+                optionsHTML += `
+                    <div class="${optionClass}" onclick="selectOption(${i})">
+                        ${option.text}
+                    </div>
+                `;
+            });
+            
+            return `
+                <div class="question">
+                    <div class="question-number">問題 ${index + 1}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="kanji">${question.kanji}</div>
+                    <div class="options">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        // 生成漢字書寫題型
+        function generateWritingQuestion(question, index) {
+            let optionsHTML = '';
+            
+            question.options.forEach((option, i) => {
+                const isSelected = userAnswers[index] === i;
+                const isCorrect = isAnswered[index] && i === question.correctAnswer;
+                const isIncorrect = isAnswered[index] && isSelected && i !== question.correctAnswer;
+                
+                let optionClass = 'option';
+                if (isSelected) optionClass += ' selected';
+                if (isCorrect) optionClass += ' correct';
+                if (isIncorrect) optionClass += ' incorrect';
+                
+                optionsHTML += `
+                    <div class="${optionClass}" onclick="selectOption(${i})">
+                        ${option.text}
+                    </div>
+                `;
+            });
+            
+            return `
+                <div class="question">
+                    <div class="question-number">問題 ${index + 1}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="kanji">${question.kana}</div>
+                    <div class="options">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        // 生成詞語填空題型
+        function generateVocabularyQuestion(question, index) {
+            let optionsHTML = '';
+            
+            question.options.forEach((option, i) => {
+                const isSelected = userAnswers[index] === i;
+                const isCorrect = isAnswered[index] && i === question.correctAnswer;
+                const isIncorrect = isAnswered[index] && isSelected && i !== question.correctAnswer;
+                
+                let optionClass = 'option';
+                if (isSelected) optionClass += ' selected';
+                if (isCorrect) optionClass += ' correct';
+                if (isIncorrect) optionClass += ' incorrect';
+                
+                optionsHTML += `
+                    <div class="${optionClass}" onclick="selectOption(${i})">
+                        ${option.text}
+                    </div>
+                `;
+            });
+            
+            return `
+                <div class="question">
+                    <div class="question-number">問題 ${index + 1}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="question-text">${question.sentence}</div>
+                    <div class="options">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        // 生成近義詞替換題型
+        function generateSynonymQuestion(question, index) {
+            let optionsHTML = '';
+            
+            question.options.forEach((option, i) => {
+                const isSelected = userAnswers[index] === i;
+                const isCorrect = isAnswered[index] && i === question.correctAnswer;
+                const isIncorrect = isAnswered[index] && isSelected && i !== question.correctAnswer;
+                
+                let optionClass = 'option';
+                if (isSelected) optionClass += ' selected';
+                if (isCorrect) optionClass += ' correct';
+                if (isIncorrect) optionClass += ' incorrect';
+                
+                optionsHTML += `
+                    <div class="${optionClass}" onclick="selectOption(${i})">
+                        ${option.text}
+                    </div>
+                `;
+            });
+            
+            return `
+                <div class="question">
+                    <div class="question-number">問題 ${index + 1}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="question-text">${question.sentence}</div>
+                    <div class="options">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        // 生成文法選擇題型
+        function generateGrammarQuestion(question, index) {
+            let optionsHTML = '';
+            
+            question.options.forEach((option, i) => {
+                const isSelected = userAnswers[index] === i;
+                const isCorrect = isAnswered[index] && i === question.correctAnswer;
+                const isIncorrect = isAnswered[index] && isSelected && i !== question.correctAnswer;
+                
+                let optionClass = 'option';
+                if (isSelected) optionClass += ' selected';
+                if (isCorrect) optionClass += ' correct';
+                if (isIncorrect) optionClass += ' incorrect';
+                
+                optionsHTML += `
+                    <div class="${optionClass}" onclick="selectOption(${i})">
+                        ${option.text}
+                    </div>
+                `;
+            });
+            
+            return `
+                <div class="question">
+                    <div class="question-number">問題 ${index + 1}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="question-text">${question.sentence}</div>
+                    <div class="options">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        // 生成句子重組題型
+        function generateReorderQuestion(question, index) {
+            let optionsHTML = '';
+            
+            question.options.forEach((option, i) => {
+                const isSelected = userAnswers[index] === i;
+                const isCorrect = isAnswered[index] && i === question.correctAnswer;
+                const isIncorrect = isAnswered[index] && isSelected && i !== question.correctAnswer;
+                
+                let optionClass = 'option';
+                if (isSelected) optionClass += ' selected';
+                if (isCorrect) optionClass += ' correct';
+                if (isIncorrect) optionClass += ' incorrect';
+                
+                optionsHTML += `
+                    <div class="${optionClass}" onclick="selectOption(${i})">
+                        ${option.text}
+                    </div>
+                `;
+            });
+            
+            return `
+                <div class="question">
+                    <div class="question-number">問題 ${index + 1}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="question-text">${question.sentence}</div>
+                    <div class="options">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        // 選擇選項
+        function selectOption(optionIndex) {
+            if (isAnswered[currentQuestionIndex]) return;
+            
+            userAnswers[currentQuestionIndex] = optionIndex;
+            isAnswered[currentQuestionIndex] = true;
+            
+            // 檢查答案
+            const question = shuffledQuestions[currentQuestionIndex];
+            if (optionIndex === question.correctAnswer) {
+                score++;
+            } else {
+                // 記錄錯誤題目
+                if (!wrongQuestions.includes(question.id)) {
+                    wrongQuestions.push(question.id);
+                }
+            }
+            
+            updateScore();
+            displayQuestion(currentQuestionIndex);
+            updateButtons();
+        }
+
+        // 更新按鈕狀態
+        function updateButtons() {
+            prevBtn.disabled = currentQuestionIndex === 0;
+            
+            if (currentQuestionIndex === shuffledQuestions.length - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'inline-block';
+            } else {
+                nextBtn.style.display = 'inline-block';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        // 更新進度
+        function updateProgress() {
+            progressElement.textContent = `第 ${currentQuestionIndex + 1} 題 / 共 ${shuffledQuestions.length} 題`;
+        }
+
+        // 更新分數
+        function updateScore() {
+            const answeredCount = isAnswered.filter(Boolean).length;
+            scoreElement.textContent = `得分: ${score}/${answeredCount}`;
+        }
+
+        // 上一題
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion(currentQuestionIndex);
+                updateButtons();
+                updateProgress();
+            }
+        }
+
+        // 下一題
+        function nextQuestion() {
+            if (currentQuestionIndex < shuffledQuestions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion(currentQuestionIndex);
+                updateButtons();
+                updateProgress();
+            }
+        }
+
+        // 提交測驗
+        function submitQuiz() {
+            stopTimer();
+            
+            // 儲存歷史紀錄
+            const record = {
+                date: new Date().toISOString(),
+                score: score,
+                total: shuffledQuestions.length,
+                time: elapsedTime,
+                wrongQuestions: [...wrongQuestions]
+            };
+            
+            history.unshift(record);
+            // 只保留最近10次紀錄
+            if (history.length > 10) {
+                history = history.slice(0, 10);
+            }
+            
+            localStorage.setItem('n4QuizHistory', JSON.stringify(history));
+            
+            showResults();
+            showScreen(resultScreen);
+        }
+
+        // 顯示測驗結果
+        function showResults() {
+            // 計算各題型的錯誤數量
+            const errorTypes = {
+                reading: 0,
+                writing: 0,
+                vocabulary: 0,
+                synonym: 0,
+                grammar: 0,
+                reorder: 0
+            };
+            
+            wrongQuestions.forEach(questionId => {
+                const question = window.questionBank.find(q => q.id === questionId);
+                if (question && errorTypes.hasOwnProperty(question.type)) {
+                    errorTypes[question.type]++;
+                }
+            });
+            
+            let resultHTML = `
+                <div class="result-title">測驗完成！</div>
+                <div>最終得分: ${score}/${shuffledQuestions.length}</div>
+                <div>用時: ${formatTime(elapsedTime)}</div>
+                <div class="wrong-questions">
+                    <div class="wrong-title">各題型錯誤分析：</div>
+                    <ul>
+                        <li>漢字讀音錯誤: ${errorTypes.reading}</li>
+                        <li>漢字書寫錯誤: ${errorTypes.writing}</li>
+                        <li>詞語填空錯誤: ${errorTypes.vocabulary}</li>
+                        <li>近義詞替換錯誤: ${errorTypes.synonym}</li>
+                        <li>文法選擇錯誤: ${errorTypes.grammar}</li>
+                        <li>句子重組錯誤: ${errorTypes.reorder}</li>
+                    </ul>
+                </div>
+            `;
+            
+            if (wrongQuestions.length > 0) {
+                resultHTML += `
+                    <div class="wrong-questions">
+                        <div class="wrong-title">錯誤題目:</div>
+                        <ul>
+                `;
+                
+                wrongQuestions.forEach(questionId => {
+                    const originalQuestion = window.questionBank.find(q => q.id === questionId);
+                    const shuffledQuestion = shuffledQuestions.find(q => q.id === questionId);
+                    const userAnswerIndex = userAnswers[shuffledQuestions.indexOf(shuffledQuestion)];
+                    
+                    let questionText = '';
+                    
+                    if (originalQuestion.type === "reading") {
+                        questionText = `${originalQuestion.kanji} - 您的答案: ${shuffledQuestion.options[userAnswerIndex].text} - 正確答案: ${shuffledQuestion.options[shuffledQuestion.correctAnswer].text}`;
+                    } else if (originalQuestion.type === "writing") {
+                        questionText = `${originalQuestion.kana} - 您的答案: ${shuffledQuestion.options[userAnswerIndex].text} - 正確答案: ${shuffledQuestion.options[shuffledQuestion.correctAnswer].text}`;
+                    } else {
+                        questionText = `問題 ${originalQuestion.id} - 您的答案: ${shuffledQuestion.options[userAnswerIndex].text} - 正確答案: ${shuffledQuestion.options[shuffledQuestion.correctAnswer].text}`;
+                    }
+                    
+                    resultHTML += `<li>${questionText}</li>`;
+                });
+                
+                resultHTML += `
+                        </ul>
+                    </div>
+                `;
+            } else {
+                resultHTML += `<div>恭喜！全部答對！</div>`;
+            }
+            
+            resultElement.innerHTML = resultHTML;
+        }
+
+        // 重新開始測驗
+        function restartQuiz() {
+            startQuiz();
+        }
+
+        // 初始化應用程式
+        function initApp() {
+            initEventListeners();
+            addUpdateButton();
+            loadQuestionBank();
+            
+            // 註冊Service Worker
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(function(registration) {
+                            console.log('ServiceWorker 註冊成功: ', registration.scope);
+                        })
+                        .catch(function(error) {
+                            console.log('ServiceWorker 註冊失敗: ', error);
+                        });
+                });
+            }
+        }
+
+        // 啟動應用程式
+        initApp();
+    </script>
+</body>
+</html>
