@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<!-- PWA Meta Tags -->
-<meta name="theme-color" content="#3498db">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="日文N4測驗">
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#3498db">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="日文N4測驗">
 
-<!-- Icons -->
-<link rel="icon" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-192.png">
-<link rel="manifest" href="manifest.json">
-
+    <!-- Icons -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日文N4單字與文法測驗系統</title>
     <style>
-        /* 您的CSS樣式保持不變 */
         * {
             box-sizing: border-box;
             font-family: "Microsoft JhengHei", "Segoe UI", sans-serif;
@@ -35,6 +33,7 @@
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             padding: 25px;
+            position: relative;
         }
         h1 {
             color: #2c3e50;
@@ -73,6 +72,12 @@
         }
         .home-btn.exit:hover {
             background-color: #c0392b;
+        }
+        .home-btn.update {
+            background-color: #2ecc71;
+        }
+        .home-btn.update:hover {
+            background-color: #27ae60;
         }
         .question {
             margin-bottom: 25px;
@@ -181,6 +186,9 @@
             margin-bottom: 20px;
             font-size: 18px;
             color: #2c3e50;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
         }
         .timer {
             font-weight: bold;
@@ -251,106 +259,112 @@
             background-color: #27ae60;
             font-weight: bold;
         }
-        @media (max-width: 768px) {
-          .container {
-            padding: 15px;
-            margin: 10px;
-            border-radius: 8px;
-          }
-          
-          h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-          }
-          
-          .home-btn, button {
-            padding: 18px;
-            font-size: 16px;
-          }
-          
-          .question-text {
-            font-size: 16px;
-          }
-          
-          .kanji {
-            font-size: 20px;
-          }
-          
-          .option {
-            padding: 15px;
-            font-size: 16px;
-          }
-          
-          .button-container {
-            flex-direction: column;
-            gap: 10px;
-          }
-          
-          .button-container button {
-            width: 100%;
-          }
-          
-          .history-stats {
-            flex-direction: column;
-          }
-          
-          .history-stat {
-            min-width: 100%;
-            text-align: left;
-            margin-bottom: 5px;
-          }
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
         }
-
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .update-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 10px;
+            height: 10px;
+            background-color: #2ecc71;
+            border-radius: 50%;
+            z-index: 1001;
+            animation: pulse 2s infinite;
+        }
+        .update-indicator.outdated {
+            background-color: #e74c3c;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                margin: 10px;
+                border-radius: 8px;
+            }
+            h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            .home-btn, button {
+                padding: 18px;
+                font-size: 16px;
+            }
+            .question-text {
+                font-size: 16px;
+            }
+            .kanji {
+                font-size: 20px;
+            }
+            .option {
+                padding: 15px;
+                font-size: 16px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+            .button-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .button-container button {
+                width: 100%;
+            }
+            .history-stats {
+                flex-direction: column;
+            }
+            .history-stat {
+                min-width: 100%;
+                text-align: left;
+                margin-bottom: 5px;
+            }
+            .stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
         /* 防止手機上點擊高亮 */
         * {
-          -webkit-tap-highlight-color: transparent;
+            -webkit-tap-highlight-color: transparent;
         }
-
         /* 改善觸摸體驗 */
         button, .option {
-          touch-action: manipulation;
-        }
-        /* 添加更新狀態樣式 */
-        .update-indicator {
-          position: fixed;
-          top: 10px;
-          right: 10px;
-          width: 10px;
-          height: 10px;
-          background-color: #2ecc71;
-          border-radius: 50%;
-          z-index: 1001;
-          animation: pulse 2s infinite;
-        }
-
-        .update-indicator.outdated {
-          background-color: #e74c3c;
-        }
-
-        @keyframes pulse {
-          0% { opacity: 1; }
-          50% { opacity: 0.5; }
-          100% { opacity: 1; }
-        }
-
-        /* 更新按鈕 */
-        .home-btn.update {
-          background-color: #2ecc71;
-        }
-
-        .home-btn.update:hover {
-          background-color: #27ae60;
+            touch-action: manipulation;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="update-indicator" id="update-indicator"></div>
         <h1>日文N4單字與文法測驗系統</h1>
         
         <!-- 首頁 -->
         <div id="home-screen" class="home-screen active">
             <div class="home-buttons">
                 <button id="start-quiz-btn" class="home-btn">開始測驗</button>
+                <button id="update-btn" class="home-btn update">檢查題庫更新</button>
                 
                 <div class="question-count-selector">
                     <p>選擇題目數量：</p>
@@ -411,7 +425,141 @@
     </div>
 
     <script>
-        // 應用狀態 - 添加版本控制
+        // 內建題庫資料
+        window.questionBank = [
+            {
+                id: 1,
+                type: "reading",
+                question: "請選擇下列漢字的正確讀音",
+                kanji: "学校",
+                options: [
+                    { text: "がっこう", explanation: "正確！「学校」的讀音是「がっこう」" },
+                    { text: "がくこう", explanation: "錯誤！「学」在複合詞中常讀作「がっ」" },
+                    { text: "がくきょう", explanation: "錯誤！這是「学習」的讀音" },
+                    { text: "がっきょう", explanation: "錯誤！這是「楽器」相關的讀音" }
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 2,
+                type: "writing",
+                question: "請選擇下列讀音的正確漢字",
+                kana: "ともだち",
+                options: [
+                    { text: "友達", explanation: "正確！「ともだち」的漢字是「友達」" },
+                    { text: "友立", explanation: "錯誤！「立」的讀音是「たち」" },
+                    { text: "共達", explanation: "錯誤！「共」的讀音是「とも」但意思不同" },
+                    { text: "知友", explanation: "錯誤！這是自創的組合" }
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 3,
+                type: "vocabulary",
+                question: "請選擇最適合的詞語填入空格",
+                sentence: "昨日、新しい本を＿＿＿＿。",
+                options: [
+                    { text: "買いました", explanation: "正確！表示購買了新的書" },
+                    { text: "売りました", explanation: "錯誤！「売りました」是賣出的意思" },
+                    { text: "読みました", explanation: "錯誤！雖然可以讀書，但與「新しい本」的語境不符" },
+                    { text: "書きました", explanation: "錯誤！「書きました」是寫的意思" }
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 4,
+                type: "synonym",
+                question: "請選擇與劃線詞語意思最接近的選項",
+                sentence: "この料理はとても美味しいです。",
+                options: [
+                    { text: "おいしい", explanation: "正確！「美味しい」和「おいしい」意思相同" },
+                    { text: "まずい", explanation: "錯誤！「まずい」是難吃的意思" },
+                    { text: "きれい", explanation: "錯誤！「きれい」是漂亮的意思" },
+                    { text: "あつい", explanation: "錯誤！「あつい」是熱的意思" }
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 5,
+                type: "grammar",
+                question: "請選擇正確的文法形式",
+                sentence: "私は毎日日本語＿＿＿＿勉強します。",
+                options: [
+                    { text: "を", explanation: "正確！表示學習的對象" },
+                    { text: "が", explanation: "錯誤！「が」用於主語或對象語" },
+                    { text: "に", explanation: "錯誤！「に」表示時間、地點或目的" },
+                    { text: "で", explanation: "錯誤！「で」表示手段或場所" }
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 6,
+                type: "reorder",
+                question: "請將下列詞語組合成正確的句子",
+                sentence: "・図書館 ・で ・本 ・を ・読みます",
+                options: [
+                    { text: "図書館で本を読みます。", explanation: "正確！這是標準的日語語序" },
+                    { text: "本を図書館で読みます。", explanation: "錯誤！雖然語法正確，但不如選項1自然" },
+                    { text: "読みます本を図書館で。", explanation: "錯誤！動詞應該在句尾" },
+                    { text: "図書館を本で読みます。", explanation: "錯誤！助詞使用錯誤" }
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 7,
+                type: "reading",
+                question: "請選擇下列漢字的正確讀音",
+                kanji: "先生",
+                options: [
+                    { text: "せんせい", explanation: "正確！「先生」的讀音是「せんせい」" },
+                    { text: "せんせ", explanation: "錯誤！缺少長音" },
+                    { text: "せいせん", explanation: "錯誤！這是「清掃」相關的讀音" },
+                    { text: "せんせえ", explanation: "錯誤！長音形式不正確" }
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 8,
+                type: "writing",
+                question: "請選擇下列讀音的正確漢字",
+                kana: "にほんご",
+                options: [
+                    { text: "日本語", explanation: "正確！「にほんご」的漢字是「日本語」" },
+                    { text: "二本語", explanation: "錯誤！「二本」是數量詞" },
+                    { text: "日本後", explanation: "錯誤！「後」的讀音是「ご」但意思不同" },
+                    { text: "二本後", explanation: "錯誤！這是錯誤的組合" }
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 9,
+                type: "vocabulary",
+                question: "請選擇最適合的詞語填入空格",
+                sentence: "明日は天気が＿＿＿＿そうです。",
+                options: [
+                    { text: "よさ", explanation: "正確！形容詞「いい」的推量形是「よさ」" },
+                    { text: "いい", explanation: "錯誤！「いい」不能直接接「そうです」" },
+                    { text: "よい", explanation: "錯誤！需要變形為「よさ」" },
+                    { text: "よく", explanation: "錯誤！「よく」是副詞形式" }
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 10,
+                type: "grammar",
+                question: "請選擇正確的文法形式",
+                sentence: "ここに名前を＿＿＿＿ください。",
+                options: [
+                    { text: "書いて", explanation: "正確！て形用於請求" },
+                    { text: "書く", explanation: "錯誤！需要て形" },
+                    { text: "書いた", explanation: "錯誤！這是過去形" },
+                    { text: "書こう", explanation: "錯誤！這是意志形" }
+                ],
+                correctAnswer: 0
+            }
+        ];
+
+        // 應用狀態
         let currentQuestionIndex = 0;
         let userAnswers = [];
         let isAnswered = [];
@@ -427,15 +575,30 @@
         let questionBankVersion = localStorage.getItem('questionBankVersion') || '0';
         let lastUpdateCheck = localStorage.getItem('lastUpdateCheck') || 0;
 
+        // 環境檢測
+        const isLocal = window.location.protocol === 'file:';
+        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+        // 環境配置
+        const config = {
+            enablePWA: !isLocal,
+            enableServiceWorker: !isLocal,
+            environment: isLocal ? 'local' : (isDevelopment ? 'development' : 'production')
+        };
+
+        console.log(`運行環境: ${config.environment}, PWA: ${config.enablePWA ? '啟用' : '禁用'}`);
+
         // DOM元素
         const homeScreen = document.getElementById('home-screen');
         const quizScreen = document.getElementById('quiz-screen');
         const resultScreen = document.getElementById('result-screen');
         const historyScreen = document.getElementById('history-screen');
+        const updateIndicator = document.getElementById('update-indicator');
         
         const startQuizBtn = document.getElementById('start-quiz-btn');
         const viewHistoryBtn = document.getElementById('view-history-btn');
         const exitBtn = document.getElementById('exit-btn');
+        const updateBtn = document.getElementById('update-btn');
         const count30Btn = document.getElementById('count-30-btn');
         const count50Btn = document.getElementById('count-50-btn');
         
@@ -463,6 +626,7 @@
             startQuizBtn.addEventListener('click', startQuiz);
             viewHistoryBtn.addEventListener('click', showHistory);
             exitBtn.addEventListener('click', exitApp);
+            updateBtn.addEventListener('click', checkForUpdates);
             count30Btn.addEventListener('click', () => setQuestionCount(30));
             count50Btn.addEventListener('click', () => setQuestionCount(50));
             
@@ -483,41 +647,141 @@
 
         // 設定題目數量
         function setQuestionCount(count) {
-            questionCount = count;
+            const maxAvailable = window.questionBank ? window.questionBank.length : 0;
+            questionCount = Math.min(count, maxAvailable);
             count30Btn.classList.toggle('active', count === 30);
             count50Btn.classList.toggle('active', count === 50);
+            
+            // 如果選擇的數量超過可用題目，顯示提示
+            if (count > maxAvailable && maxAvailable > 0) {
+                showUpdateNotification(`可用題目只有 ${maxAvailable} 題`);
+                questionCount = maxAvailable;
+            }
         }
 
-        // 加載題庫
-        async function loadQuestionBank() {
-            try {
-                console.log('正在加載題庫...');
-                
-                // 添加時間戳防止緩存
-                const timestamp = new Date().getTime();
-                const response = await fetch(`question_bank.js?t=${timestamp}`);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const scriptContent = await response.text();
-                
-                // 動態執行題庫腳本
-                const script = document.createElement('script');
-                script.textContent = scriptContent;
-                document.head.appendChild(script);
-                
-                console.log('題庫加載成功，題目數量:', window.questionBank ? window.questionBank.length : 0);
-                
-                // 檢查題庫版本更新
-                checkQuestionBankUpdate();
-                
-            } catch (error) {
-                console.error('題庫加載失敗:', error);
-                // 嘗試使用緩存的題庫
-                loadCachedQuestionBank();
+        // 開始測驗
+        function startQuiz() {
+            // 檢查題庫是否已加載
+            if (!window.questionBank || window.questionBank.length === 0) {
+                alert('題庫加載中，請稍後再試...');
+                loadQuestionBank();
+                return;
             }
+            
+            // 重置狀態
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            isAnswered = [];
+            score = 0;
+            wrongQuestions = [];
+            selectedQuestions = [];
+            shuffledQuestions = [];
+            elapsedTime = 0;
+            
+            // 隨機選擇題目
+            const availableQuestions = [...window.questionBank];
+            const shuffled = shuffleArray(availableQuestions);
+            selectedQuestions = shuffled.slice(0, Math.min(questionCount, availableQuestions.length));
+            
+            // 隨機打亂每個題目的選項順序
+            shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
+            
+            userAnswers = new Array(selectedQuestions.length).fill(null);
+            isAnswered = new Array(selectedQuestions.length).fill(false);
+            
+            // 開始計時
+            startTimer();
+            
+            // 顯示測驗頁面
+            showScreen(quizScreen);
+            displayQuestion(currentQuestionIndex);
+            updateButtons();
+            updateProgress();
+        }
+
+        // 顯示歷史紀錄
+        function showHistory() {
+            displayHistory();
+            showScreen(historyScreen);
+        }
+
+        // 結束應用程式
+        function exitApp() {
+            if (confirm('確定要結束測驗嗎？')) {
+                // 在瀏覽器中，我們無法直接關閉視窗，除非是PWA
+                if (window.navigator.standalone) {
+                    window.close();
+                } else {
+                    showUpdateNotification('請手動關閉瀏覽器標籤頁');
+                }
+            }
+        }
+
+        // 返回首頁
+        function backToHome() {
+            stopTimer();
+            showScreen(homeScreen);
+        }
+
+        // 上一題
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion(currentQuestionIndex);
+                updateButtons();
+                updateProgress();
+            }
+        }
+
+        // 下一題
+        function nextQuestion() {
+            if (currentQuestionIndex < shuffledQuestions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion(currentQuestionIndex);
+                updateButtons();
+                updateProgress();
+            }
+        }
+
+        // 提交測驗
+        function submitQuiz() {
+            stopTimer();
+            
+            // 儲存歷史紀錄
+            const record = {
+                date: new Date().toISOString(),
+                score: score,
+                total: shuffledQuestions.length,
+                time: elapsedTime,
+                wrongQuestions: [...wrongQuestions]
+            };
+            
+            history.unshift(record);
+            // 只保留最近10次紀錄
+            if (history.length > 10) {
+                history = history.slice(0, 10);
+            }
+            
+            localStorage.setItem('n4QuizHistory', JSON.stringify(history));
+            
+            showResults();
+            showScreen(resultScreen);
+        }
+
+        // 重新開始測驗
+        function restartQuiz() {
+            startQuiz();
+        }
+
+        // 加載題庫 - 修改為直接使用內建題庫
+        function loadQuestionBank() {
+            console.log('使用內建題庫，題目數量:', window.questionBank ? window.questionBank.length : 0);
+            
+            // 檢查題庫版本更新
+            checkQuestionBankUpdate();
+            
+            startQuizBtn.disabled = false;
+            startQuizBtn.textContent = '開始測驗';
         }
 
         // 檢查題庫版本更新
@@ -550,26 +814,11 @@
                     localStorage.setItem('questionBankVersion', newVersion);
                     
                     showUpdateNotification('題庫已更新到最新版本！');
+                    updateIndicator.classList.remove('outdated');
                 } else {
                     console.log('題庫已是最新版本');
+                    updateIndicator.classList.remove('outdated');
                 }
-            }
-        }
-
-        // 加載緩存的題庫
-        function loadCachedQuestionBank() {
-            try {
-                const cached = localStorage.getItem('cachedQuestionBank');
-                if (cached) {
-                    window.questionBank = JSON.parse(cached);
-                    console.log('使用緩存題庫，題目數量:', window.questionBank.length);
-                    showUpdateNotification('使用離線題庫模式');
-                } else {
-                    console.error('沒有可用的題庫數據');
-                    showUpdateNotification('題庫加載失敗，請檢查網路連接');
-                }
-            } catch (error) {
-                console.error('加載緩存題庫失敗:', error);
             }
         }
 
@@ -612,25 +861,8 @@
         // 手動檢查更新函數
         function checkForUpdates() {
             console.log('手動檢查題庫更新...');
-            lastUpdateCheck = 0;
-            localStorage.setItem('lastUpdateCheck', '0');
-            loadQuestionBank();
-        }
-
-        // 在首頁添加更新檢查按鈕
-        function addUpdateButton() {
-            const homeButtons = document.querySelector('.home-buttons');
-            // 檢查是否已經有更新按鈕
-            if (!document.getElementById('update-btn')) {
-                const updateBtn = document.createElement('button');
-                updateBtn.id = 'update-btn';
-                updateBtn.className = 'home-btn update';
-                updateBtn.textContent = '檢查題庫更新';
-                updateBtn.addEventListener('click', checkForUpdates);
-                
-                // 插入到開始測驗按鈕後面
-                homeButtons.insertBefore(updateBtn, homeButtons.children[1].nextSibling);
-            }
+            showUpdateNotification('已檢查更新，使用內建題庫');
+            updateIndicator.classList.remove('outdated');
         }
 
         // 開始計時
@@ -656,12 +888,6 @@
                 clearInterval(timerInterval);
                 timerInterval = null;
             }
-        }
-
-        // 顯示歷史紀錄
-        function showHistory() {
-            displayHistory();
-            showScreen(historyScreen);
         }
 
         // 顯示歷史紀錄內容
@@ -729,19 +955,6 @@
             }
         }
 
-        // 結束應用程式
-        function exitApp() {
-            if (confirm('確定要結束測驗嗎？')) {
-                window.close();
-            }
-        }
-
-        // 返回首頁
-        function backToHome() {
-            stopTimer();
-            showScreen(homeScreen);
-        }
-
         // 顯示指定畫面
         function showScreen(screen) {
             homeScreen.classList.remove('active');
@@ -802,6 +1015,8 @@
                 case "reorder":
                     questionHTML = generateReorderQuestion(question, index);
                     break;
+                default:
+                    questionHTML = generateDefaultQuestion(question, index);
             }
             
             const explanationClass = isAnswered[index] ? 'explanation show' : 'explanation';
@@ -849,7 +1064,7 @@
                 if (isIncorrect) optionClass += ' incorrect';
                 
                 optionsHTML += `
-                    <div class="${optionClass}" onclick="selectOption(${i})">
+                    <div class="${optionClass}" onclick="window.selectOption(${i})">
                         ${option.text}
                     </div>
                 `;
@@ -882,7 +1097,7 @@
                 if (isIncorrect) optionClass += ' incorrect';
                 
                 optionsHTML += `
-                    <div class="${optionClass}" onclick="selectOption(${i})">
+                    <div class="${optionClass}" onclick="window.selectOption(${i})">
                         ${option.text}
                     </div>
                 `;
@@ -915,7 +1130,7 @@
                 if (isIncorrect) optionClass += ' incorrect';
                 
                 optionsHTML += `
-                    <div class="${optionClass}" onclick="selectOption(${i})">
+                    <div class="${optionClass}" onclick="window.selectOption(${i})">
                         ${option.text}
                     </div>
                 `;
@@ -948,7 +1163,7 @@
                 if (isIncorrect) optionClass += ' incorrect';
                 
                 optionsHTML += `
-                    <div class="${optionClass}" onclick="selectOption(${i})">
+                    <div class="${optionClass}" onclick="window.selectOption(${i})">
                         ${option.text}
                     </div>
                 `;
@@ -981,7 +1196,7 @@
                 if (isIncorrect) optionClass += ' incorrect';
                 
                 optionsHTML += `
-                    <div class="${optionClass}" onclick="selectOption(${i})">
+                    <div class="${optionClass}" onclick="window.selectOption(${i})">
                         ${option.text}
                     </div>
                 `;
@@ -1014,7 +1229,7 @@
                 if (isIncorrect) optionClass += ' incorrect';
                 
                 optionsHTML += `
-                    <div class="${optionClass}" onclick="selectOption(${i})">
+                    <div class="${optionClass}" onclick="window.selectOption(${i})">
                         ${option.text}
                     </div>
                 `;
@@ -1032,8 +1247,40 @@
             `;
         }
 
-        // 選擇選項
-        function selectOption(optionIndex) {
+        // 生成預設題型
+        function generateDefaultQuestion(question, index) {
+            let optionsHTML = '';
+            
+            question.options.forEach((option, i) => {
+                const isSelected = userAnswers[index] === i;
+                const isCorrect = isAnswered[index] && i === question.correctAnswer;
+                const isIncorrect = isAnswered[index] && isSelected && i !== question.correctAnswer;
+                
+                let optionClass = 'option';
+                if (isSelected) optionClass += ' selected';
+                if (isCorrect) optionClass += ' correct';
+                if (isIncorrect) optionClass += ' incorrect';
+                
+                optionsHTML += `
+                    <div class="${optionClass}" onclick="window.selectOption(${i})">
+                        ${option.text}
+                    </div>
+                `;
+            });
+            
+            return `
+                <div class="question">
+                    <div class="question-number">問題 ${index + 1}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        // 選擇選項 (設為全域函數)
+        window.selectOption = function(optionIndex) {
             if (isAnswered[currentQuestionIndex]) return;
             
             userAnswers[currentQuestionIndex] = optionIndex;
@@ -1053,7 +1300,7 @@
             updateScore();
             displayQuestion(currentQuestionIndex);
             updateButtons();
-        }
+        };
 
         // 更新按鈕狀態
         function updateButtons() {
@@ -1077,51 +1324,6 @@
         function updateScore() {
             const answeredCount = isAnswered.filter(Boolean).length;
             scoreElement.textContent = `得分: ${score}/${answeredCount}`;
-        }
-
-        // 上一題
-        function prevQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                displayQuestion(currentQuestionIndex);
-                updateButtons();
-                updateProgress();
-            }
-        }
-
-        // 下一題
-        function nextQuestion() {
-            if (currentQuestionIndex < shuffledQuestions.length - 1) {
-                currentQuestionIndex++;
-                displayQuestion(currentQuestionIndex);
-                updateButtons();
-                updateProgress();
-            }
-        }
-
-        // 提交測驗
-        function submitQuiz() {
-            stopTimer();
-            
-            // 儲存歷史紀錄
-            const record = {
-                date: new Date().toISOString(),
-                score: score,
-                total: shuffledQuestions.length,
-                time: elapsedTime,
-                wrongQuestions: [...wrongQuestions]
-            };
-            
-            history.unshift(record);
-            // 只保留最近10次紀錄
-            if (history.length > 10) {
-                history = history.slice(0, 10);
-            }
-            
-            localStorage.setItem('n4QuizHistory', JSON.stringify(history));
-            
-            showResults();
-            showScreen(resultScreen);
         }
 
         // 顯示測驗結果
@@ -1190,35 +1392,35 @@
                     </div>
                 `;
             } else {
-                resultHTML += `<div>恭喜！全部答對！</div>`;
+                resultHTML += `<div class="success-message">恭喜！全部答對！</div>`;
             }
             
             resultElement.innerHTML = resultHTML;
         }
 
-        // 重新開始測驗
-        function restartQuiz() {
-            startQuiz();
-        }
-
         // 初始化應用程式
         function initApp() {
             initEventListeners();
-            addUpdateButton();
+            
+            // 直接使用內建題庫
             loadQuestionBank();
             
-            // 註冊Service Worker
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                    navigator.serviceWorker.register('/sw.js')
-                        .then(function(registration) {
-                            console.log('ServiceWorker 註冊成功: ', registration.scope);
-                        })
-                        .catch(function(error) {
-                            console.log('ServiceWorker 註冊失敗: ', error);
-                        });
-                });
-            }
+            console.log('本地文件環境：跳過 PWA 功能');
+            // 在本地環境顯示提示
+            const localEnvIndicator = document.createElement('div');
+            localEnvIndicator.style.cssText = `
+                position: fixed;
+                bottom: 10px;
+                left: 10px;
+                background: #e74c3c;
+                color: white;
+                padding: 5px 10px;
+                border-radius: 3px;
+                font-size: 12px;
+                z-index: 1000;
+            `;
+            localEnvIndicator.textContent = '本地測試模式';
+            document.body.appendChild(localEnvIndicator);
         }
 
         // 啟動應用程式
