@@ -4,6 +4,7 @@
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#3498db">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="日文N4測驗">
 
@@ -620,44 +621,7 @@
         const resultElement = document.getElementById('result');
         const historyListElement = document.getElementById('history-list');
 
-        // 初始化事件監聽
-        function initEventListeners() {
-            // 首頁按鈕
-            startQuizBtn.addEventListener('click', startQuiz);
-            viewHistoryBtn.addEventListener('click', showHistory);
-            exitBtn.addEventListener('click', exitApp);
-            updateBtn.addEventListener('click', checkForUpdates);
-            count30Btn.addEventListener('click', () => setQuestionCount(30));
-            count50Btn.addEventListener('click', () => setQuestionCount(50));
-            
-            // 測驗頁面按鈕
-            prevBtn.addEventListener('click', prevQuestion);
-            nextBtn.addEventListener('click', nextQuestion);
-            submitBtn.addEventListener('click', submitQuiz);
-            backHomeBtn.addEventListener('click', backToHome);
-            
-            // 結果頁面按鈕
-            restartBtn.addEventListener('click', restartQuiz);
-            resultBackHomeBtn.addEventListener('click', backToHome);
-            
-            // 歷史紀錄頁面按鈕
-            historyBackHomeBtn.addEventListener('click', backToHome);
-            clearHistoryBtn.addEventListener('click', clearHistory);
-        }
-
-        // 設定題目數量
-        function setQuestionCount(count) {
-            const maxAvailable = window.questionBank ? window.questionBank.length : 0;
-            questionCount = Math.min(count, maxAvailable);
-            count30Btn.classList.toggle('active', count === 30);
-            count50Btn.classList.toggle('active', count === 50);
-            
-            // 如果選擇的數量超過可用題目，顯示提示
-            if (count > maxAvailable && maxAvailable > 0) {
-                showUpdateNotification(`可用題目只有 ${maxAvailable} 題`);
-                questionCount = maxAvailable;
-            }
-        }
+        // ========== 核心功能函數 (必須在 initEventListeners 之前定義) ==========
 
         // 開始測驗
         function startQuiz() {
@@ -772,6 +736,49 @@
         function restartQuiz() {
             startQuiz();
         }
+
+        // 設定題目數量
+        function setQuestionCount(count) {
+            const maxAvailable = window.questionBank ? window.questionBank.length : 0;
+            questionCount = Math.min(count, maxAvailable);
+            count30Btn.classList.toggle('active', count === 30);
+            count50Btn.classList.toggle('active', count === 50);
+            
+            // 如果選擇的數量超過可用題目，顯示提示
+            if (count > maxAvailable && maxAvailable > 0) {
+                showUpdateNotification(`可用題目只有 ${maxAvailable} 題`);
+                questionCount = maxAvailable;
+            }
+        }
+
+        // ========== 事件監聽器初始化 ==========
+
+        // 初始化事件監聽
+        function initEventListeners() {
+            // 首頁按鈕
+            startQuizBtn.addEventListener('click', startQuiz);
+            viewHistoryBtn.addEventListener('click', showHistory);
+            exitBtn.addEventListener('click', exitApp);
+            updateBtn.addEventListener('click', checkForUpdates);
+            count30Btn.addEventListener('click', () => setQuestionCount(30));
+            count50Btn.addEventListener('click', () => setQuestionCount(50));
+            
+            // 測驗頁面按鈕
+            prevBtn.addEventListener('click', prevQuestion);
+            nextBtn.addEventListener('click', nextQuestion);
+            submitBtn.addEventListener('click', submitQuiz);
+            backHomeBtn.addEventListener('click', backToHome);
+            
+            // 結果頁面按鈕
+            restartBtn.addEventListener('click', restartQuiz);
+            resultBackHomeBtn.addEventListener('click', backToHome);
+            
+            // 歷史紀錄頁面按鈕
+            historyBackHomeBtn.addEventListener('click', backToHome);
+            clearHistoryBtn.addEventListener('click', clearHistory);
+        }
+
+        // ========== 其他功能函數 ==========
 
         // 加載題庫 - 修改為直接使用內建題庫
         function loadQuestionBank() {
