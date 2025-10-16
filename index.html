@@ -7,7 +7,6 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="日文N4測驗">
-    <meta name="mobile-web-app-capable" content="yes">
 
     <!-- Icons -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
@@ -577,16 +576,19 @@
         let questionBankVersion = localStorage.getItem('questionBankVersion') || '0';
         let lastUpdateCheck = localStorage.getItem('lastUpdateCheck') || 0;
 
-        // 環境檢測
-        const isLocal = window.location.protocol === 'file:';
-        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+// 環境檢測 - 修正判斷邏輯
+const isLocal = window.location.protocol === 'file:';
+const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const isGitHub = window.location.hostname.includes('github.io');
 
+// 環境配置 - 修正判斷
+const config = {
+    enablePWA: !isLocal,  // 只要不是本地檔案就啟用PWA
+    enableServiceWorker: !isLocal,
+    environment: isLocal ? 'local' : (isDevelopment ? 'development' : 'production')
+};
         // 環境配置
-        const config = {
-            enablePWA: !isLocal,
-            enableServiceWorker: !isLocal,
-            environment: isLocal ? 'local' : (isDevelopment ? 'development' : 'production')
-        };
+
 
         console.log(`運行環境: ${config.environment}, PWA: ${config.enablePWA ? '啟用' : '禁用'}`);
 
@@ -753,44 +755,8 @@
         }
 
         // ========== 事件監聽器初始化 ==========
-function startQuiz() {
-    // startQuiz 函數內容
-}
-
-function showHistory() {
-    // showHistory 函數內容
-}
-
-function exitApp() {
-    // exitApp 函數內容
-}
-
-function backToHome() {
-    // backToHome 函數內容
-}
-
-function prevQuestion() {
-    // prevQuestion 函數內容
-}
-
-function nextQuestion() {
-    // nextQuestion 函數內容
-}
-
-function submitQuiz() {
-    // submitQuiz 函數內容
-}
-
-function restartQuiz() {
-    // restartQuiz 函數內容
-}
-
-function setQuestionCount(count) {
-    // setQuestionCount 函數內容
-}
 
 // 然後才是 initEventListeners 函數
-function initEventListeners() {
     // 事件監聽器內容
 
 
@@ -819,99 +785,142 @@ function initEventListeners() {
             clearHistoryBtn.addEventListener('click', clearHistory);
         }
 
-        // ========== 其他功能函數 ==========
+// ========== 其他功能函數 ==========
 
-        // 加載題庫 - 修改為直接使用內建題庫
-        function loadQuestionBank() {
-            console.log('使用內建題庫，題目數量:', window.questionBank ? window.questionBank.length : 0);
+// 加載題庫 - 修正為在線上環境載入外部題庫
+async function loadQuestionBank() {
+    // 如果是線上環境，嘗試載入外部題庫
+    if (!isLocal) {
+        try {
+            console.log('正在從伺服器加載題庫...');
+            // 先禁用開始測驗按鈕
+            startQuizBtn.disabled = true;
+            startQuizBtn.textContent = '題庫載入中...';
             
-            // 檢查題庫版本更新
-            checkQuestionBankUpdate();
+            const response = await fetch('./question_bank.js');
             
-            startQuizBtn.disabled = false;
-            startQuizBtn.textContent = '開始測驗';
-        }
-
-        // 檢查題庫版本更新
-        function checkQuestionBankUpdate() {
-            const now = new Date().getTime();
-            const oneDay = 24 * 60 * 60 * 1000; // 1天的毫秒數
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             
-            // 如果超過1天沒有檢查更新，或者強制更新
-            if (now - lastUpdateCheck > oneDay || !localStorage.getItem('cachedQuestionBank')) {
-                console.log('檢查題庫更新...');
-                updateQuestionBankCache();
+            const scriptContent = await response.text();
+            
+            // 動態執行題庫腳本
+            const script = document.createElement('script');
+            script.textContent = scriptContent;
+            document.head.appendChild(script);
+            
+            // 等待題庫載入完成
+            await new Promise(resolve => setTimeout(resolve, 100));
+            
+            console.log('外部題庫加載成功，題目數量:', window.questionBank ? window.questionBank.length : 0);
+            
+            // 更新題庫緩存
+            updateQuestionBankCache();
+            
+        } catch (error) {
+            console.log('外部題庫加載失敗，使用內建題庫:', error);
+            // 使用內建題庫作為備用
+            if (!window.questionBank || window.questionBank.length === 0) {
+                // 如果內建題庫也不存在，使用預設題庫
+                window.questionBank = window.questionBank || [];
+                showUpdateNotification('使用內建題庫模式');
             } else {
-                console.log('使用緩存的題庫版本');
+                showUpdateNotification('使用緩存題庫模式');
             }
+        }
+    } else {
+        console.log('本地環境：使用內建題庫，題目數量:', window.questionBank ? window.questionBank.length : 0);
+    }
+    
+    // 啟用開始測驗按鈕
+    startQuizBtn.disabled = false;
+    startQuizBtn.textContent = '開始測驗';
+    
+    // 更新題目數量選擇器
+    setQuestionCount(questionCount);
+}
+
+// 檢查題庫版本更新
+function checkQuestionBankUpdate() {
+    const now = new Date().getTime();
+    const oneDay = 24 * 60 * 60 * 1000; // 1天的毫秒數
+    
+    // 如果超過1天沒有檢查更新，或者強制更新
+    if (now - lastUpdateCheck > oneDay || !localStorage.getItem('cachedQuestionBank')) {
+        console.log('檢查題庫更新...');
+        updateQuestionBankCache();
+    } else {
+        console.log('使用緩存的題庫版本');
+    }
+    
+    localStorage.setItem('lastUpdateCheck', now.toString());
+}
+
+// 更新題庫緩存
+function updateQuestionBankCache() {
+    if (window.questionBank && window.questionBank.length > 0) {
+        const newVersion = generateQuestionBankVersion(window.questionBank);
+        const currentVersion = localStorage.getItem('questionBankVersion');
+        
+        if (newVersion !== currentVersion) {
+            console.log('發現新版本題庫，更新緩存');
             
-            localStorage.setItem('lastUpdateCheck', now.toString());
-        }
-
-        // 更新題庫緩存
-        function updateQuestionBankCache() {
-            if (window.questionBank && window.questionBank.length > 0) {
-                const newVersion = generateQuestionBankVersion(window.questionBank);
-                const currentVersion = localStorage.getItem('questionBankVersion');
-                
-                if (newVersion !== currentVersion) {
-                    console.log('發現新版本題庫，更新緩存');
-                    
-                    // 緩存題庫數據
-                    localStorage.setItem('cachedQuestionBank', JSON.stringify(window.questionBank));
-                    localStorage.setItem('questionBankVersion', newVersion);
-                    
-                    showUpdateNotification('題庫已更新到最新版本！');
-                    updateIndicator.classList.remove('outdated');
-                } else {
-                    console.log('題庫已是最新版本');
-                    updateIndicator.classList.remove('outdated');
-                }
-            }
-        }
-
-        // 生成題庫版本標識
-        function generateQuestionBankVersion(bank) {
-            const contentString = JSON.stringify(bank);
-            let hash = 0;
-            for (let i = 0; i < contentString.length; i++) {
-                const char = contentString.charCodeAt(i);
-                hash = ((hash << 5) - hash) + char;
-                hash = hash & hash;
-            }
-            return 'v1.' + Math.abs(hash).toString(16).substring(0, 8);
-        }
-
-        // 顯示更新通知
-        function showUpdateNotification(message) {
-            const toast = document.createElement('div');
-            toast.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: #3498db;
-                color: white;
-                padding: 10px 15px;
-                border-radius: 5px;
-                z-index: 1000;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            `;
-            toast.textContent = message;
-            document.body.appendChild(toast);
+            // 緩存題庫數據
+            localStorage.setItem('cachedQuestionBank', JSON.stringify(window.questionBank));
+            localStorage.setItem('questionBankVersion', newVersion);
             
-            setTimeout(() => {
-                if (toast.parentNode) {
-                    document.body.removeChild(toast);
-                }
-            }, 3000);
-        }
-
-        // 手動檢查更新函數
-        function checkForUpdates() {
-            console.log('手動檢查題庫更新...');
-            showUpdateNotification('已檢查更新，使用內建題庫');
+            showUpdateNotification('題庫已更新到最新版本！');
+            updateIndicator.classList.remove('outdated');
+        } else {
+            console.log('題庫已是最新版本');
             updateIndicator.classList.remove('outdated');
         }
+    }
+}
+
+// 生成題庫版本標識
+function generateQuestionBankVersion(bank) {
+    const contentString = JSON.stringify(bank);
+    let hash = 0;
+    for (let i = 0; i < contentString.length; i++) {
+        const char = contentString.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+    }
+    return 'v1.' + Math.abs(hash).toString(16).substring(0, 8);
+}
+
+// 顯示更新通知
+function showUpdateNotification(message) {
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #3498db;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    `;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        if (toast.parentNode) {
+            document.body.removeChild(toast);
+        }
+    }, 3000);
+}
+
+// 手動檢查更新函數
+function checkForUpdates() {
+    console.log('手動檢查題庫更新...');
+    showUpdateNotification('已檢查更新，使用內建題庫');
+    updateIndicator.classList.remove('outdated');
+}
 
         // 開始計時
         function startTimer() {
@@ -1453,22 +1462,7 @@ function initEventListeners() {
             // 直接使用內建題庫
             loadQuestionBank();
             
-            console.log('本地文件環境：跳過 PWA 功能');
-            // 在本地環境顯示提示
-            const localEnvIndicator = document.createElement('div');
-            localEnvIndicator.style.cssText = `
-                position: fixed;
-                bottom: 10px;
-                left: 10px;
-                background: #e74c3c;
-                color: white;
-                padding: 5px 10px;
-                border-radius: 3px;
-                font-size: 12px;
-                z-index: 1000;
-            `;
-            localEnvIndicator.textContent = '本地測試模式';
-            document.body.appendChild(localEnvIndicator);
+     
         }
 
         // 啟動應用程式
