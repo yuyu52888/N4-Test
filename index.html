@@ -371,6 +371,7 @@
                     <p>選擇題目數量：</p>
                     <button id="count-30-btn" class="count-btn active">30題</button>
                     <button id="count-50-btn" class="count-btn">50題</button>
+		    <button id="count-past-btn" class="count-btn">歷屆考題</button>
                 </div>
                 
                 <button id="view-history-btn" class="home-btn">歷史紀錄查詢</button>
@@ -426,6 +427,86 @@
     </div>
 
     <script>
+// 歷屆考題資料庫
+window.pastQuestionBank = [
+    {
+        id: 101,
+        type: "reading",
+        question: "請選擇下列漢字的正確讀音",
+        kanji: "勉強",
+        options: [
+            { text: "べんきょう", explanation: "正確！「勉強」的讀音是「べんきょう」" },
+            { text: "べんきょ", explanation: "錯誤！缺少長音" },
+            { text: "べんきゅう", explanation: "錯誤！這是「研究」的讀音" },
+            { text: "めんきょう", explanation: "錯誤！讀音不正確" }
+        ],
+        correctAnswer: 0,
+        year: "2023",
+        season: "夏季"
+    },
+    {
+        id: 102,
+        type: "grammar",
+        question: "請選擇正確的文法形式",
+        sentence: "この本は昨日＿＿＿＿。",
+        options: [
+            { text: "買いました", explanation: "正確！表示昨天買了這本書" },
+            { text: "買います", explanation: "錯誤！應該使用過去形" },
+            { text: "買いましょう", explanation: "錯誤！這是勸誘形" },
+            { text: "買ってください", explanation: "錯誤！這是請求形" }
+        ],
+        correctAnswer: 0,
+        year: "2023",
+        season: "春季"
+    },
+    {
+        id: 103,
+        type: "vocabulary",
+        question: "請選擇最適合的詞語填入空格",
+        sentence: "電車が＿＿＿＿います。",
+        options: [
+            { text: "込んで", explanation: "正確！表示電車很擁擠" },
+            { text: "入って", explanation: "錯誤！「入って」是進入的意思" },
+            { text: "来て", explanation: "錯誤！「来て」是來的意思" },
+            { text: "行って", explanation: "錯誤！「行って」是去的意思" }
+        ],
+        correctAnswer: 0,
+        year: "2022",
+        season: "冬季"
+    },
+    {
+        id: 104,
+        type: "writing",
+        question: "請選擇下列讀音的正確漢字",
+        kana: "しけん",
+        options: [
+            { text: "試験", explanation: "正確！「しけん」的漢字是「試験」" },
+            { text: "私見", explanation: "錯誤！「私見」是個人意見的意思" },
+            { text: "資源", explanation: "錯誤！「資源」的讀音是「しげん」" },
+            { text: "事件", explanation: "錯誤！「事件」的讀音是「じけん」" }
+        ],
+        correctAnswer: 0,
+        year: "2022",
+        season: "秋季"
+    },
+    {
+        id: 105,
+        type: "synonym",
+        question: "請選擇與劃線詞語意思最接近的選項",
+        sentence: "彼はとても親切な人です。",
+        options: [
+            { text: "優しい", explanation: "正確！「親切」和「優しい」意思相近" },
+            { text: "厳しい", explanation: "錯誤！「厳しい」是嚴格的意思" },
+            { text: "強い", explanation: "錯誤！「強い」是強壯的意思" },
+            { text: "賢い", explanation: "錯誤！「賢い」是聰明的意思" }
+        ],
+        correctAnswer: 0,
+        year: "2021",
+        season: "夏季"
+    }
+    // 可以繼續添加更多歷屆考題...
+];
+
         // 內建題庫資料
         window.questionBank = [
             {
@@ -569,6 +650,7 @@
         let selectedQuestions = [];
         let shuffledQuestions = [];
         let questionCount = 30;
+        let isPastQuestions = false; // 新增：是否為歷屆考題模式
         let timerInterval = null;
         let startTime = null;
         let elapsedTime = 0;
@@ -604,6 +686,7 @@ const config = {
         const updateBtn = document.getElementById('update-btn');
         const count30Btn = document.getElementById('count-30-btn');
         const count50Btn = document.getElementById('count-50-btn');
+        const countPastBtn = document.getElementById('count-past-btn'); // 新增這行
         
         const quizContainer = document.getElementById('quiz-container');
         const prevBtn = document.getElementById('prev-btn');
@@ -628,10 +711,11 @@ const config = {
         // 開始測驗
         function startQuiz() {
             // 檢查題庫是否已加載
-            if (!window.questionBank || window.questionBank.length === 0) {
-                alert('題庫加載中，請稍後再試...');
-                loadQuestionBank();
-                return;
+    if ((!window.questionBank || window.questionBank.length === 0) && 
+        (!window.pastQuestionBank || window.pastQuestionBank.length === 0)) {
+        alert('題庫加載中，請稍後再試...');
+        loadQuestionBank();
+        return;
             }
             
             // 重置狀態
@@ -643,26 +727,37 @@ const config = {
             selectedQuestions = [];
             shuffledQuestions = [];
             elapsedTime = 0;
+
+    // 根據模式選擇題庫
+    let availableQuestions = [];
+    if (isPastQuestions) {
+        // 歷屆考題模式
+        availableQuestions = [...window.pastQuestionBank];
+        showUpdateNotification('歷屆考題模式');
+    } else {
+        // 一般題庫模式
+        availableQuestions = [...window.questionBank];
+    }
+
             
             // 隨機選擇題目
-            const availableQuestions = [...window.questionBank];
-            const shuffled = shuffleArray(availableQuestions);
-            selectedQuestions = shuffled.slice(0, Math.min(questionCount, availableQuestions.length));
-            
-            // 隨機打亂每個題目的選項順序
-            shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
-            
-            userAnswers = new Array(selectedQuestions.length).fill(null);
-            isAnswered = new Array(selectedQuestions.length).fill(false);
-            
+    const shuffled = shuffleArray(availableQuestions);
+    selectedQuestions = shuffled.slice(0, Math.min(questionCount, availableQuestions.length));
+    
+     // 隨機打亂每個題目的選項順序
+    shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
+    
+    userAnswers = new Array(selectedQuestions.length).fill(null);
+    isAnswered = new Array(selectedQuestions.length).fill(false);
+      
             // 開始計時
             startTimer();
             
-            // 顯示測驗頁面
-            showScreen(quizScreen);
-            displayQuestion(currentQuestionIndex);
-            updateButtons();
-            updateProgress();
+    // 顯示測驗頁面
+    showScreen(quizScreen);
+    displayQuestion(currentQuestionIndex);
+    updateButtons();
+    updateProgress();
         }
 
         // 顯示歷史紀錄
@@ -740,18 +835,40 @@ const config = {
         }
 
         // 設定題目數量
-        function setQuestionCount(count) {
-            const maxAvailable = window.questionBank ? window.questionBank.length : 0;
-            questionCount = Math.min(count, maxAvailable);
-            count30Btn.classList.toggle('active', count === 30);
-            count50Btn.classList.toggle('active', count === 50);
-            
-            // 如果選擇的數量超過可用題目，顯示提示
-            if (count > maxAvailable && maxAvailable > 0) {
-                showUpdateNotification(`可用題目只有 ${maxAvailable} 題`);
-                questionCount = maxAvailable;
-            }
+function setQuestionCount(count) {
+    if (count === 'past') {
+        // 歷屆考題模式
+        isPastQuestions = true;
+        const maxAvailable = window.pastQuestionBank ? window.pastQuestionBank.length : 0;
+        questionCount = maxAvailable; // 歷屆考題使用全部題目
+        
+        count30Btn.classList.remove('active');
+        count50Btn.classList.remove('active');
+        countPastBtn.classList.add('active');
+        
+        if (maxAvailable === 0) {
+            showUpdateNotification('歷屆考題庫為空');
+            return;
         }
+        
+        showUpdateNotification(`歷屆考題模式 (${maxAvailable}題)`);
+    } else {
+        // 一般題庫模式
+        isPastQuestions = false;
+        const maxAvailable = window.questionBank ? window.questionBank.length : 0;
+        questionCount = Math.min(count, maxAvailable);
+        
+        count30Btn.classList.toggle('active', count === 30);
+        count50Btn.classList.toggle('active', count === 50);
+        countPastBtn.classList.remove('active');
+        
+        // 如果選擇的數量超過可用題目，顯示提示
+        if (count > maxAvailable && maxAvailable > 0) {
+            showUpdateNotification(`可用題目只有 ${maxAvailable} 題`);
+            questionCount = maxAvailable;
+        }
+    }
+}
 
         // 初始化事件監聽
         function initEventListeners() {
@@ -762,7 +879,8 @@ const config = {
             updateBtn.addEventListener('click', checkForUpdates);
             count30Btn.addEventListener('click', () => setQuestionCount(30));
             count50Btn.addEventListener('click', () => setQuestionCount(50));
-            
+            countPastBtn.addEventListener('click', () => setQuestionCount('past')); // 新增這行
+             
             // 測驗頁面按鈕
             prevBtn.addEventListener('click', prevQuestion);
             nextBtn.addEventListener('click', nextQuestion);
@@ -824,6 +942,13 @@ async function loadQuestionBank() {
         }
     } else {
         console.log('本地環境：使用內建題庫，題目數量:', window.questionBank ? window.questionBank.length : 0);
+    }
+    
+    // 檢查歷屆考題庫
+    if (!window.pastQuestionBank || window.pastQuestionBank.length === 0) {
+        console.log('歷屆考題庫為空，使用內建歷屆考題');
+        // 如果沒有歷屆考題庫，使用內建的
+        window.pastQuestionBank = window.pastQuestionBank || [];
     }
     
     // 啟用開始測驗按鈕
@@ -940,55 +1065,58 @@ function checkForUpdates() {
             }
         }
 
-        // 顯示歷史紀錄內容
-        function displayHistory() {
-            if (history.length === 0) {
-                historyListElement.innerHTML = '<p>尚無測驗紀錄</p>';
-                return;
+// 顯示歷史紀錄內容
+function displayHistory() {
+    if (history.length === 0) {
+        historyListElement.innerHTML = '<p>尚無測驗紀錄</p>';
+        return;
+    }
+    
+    let historyHTML = '';
+    
+    history.forEach((record, index) => {
+        const date = new Date(record.date).toLocaleString('zh-TW');
+        
+        // 計算各題型的錯誤數量
+        const errorTypes = {
+            reading: 0,
+            writing: 0,
+            vocabulary: 0,
+            synonym: 0,
+            grammar: 0,
+            reorder: 0
+        };
+        
+        record.wrongQuestions.forEach(questionId => {
+            // 先從一般題庫找，再從歷屆考題庫找
+            let question = window.questionBank.find(q => q.id === questionId);
+            if (!question) {
+                question = window.pastQuestionBank.find(q => q.id === questionId);
             }
-            
-            let historyHTML = '';
-            
-            history.forEach((record, index) => {
-                const date = new Date(record.date).toLocaleString('zh-TW');
-                
-                // 計算各題型的錯誤數量
-                const errorTypes = {
-                    reading: 0,
-                    writing: 0,
-                    vocabulary: 0,
-                    synonym: 0,
-                    grammar: 0,
-                    reorder: 0
-                };
-                
-                record.wrongQuestions.forEach(questionId => {
-                    const question = window.questionBank.find(q => q.id === questionId);
-                    if (question && errorTypes.hasOwnProperty(question.type)) {
-                        errorTypes[question.type]++;
-                    }
-                });
-                
-                historyHTML += `
-                    <div class="history-item">
-                        <div class="history-date">測驗 ${index + 1} - ${date}</div>
-                        <div class="history-stats">
-                            <div class="history-stat">答對題數: ${record.score}/${record.total}</div>
-                            <div class="history-stat">用時: ${formatTime(record.time)}</div>
-                            <div class="history-stat">漢字讀音錯誤: ${errorTypes.reading}</div>
-                            <div class="history-stat">漢字書寫錯誤: ${errorTypes.writing}</div>
-                            <div class="history-stat">詞語填空錯誤: ${errorTypes.vocabulary}</div>
-                            <div class="history-stat">近義詞替換錯誤: ${errorTypes.synonym}</div>
-                            <div class="history-stat">文法選擇錯誤: ${errorTypes.grammar}</div>
-                            <div class="history-stat">句子重組錯誤: ${errorTypes.reorder}</div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            historyListElement.innerHTML = historyHTML;
-        }
-
+            if (question && errorTypes.hasOwnProperty(question.type)) {
+                errorTypes[question.type]++;
+            }
+        });
+        
+        historyHTML += `
+            <div class="history-item">
+                <div class="history-date">測驗 ${index + 1} - ${date}</div>
+                <div class="history-stats">
+                    <div class="history-stat">答對題數: ${record.score}/${record.total}</div>
+                    <div class="history-stat">用時: ${formatTime(record.time)}</div>
+                    <div class="history-stat">漢字讀音錯誤: ${errorTypes.reading}</div>
+                    <div class="history-stat">漢字書寫錯誤: ${errorTypes.writing}</div>
+                    <div class="history-stat">詞語填空錯誤: ${errorTypes.vocabulary}</div>
+                    <div class="history-stat">近義詞替換錯誤: ${errorTypes.synonym}</div>
+                    <div class="history-stat">文法選擇錯誤: ${errorTypes.grammar}</div>
+                    <div class="history-stat">句子重組錯誤: ${errorTypes.reorder}</div>
+                </div>
+            </div>
+        `;
+    });
+    
+    historyListElement.innerHTML = historyHTML;
+}
         // 格式化時間顯示
         function formatTime(seconds) {
             const minutes = Math.floor(seconds / 60);
@@ -1098,39 +1226,44 @@ function checkForUpdates() {
             
             return explanationsHTML;
         }
+// 生成漢字讀音題型
+function generateReadingQuestion(question, index) {
+    let optionsHTML = '';
+    
+    question.options.forEach((option, i) => {
+        const isSelected = userAnswers[index] === i;
+        const isCorrect = isAnswered[index] && i === question.correctAnswer;
+        const isIncorrect = isAnswered[index] && isSelected && i !== question.correctAnswer;
+        
+        let optionClass = 'option';
+        if (isSelected) optionClass += ' selected';
+        if (isCorrect) optionClass += ' correct';
+        if (isIncorrect) optionClass += ' incorrect';
+        
+        optionsHTML += `
+            <div class="${optionClass}" onclick="window.selectOption(${i})">
+                ${option.text}
+            </div>
+        `;
+    });
+    
+    // 如果是歷屆考題，顯示年份資訊
+    const yearInfo = question.year && question.season ? 
+        `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
+    
+    return `
+        <div class="question">
+            <div class="question-number">問題 ${index + 1}</div>
+            ${yearInfo}
+            <div class="question-text">${question.question}</div>
+            <div class="kanji">${question.kanji}</div>
+            <div class="options">
+                ${optionsHTML}
+            </div>
+        </div>
+    `;
+}
 
-        // 生成漢字讀音題型
-        function generateReadingQuestion(question, index) {
-            let optionsHTML = '';
-            
-            question.options.forEach((option, i) => {
-                const isSelected = userAnswers[index] === i;
-                const isCorrect = isAnswered[index] && i === question.correctAnswer;
-                const isIncorrect = isAnswered[index] && isSelected && i !== question.correctAnswer;
-                
-                let optionClass = 'option';
-                if (isSelected) optionClass += ' selected';
-                if (isCorrect) optionClass += ' correct';
-                if (isIncorrect) optionClass += ' incorrect';
-                
-                optionsHTML += `
-                    <div class="${optionClass}" onclick="window.selectOption(${i})">
-                        ${option.text}
-                    </div>
-                `;
-            });
-            
-            return `
-                <div class="question">
-                    <div class="question-number">問題 ${index + 1}</div>
-                    <div class="question-text">${question.question}</div>
-                    <div class="kanji">${question.kanji}</div>
-                    <div class="options">
-                        ${optionsHTML}
-                    </div>
-                </div>
-            `;
-        }
 
         // 生成漢字書寫題型
         function generateWritingQuestion(question, index) {
@@ -1152,10 +1285,15 @@ function checkForUpdates() {
                     </div>
                 `;
             });
+    // 如果是歷屆考題，顯示年份資訊
+    const yearInfo = question.year && question.season ? 
+        `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
+    
             
             return `
                 <div class="question">
                     <div class="question-number">問題 ${index + 1}</div>
+            ${yearInfo}
                     <div class="question-text">${question.question}</div>
                     <div class="kanji">${question.kana}</div>
                     <div class="options">
@@ -1186,9 +1324,14 @@ function checkForUpdates() {
                 `;
             });
             
+    // 如果是歷屆考題，顯示年份資訊
+    const yearInfo = question.year && question.season ? 
+        `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
+    
             return `
                 <div class="question">
                     <div class="question-number">問題 ${index + 1}</div>
+            ${yearInfo}
                     <div class="question-text">${question.question}</div>
                     <div class="question-text">${question.sentence}</div>
                     <div class="options">
@@ -1218,10 +1361,15 @@ function checkForUpdates() {
                     </div>
                 `;
             });
+    // 如果是歷屆考題，顯示年份資訊
+    const yearInfo = question.year && question.season ? 
+        `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
+    
             
             return `
                 <div class="question">
                     <div class="question-number">問題 ${index + 1}</div>
+            ${yearInfo}
                     <div class="question-text">${question.question}</div>
                     <div class="question-text">${question.sentence}</div>
                     <div class="options">
@@ -1251,10 +1399,15 @@ function checkForUpdates() {
                     </div>
                 `;
             });
+    // 如果是歷屆考題，顯示年份資訊
+    const yearInfo = question.year && question.season ? 
+        `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
+    
             
             return `
                 <div class="question">
                     <div class="question-number">問題 ${index + 1}</div>
+            ${yearInfo}
                     <div class="question-text">${question.question}</div>
                     <div class="question-text">${question.sentence}</div>
                     <div class="options">
@@ -1284,10 +1437,15 @@ function checkForUpdates() {
                     </div>
                 `;
             });
+    // 如果是歷屆考題，顯示年份資訊
+    const yearInfo = question.year && question.season ? 
+        `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
+    
             
             return `
                 <div class="question">
                     <div class="question-number">問題 ${index + 1}</div>
+            ${yearInfo}
                     <div class="question-text">${question.question}</div>
                     <div class="question-text">${question.sentence}</div>
                     <div class="options">
@@ -1297,37 +1455,42 @@ function checkForUpdates() {
             `;
         }
 
-        // 生成預設題型
-        function generateDefaultQuestion(question, index) {
-            let optionsHTML = '';
-            
-            question.options.forEach((option, i) => {
-                const isSelected = userAnswers[index] === i;
-                const isCorrect = isAnswered[index] && i === question.correctAnswer;
-                const isIncorrect = isAnswered[index] && isSelected && i !== question.correctAnswer;
-                
-                let optionClass = 'option';
-                if (isSelected) optionClass += ' selected';
-                if (isCorrect) optionClass += ' correct';
-                if (isIncorrect) optionClass += ' incorrect';
-                
-                optionsHTML += `
-                    <div class="${optionClass}" onclick="window.selectOption(${i})">
-                        ${option.text}
-                    </div>
-                `;
-            });
-            
-            return `
-                <div class="question">
-                    <div class="question-number">問題 ${index + 1}</div>
-                    <div class="question-text">${question.question}</div>
-                    <div class="options">
-                        ${optionsHTML}
-                    </div>
-                </div>
-            `;
-        }
+// 生成預設題型
+function generateDefaultQuestion(question, index) {
+    let optionsHTML = '';
+    
+    question.options.forEach((option, i) => {
+        const isSelected = userAnswers[index] === i;
+        const isCorrect = isAnswered[index] && i === question.correctAnswer;
+        const isIncorrect = isAnswered[index] && isSelected && i !== question.correctAnswer;
+        
+        let optionClass = 'option';
+        if (isSelected) optionClass += ' selected';
+        if (isCorrect) optionClass += ' correct';
+        if (isIncorrect) optionClass += ' incorrect';
+        
+        optionsHTML += `
+            <div class="${optionClass}" onclick="window.selectOption(${i})">
+                ${option.text}
+            </div>
+        `;
+    });
+    
+    // 如果是歷屆考題，顯示年份資訊
+    const yearInfo = question.year && question.season ? 
+        `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
+    
+    return `
+        <div class="question">
+            <div class="question-number">問題 ${index + 1}</div>
+            ${yearInfo}  // 添加這行使用 yearInfo
+            <div class="question-text">${question.question}</div>
+            <div class="options">
+                ${optionsHTML}
+            </div>
+        </div>
+    `;
+}
 
         // 選擇選項 (設為全域函數)
         window.selectOption = function(optionIndex) {
@@ -1376,77 +1539,88 @@ function checkForUpdates() {
             scoreElement.textContent = `得分: ${score}/${answeredCount}`;
         }
 
-        // 顯示測驗結果
-        function showResults() {
-            // 計算各題型的錯誤數量
-            const errorTypes = {
-                reading: 0,
-                writing: 0,
-                vocabulary: 0,
-                synonym: 0,
-                grammar: 0,
-                reorder: 0
-            };
-            
-            wrongQuestions.forEach(questionId => {
-                const question = window.questionBank.find(q => q.id === questionId);
-                if (question && errorTypes.hasOwnProperty(question.type)) {
-                    errorTypes[question.type]++;
-                }
-            });
-            
-            let resultHTML = `
-                <div class="result-title">測驗完成！</div>
-                <div>最終得分: ${score}/${shuffledQuestions.length}</div>
-                <div>用時: ${formatTime(elapsedTime)}</div>
-                <div class="wrong-questions">
-                    <div class="wrong-title">各題型錯誤分析：</div>
-                    <ul>
-                        <li>漢字讀音錯誤: ${errorTypes.reading}</li>
-                        <li>漢字書寫錯誤: ${errorTypes.writing}</li>
-                        <li>詞語填空錯誤: ${errorTypes.vocabulary}</li>
-                        <li>近義詞替換錯誤: ${errorTypes.synonym}</li>
-                        <li>文法選擇錯誤: ${errorTypes.grammar}</li>
-                        <li>句子重組錯誤: ${errorTypes.reorder}</li>
-                    </ul>
-                </div>
-            `;
-            
-            if (wrongQuestions.length > 0) {
-                resultHTML += `
-                    <div class="wrong-questions">
-                        <div class="wrong-title">錯誤題目:</div>
-                        <ul>
-                `;
-                
-                wrongQuestions.forEach(questionId => {
-                    const originalQuestion = window.questionBank.find(q => q.id === questionId);
-                    const shuffledQuestion = shuffledQuestions.find(q => q.id === questionId);
-                    const userAnswerIndex = userAnswers[shuffledQuestions.indexOf(shuffledQuestion)];
-                    
-                    let questionText = '';
-                    
-                    if (originalQuestion.type === "reading") {
-                        questionText = `${originalQuestion.kanji} - 您的答案: ${shuffledQuestion.options[userAnswerIndex].text} - 正確答案: ${shuffledQuestion.options[shuffledQuestion.correctAnswer].text}`;
-                    } else if (originalQuestion.type === "writing") {
-                        questionText = `${originalQuestion.kana} - 您的答案: ${shuffledQuestion.options[userAnswerIndex].text} - 正確答案: ${shuffledQuestion.options[shuffledQuestion.correctAnswer].text}`;
-                    } else {
-                        questionText = `問題 ${originalQuestion.id} - 您的答案: ${shuffledQuestion.options[userAnswerIndex].text} - 正確答案: ${shuffledQuestion.options[shuffledQuestion.correctAnswer].text}`;
-                    }
-                    
-                    resultHTML += `<li>${questionText}</li>`;
-                });
-                
-                resultHTML += `
-                        </ul>
-                    </div>
-                `;
-            } else {
-                resultHTML += `<div class="success-message">恭喜！全部答對！</div>`;
+     // 顯示測驗結果
+function showResults() {
+    // 計算各題型的錯誤數量
+    const errorTypes = {
+        reading: 0,
+        writing: 0,
+        vocabulary: 0,
+        synonym: 0,
+        grammar: 0,
+        reorder: 0
+    };
+    
+    wrongQuestions.forEach(questionId => {
+        // 先從一般題庫找，再從歷屆考題庫找
+        let question = window.questionBank.find(q => q.id === questionId);
+        if (!question) {
+            question = window.pastQuestionBank.find(q => q.id === questionId);
+        }
+        if (question && errorTypes.hasOwnProperty(question.type)) {
+            errorTypes[question.type]++;
+        }
+    });
+    
+    let resultHTML = `
+        <div class="result-title">測驗完成！</div>
+        <div>最終得分: ${score}/${shuffledQuestions.length}</div>
+        <div>用時: ${formatTime(elapsedTime)}</div>
+        <div class="wrong-questions">
+            <div class="wrong-title">各題型錯誤分析：</div>
+            <ul>
+                <li>漢字讀音錯誤: ${errorTypes.reading}</li>
+                <li>漢字書寫錯誤: ${errorTypes.writing}</li>
+                <li>詞語填空錯誤: ${errorTypes.vocabulary}</li>
+                <li>近義詞替換錯誤: ${errorTypes.synonym}</li>
+                <li>文法選擇錯誤: ${errorTypes.grammar}</li>
+                <li>句子重組錯誤: ${errorTypes.reorder}</li>
+            </ul>
+        </div>
+    `;
+    
+    if (wrongQuestions.length > 0) {
+        resultHTML += `
+            <div class="wrong-questions">
+                <div class="wrong-title">錯誤題目:</div>
+                <ul>
+        `;
+        
+        wrongQuestions.forEach(questionId => {
+            // 先從一般題庫找，再從歷屆考題庫找
+            let originalQuestion = window.questionBank.find(q => q.id === questionId);
+            if (!originalQuestion) {
+                originalQuestion = window.pastQuestionBank.find(q => q.id === questionId);
             }
             
-            resultElement.innerHTML = resultHTML;
-        }
+            const shuffledQuestion = shuffledQuestions.find(q => q.id === questionId);
+            const userAnswerIndex = userAnswers[shuffledQuestions.indexOf(shuffledQuestion)];
+            
+            let questionText = '';
+            
+            if (originalQuestion) {
+                if (originalQuestion.type === "reading") {
+                    questionText = `${originalQuestion.kanji} - 您的答案: ${shuffledQuestion.options[userAnswerIndex].text} - 正確答案: ${shuffledQuestion.options[shuffledQuestion.correctAnswer].text}`;
+                } else if (originalQuestion.type === "writing") {
+                    questionText = `${originalQuestion.kana} - 您的答案: ${shuffledQuestion.options[userAnswerIndex].text} - 正確答案: ${shuffledQuestion.options[shuffledQuestion.correctAnswer].text}`;
+                } else {
+                    questionText = `問題 ${originalQuestion.id} - 您的答案: ${shuffledQuestion.options[userAnswerIndex].text} - 正確答案: ${shuffledQuestion.options[shuffledQuestion.correctAnswer].text}`;
+                }
+                
+                resultHTML += `<li>${questionText}</li>`;
+            }
+        });
+        
+        resultHTML += `
+                </ul>
+            </div>
+        `;
+    } else {
+        resultHTML += `<div class="success-message">恭喜！全部答對！</div>`;
+    }
+    
+    resultElement.innerHTML = resultHTML;
+}
 
         // 初始化應用程式
         function initApp() {
