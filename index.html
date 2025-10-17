@@ -16,344 +16,385 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日文N4單字與文法測驗系統</title>
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: "Microsoft JhengHei", "Segoe UI", sans-serif;
-        }
-        body {
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-            line-height: 1.6;
-        }
+    * {
+        box-sizing: border-box;
+        font-family: "Microsoft JhengHei", "Segoe UI", sans-serif;
+    }
+    body {
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        padding: 25px;
+        position: relative;
+    }
+    h1 {
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 15px;
+    }
+    .home-screen, .quiz-screen, .result-screen, .history-screen {
+        display: none;
+    }
+    .home-screen.active, .quiz-screen.active, .result-screen.active, .history-screen.active {
+        display: block;
+    }
+    .home-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 30px;
+    }
+    .home-btn {
+        padding: 15px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background-color 0.3s;
+    }
+    .home-btn:hover {
+        background-color: #2980b9;
+    }
+    .home-btn.exit {
+        background-color: #e74c3c;
+    }
+    .home-btn.exit:hover {
+        background-color: #c0392b;
+    }
+    .home-btn.update {
+        background-color: #2ecc71;
+    }
+    .home-btn.update:hover {
+        background-color: #27ae60;
+    }
+    
+    /* 測驗類型選擇按鈕樣式 */
+    .count-buttons-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 15px;
+    }
+    .count-btn {
+        margin: 0;
+        padding: 15px 10px;
+        background-color: #95a5a6;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .count-btn.active {
+        background-color: #2ecc71;
+        font-weight: bold;
+        transform: scale(1.02);
+        box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+    }
+    .count-btn:hover {
+        background-color: #7f8c8d;
+        transform: translateY(-2px);
+    }
+    .count-btn.active:hover {
+        background-color: #27ae60;
+    }
+    
+    .question {
+        margin-bottom: 25px;
+        padding: 15px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+    .question-number {
+        font-weight: bold;
+        color: #3498db;
+        margin-bottom: 10px;
+    }
+    .question-text {
+        font-size: 18px;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+    .kanji {
+        font-size: 24px;
+        font-weight: bold;
+        color: #e74c3c;
+        margin: 10px 0;
+        text-align: center;
+    }
+    .options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .option {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .option:hover {
+        background-color: #f0f0f0;
+    }
+    .option.selected {
+        background-color: #d6eaf8;
+        border-color: #3498db;
+    }
+    .option.correct {
+        background-color: #d4edda;
+        border-color: #28a745;
+    }
+    .option.incorrect {
+        background-color: #f8d7da;
+        border-color: #dc3545;
+    }
+    .explanation {
+        margin-top: 15px;
+        padding: 15px;
+        background-color: #e8f4fc;
+        border-radius: 5px;
+        display: none;
+    }
+    .explanation.show {
+        display: block;
+    }
+    .explanation-title {
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 8px;
+    }
+    .option-explanation {
+        margin-top: 10px;
+        padding: 8px;
+        background-color: #f8f9fa;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    button {
+        padding: 12px 25px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #2980b9;
+    }
+    button:disabled {
+        background-color: #bdc3c7;
+        cursor: not-allowed;
+    }
+    button.restart {
+        background-color: #e67e22;
+    }
+    button.restart:hover {
+        background-color: #d35400;
+    }
+    .stats {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: #2c3e50;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .timer {
+        font-weight: bold;
+        color: #e74c3c;
+    }
+    .result {
+        text-align: center;
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 8px;
+        background-color: #e8f4fc;
+    }
+    .result-title {
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #2c3e50;
+    }
+    .wrong-questions {
+        margin-top: 20px;
+        text-align: left;
+    }
+    .wrong-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #e74c3c;
+    }
+    .history-list {
+        margin-top: 20px;
+    }
+    .history-item {
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+    }
+    .history-date {
+        font-weight: bold;
+        color: #2c3e50;
+    }
+    .history-stats {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
+    .history-stat {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+        padding: 5px;
+    }
+    .question-count-selector {
+        margin: 20px 0;
+        text-align: center;
+    }
+    .loading {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+    .error-message {
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 10px 0;
+        text-align: center;
+    }
+    .success-message {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 10px 0;
+        text-align: center;
+    }
+    .update-indicator {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 10px;
+        height: 10px;
+        background-color: #2ecc71;
+        border-radius: 50%;
+        z-index: 1001;
+        animation: pulse 2s infinite;
+    }
+    .update-indicator.outdated {
+        background-color: #e74c3c;
+    }
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+    }
+    
+    /* 手機版樣式 */
+    @media (max-width: 768px) {
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 25px;
-            position: relative;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
         }
         h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 15px;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
-        .home-screen, .quiz-screen, .result-screen, .history-screen {
-            display: none;
-        }
-        .home-screen.active, .quiz-screen.active, .result-screen.active, .history-screen.active {
-            display: block;
-        }
-        .home-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 30px;
-        }
-        .home-btn {
-            padding: 15px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-            transition: background-color 0.3s;
-        }
-        .home-btn:hover {
-            background-color: #2980b9;
-        }
-        .home-btn.exit {
-            background-color: #e74c3c;
-        }
-        .home-btn.exit:hover {
-            background-color: #c0392b;
-        }
-        .home-btn.update {
-            background-color: #2ecc71;
-        }
-        .home-btn.update:hover {
-            background-color: #27ae60;
-        }
-        .question {
-            margin-bottom: 25px;
-            padding: 15px;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-        .question-number {
-            font-weight: bold;
-            color: #3498db;
-            margin-bottom: 10px;
+        .home-btn, button {
+            padding: 18px;
+            font-size: 16px;
         }
         .question-text {
-            font-size: 18px;
-            margin-bottom: 15px;
-            line-height: 1.5;
+            font-size: 16px;
         }
         .kanji {
-            font-size: 24px;
-            font-weight: bold;
-            color: #e74c3c;
-            margin: 10px 0;
-            text-align: center;
+            font-size: 20px;
         }
-        .options {
+        .option {
+            padding: 15px;
+            font-size: 16px;
+            min-height: 44px;
             display: flex;
+            align-items: center;
+        }
+        .button-container {
             flex-direction: column;
             gap: 10px;
         }
-        .option {
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .option:hover {
-            background-color: #f0f0f0;
-        }
-        .option.selected {
-            background-color: #d6eaf8;
-            border-color: #3498db;
-        }
-        .option.correct {
-            background-color: #d4edda;
-            border-color: #28a745;
-        }
-        .option.incorrect {
-            background-color: #f8d7da;
-            border-color: #dc3545;
-        }
-        .explanation {
-            margin-top: 15px;
-            padding: 15px;
-            background-color: #e8f4fc;
-            border-radius: 5px;
-            display: none;
-        }
-        .explanation.show {
-            display: block;
-        }
-        .explanation-title {
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 8px;
-        }
-        .option-explanation {
-            margin-top: 10px;
-            padding: 8px;
-            background-color: #f8f9fa;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        button {
-            padding: 12px 25px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #2980b9;
-        }
-        button:disabled {
-            background-color: #bdc3c7;
-            cursor: not-allowed;
-        }
-        button.restart {
-            background-color: #e67e22;
-        }
-        button.restart:hover {
-            background-color: #d35400;
-        }
-        .stats {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 18px;
-            color: #2c3e50;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-        .timer {
-            font-weight: bold;
-            color: #e74c3c;
-        }
-        .result {
-            text-align: center;
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 8px;
-            background-color: #e8f4fc;
-        }
-        .result-title {
-            font-weight: bold;
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-        .wrong-questions {
-            margin-top: 20px;
-            text-align: left;
-        }
-        .wrong-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #e74c3c;
-        }
-        .history-list {
-            margin-top: 20px;
-        }
-        .history-item {
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            background-color: #f9f9f9;
-        }
-        .history-date {
-            font-weight: bold;
-            color: #2c3e50;
+        .button-container button {
+            width: 100%;
         }
         .history-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-            flex-wrap: wrap;
+            flex-direction: column;
         }
         .history-stat {
-            flex: 1;
-            min-width: 120px;
-            text-align: center;
-            padding: 5px;
+            min-width: 100%;
+            text-align: left;
+            margin-bottom: 5px;
         }
-        .question-count-selector {
-            margin: 20px 0;
-            text-align: center;
+        .stats {
+            flex-direction: column;
+            gap: 10px;
+        }
+        .count-buttons-container {
+            grid-template-columns: 1fr;
+            gap: 10px;
         }
         .count-btn {
-            margin: 0 10px;
-            padding: 10px 20px;
-            background-color: #2ecc71;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            padding: 18px 15px;
+            font-size: 18px;
+            min-height: 60px;
         }
-        .count-btn.active {
-            background-color: #27ae60;
-            font-weight: bold;
+        .question-count-selector p {
+            font-size: 18px;
+            margin-bottom: 15px;
         }
-        .loading {
-            opacity: 0.6;
-            pointer-events: none;
-        }
-        .error-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
-            text-align: center;
-        }
-        .success-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
-            text-align: center;
-        }
-        .update-indicator {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 10px;
-            height: 10px;
-            background-color: #2ecc71;
-            border-radius: 50%;
-            z-index: 1001;
-            animation: pulse 2s infinite;
-        }
-        .update-indicator.outdated {
-            background-color: #e74c3c;
-        }
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-                margin: 10px;
-                border-radius: 8px;
-            }
-            h1 {
-                font-size: 24px;
-                margin-bottom: 20px;
-            }
-            .home-btn, button {
-                padding: 18px;
-                font-size: 16px;
-            }
-            .question-text {
-                font-size: 16px;
-            }
-            .kanji {
-                font-size: 20px;
-            }
-            .option {
-                padding: 15px;
-                font-size: 16px;
-                min-height: 44px;
-                display: flex;
-                align-items: center;
-            }
-            .button-container {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .button-container button {
-                width: 100%;
-            }
-            .history-stats {
-                flex-direction: column;
-            }
-            .history-stat {
-                min-width: 100%;
-                text-align: left;
-                margin-bottom: 5px;
-            }
-            .stats {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-        /* 防止手機上點擊高亮 */
-        * {
-            -webkit-tap-highlight-color: transparent;
-        }
-        /* 改善觸摸體驗 */
-        button, .option {
-            touch-action: manipulation;
-        }
+    }
+    
+    /* 防止手機上點擊高亮 */
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+    /* 改善觸摸體驗 */
+    button, .option {
+        touch-action: manipulation;
+    }
     </style>
 </head>
 <body>
@@ -361,24 +402,26 @@
         <div class="update-indicator" id="update-indicator"></div>
         <h1>日文N4單字與文法測驗系統</h1>
         
-        <!-- 首頁 -->
-        <div id="home-screen" class="home-screen active">
-            <div class="home-buttons">
-                <button id="start-quiz-btn" class="home-btn">開始測驗</button>
-                <button id="update-btn" class="home-btn update">檢查題庫更新</button>
-                
-                <div class="question-count-selector">
-                    <p>選擇題目數量：</p>
-                    <button id="count-30-btn" class="count-btn active">30題</button>
-                    <button id="count-50-btn" class="count-btn">50題</button>
-		    <button id="count-past-btn" class="count-btn">歷屆考題</button>
-                </div>
-                
-                <button id="view-history-btn" class="home-btn">歷史紀錄查詢</button>
-                <button id="exit-btn" class="home-btn exit">結束測驗</button>
+<!-- 首頁 -->
+<div id="home-screen" class="home-screen active">
+    <div class="home-buttons">
+        <button id="start-quiz-btn" class="home-btn">開始測驗</button>
+        <button id="update-btn" class="home-btn update">檢查題庫更新</button>
+        
+        <div class="question-count-selector">
+            <p>選擇測驗類型與題目數量：</p>
+            <div class="count-buttons-container">
+                <button id="count-30-btn" class="count-btn active">30題</button>
+                <button id="count-50-btn" class="count-btn">50題</button>
+                <button id="count-past-btn" class="count-btn">歷屆考題</button>
+                <button id="count-vocab-btn" class="count-btn">單字測驗</button>
             </div>
         </div>
         
+        <button id="view-history-btn" class="home-btn">歷史紀錄查詢</button>
+        <button id="exit-btn" class="home-btn exit">結束測驗</button>
+    </div>
+</div> 
         <!-- 測驗頁面 -->
         <div id="quiz-screen" class="quiz-screen">
             <div class="stats">
@@ -641,6 +684,141 @@ window.pastQuestionBank = [
             }
         ];
 
+
+window.vocabBank = [
+    {
+        id: "V0001",
+        type: "reading",
+        question: "次の漢字の読み方を選びなさい",
+        kanji: "自分",
+        options: [
+            {text: "じぶん", explanation: "正確答案：「自」音讀為「じ」，「分」音讀為「ぶん」，合起來是「じぶん」。\n中文翻譯：自己"},
+            {text: "じぷん", explanation: "錯誤：「分」的讀音是「ぶん」，不是「ぷん」。\n中文翻譯：自己"},
+            {text: "じいぶん", explanation: "錯誤：「自」的讀音是「じ」，沒有長音。「分」的讀音是「ぶん」。\n中文翻譯：自己"},
+            {text: "じふん", explanation: "錯誤：「分」的讀音是「ぶん」，不是「ふん」。\n中文翻譯：自己"}
+        ],
+        correctAnswer: 0
+    },
+    {
+        id: "V0002",
+        type: "writing",
+        question: "次の言葉の正しい漢字を選びなさい",
+        kana: "おきます",
+        options: [
+            {text: "起きます", explanation: "正確答案：「おきます」在此語境下對應的漢字是「起きます」，意思是起床。\n中文翻譯：起床"},
+            {text: "置きます", explanation: "錯誤：「置きます」意思是放置，雖然讀音相同，但語意不符。\n中文翻譯：放置"},
+            {text: "描きます", explanation: "錯誤：「描きます」讀音是「えがきます」或「かきます」，意思是描繪。\n中文翻譯：描繪"},
+            {text: "沖きます", explanation: "錯誤：「沖きます」讀音是「おきます」，但意思是沖洗，語意不符。\n中文翻譯：沖洗"}
+        ],
+        correctAnswer: 0
+    },
+    {
+        id: "V0003",
+        type: "reading",
+        question: "次の漢字の読み方を選びなさい",
+        kanji: "勉強",
+        options: [
+            {text: "べんきょう", explanation: "正確答案：「勉」音讀為「べん」，「強」音讀為「きょう」，合起來是「べんきょう」。\n中文翻譯：學習、用功"},
+            {text: "べんきょ", explanation: "錯誤：「強」的讀音是「きょう」，不是「きょ」。\n中文翻譯：學習、用功"},
+            {text: "めんきょう", explanation: "錯誤：「勉」的讀音是「べん」，不是「めん」。\n中文翻譯：學習、用功"},
+            {text: "べんきゅう", explanation: "錯誤：「強」的讀音是「きょう」，不是「きゅう」。\n中文翻譯：學習、用功"}
+        ],
+        correctAnswer: 0
+    },
+    {
+        id: "V0004",
+        type: "writing",
+        question: "次の言葉の正しい漢字を選びなさい",
+        kana: "としょかん",
+        options: [
+            {text: "図書館", explanation: "正確答案：「としょかん」對應的漢字是「図書館」，意思是圖書館。\n中文翻譯：圖書館"},
+            {text: "図書官", explanation: "錯誤：「官」的讀音是「かん」，但意思是官員，語意不符。\n中文翻譯：圖書官員"},
+            {text: "図書管", explanation: "錯誤：「管」的讀音是「かん」，但意思是管子，語意不符。\n中文翻譯：圖書管"},
+            {text: "図書舘", explanation: "錯誤：「舘」是「館」的異體字，但通常使用「館」。\n中文翻譯：圖書館"}
+        ],
+        correctAnswer: 0
+    },
+    {
+        id: "V0005",
+        type: "reading",
+        question: "次の漢字の読み方を選びなさい",
+        kanji: "旅行",
+        options: [
+            {text: "りょこう", explanation: "正確答案：「旅」音讀為「りょ」，「行」音讀為「こう」，合起來是「りょこう」。\n中文翻譯：旅行"},
+            {text: "りょうこう", explanation: "錯誤：「旅」的讀音是「りょ」，不是「りょう」。\n中文翻譯：旅行"},
+            {text: "りょこ", explanation: "錯誤：「行」的讀音是「こう」，不能省略。\n中文翻譯：旅行"},
+            {text: "りこう", explanation: "錯誤：「旅」的讀音是「りょ」，不是「り」。\n中文翻譯：旅行"}
+        ],
+        correctAnswer: 0
+    },
+    {
+        id: "V0006",
+        type: "writing",
+        question: "次の言葉の正しい漢字を選びなさい",
+        kana: "びょうき",
+        options: [
+            {text: "病気", explanation: "正確答案：「びょうき」對應的漢字是「病気」，意思是生病。\n中文翻譯：生病"},
+            {text: "病氣", explanation: "錯誤：「氣」是舊字體，現代日語使用「気」。\n中文翻譯：生病"},
+            {text: "美容機", explanation: "錯誤：「美容機」讀音是「びようき」，意思是美容機器。\n中文翻譯：美容機器"},
+            {text: "描域", explanation: "錯誤：此漢字組合不存在且語意不符。\n中文翻譯：無意義"}
+        ],
+        correctAnswer: 0
+    },
+    {
+        id: "V0007",
+        type: "reading",
+        question: "次の漢字の読み方を選びなさい",
+        kanji: "食事",
+        options: [
+            {text: "しょくじ", explanation: "正確答案：「食」音讀為「しょく」，「事」音讀為「じ」，合起來是「しょくじ」。\n中文翻譯：用餐、吃飯"},
+            {text: "しょくご", explanation: "錯誤：「事」的讀音是「じ」，不是「ご」。\n中文翻譯：用餐、吃飯"},
+            {text: "たべごと", explanation: "錯誤：這是訓讀讀法，不適用於此複合詞。\n中文翻譯：用餐、吃飯"},
+            {text: "しょくじつ", explanation: "錯誤：「事」的讀音是「じ」，不是「じつ」。\n中文翻譯：用餐、吃飯"}
+        ],
+        correctAnswer: 0
+    },
+    {
+        id: "V0008",
+        type: "writing",
+        question: "次の言葉の正しい漢字を選びなさい",
+        kana: "でんわ",
+        options: [
+            {text: "電話", explanation: "正確答案：「でんわ」對應的漢字是「電話」，意思是電話。\n中文翻譯：電話"},
+            {text: "電話", explanation: "錯誤：「話」的簡體字，日語中使用繁體字。\n中文翻譯：電話"},
+            {text: "伝話", explanation: "錯誤：「伝」讀音是「でん」，但「伝話」意思是傳話，語意不符。\n中文翻譯：傳話"},
+            {text: "電和", explanation: "錯誤：「和」讀音是「わ」，但意思是和平，語意不符。\n中文翻譯：電和"}
+        ],
+        correctAnswer: 0
+    },
+    {
+        id: "V0009",
+        type: "reading",
+        question: "次の漢字の読み方を選びなさい",
+        kanji: "家族",
+        options: [
+            {text: "かぞく", explanation: "正確答案：「家」音讀為「か」，「族」音讀為「ぞく」，合起來是「かぞく」。\n中文翻譯：家人、家庭"},
+            {text: "かぞく", explanation: "錯誤：「家」的讀音是「か」，不是「け」。\n中文翻譯：家人、家庭"},
+            {text: "かぞ", explanation: "錯誤：「族」的讀音是「ぞく」，不能省略。\n中文翻譯：家人、家庭"},
+            {text: "けぞく", explanation: "錯誤：「家」的讀音是「か」，不是「け」。\n中文翻譯：家人、家庭"}
+        ],
+        correctAnswer: 0
+    },
+    {
+        id: "V0010",
+        type: "writing",
+        question: "次の言葉の正しい漢字を選びなさい",
+        kana: "ともだち",
+        options: [
+            {text: "友達", explanation: "正確答案：「ともだち」對應的漢字是「友達」，意思是朋友。\n中文翻譯：朋友"},
+            {text: "友だち", explanation: "錯誤：這是混合書寫，正式場合使用「友達」。\n中文翻譯：朋友"},
+            {text: "共達", explanation: "錯誤：「共」讀音是「とも」，但「共達」意思是共同達成，語意不符。\n中文翻譯：共同達成"},
+            {text: "知友", explanation: "錯誤：此漢字組合不自然，日語中不使用。\n中文翻譯：知心朋友"}
+        ],
+        correctAnswer: 0
+    },
+]
+
+
         // 應用狀態
         let currentQuestionIndex = 0;
         let userAnswers = [];
@@ -651,6 +829,7 @@ window.pastQuestionBank = [
         let shuffledQuestions = [];
         let questionCount = 30;
         let isPastQuestions = false; // 新增：是否為歷屆考題模式
+        let isVocabMode = false; // 是否為單字測驗模式
         let timerInterval = null;
         let startTime = null;
         let elapsedTime = 0;
@@ -674,6 +853,7 @@ const config = {
         console.log(`運行環境: ${config.environment}, PWA: ${config.enablePWA ? '啟用' : '禁用'}`);
 
         // DOM元素
+        const countVocabBtn = document.getElementById('count-vocab-btn');// DOM元素 - 新增單字測驗按鈕
         const homeScreen = document.getElementById('home-screen');
         const quizScreen = document.getElementById('quiz-screen');
         const resultScreen = document.getElementById('result-screen');
@@ -708,57 +888,131 @@ const config = {
 
         // ========== 核心功能函數 (必須在 initEventListeners 之前定義) ==========
 
-        // 開始測驗
-        function startQuiz() {
-            // 檢查題庫是否已加載
-    if ((!window.questionBank || window.questionBank.length === 0) && 
-        (!window.pastQuestionBank || window.pastQuestionBank.length === 0)) {
-        alert('題庫加載中，請稍後再試...');
-        loadQuestionBank();
-        return;
-            }
-            
-            // 重置狀態
-            currentQuestionIndex = 0;
-            userAnswers = [];
-            isAnswered = [];
-            score = 0;
-            wrongQuestions = [];
-            selectedQuestions = [];
-            shuffledQuestions = [];
-            elapsedTime = 0;
-
-    // 根據模式選擇題庫
-    let availableQuestions = [];
-    if (isPastQuestions) {
+// 修改開始測驗函數
+function startQuiz() {
+    // 檢查題庫是否已加載
+    if (isVocabMode) {
+        // 單字測驗模式
+        if (!window.vocabBank || window.vocabBank.length === 0) {
+            alert('單字題庫加載中，請稍後再試...');
+            loadQuestionBank();
+            return;
+        }
+        startVocabQuiz();
+    } else if (isPastQuestions) {
         // 歷屆考題模式
-        availableQuestions = [...window.pastQuestionBank];
-        showUpdateNotification('歷屆考題模式');
+        if (!window.pastQuestionBank || window.pastQuestionBank.length === 0) {
+            alert('歷屆考題庫加載中，請稍後再試...');
+            loadQuestionBank();
+            return;
+        }
+        startPastQuiz();
     } else {
-        // 一般題庫模式
-        availableQuestions = [...window.questionBank];
+        // 一般文法測驗模式
+        if (!window.questionBank || window.questionBank.length === 0) {
+            alert('題庫加載中，請稍後再試...');
+            loadQuestionBank();
+            return;
+        }
+        startGrammarQuiz();
     }
+}
 
-            
-            // 隨機選擇題目
-    const shuffled = shuffleArray(availableQuestions);
-    selectedQuestions = shuffled.slice(0, Math.min(questionCount, availableQuestions.length));
+// 單字測驗開始函數
+function startVocabQuiz() {
+    // 重置狀態
+    currentQuestionIndex = 0;
+    userAnswers = [];
+    isAnswered = [];
+    score = 0;
+    wrongQuestions = [];
+    selectedQuestions = [];
+    shuffledQuestions = [];
+    elapsedTime = 0;
+
+    // 隨機選擇單字題目
+    const shuffled = shuffleArray([...window.vocabBank]);
+    selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.vocabBank.length));
     
-     // 隨機打亂每個題目的選項順序
+    // 隨機打亂每個題目的選項順序
     shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
     
     userAnswers = new Array(selectedQuestions.length).fill(null);
     isAnswered = new Array(selectedQuestions.length).fill(false);
-      
-            // 開始計時
-            startTimer();
-            
+    
+    // 開始計時
+    startTimer();
+    
     // 顯示測驗頁面
     showScreen(quizScreen);
     displayQuestion(currentQuestionIndex);
     updateButtons();
     updateProgress();
-        }
+}
+
+// 文法測驗開始函數（從原有的startQuiz拆分出來）
+function startGrammarQuiz() {
+    // 重置狀態
+    currentQuestionIndex = 0;
+    userAnswers = [];
+    isAnswered = [];
+    score = 0;
+    wrongQuestions = [];
+    selectedQuestions = [];
+    shuffledQuestions = [];
+    elapsedTime = 0;
+
+    // 隨機選擇題目
+    const shuffled = shuffleArray([...window.questionBank]);
+    selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.questionBank.length));
+    
+    // 隨機打亂每個題目的選項順序
+    shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
+    
+    userAnswers = new Array(selectedQuestions.length).fill(null);
+    isAnswered = new Array(selectedQuestions.length).fill(false);
+    
+    // 開始計時
+    startTimer();
+    
+    // 顯示測驗頁面
+    showScreen(quizScreen);
+    displayQuestion(currentQuestionIndex);
+    updateButtons();
+    updateProgress();
+}
+
+// 歷屆考題開始函數
+function startPastQuiz() {
+    // 重置狀態
+    currentQuestionIndex = 0;
+    userAnswers = [];
+    isAnswered = [];
+    score = 0;
+    wrongQuestions = [];
+    selectedQuestions = [];
+    shuffledQuestions = [];
+    elapsedTime = 0;
+
+    // 隨機選擇題目
+    const shuffled = shuffleArray([...window.pastQuestionBank]);
+    selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.pastQuestionBank.length));
+    
+    // 隨機打亂每個題目的選項順序
+    shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
+    
+    userAnswers = new Array(selectedQuestions.length).fill(null);
+    isAnswered = new Array(selectedQuestions.length).fill(false);
+    
+    // 開始計時
+    startTimer();
+    
+    // 顯示測驗頁面
+    showScreen(quizScreen);
+    displayQuestion(currentQuestionIndex);
+    updateButtons();
+    updateProgress();
+}
 
         // 顯示歷史紀錄
         function showHistory() {
@@ -834,17 +1088,17 @@ const config = {
             startQuiz();
         }
 
-        // 設定題目數量
+// 設定題目數量和測驗類型
 function setQuestionCount(count) {
     if (count === 'past') {
         // 歷屆考題模式
         isPastQuestions = true;
+        isVocabMode = false;
         const maxAvailable = window.pastQuestionBank ? window.pastQuestionBank.length : 0;
-        questionCount = maxAvailable; // 歷屆考題使用全部題目
+        questionCount = maxAvailable;
         
-        count30Btn.classList.remove('active');
-        count50Btn.classList.remove('active');
-        countPastBtn.classList.add('active');
+        // 更新按鈕狀態
+        updateCountButtonStates('past');
         
         if (maxAvailable === 0) {
             showUpdateNotification('歷屆考題庫為空');
@@ -852,15 +1106,31 @@ function setQuestionCount(count) {
         }
         
         showUpdateNotification(`歷屆考題模式 (${maxAvailable}題)`);
+    } else if (count === 'vocab') {
+        // 單字測驗模式
+        isPastQuestions = false;
+        isVocabMode = true;
+        const maxAvailable = window.vocabBank ? window.vocabBank.length : 0;
+        questionCount = maxAvailable;
+        
+        // 更新按鈕狀態
+        updateCountButtonStates('vocab');
+        
+        if (maxAvailable === 0) {
+            showUpdateNotification('單字題庫為空');
+            return;
+        }
+        
+        showUpdateNotification(`單字測驗模式 (${maxAvailable}題)`);
     } else {
         // 一般題庫模式
         isPastQuestions = false;
+        isVocabMode = false;
         const maxAvailable = window.questionBank ? window.questionBank.length : 0;
         questionCount = Math.min(count, maxAvailable);
         
-        count30Btn.classList.toggle('active', count === 30);
-        count50Btn.classList.toggle('active', count === 50);
-        countPastBtn.classList.remove('active');
+        // 更新按鈕狀態
+        updateCountButtonStates(count);
         
         // 如果選擇的數量超過可用題目，顯示提示
         if (count > maxAvailable && maxAvailable > 0) {
@@ -870,35 +1140,63 @@ function setQuestionCount(count) {
     }
 }
 
-        // 初始化事件監聽
-        function initEventListeners() {
-            // 首頁按鈕
-            startQuizBtn.addEventListener('click', startQuiz);
-            viewHistoryBtn.addEventListener('click', showHistory);
-            exitBtn.addEventListener('click', exitApp);
-            updateBtn.addEventListener('click', checkForUpdates);
-            count30Btn.addEventListener('click', () => setQuestionCount(30));
-            count50Btn.addEventListener('click', () => setQuestionCount(50));
-            countPastBtn.addEventListener('click', () => setQuestionCount('past')); // 新增這行
-             
-            // 測驗頁面按鈕
-            prevBtn.addEventListener('click', prevQuestion);
-            nextBtn.addEventListener('click', nextQuestion);
-            submitBtn.addEventListener('click', submitQuiz);
-            backHomeBtn.addEventListener('click', backToHome);
-            
-            // 結果頁面按鈕
-            restartBtn.addEventListener('click', restartQuiz);
-            resultBackHomeBtn.addEventListener('click', backToHome);
-            
-            // 歷史紀錄頁面按鈕
-            historyBackHomeBtn.addEventListener('click', backToHome);
-            clearHistoryBtn.addEventListener('click', clearHistory);
-        }
+// 更新數量選擇按鈕狀態
+function updateCountButtonStates(selectedType) {
+    // 移除所有按鈕的active類別
+    count30Btn.classList.remove('active');
+    count50Btn.classList.remove('active');
+    countPastBtn.classList.remove('active');
+    countVocabBtn.classList.remove('active');
+    
+    // 根據選擇的類型添加active類別
+    switch(selectedType) {
+        case 30:
+            count30Btn.classList.add('active');
+            break;
+        case 50:
+            count50Btn.classList.add('active');
+            break;
+        case 'past':
+            countPastBtn.classList.add('active');
+            break;
+        case 'vocab':
+            countVocabBtn.classList.add('active');
+            break;
+    }
+}
+
+// 修正初始化事件監聽器函數
+function initEventListeners() {
+    // 首頁按鈕
+    startQuizBtn.addEventListener('click', startQuiz);
+    viewHistoryBtn.addEventListener('click', showHistory);
+    exitBtn.addEventListener('click', exitApp);
+    updateBtn.addEventListener('click', checkForUpdates);
+    
+    // 測驗類型選擇按鈕
+    count30Btn.addEventListener('click', () => setQuestionCount(30));
+    count50Btn.addEventListener('click', () => setQuestionCount(50));
+    countPastBtn.addEventListener('click', () => setQuestionCount('past'));
+    countVocabBtn.addEventListener('click', () => setQuestionCount('vocab'));
+    
+    // 測驗頁面按鈕 - 添加這部分
+    prevBtn.addEventListener('click', prevQuestion);
+    nextBtn.addEventListener('click', nextQuestion);
+    submitBtn.addEventListener('click', submitQuiz);
+    backHomeBtn.addEventListener('click', backToHome);
+    
+    // 結果頁面按鈕
+    restartBtn.addEventListener('click', restartQuiz);
+    resultBackHomeBtn.addEventListener('click', backToHome);
+    
+    // 歷史紀錄頁面按鈕
+    historyBackHomeBtn.addEventListener('click', backToHome);
+    clearHistoryBtn.addEventListener('click', clearHistory);
+}
 
 // ========== 其他功能函數 ==========
 
-// 加載題庫 - 修正為在線上環境載入外部題庫
+// 修改題庫載入函數以包含單字題庫
 async function loadQuestionBank() {
     // 如果是線上環境，嘗試載入外部題庫
     if (!isLocal) {
@@ -908,31 +1206,34 @@ async function loadQuestionBank() {
             startQuizBtn.disabled = true;
             startQuizBtn.textContent = '題庫載入中...';
             
-            // 同時載入一般題庫和歷屆考題庫
-            const [questionBankResponse, pastQuestionBankResponse] = await Promise.all([
+            // 同時載入所有題庫
+            const [questionBankResponse, pastQuestionBankResponse, vocabBankResponse] = await Promise.all([
                 fetch('./question_bank.js'),
-                fetch('./pastQuestionBank.js')
+                fetch('./pastQuestionBank.js'),
+                fetch('./vocab_bank.js') // 新增：載入單字題庫
             ]);
             
-            if (!questionBankResponse.ok) {
-                throw new Error(`一般題庫載入失敗! status: ${questionBankResponse.status}`);
-            }
-            
-            if (!pastQuestionBankResponse.ok) {
-                throw new Error(`歷屆考題庫載入失敗! status: ${pastQuestionBankResponse.ok}`);
-            }
-            
-            const questionBankScript = await questionBankResponse.text();
-            const pastQuestionBankScript = await pastQuestionBankResponse.text();
-            
             // 動態執行題庫腳本
-            const script1 = document.createElement('script');
-            script1.textContent = questionBankScript;
-            document.head.appendChild(script1);
+            if (questionBankResponse.ok) {
+                const questionBankScript = await questionBankResponse.text();
+                const script1 = document.createElement('script');
+                script1.textContent = questionBankScript;
+                document.head.appendChild(script1);
+            }
             
-            const script2 = document.createElement('script');
-            script2.textContent = pastQuestionBankScript;
-            document.head.appendChild(script2);
+            if (pastQuestionBankResponse.ok) {
+                const pastQuestionBankScript = await pastQuestionBankResponse.text();
+                const script2 = document.createElement('script');
+                script2.textContent = pastQuestionBankScript;
+                document.head.appendChild(script2);
+            }
+            
+            if (vocabBankResponse.ok) {
+                const vocabBankScript = await vocabBankResponse.text();
+                const script3 = document.createElement('script');
+                script3.textContent = vocabBankScript;
+                document.head.appendChild(script3);
+            }
             
             // 等待題庫載入完成
             await new Promise(resolve => setTimeout(resolve, 100));
@@ -940,35 +1241,21 @@ async function loadQuestionBank() {
             console.log('外部題庫加載成功:');
             console.log('- 一般題庫題目數量:', window.questionBank ? window.questionBank.length : 0);
             console.log('- 歷屆考題題目數量:', window.pastQuestionBank ? window.pastQuestionBank.length : 0);
-            
-            // 更新題庫緩存
-            updateQuestionBankCache();
+            console.log('- 單字題庫題目數量:', window.vocabBank ? window.vocabBank.length : 0);
             
         } catch (error) {
             console.log('外部題庫加載失敗，使用內建題庫:', error);
             // 使用內建題庫作為備用
             if (!window.questionBank || window.questionBank.length === 0) {
-                // 如果內建題庫也不存在，使用預設題庫
                 window.questionBank = window.questionBank || [];
-                showUpdateNotification('使用內建題庫模式');
             }
             if (!window.pastQuestionBank || window.pastQuestionBank.length === 0) {
-                // 如果歷屆考題庫也不存在，使用內建的
                 window.pastQuestionBank = window.pastQuestionBank || [];
-                showUpdateNotification('使用內建歷屆考題');
+            }
+            if (!window.vocabBank || window.vocabBank.length === 0) {
+                window.vocabBank = window.vocabBank || [];
             }
         }
-    } else {
-        console.log('本地環境：使用內建題庫');
-        console.log('- 一般題庫題目數量:', window.questionBank ? window.questionBank.length : 0);
-        console.log('- 歷屆考題題目數量:', window.pastQuestionBank ? window.pastQuestionBank.length : 0);
-    }
-    
-    // 檢查題庫狀態
-    if (!window.pastQuestionBank || window.pastQuestionBank.length === 0) {
-        console.log('歷屆考題庫為空，使用內建歷屆考題');
-        // 如果沒有歷屆考題庫，使用內建的
-        window.pastQuestionBank = window.pastQuestionBank || [];
     }
     
     // 啟用開始測驗按鈕
@@ -977,8 +1264,7 @@ async function loadQuestionBank() {
     
     // 更新題目數量選擇器
     setQuestionCount(questionCount);
-}
-// 檢查題庫版本更新
+}// 檢查題庫版本更新
 function checkQuestionBankUpdate() {
     const now = new Date().getTime();
     const oneDay = 24 * 60 * 60 * 1000; // 1天的毫秒數
