@@ -402,26 +402,27 @@
         <div class="update-indicator" id="update-indicator"></div>
         <h1>日文N4單字與文法測驗系統</h1>
         
-<!-- 首頁 -->
-<div id="home-screen" class="home-screen active">
-    <div class="home-buttons">
-        <button id="start-quiz-btn" class="home-btn">開始測驗</button>
-        <button id="update-btn" class="home-btn update">檢查題庫更新</button>
-        
-        <div class="question-count-selector">
-            <p>選擇測驗類型與題目數量：</p>
-            <div class="count-buttons-container">
-                <button id="count-30-btn" class="count-btn active">30題</button>
-                <button id="count-50-btn" class="count-btn">50題</button>
-                <button id="count-past-btn" class="count-btn">歷屆考題</button>
-                <button id="count-vocab-btn" class="count-btn">單字測驗</button>
+        <!-- 首頁 -->
+        <div id="home-screen" class="home-screen active">
+            <div class="home-buttons">
+                <button id="start-quiz-btn" class="home-btn">開始測驗</button>
+                <button id="update-btn" class="home-btn update">檢查題庫更新</button>
+                
+                <div class="question-count-selector">
+                    <p>選擇測驗類型與題目數量：</p>
+                    <div class="count-buttons-container">
+                        <button id="count-30-btn" class="count-btn active">30題</button>
+                        <button id="count-50-btn" class="count-btn">50題</button>
+                        <button id="count-past-btn" class="count-btn">歷屆考題</button>
+                        <button id="count-vocab-btn" class="count-btn">單字測驗</button>
+                    </div>
+                </div>
+                
+                <button id="view-history-btn" class="home-btn">歷史紀錄查詢</button>
+                <button id="exit-btn" class="home-btn exit">結束測驗</button>
             </div>
         </div>
         
-        <button id="view-history-btn" class="home-btn">歷史紀錄查詢</button>
-        <button id="exit-btn" class="home-btn exit">結束測驗</button>
-    </div>
-</div> 
         <!-- 測驗頁面 -->
         <div id="quiz-screen" class="quiz-screen">
             <div class="stats">
@@ -470,85 +471,84 @@
     </div>
 
     <script>
-// 歷屆考題資料庫
-window.pastQuestionBank = [
-    {
-        id: 101,
-        type: "reading",
-        question: "請選擇下列漢字的正確讀音",
-        kanji: "勉強",
-        options: [
-            { text: "べんきょう", explanation: "正確！「勉強」的讀音是「べんきょう」" },
-            { text: "べんきょ", explanation: "錯誤！缺少長音" },
-            { text: "べんきゅう", explanation: "錯誤！這是「研究」的讀音" },
-            { text: "めんきょう", explanation: "錯誤！讀音不正確" }
-        ],
-        correctAnswer: 0,
-        year: "2023",
-        season: "夏季"
-    },
-    {
-        id: 102,
-        type: "grammar",
-        question: "請選擇正確的文法形式",
-        sentence: "この本は昨日＿＿＿＿。",
-        options: [
-            { text: "買いました", explanation: "正確！表示昨天買了這本書" },
-            { text: "買います", explanation: "錯誤！應該使用過去形" },
-            { text: "買いましょう", explanation: "錯誤！這是勸誘形" },
-            { text: "買ってください", explanation: "錯誤！這是請求形" }
-        ],
-        correctAnswer: 0,
-        year: "2023",
-        season: "春季"
-    },
-    {
-        id: 103,
-        type: "vocabulary",
-        question: "請選擇最適合的詞語填入空格",
-        sentence: "電車が＿＿＿＿います。",
-        options: [
-            { text: "込んで", explanation: "正確！表示電車很擁擠" },
-            { text: "入って", explanation: "錯誤！「入って」是進入的意思" },
-            { text: "来て", explanation: "錯誤！「来て」是來的意思" },
-            { text: "行って", explanation: "錯誤！「行って」是去的意思" }
-        ],
-        correctAnswer: 0,
-        year: "2022",
-        season: "冬季"
-    },
-    {
-        id: 104,
-        type: "writing",
-        question: "請選擇下列讀音的正確漢字",
-        kana: "しけん",
-        options: [
-            { text: "試験", explanation: "正確！「しけん」的漢字是「試験」" },
-            { text: "私見", explanation: "錯誤！「私見」是個人意見的意思" },
-            { text: "資源", explanation: "錯誤！「資源」的讀音是「しげん」" },
-            { text: "事件", explanation: "錯誤！「事件」的讀音是「じけん」" }
-        ],
-        correctAnswer: 0,
-        year: "2022",
-        season: "秋季"
-    },
-    {
-        id: 105,
-        type: "synonym",
-        question: "請選擇與劃線詞語意思最接近的選項",
-        sentence: "彼はとても親切な人です。",
-        options: [
-            { text: "優しい", explanation: "正確！「親切」和「優しい」意思相近" },
-            { text: "厳しい", explanation: "錯誤！「厳しい」是嚴格的意思" },
-            { text: "強い", explanation: "錯誤！「強い」是強壯的意思" },
-            { text: "賢い", explanation: "錯誤！「賢い」是聰明的意思" }
-        ],
-        correctAnswer: 0,
-        year: "2021",
-        season: "夏季"
-    }
-    // 可以繼續添加更多歷屆考題...
-];
+        // 歷屆考題資料庫
+        window.pastQuestionBank = [
+            {
+                id: 101,
+                type: "reading",
+                question: "請選擇下列漢字的正確讀音",
+                kanji: "勉強",
+                options: [
+                    { text: "べんきょう", explanation: "正確！「勉強」的讀音是「べんきょう」" },
+                    { text: "べんきょ", explanation: "錯誤！缺少長音" },
+                    { text: "べんきゅう", explanation: "錯誤！這是「研究」的讀音" },
+                    { text: "めんきょう", explanation: "錯誤！讀音不正確" }
+                ],
+                correctAnswer: 0,
+                year: "2023",
+                season: "夏季"
+            },
+            {
+                id: 102,
+                type: "grammar",
+                question: "請選擇正確的文法形式",
+                sentence: "この本は昨日＿＿＿＿。",
+                options: [
+                    { text: "買いました", explanation: "正確！表示昨天買了這本書" },
+                    { text: "買います", explanation: "錯誤！應該使用過去形" },
+                    { text: "買いましょう", explanation: "錯誤！這是勸誘形" },
+                    { text: "買ってください", explanation: "錯誤！這是請求形" }
+                ],
+                correctAnswer: 0,
+                year: "2023",
+                season: "春季"
+            },
+            {
+                id: 103,
+                type: "vocabulary",
+                question: "請選擇最適合的詞語填入空格",
+                sentence: "電車が＿＿＿＿います。",
+                options: [
+                    { text: "込んで", explanation: "正確！表示電車很擁擠" },
+                    { text: "入って", explanation: "錯誤！「入って」是進入的意思" },
+                    { text: "来て", explanation: "錯誤！「来て」是來的意思" },
+                    { text: "行って", explanation: "錯誤！「行って」是去的意思" }
+                ],
+                correctAnswer: 0,
+                year: "2022",
+                season: "冬季"
+            },
+            {
+                id: 104,
+                type: "writing",
+                question: "請選擇下列讀音的正確漢字",
+                kana: "しけん",
+                options: [
+                    { text: "試験", explanation: "正確！「しけん」的漢字是「試験」" },
+                    { text: "私見", explanation: "錯誤！「私見」是個人意見的意思" },
+                    { text: "資源", explanation: "錯誤！「資源」的讀音是「しげん」" },
+                    { text: "事件", explanation: "錯誤！「事件」的讀音是「じけん」" }
+                ],
+                correctAnswer: 0,
+                year: "2022",
+                season: "秋季"
+            },
+            {
+                id: 105,
+                type: "synonym",
+                question: "請選擇與劃線詞語意思最接近的選項",
+                sentence: "彼はとても親切な人です。",
+                options: [
+                    { text: "優しい", explanation: "正確！「親切」和「優しい」意思相近" },
+                    { text: "厳しい", explanation: "錯誤！「厳しい」是嚴格的意思" },
+                    { text: "強い", explanation: "錯誤！「強い」是強壯的意思" },
+                    { text: "賢い", explanation: "錯誤！「賢い」是聰明的意思" }
+                ],
+                correctAnswer: 0,
+                year: "2021",
+                season: "夏季"
+            }
+        ];
 
         // 內建題庫資料
         window.questionBank = [
@@ -684,140 +684,34 @@ window.pastQuestionBank = [
             }
         ];
 
-
-window.vocabBank = [
-    {
-        id: "V0001",
-        type: "reading",
-        question: "次の漢字の読み方を選びなさい",
-        kanji: "自分",
-        options: [
-            {text: "じぶん", explanation: "正確答案：「自」音讀為「じ」，「分」音讀為「ぶん」，合起來是「じぶん」。\n中文翻譯：自己"},
-            {text: "じぷん", explanation: "錯誤：「分」的讀音是「ぶん」，不是「ぷん」。\n中文翻譯：自己"},
-            {text: "じいぶん", explanation: "錯誤：「自」的讀音是「じ」，沒有長音。「分」的讀音是「ぶん」。\n中文翻譯：自己"},
-            {text: "じふん", explanation: "錯誤：「分」的讀音是「ぶん」，不是「ふん」。\n中文翻譯：自己"}
-        ],
-        correctAnswer: 0
-    },
-    {
-        id: "V0002",
-        type: "writing",
-        question: "次の言葉の正しい漢字を選びなさい",
-        kana: "おきます",
-        options: [
-            {text: "起きます", explanation: "正確答案：「おきます」在此語境下對應的漢字是「起きます」，意思是起床。\n中文翻譯：起床"},
-            {text: "置きます", explanation: "錯誤：「置きます」意思是放置，雖然讀音相同，但語意不符。\n中文翻譯：放置"},
-            {text: "描きます", explanation: "錯誤：「描きます」讀音是「えがきます」或「かきます」，意思是描繪。\n中文翻譯：描繪"},
-            {text: "沖きます", explanation: "錯誤：「沖きます」讀音是「おきます」，但意思是沖洗，語意不符。\n中文翻譯：沖洗"}
-        ],
-        correctAnswer: 0
-    },
-    {
-        id: "V0003",
-        type: "reading",
-        question: "次の漢字の読み方を選びなさい",
-        kanji: "勉強",
-        options: [
-            {text: "べんきょう", explanation: "正確答案：「勉」音讀為「べん」，「強」音讀為「きょう」，合起來是「べんきょう」。\n中文翻譯：學習、用功"},
-            {text: "べんきょ", explanation: "錯誤：「強」的讀音是「きょう」，不是「きょ」。\n中文翻譯：學習、用功"},
-            {text: "めんきょう", explanation: "錯誤：「勉」的讀音是「べん」，不是「めん」。\n中文翻譯：學習、用功"},
-            {text: "べんきゅう", explanation: "錯誤：「強」的讀音是「きょう」，不是「きゅう」。\n中文翻譯：學習、用功"}
-        ],
-        correctAnswer: 0
-    },
-    {
-        id: "V0004",
-        type: "writing",
-        question: "次の言葉の正しい漢字を選びなさい",
-        kana: "としょかん",
-        options: [
-            {text: "図書館", explanation: "正確答案：「としょかん」對應的漢字是「図書館」，意思是圖書館。\n中文翻譯：圖書館"},
-            {text: "図書官", explanation: "錯誤：「官」的讀音是「かん」，但意思是官員，語意不符。\n中文翻譯：圖書官員"},
-            {text: "図書管", explanation: "錯誤：「管」的讀音是「かん」，但意思是管子，語意不符。\n中文翻譯：圖書管"},
-            {text: "図書舘", explanation: "錯誤：「舘」是「館」的異體字，但通常使用「館」。\n中文翻譯：圖書館"}
-        ],
-        correctAnswer: 0
-    },
-    {
-        id: "V0005",
-        type: "reading",
-        question: "次の漢字の読み方を選びなさい",
-        kanji: "旅行",
-        options: [
-            {text: "りょこう", explanation: "正確答案：「旅」音讀為「りょ」，「行」音讀為「こう」，合起來是「りょこう」。\n中文翻譯：旅行"},
-            {text: "りょうこう", explanation: "錯誤：「旅」的讀音是「りょ」，不是「りょう」。\n中文翻譯：旅行"},
-            {text: "りょこ", explanation: "錯誤：「行」的讀音是「こう」，不能省略。\n中文翻譯：旅行"},
-            {text: "りこう", explanation: "錯誤：「旅」的讀音是「りょ」，不是「り」。\n中文翻譯：旅行"}
-        ],
-        correctAnswer: 0
-    },
-    {
-        id: "V0006",
-        type: "writing",
-        question: "次の言葉の正しい漢字を選びなさい",
-        kana: "びょうき",
-        options: [
-            {text: "病気", explanation: "正確答案：「びょうき」對應的漢字是「病気」，意思是生病。\n中文翻譯：生病"},
-            {text: "病氣", explanation: "錯誤：「氣」是舊字體，現代日語使用「気」。\n中文翻譯：生病"},
-            {text: "美容機", explanation: "錯誤：「美容機」讀音是「びようき」，意思是美容機器。\n中文翻譯：美容機器"},
-            {text: "描域", explanation: "錯誤：此漢字組合不存在且語意不符。\n中文翻譯：無意義"}
-        ],
-        correctAnswer: 0
-    },
-    {
-        id: "V0007",
-        type: "reading",
-        question: "次の漢字の読み方を選びなさい",
-        kanji: "食事",
-        options: [
-            {text: "しょくじ", explanation: "正確答案：「食」音讀為「しょく」，「事」音讀為「じ」，合起來是「しょくじ」。\n中文翻譯：用餐、吃飯"},
-            {text: "しょくご", explanation: "錯誤：「事」的讀音是「じ」，不是「ご」。\n中文翻譯：用餐、吃飯"},
-            {text: "たべごと", explanation: "錯誤：這是訓讀讀法，不適用於此複合詞。\n中文翻譯：用餐、吃飯"},
-            {text: "しょくじつ", explanation: "錯誤：「事」的讀音是「じ」，不是「じつ」。\n中文翻譯：用餐、吃飯"}
-        ],
-        correctAnswer: 0
-    },
-    {
-        id: "V0008",
-        type: "writing",
-        question: "次の言葉の正しい漢字を選びなさい",
-        kana: "でんわ",
-        options: [
-            {text: "電話", explanation: "正確答案：「でんわ」對應的漢字是「電話」，意思是電話。\n中文翻譯：電話"},
-            {text: "電話", explanation: "錯誤：「話」的簡體字，日語中使用繁體字。\n中文翻譯：電話"},
-            {text: "伝話", explanation: "錯誤：「伝」讀音是「でん」，但「伝話」意思是傳話，語意不符。\n中文翻譯：傳話"},
-            {text: "電和", explanation: "錯誤：「和」讀音是「わ」，但意思是和平，語意不符。\n中文翻譯：電和"}
-        ],
-        correctAnswer: 0
-    },
-    {
-        id: "V0009",
-        type: "reading",
-        question: "次の漢字の読み方を選びなさい",
-        kanji: "家族",
-        options: [
-            {text: "かぞく", explanation: "正確答案：「家」音讀為「か」，「族」音讀為「ぞく」，合起來是「かぞく」。\n中文翻譯：家人、家庭"},
-            {text: "かぞく", explanation: "錯誤：「家」的讀音是「か」，不是「け」。\n中文翻譯：家人、家庭"},
-            {text: "かぞ", explanation: "錯誤：「族」的讀音是「ぞく」，不能省略。\n中文翻譯：家人、家庭"},
-            {text: "けぞく", explanation: "錯誤：「家」的讀音是「か」，不是「け」。\n中文翻譯：家人、家庭"}
-        ],
-        correctAnswer: 0
-    },
-    {
-        id: "V0010",
-        type: "writing",
-        question: "次の言葉の正しい漢字を選びなさい",
-        kana: "ともだち",
-        options: [
-            {text: "友達", explanation: "正確答案：「ともだち」對應的漢字是「友達」，意思是朋友。\n中文翻譯：朋友"},
-            {text: "友だち", explanation: "錯誤：這是混合書寫，正式場合使用「友達」。\n中文翻譯：朋友"},
-            {text: "共達", explanation: "錯誤：「共」讀音是「とも」，但「共達」意思是共同達成，語意不符。\n中文翻譯：共同達成"},
-            {text: "知友", explanation: "錯誤：此漢字組合不自然，日語中不使用。\n中文翻譯：知心朋友"}
-        ],
-        correctAnswer: 0
-    },
-]
-
+        window.vocabBank = [
+            {
+                id: "V0001",
+                type: "reading",
+                question: "次の漢字の読み方を選びなさい",
+                kanji: "自分",
+                options: [
+                    {text: "じぶん", explanation: "正確答案：「自」音讀為「じ」，「分」音讀為「ぶん」，合起來是「じぶん」。\n中文翻譯：自己"},
+                    {text: "じぷん", explanation: "錯誤：「分」的讀音是「ぶん」，不是「ぷん」。\n中文翻譯：自己"},
+                    {text: "じいぶん", explanation: "錯誤：「自」的讀音是「じ」，沒有長音。「分」的讀音是「ぶん」。\n中文翻譯：自己"},
+                    {text: "じふん", explanation: "錯誤：「分」的讀音是「ぶん」，不是「ふん」。\n中文翻譯：自己"}
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: "V0002",
+                type: "writing",
+                question: "次の言葉の正しい漢字を選びなさい",
+                kana: "おきます",
+                options: [
+                    {text: "起きます", explanation: "正確答案：「おきます」在此語境下對應的漢字是「起きます」，意思是起床。\n中文翻譯：起床"},
+                    {text: "置きます", explanation: "錯誤：「置きます」意思是放置，雖然讀音相同，但語意不符。\n中文翻譯：放置"},
+                    {text: "描きます", explanation: "錯誤：「描きます」讀音是「えがきます」或「かきます」，意思是描繪。\n中文翻譯：描繪"},
+                    {text: "沖きます", explanation: "錯誤：「沖きます」讀音是「おきます」，但意思是沖洗，語意不符。\n中文翻譯：沖洗"}
+                ],
+                correctAnswer: 0
+            }
+        ];
 
         // 應用狀態
         let currentQuestionIndex = 0;
@@ -828,8 +722,8 @@ window.vocabBank = [
         let selectedQuestions = [];
         let shuffledQuestions = [];
         let questionCount = 30;
-        let isPastQuestions = false; // 新增：是否為歷屆考題模式
-        let isVocabMode = false; // 是否為單字測驗模式
+        let isPastQuestions = false;
+        let isVocabMode = false;
         let timerInterval = null;
         let startTime = null;
         let elapsedTime = 0;
@@ -837,23 +731,22 @@ window.vocabBank = [
         let questionBankVersion = localStorage.getItem('questionBankVersion') || '0';
         let lastUpdateCheck = localStorage.getItem('lastUpdateCheck') || 0;
 
-// 環境檢測 - 修正判斷邏輯
-const isLocal = window.location.protocol === 'file:';
-const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-const isGitHub = window.location.hostname.includes('github.io');
+        // 環境檢測
+        const isLocal = window.location.protocol === 'file:';
+        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const isGitHub = window.location.hostname.includes('github.io');
 
-// 環境配置 - 修正判斷
-const config = {
-    enablePWA: !isLocal,  // 只要不是本地檔案就啟用PWA
-    enableServiceWorker: !isLocal,
-    environment: isLocal ? 'local' : (isDevelopment ? 'development' : 'production')
-};
-
+        // 環境配置
+        const config = {
+            enablePWA: !isLocal,
+            enableServiceWorker: !isLocal,
+            environment: isLocal ? 'local' : (isDevelopment ? 'development' : 'production')
+        };
 
         console.log(`運行環境: ${config.environment}, PWA: ${config.enablePWA ? '啟用' : '禁用'}`);
 
         // DOM元素
-        const countVocabBtn = document.getElementById('count-vocab-btn');// DOM元素 - 新增單字測驗按鈕
+        const countVocabBtn = document.getElementById('count-vocab-btn');
         const homeScreen = document.getElementById('home-screen');
         const quizScreen = document.getElementById('quiz-screen');
         const resultScreen = document.getElementById('result-screen');
@@ -866,7 +759,7 @@ const config = {
         const updateBtn = document.getElementById('update-btn');
         const count30Btn = document.getElementById('count-30-btn');
         const count50Btn = document.getElementById('count-50-btn');
-        const countPastBtn = document.getElementById('count-past-btn'); // 新增這行
+        const countPastBtn = document.getElementById('count-past-btn');
         
         const quizContainer = document.getElementById('quiz-container');
         const prevBtn = document.getElementById('prev-btn');
@@ -886,133 +779,133 @@ const config = {
         const resultElement = document.getElementById('result');
         const historyListElement = document.getElementById('history-list');
 
-        // ========== 核心功能函數 (必須在 initEventListeners 之前定義) ==========
+        // ========== 核心功能函數 ==========
 
-// 修改開始測驗函數
-function startQuiz() {
-    // 檢查題庫是否已加載
-    if (isVocabMode) {
-        // 單字測驗模式
-        if (!window.vocabBank || window.vocabBank.length === 0) {
-            alert('單字題庫加載中，請稍後再試...');
-            loadQuestionBank();
-            return;
+        // 修改開始測驗函數
+        function startQuiz() {
+            // 檢查題庫是否已加載
+            if (isVocabMode) {
+                // 單字測驗模式
+                if (!window.vocabBank || window.vocabBank.length === 0) {
+                    alert('單字題庫加載中，請稍後再試...');
+                    loadQuestionBank();
+                    return;
+                }
+                startVocabQuiz();
+            } else if (isPastQuestions) {
+                // 歷屆考題模式
+                if (!window.pastQuestionBank || window.pastQuestionBank.length === 0) {
+                    alert('歷屆考題庫加載中，請稍後再試...');
+                    loadQuestionBank();
+                    return;
+                }
+                startPastQuiz();
+            } else {
+                // 一般文法測驗模式
+                if (!window.questionBank || window.questionBank.length === 0) {
+                    alert('題庫加載中，請稍後再試...');
+                    loadQuestionBank();
+                    return;
+                }
+                startGrammarQuiz();
+            }
         }
-        startVocabQuiz();
-    } else if (isPastQuestions) {
-        // 歷屆考題模式
-        if (!window.pastQuestionBank || window.pastQuestionBank.length === 0) {
-            alert('歷屆考題庫加載中，請稍後再試...');
-            loadQuestionBank();
-            return;
+
+        // 單字測驗開始函數
+        function startVocabQuiz() {
+            // 重置狀態
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            isAnswered = [];
+            score = 0;
+            wrongQuestions = [];
+            selectedQuestions = [];
+            shuffledQuestions = [];
+            elapsedTime = 0;
+
+            // 隨機選擇單字題目
+            const shuffled = shuffleArray([...window.vocabBank]);
+            selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.vocabBank.length));
+            
+            // 隨機打亂每個題目的選項順序
+            shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
+            
+            userAnswers = new Array(selectedQuestions.length).fill(null);
+            isAnswered = new Array(selectedQuestions.length).fill(false);
+            
+            // 開始計時
+            startTimer();
+            
+            // 顯示測驗頁面
+            showScreen(quizScreen);
+            displayQuestion(currentQuestionIndex);
+            updateButtons();
+            updateProgress();
         }
-        startPastQuiz();
-    } else {
-        // 一般文法測驗模式
-        if (!window.questionBank || window.questionBank.length === 0) {
-            alert('題庫加載中，請稍後再試...');
-            loadQuestionBank();
-            return;
+
+        // 文法測驗開始函數
+        function startGrammarQuiz() {
+            // 重置狀態
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            isAnswered = [];
+            score = 0;
+            wrongQuestions = [];
+            selectedQuestions = [];
+            shuffledQuestions = [];
+            elapsedTime = 0;
+
+            // 隨機選擇題目
+            const shuffled = shuffleArray([...window.questionBank]);
+            selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.questionBank.length));
+            
+            // 隨機打亂每個題目的選項順序
+            shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
+            
+            userAnswers = new Array(selectedQuestions.length).fill(null);
+            isAnswered = new Array(selectedQuestions.length).fill(false);
+            
+            // 開始計時
+            startTimer();
+            
+            // 顯示測驗頁面
+            showScreen(quizScreen);
+            displayQuestion(currentQuestionIndex);
+            updateButtons();
+            updateProgress();
         }
-        startGrammarQuiz();
-    }
-}
 
-// 單字測驗開始函數
-function startVocabQuiz() {
-    // 重置狀態
-    currentQuestionIndex = 0;
-    userAnswers = [];
-    isAnswered = [];
-    score = 0;
-    wrongQuestions = [];
-    selectedQuestions = [];
-    shuffledQuestions = [];
-    elapsedTime = 0;
+        // 歷屆考題開始函數
+        function startPastQuiz() {
+            // 重置狀態
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            isAnswered = [];
+            score = 0;
+            wrongQuestions = [];
+            selectedQuestions = [];
+            shuffledQuestions = [];
+            elapsedTime = 0;
 
-    // 隨機選擇單字題目
-    const shuffled = shuffleArray([...window.vocabBank]);
-    selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.vocabBank.length));
-    
-    // 隨機打亂每個題目的選項順序
-    shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
-    
-    userAnswers = new Array(selectedQuestions.length).fill(null);
-    isAnswered = new Array(selectedQuestions.length).fill(false);
-    
-    // 開始計時
-    startTimer();
-    
-    // 顯示測驗頁面
-    showScreen(quizScreen);
-    displayQuestion(currentQuestionIndex);
-    updateButtons();
-    updateProgress();
-}
-
-// 文法測驗開始函數（從原有的startQuiz拆分出來）
-function startGrammarQuiz() {
-    // 重置狀態
-    currentQuestionIndex = 0;
-    userAnswers = [];
-    isAnswered = [];
-    score = 0;
-    wrongQuestions = [];
-    selectedQuestions = [];
-    shuffledQuestions = [];
-    elapsedTime = 0;
-
-    // 隨機選擇題目
-    const shuffled = shuffleArray([...window.questionBank]);
-    selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.questionBank.length));
-    
-    // 隨機打亂每個題目的選項順序
-    shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
-    
-    userAnswers = new Array(selectedQuestions.length).fill(null);
-    isAnswered = new Array(selectedQuestions.length).fill(false);
-    
-    // 開始計時
-    startTimer();
-    
-    // 顯示測驗頁面
-    showScreen(quizScreen);
-    displayQuestion(currentQuestionIndex);
-    updateButtons();
-    updateProgress();
-}
-
-// 歷屆考題開始函數
-function startPastQuiz() {
-    // 重置狀態
-    currentQuestionIndex = 0;
-    userAnswers = [];
-    isAnswered = [];
-    score = 0;
-    wrongQuestions = [];
-    selectedQuestions = [];
-    shuffledQuestions = [];
-    elapsedTime = 0;
-
-    // 隨機選擇題目
-    const shuffled = shuffleArray([...window.pastQuestionBank]);
-    selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.pastQuestionBank.length));
-    
-    // 隨機打亂每個題目的選項順序
-    shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
-    
-    userAnswers = new Array(selectedQuestions.length).fill(null);
-    isAnswered = new Array(selectedQuestions.length).fill(false);
-    
-    // 開始計時
-    startTimer();
-    
-    // 顯示測驗頁面
-    showScreen(quizScreen);
-    displayQuestion(currentQuestionIndex);
-    updateButtons();
-    updateProgress();
-}
+            // 隨機選擇題目
+            const shuffled = shuffleArray([...window.pastQuestionBank]);
+            selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.pastQuestionBank.length));
+            
+            // 隨機打亂每個題目的選項順序
+            shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
+            
+            userAnswers = new Array(selectedQuestions.length).fill(null);
+            isAnswered = new Array(selectedQuestions.length).fill(false);
+            
+            // 開始計時
+            startTimer();
+            
+            // 顯示測驗頁面
+            showScreen(quizScreen);
+            displayQuestion(currentQuestionIndex);
+            updateButtons();
+            updateProgress();
+        }
 
         // 顯示歷史紀錄
         function showHistory() {
@@ -1088,262 +981,298 @@ function startPastQuiz() {
             startQuiz();
         }
 
-// 設定題目數量和測驗類型
-function setQuestionCount(count) {
-    if (count === 'past') {
-        // 歷屆考題模式
-        isPastQuestions = true;
-        isVocabMode = false;
-        const maxAvailable = window.pastQuestionBank ? window.pastQuestionBank.length : 0;
-        questionCount = maxAvailable;
-        
-        // 更新按鈕狀態
-        updateCountButtonStates('past');
-        
-        if (maxAvailable === 0) {
-            showUpdateNotification('歷屆考題庫為空');
-            return;
-        }
-        
-        showUpdateNotification(`歷屆考題模式 (${maxAvailable}題)`);
-    } else if (count === 'vocab') {
-        // 單字測驗模式
-        isPastQuestions = false;
-        isVocabMode = true;
-        const maxAvailable = window.vocabBank ? window.vocabBank.length : 0;
-        questionCount = maxAvailable;
-        
-        // 更新按鈕狀態
-        updateCountButtonStates('vocab');
-        
-        if (maxAvailable === 0) {
-            showUpdateNotification('單字題庫為空');
-            return;
-        }
-        
-        showUpdateNotification(`單字測驗模式 (${maxAvailable}題)`);
-    } else {
-        // 一般題庫模式
-        isPastQuestions = false;
-        isVocabMode = false;
-        const maxAvailable = window.questionBank ? window.questionBank.length : 0;
-        questionCount = Math.min(count, maxAvailable);
-        
-        // 更新按鈕狀態
-        updateCountButtonStates(count);
-        
-        // 如果選擇的數量超過可用題目，顯示提示
-        if (count > maxAvailable && maxAvailable > 0) {
-            showUpdateNotification(`可用題目只有 ${maxAvailable} 題`);
-            questionCount = maxAvailable;
-        }
-    }
-}
-
-// 更新數量選擇按鈕狀態
-function updateCountButtonStates(selectedType) {
-    // 移除所有按鈕的active類別
-    count30Btn.classList.remove('active');
-    count50Btn.classList.remove('active');
-    countPastBtn.classList.remove('active');
-    countVocabBtn.classList.remove('active');
-    
-    // 根據選擇的類型添加active類別
-    switch(selectedType) {
-        case 30:
-            count30Btn.classList.add('active');
-            break;
-        case 50:
-            count50Btn.classList.add('active');
-            break;
-        case 'past':
-            countPastBtn.classList.add('active');
-            break;
-        case 'vocab':
-            countVocabBtn.classList.add('active');
-            break;
-    }
-}
-
-// 修正初始化事件監聽器函數
-function initEventListeners() {
-    // 首頁按鈕
-    startQuizBtn.addEventListener('click', startQuiz);
-    viewHistoryBtn.addEventListener('click', showHistory);
-    exitBtn.addEventListener('click', exitApp);
-    updateBtn.addEventListener('click', checkForUpdates);
-    
-    // 測驗類型選擇按鈕
-    count30Btn.addEventListener('click', () => setQuestionCount(30));
-    count50Btn.addEventListener('click', () => setQuestionCount(50));
-    countPastBtn.addEventListener('click', () => setQuestionCount('past'));
-    countVocabBtn.addEventListener('click', () => setQuestionCount('vocab'));
-    
-    // 測驗頁面按鈕 - 添加這部分
-    prevBtn.addEventListener('click', prevQuestion);
-    nextBtn.addEventListener('click', nextQuestion);
-    submitBtn.addEventListener('click', submitQuiz);
-    backHomeBtn.addEventListener('click', backToHome);
-    
-    // 結果頁面按鈕
-    restartBtn.addEventListener('click', restartQuiz);
-    resultBackHomeBtn.addEventListener('click', backToHome);
-    
-    // 歷史紀錄頁面按鈕
-    historyBackHomeBtn.addEventListener('click', backToHome);
-    clearHistoryBtn.addEventListener('click', clearHistory);
-}
-
-// ========== 其他功能函數 ==========
-
-// 修改題庫載入函數以包含單字題庫
-async function loadQuestionBank() {
-    // 如果是線上環境，嘗試載入外部題庫
-    if (!isLocal) {
-        try {
-            console.log('正在從伺服器加載題庫...');
-            // 先禁用開始測驗按鈕
-            startQuizBtn.disabled = true;
-            startQuizBtn.textContent = '題庫載入中...';
-            
-            // 同時載入所有題庫
-            const [questionBankResponse, pastQuestionBankResponse, vocabBankResponse] = await Promise.all([
-                fetch('./question_bank.js'),
-                fetch('./pastQuestionBank.js'),
-                fetch('./vocab_bank.js') // 新增：載入單字題庫
-            ]);
-            
-            // 動態執行題庫腳本
-            if (questionBankResponse.ok) {
-                const questionBankScript = await questionBankResponse.text();
-                const script1 = document.createElement('script');
-                script1.textContent = questionBankScript;
-                document.head.appendChild(script1);
-            }
-            
-            if (pastQuestionBankResponse.ok) {
-                const pastQuestionBankScript = await pastQuestionBankResponse.text();
-                const script2 = document.createElement('script');
-                script2.textContent = pastQuestionBankScript;
-                document.head.appendChild(script2);
-            }
-            
-            if (vocabBankResponse.ok) {
-                const vocabBankScript = await vocabBankResponse.text();
-                const script3 = document.createElement('script');
-                script3.textContent = vocabBankScript;
-                document.head.appendChild(script3);
-            }
-            
-            // 等待題庫載入完成
-            await new Promise(resolve => setTimeout(resolve, 100));
-            
-            console.log('外部題庫加載成功:');
-            console.log('- 一般題庫題目數量:', window.questionBank ? window.questionBank.length : 0);
-            console.log('- 歷屆考題題目數量:', window.pastQuestionBank ? window.pastQuestionBank.length : 0);
-            console.log('- 單字題庫題目數量:', window.vocabBank ? window.vocabBank.length : 0);
-            
-        } catch (error) {
-            console.log('外部題庫加載失敗，使用內建題庫:', error);
-            // 使用內建題庫作為備用
-            if (!window.questionBank || window.questionBank.length === 0) {
-                window.questionBank = window.questionBank || [];
-            }
-            if (!window.pastQuestionBank || window.pastQuestionBank.length === 0) {
-                window.pastQuestionBank = window.pastQuestionBank || [];
-            }
-            if (!window.vocabBank || window.vocabBank.length === 0) {
-                window.vocabBank = window.vocabBank || [];
+        // 設定題目數量和測驗類型
+        function setQuestionCount(count) {
+            if (count === 'past') {
+                // 歷屆考題模式
+                isPastQuestions = true;
+                isVocabMode = false;
+                const maxAvailable = window.pastQuestionBank ? window.pastQuestionBank.length : 0;
+                questionCount = maxAvailable;
+                
+                // 更新按鈕狀態
+                updateCountButtonStates('past');
+                
+                if (maxAvailable === 0) {
+                    showUpdateNotification('歷屆考題庫為空');
+                    return;
+                }
+                
+                showUpdateNotification(`歷屆考題模式 (${maxAvailable}題)`);
+            } else if (count === 'vocab') {
+                // 單字測驗模式
+                isPastQuestions = false;
+                isVocabMode = true;
+                const maxAvailable = window.vocabBank ? window.vocabBank.length : 0;
+                questionCount = maxAvailable;
+                
+                // 更新按鈕狀態
+                updateCountButtonStates('vocab');
+                
+                if (maxAvailable === 0) {
+                    showUpdateNotification('單字題庫為空');
+                    return;
+                }
+                
+                showUpdateNotification(`單字測驗模式 (${maxAvailable}題)`);
+            } else {
+                // 一般題庫模式
+                isPastQuestions = false;
+                isVocabMode = false;
+                const maxAvailable = window.questionBank ? window.questionBank.length : 0;
+                questionCount = Math.min(count, maxAvailable);
+                
+                // 更新按鈕狀態
+                updateCountButtonStates(count);
+                
+                // 如果選擇的數量超過可用題目，顯示提示
+                if (count > maxAvailable && maxAvailable > 0) {
+                    showUpdateNotification(`可用題目只有 ${maxAvailable} 題`);
+                    questionCount = maxAvailable;
+                }
             }
         }
-    }
-    
-    // 啟用開始測驗按鈕
-    startQuizBtn.disabled = false;
-    startQuizBtn.textContent = '開始測驗';
-    
-    // 更新題目數量選擇器
-    setQuestionCount(questionCount);
-}// 檢查題庫版本更新
-function checkQuestionBankUpdate() {
-    const now = new Date().getTime();
-    const oneDay = 24 * 60 * 60 * 1000; // 1天的毫秒數
-    
-    // 如果超過1天沒有檢查更新，或者強制更新
-    if (now - lastUpdateCheck > oneDay || !localStorage.getItem('cachedQuestionBank')) {
-        console.log('檢查題庫更新...');
-        updateQuestionBankCache();
-    } else {
-        console.log('使用緩存的題庫版本');
-    }
-    
-    localStorage.setItem('lastUpdateCheck', now.toString());
-}
 
-// 更新題庫緩存
-function updateQuestionBankCache() {
-    if (window.questionBank && window.questionBank.length > 0) {
-        const newVersion = generateQuestionBankVersion(window.questionBank);
-        const currentVersion = localStorage.getItem('questionBankVersion');
-        
-        if (newVersion !== currentVersion) {
-            console.log('發現新版本題庫，更新緩存');
+        // 更新數量選擇按鈕狀態
+        function updateCountButtonStates(selectedType) {
+            // 移除所有按鈕的active類別
+            count30Btn.classList.remove('active');
+            count50Btn.classList.remove('active');
+            countPastBtn.classList.remove('active');
+            countVocabBtn.classList.remove('active');
             
-            // 緩存題庫數據
-            localStorage.setItem('cachedQuestionBank', JSON.stringify(window.questionBank));
-            localStorage.setItem('questionBankVersion', newVersion);
+            // 根據選擇的類型添加active類別
+            switch(selectedType) {
+                case 30:
+                    count30Btn.classList.add('active');
+                    break;
+                case 50:
+                    count50Btn.classList.add('active');
+                    break;
+                case 'past':
+                    countPastBtn.classList.add('active');
+                    break;
+                case 'vocab':
+                    countVocabBtn.classList.add('active');
+                    break;
+            }
+        }
+
+        // 初始化事件監聽器
+        function initEventListeners() {
+            // 首頁按鈕
+            startQuizBtn.addEventListener('click', startQuiz);
+            viewHistoryBtn.addEventListener('click', showHistory);
+            exitBtn.addEventListener('click', exitApp);
+            updateBtn.addEventListener('click', checkForUpdates);
             
-            showUpdateNotification('題庫已更新到最新版本！');
+            // 測驗類型選擇按鈕
+            count30Btn.addEventListener('click', () => setQuestionCount(30));
+            count50Btn.addEventListener('click', () => setQuestionCount(50));
+            countPastBtn.addEventListener('click', () => setQuestionCount('past'));
+            countVocabBtn.addEventListener('click', () => setQuestionCount('vocab'));
+            
+            // 測驗頁面按鈕
+            prevBtn.addEventListener('click', prevQuestion);
+            nextBtn.addEventListener('click', nextQuestion);
+            submitBtn.addEventListener('click', submitQuiz);
+            backHomeBtn.addEventListener('click', backToHome);
+            
+            // 結果頁面按鈕
+            restartBtn.addEventListener('click', restartQuiz);
+            resultBackHomeBtn.addEventListener('click', backToHome);
+            
+            // 歷史紀錄頁面按鈕
+            historyBackHomeBtn.addEventListener('click', backToHome);
+            clearHistoryBtn.addEventListener('click', clearHistory);
+        }
+
+        // ========== 其他功能函數 ==========
+
+        // 題庫載入函數
+        async function loadQuestionBank() {
+            // 如果是線上環境，嘗試載入外部題庫
+            if (!isLocal) {
+                try {
+                    console.log('正在從伺服器加載題庫...');
+                    // 先禁用開始測驗按鈕
+                    startQuizBtn.disabled = true;
+                    startQuizBtn.textContent = '題庫載入中...';
+                    
+                    // 同時載入所有題庫
+                    const [questionBankResponse, pastQuestionBankResponse, vocabBankResponse] = await Promise.all([
+                        fetch('./question_bank.js').catch(() => ({ ok: false })),
+                        fetch('./pastQuestionBank.js').catch(() => ({ ok: false })),
+                        fetch('./vocab_bank.js').catch(() => ({ ok: false }))
+                    ]);
+                    
+                    let loadedCount = 0;
+                    
+                    // 動態執行題庫腳本
+                    if (questionBankResponse.ok) {
+                        try {
+                            const questionBankScript = await questionBankResponse.text();
+                            const script1 = document.createElement('script');
+                            script1.textContent = questionBankScript;
+                            document.head.appendChild(script1);
+                            loadedCount++;
+                            console.log('✅ 一般題庫載入成功');
+                        } catch (e) {
+                            console.log('❌ 一般題庫載入失敗:', e);
+                        }
+                    } else {
+                        console.log('❌ 一般題庫檔案不存在，使用內建題庫');
+                    }
+                    
+                    if (pastQuestionBankResponse.ok) {
+                        try {
+                            const pastQuestionBankScript = await pastQuestionBankResponse.text();
+                            const script2 = document.createElement('script');
+                            script2.textContent = pastQuestionBankScript;
+                            document.head.appendChild(script2);
+                            loadedCount++;
+                            console.log('✅ 歷屆考題庫載入成功');
+                        } catch (e) {
+                            console.log('❌ 歷屆考題庫載入失敗:', e);
+                        }
+                    } else {
+                        console.log('❌ 歷屆考題庫檔案不存在，使用內建題庫');
+                    }
+                    
+                    if (vocabBankResponse.ok) {
+                        try {
+                            const vocabBankScript = await vocabBankResponse.text();
+                            const script3 = document.createElement('script');
+                            script3.textContent = vocabBankScript;
+                            document.head.appendChild(script3);
+                            loadedCount++;
+                            console.log('✅ 單字題庫載入成功');
+                        } catch (e) {
+                            console.log('❌ 單字題庫載入失敗:', e);
+                        }
+                    } else {
+                        console.log('❌ 單字題庫檔案不存在，使用內建題庫');
+                    }
+                    
+                    // 等待題庫載入完成
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    
+                    console.log('📊 題庫載入統計:');
+                    console.log('- 一般題庫題目數量:', window.questionBank ? window.questionBank.length : 0);
+                    console.log('- 歷屆考題題目數量:', window.pastQuestionBank ? window.pastQuestionBank.length : 0);
+                    console.log('- 單字題庫題目數量:', window.vocabBank ? window.vocabBank.length : 0);
+                    console.log('- 成功載入的外部題庫數量:', loadedCount);
+                    
+                    if (loadedCount > 0) {
+                        showUpdateNotification(`成功載入 ${loadedCount} 個外部題庫`);
+                    } else {
+                        showUpdateNotification('使用內建題庫模式');
+                    }
+                    
+                } catch (error) {
+                    console.log('外部題庫加載失敗，使用內建題庫:', error);
+                    showUpdateNotification('外部題庫載入失敗，使用內建題庫');
+                }
+            } else {
+                console.log('本地環境：使用內建題庫');
+                console.log('- 一般題庫題目數量:', window.questionBank ? window.questionBank.length : 0);
+                console.log('- 歷屆考題題目數量:', window.pastQuestionBank ? window.pastQuestionBank.length : 0);
+                console.log('- 單字題庫題目數量:', window.vocabBank ? window.vocabBank.length : 0);
+            }
+            
+            // 確保所有題庫都有預設值
+            window.questionBank = window.questionBank || [];
+            window.pastQuestionBank = window.pastQuestionBank || [];
+            window.vocabBank = window.vocabBank || [];
+            
+            // 啟用開始測驗按鈕
+            startQuizBtn.disabled = false;
+            startQuizBtn.textContent = '開始測驗';
+            
+            // 更新題目數量選擇器
+            setQuestionCount(questionCount);
+        }
+
+        // 檢查題庫版本更新
+        function checkQuestionBankUpdate() {
+            const now = new Date().getTime();
+            const oneDay = 24 * 60 * 60 * 1000; // 1天的毫秒數
+            
+            // 如果超過1天沒有檢查更新，或者強制更新
+            if (now - lastUpdateCheck > oneDay || !localStorage.getItem('cachedQuestionBank')) {
+                console.log('檢查題庫更新...');
+                updateQuestionBankCache();
+            } else {
+                console.log('使用緩存的題庫版本');
+            }
+            
+            localStorage.setItem('lastUpdateCheck', now.toString());
+        }
+
+        // 更新題庫緩存
+        function updateQuestionBankCache() {
+            if (window.questionBank && window.questionBank.length > 0) {
+                const newVersion = generateQuestionBankVersion(window.questionBank);
+                const currentVersion = localStorage.getItem('questionBankVersion');
+                
+                if (newVersion !== currentVersion) {
+                    console.log('發現新版本題庫，更新緩存');
+                    
+                    // 緩存題庫數據
+                    localStorage.setItem('cachedQuestionBank', JSON.stringify(window.questionBank));
+                    localStorage.setItem('questionBankVersion', newVersion);
+                    
+                    showUpdateNotification('題庫已更新到最新版本！');
+                    updateIndicator.classList.remove('outdated');
+                } else {
+                    console.log('題庫已是最新版本');
+                    updateIndicator.classList.remove('outdated');
+                }
+            }
+        }
+
+        // 生成題庫版本標識
+        function generateQuestionBankVersion(bank) {
+            const contentString = JSON.stringify(bank);
+            let hash = 0;
+            for (let i = 0; i < contentString.length; i++) {
+                const char = contentString.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return 'v1.' + Math.abs(hash).toString(16).substring(0, 8);
+        }
+
+        // 顯示更新通知
+        function showUpdateNotification(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #3498db;
+                color: white;
+                padding: 10px 15px;
+                border-radius: 5px;
+                z-index: 1000;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    document.body.removeChild(toast);
+                }
+            }, 3000);
+        }
+
+        // 手動檢查更新函數
+        function checkForUpdates() {
+            console.log('手動檢查題庫更新...');
+            showUpdateNotification('已檢查更新，使用內建題庫');
             updateIndicator.classList.remove('outdated');
-        } else {
-            console.log('題庫已是最新版本');
-            updateIndicator.classList.remove('outdated');
         }
-    }
-}
-
-// 生成題庫版本標識
-function generateQuestionBankVersion(bank) {
-    const contentString = JSON.stringify(bank);
-    let hash = 0;
-    for (let i = 0; i < contentString.length; i++) {
-        const char = contentString.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
-    }
-    return 'v1.' + Math.abs(hash).toString(16).substring(0, 8);
-}
-
-// 顯示更新通知
-function showUpdateNotification(message) {
-    const toast = document.createElement('div');
-    toast.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #3498db;
-        color: white;
-        padding: 10px 15px;
-        border-radius: 5px;
-        z-index: 1000;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    `;
-    toast.textContent = message;
-    document.body.appendChild(toast);
-    
-    setTimeout(() => {
-        if (toast.parentNode) {
-            document.body.removeChild(toast);
-        }
-    }, 3000);
-}
-
-// 手動檢查更新函數
-function checkForUpdates() {
-    console.log('手動檢查題庫更新...');
-    showUpdateNotification('已檢查更新，使用內建題庫');
-    updateIndicator.classList.remove('outdated');
-}
 
         // 開始計時
         function startTimer() {
@@ -1370,58 +1299,59 @@ function checkForUpdates() {
             }
         }
 
-// 顯示歷史紀錄內容
-function displayHistory() {
-    if (history.length === 0) {
-        historyListElement.innerHTML = '<p>尚無測驗紀錄</p>';
-        return;
-    }
-    
-    let historyHTML = '';
-    
-    history.forEach((record, index) => {
-        const date = new Date(record.date).toLocaleString('zh-TW');
-        
-        // 計算各題型的錯誤數量
-        const errorTypes = {
-            reading: 0,
-            writing: 0,
-            vocabulary: 0,
-            synonym: 0,
-            grammar: 0,
-            reorder: 0
-        };
-        
-        record.wrongQuestions.forEach(questionId => {
-            // 先從一般題庫找，再從歷屆考題庫找
-            let question = window.questionBank.find(q => q.id === questionId);
-            if (!question) {
-                question = window.pastQuestionBank.find(q => q.id === questionId);
+        // 顯示歷史紀錄內容
+        function displayHistory() {
+            if (history.length === 0) {
+                historyListElement.innerHTML = '<p>尚無測驗紀錄</p>';
+                return;
             }
-            if (question && errorTypes.hasOwnProperty(question.type)) {
-                errorTypes[question.type]++;
-            }
-        });
-        
-        historyHTML += `
-            <div class="history-item">
-                <div class="history-date">測驗 ${index + 1} - ${date}</div>
-                <div class="history-stats">
-                    <div class="history-stat">答對題數: ${record.score}/${record.total}</div>
-                    <div class="history-stat">用時: ${formatTime(record.time)}</div>
-                    <div class="history-stat">漢字讀音錯誤: ${errorTypes.reading}</div>
-                    <div class="history-stat">漢字書寫錯誤: ${errorTypes.writing}</div>
-                    <div class="history-stat">詞語填空錯誤: ${errorTypes.vocabulary}</div>
-                    <div class="history-stat">近義詞替換錯誤: ${errorTypes.synonym}</div>
-                    <div class="history-stat">文法選擇錯誤: ${errorTypes.grammar}</div>
-                    <div class="history-stat">句子重組錯誤: ${errorTypes.reorder}</div>
-                </div>
-            </div>
-        `;
-    });
-    
-    historyListElement.innerHTML = historyHTML;
-}
+            
+            let historyHTML = '';
+            
+            history.forEach((record, index) => {
+                const date = new Date(record.date).toLocaleString('zh-TW');
+                
+                // 計算各題型的錯誤數量
+                const errorTypes = {
+                    reading: 0,
+                    writing: 0,
+                    vocabulary: 0,
+                    synonym: 0,
+                    grammar: 0,
+                    reorder: 0
+                };
+                
+                record.wrongQuestions.forEach(questionId => {
+                    // 先從一般題庫找，再從歷屆考題庫找
+                    let question = window.questionBank.find(q => q.id === questionId);
+                    if (!question) {
+                        question = window.pastQuestionBank.find(q => q.id === questionId);
+                    }
+                    if (question && errorTypes.hasOwnProperty(question.type)) {
+                        errorTypes[question.type]++;
+                    }
+                });
+                
+                historyHTML += `
+                    <div class="history-item">
+                        <div class="history-date">測驗 ${index + 1} - ${date}</div>
+                        <div class="history-stats">
+                            <div class="history-stat">答對題數: ${record.score}/${record.total}</div>
+                            <div class="history-stat">用時: ${formatTime(record.time)}</div>
+                            <div class="history-stat">漢字讀音錯誤: ${errorTypes.reading}</div>
+                            <div class="history-stat">漢字書寫錯誤: ${errorTypes.writing}</div>
+                            <div class="history-stat">詞語填空錯誤: ${errorTypes.vocabulary}</div>
+                            <div class="history-stat">近義詞替換錯誤: ${errorTypes.synonym}</div>
+                            <div class="history-stat">文法選擇錯誤: ${errorTypes.grammar}</div>
+                            <div class="history-stat">句子重組錯誤: ${errorTypes.reorder}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            historyListElement.innerHTML = historyHTML;
+        }
+
         // 格式化時間顯示
         function formatTime(seconds) {
             const minutes = Math.floor(seconds / 60);
@@ -1531,44 +1461,44 @@ function displayHistory() {
             
             return explanationsHTML;
         }
-// 生成漢字讀音題型
-function generateReadingQuestion(question, index) {
-    let optionsHTML = '';
-    
-    question.options.forEach((option, i) => {
-        const isSelected = userAnswers[index] === i;
-        const isCorrect = isAnswered[index] && i === question.correctAnswer;
-        const isIncorrect = isAnswered[index] && isSelected && i !== question.correctAnswer;
-        
-        let optionClass = 'option';
-        if (isSelected) optionClass += ' selected';
-        if (isCorrect) optionClass += ' correct';
-        if (isIncorrect) optionClass += ' incorrect';
-        
-        optionsHTML += `
-            <div class="${optionClass}" onclick="window.selectOption(${i})">
-                ${option.text}
-            </div>
-        `;
-    });
-    
-    // 如果是歷屆考題，顯示年份資訊
-    const yearInfo = question.year && question.season ? 
-        `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
-    
-    return `
-        <div class="question">
-            <div class="question-number">問題 ${index + 1}</div>
-            ${yearInfo}
-            <div class="question-text">${question.question}</div>
-            <div class="kanji">${question.kanji}</div>
-            <div class="options">
-                ${optionsHTML}
-            </div>
-        </div>
-    `;
-}
 
+        // 生成漢字讀音題型
+        function generateReadingQuestion(question, index) {
+            let optionsHTML = '';
+            
+            question.options.forEach((option, i) => {
+                const isSelected = userAnswers[index] === i;
+                const isCorrect = isAnswered[index] && i === question.correctAnswer;
+                const isIncorrect = isAnswered[index] && isSelected && i !== question.correctAnswer;
+                
+                let optionClass = 'option';
+                if (isSelected) optionClass += ' selected';
+                if (isCorrect) optionClass += ' correct';
+                if (isIncorrect) optionClass += ' incorrect';
+                
+                optionsHTML += `
+                    <div class="${optionClass}" onclick="window.selectOption(${i})">
+                        ${option.text}
+                    </div>
+                `;
+            });
+            
+            // 如果是歷屆考題，顯示年份資訊
+            const yearInfo = question.year && question.season ? 
+                `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
+            
+            return `
+                <div class="question">
+                    <div class="question-number">問題 ${index + 1}</div>
+                    ${yearInfo}
+                    <div class="question-text">${question.question}</div>
+                    <div class="kanji">${question.kanji}</div>
+                    <div class="options">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+        }
 
         // 生成漢字書寫題型
         function generateWritingQuestion(question, index) {
@@ -1590,15 +1520,15 @@ function generateReadingQuestion(question, index) {
                     </div>
                 `;
             });
-    // 如果是歷屆考題，顯示年份資訊
-    const yearInfo = question.year && question.season ? 
-        `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
-    
+            
+            // 如果是歷屆考題，顯示年份資訊
+            const yearInfo = question.year && question.season ? 
+                `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
             
             return `
                 <div class="question">
                     <div class="question-number">問題 ${index + 1}</div>
-            ${yearInfo}
+                    ${yearInfo}
                     <div class="question-text">${question.question}</div>
                     <div class="kanji">${question.kana}</div>
                     <div class="options">
@@ -1629,14 +1559,14 @@ function generateReadingQuestion(question, index) {
                 `;
             });
             
-    // 如果是歷屆考題，顯示年份資訊
-    const yearInfo = question.year && question.season ? 
-        `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
-    
+            // 如果是歷屆考題，顯示年份資訊
+            const yearInfo = question.year && question.season ? 
+                `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
+            
             return `
                 <div class="question">
                     <div class="question-number">問題 ${index + 1}</div>
-            ${yearInfo}
+                    ${yearInfo}
                     <div class="question-text">${question.question}</div>
                     <div class="question-text">${question.sentence}</div>
                     <div class="options">
@@ -1666,15 +1596,15 @@ function generateReadingQuestion(question, index) {
                     </div>
                 `;
             });
-    // 如果是歷屆考題，顯示年份資訊
-    const yearInfo = question.year && question.season ? 
-        `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
-    
+            
+            // 如果是歷屆考題，顯示年份資訊
+            const yearInfo = question.year && question.season ? 
+                `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
             
             return `
                 <div class="question">
                     <div class="question-number">問題 ${index + 1}</div>
-            ${yearInfo}
+                    ${yearInfo}
                     <div class="question-text">${question.question}</div>
                     <div class="question-text">${question.sentence}</div>
                     <div class="options">
@@ -1704,15 +1634,15 @@ function generateReadingQuestion(question, index) {
                     </div>
                 `;
             });
-    // 如果是歷屆考題，顯示年份資訊
-    const yearInfo = question.year && question.season ? 
-        `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
-    
+            
+            // 如果是歷屆考題，顯示年份資訊
+            const yearInfo = question.year && question.season ? 
+                `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
             
             return `
                 <div class="question">
                     <div class="question-number">問題 ${index + 1}</div>
-            ${yearInfo}
+                    ${yearInfo}
                     <div class="question-text">${question.question}</div>
                     <div class="question-text">${question.sentence}</div>
                     <div class="options">
@@ -1742,15 +1672,15 @@ function generateReadingQuestion(question, index) {
                     </div>
                 `;
             });
-    // 如果是歷屆考題，顯示年份資訊
-    const yearInfo = question.year && question.season ? 
-        `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
-    
+            
+            // 如果是歷屆考題，顯示年份資訊
+            const yearInfo = question.year && question.season ? 
+                `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
             
             return `
                 <div class="question">
                     <div class="question-number">問題 ${index + 1}</div>
-            ${yearInfo}
+                    ${yearInfo}
                     <div class="question-text">${question.question}</div>
                     <div class="question-text">${question.sentence}</div>
                     <div class="options">
@@ -1760,42 +1690,42 @@ function generateReadingQuestion(question, index) {
             `;
         }
 
-// 生成預設題型
-function generateDefaultQuestion(question, index) {
-    let optionsHTML = '';
-    
-    question.options.forEach((option, i) => {
-        const isSelected = userAnswers[index] === i;
-        const isCorrect = isAnswered[index] && i === question.correctAnswer;
-        const isIncorrect = isAnswered[index] && isSelected && i !== question.correctAnswer;
-        
-        let optionClass = 'option';
-        if (isSelected) optionClass += ' selected';
-        if (isCorrect) optionClass += ' correct';
-        if (isIncorrect) optionClass += ' incorrect';
-        
-        optionsHTML += `
-            <div class="${optionClass}" onclick="window.selectOption(${i})">
-                ${option.text}
-            </div>
-        `;
-    });
-    
-    // 如果是歷屆考題，顯示年份資訊
-    const yearInfo = question.year && question.season ? 
-        `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
-    
-    return `
-        <div class="question">
-            <div class="question-number">問題 ${index + 1}</div>
-            ${yearInfo}  // 添加這行使用 yearInfo
-            <div class="question-text">${question.question}</div>
-            <div class="options">
-                ${optionsHTML}
-            </div>
-        </div>
-    `;
-}
+        // 生成預設題型
+        function generateDefaultQuestion(question, index) {
+            let optionsHTML = '';
+            
+            question.options.forEach((option, i) => {
+                const isSelected = userAnswers[index] === i;
+                const isCorrect = isAnswered[index] && i === question.correctAnswer;
+                const isIncorrect = isAnswered[index] && isSelected && i !== question.correctAnswer;
+                
+                let optionClass = 'option';
+                if (isSelected) optionClass += ' selected';
+                if (isCorrect) optionClass += ' correct';
+                if (isIncorrect) optionClass += ' incorrect';
+                
+                optionsHTML += `
+                    <div class="${optionClass}" onclick="window.selectOption(${i})">
+                        ${option.text}
+                    </div>
+                `;
+            });
+            
+            // 如果是歷屆考題，顯示年份資訊
+            const yearInfo = question.year && question.season ? 
+                `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
+            
+            return `
+                <div class="question">
+                    <div class="question-number">問題 ${index + 1}</div>
+                    ${yearInfo}
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+        }
 
         // 選擇選項 (設為全域函數)
         window.selectOption = function(optionIndex) {
@@ -1844,88 +1774,88 @@ function generateDefaultQuestion(question, index) {
             scoreElement.textContent = `得分: ${score}/${answeredCount}`;
         }
 
-     // 顯示測驗結果
-function showResults() {
-    // 計算各題型的錯誤數量
-    const errorTypes = {
-        reading: 0,
-        writing: 0,
-        vocabulary: 0,
-        synonym: 0,
-        grammar: 0,
-        reorder: 0
-    };
-    
-    wrongQuestions.forEach(questionId => {
-        // 先從一般題庫找，再從歷屆考題庫找
-        let question = window.questionBank.find(q => q.id === questionId);
-        if (!question) {
-            question = window.pastQuestionBank.find(q => q.id === questionId);
-        }
-        if (question && errorTypes.hasOwnProperty(question.type)) {
-            errorTypes[question.type]++;
-        }
-    });
-    
-    let resultHTML = `
-        <div class="result-title">測驗完成！</div>
-        <div>最終得分: ${score}/${shuffledQuestions.length}</div>
-        <div>用時: ${formatTime(elapsedTime)}</div>
-        <div class="wrong-questions">
-            <div class="wrong-title">各題型錯誤分析：</div>
-            <ul>
-                <li>漢字讀音錯誤: ${errorTypes.reading}</li>
-                <li>漢字書寫錯誤: ${errorTypes.writing}</li>
-                <li>詞語填空錯誤: ${errorTypes.vocabulary}</li>
-                <li>近義詞替換錯誤: ${errorTypes.synonym}</li>
-                <li>文法選擇錯誤: ${errorTypes.grammar}</li>
-                <li>句子重組錯誤: ${errorTypes.reorder}</li>
-            </ul>
-        </div>
-    `;
-    
-    if (wrongQuestions.length > 0) {
-        resultHTML += `
-            <div class="wrong-questions">
-                <div class="wrong-title">錯誤題目:</div>
-                <ul>
-        `;
-        
-        wrongQuestions.forEach(questionId => {
-            // 先從一般題庫找，再從歷屆考題庫找
-            let originalQuestion = window.questionBank.find(q => q.id === questionId);
-            if (!originalQuestion) {
-                originalQuestion = window.pastQuestionBank.find(q => q.id === questionId);
-            }
+        // 顯示測驗結果
+        function showResults() {
+            // 計算各題型的錯誤數量
+            const errorTypes = {
+                reading: 0,
+                writing: 0,
+                vocabulary: 0,
+                synonym: 0,
+                grammar: 0,
+                reorder: 0
+            };
             
-            const shuffledQuestion = shuffledQuestions.find(q => q.id === questionId);
-            const userAnswerIndex = userAnswers[shuffledQuestions.indexOf(shuffledQuestion)];
-            
-            let questionText = '';
-            
-            if (originalQuestion) {
-                if (originalQuestion.type === "reading") {
-                    questionText = `${originalQuestion.kanji} - 您的答案: ${shuffledQuestion.options[userAnswerIndex].text} - 正確答案: ${shuffledQuestion.options[shuffledQuestion.correctAnswer].text}`;
-                } else if (originalQuestion.type === "writing") {
-                    questionText = `${originalQuestion.kana} - 您的答案: ${shuffledQuestion.options[userAnswerIndex].text} - 正確答案: ${shuffledQuestion.options[shuffledQuestion.correctAnswer].text}`;
-                } else {
-                    questionText = `問題 ${originalQuestion.id} - 您的答案: ${shuffledQuestion.options[userAnswerIndex].text} - 正確答案: ${shuffledQuestion.options[shuffledQuestion.correctAnswer].text}`;
+            wrongQuestions.forEach(questionId => {
+                // 先從一般題庫找，再從歷屆考題庫找
+                let question = window.questionBank.find(q => q.id === questionId);
+                if (!question) {
+                    question = window.pastQuestionBank.find(q => q.id === questionId);
                 }
+                if (question && errorTypes.hasOwnProperty(question.type)) {
+                    errorTypes[question.type]++;
+                }
+            });
+            
+            let resultHTML = `
+                <div class="result-title">測驗完成！</div>
+                <div>最終得分: ${score}/${shuffledQuestions.length}</div>
+                <div>用時: ${formatTime(elapsedTime)}</div>
+                <div class="wrong-questions">
+                    <div class="wrong-title">各題型錯誤分析：</div>
+                    <ul>
+                        <li>漢字讀音錯誤: ${errorTypes.reading}</li>
+                        <li>漢字書寫錯誤: ${errorTypes.writing}</li>
+                        <li>詞語填空錯誤: ${errorTypes.vocabulary}</li>
+                        <li>近義詞替換錯誤: ${errorTypes.synonym}</li>
+                        <li>文法選擇錯誤: ${errorTypes.grammar}</li>
+                        <li>句子重組錯誤: ${errorTypes.reorder}</li>
+                    </ul>
+                </div>
+            `;
+            
+            if (wrongQuestions.length > 0) {
+                resultHTML += `
+                    <div class="wrong-questions">
+                        <div class="wrong-title">錯誤題目:</div>
+                        <ul>
+                `;
                 
-                resultHTML += `<li>${questionText}</li>`;
+                wrongQuestions.forEach(questionId => {
+                    // 先從一般題庫找，再從歷屆考題庫找
+                    let originalQuestion = window.questionBank.find(q => q.id === questionId);
+                    if (!originalQuestion) {
+                        originalQuestion = window.pastQuestionBank.find(q => q.id === questionId);
+                    }
+                    
+                    const shuffledQuestion = shuffledQuestions.find(q => q.id === questionId);
+                    const userAnswerIndex = userAnswers[shuffledQuestions.indexOf(shuffledQuestion)];
+                    
+                    let questionText = '';
+                    
+                    if (originalQuestion) {
+                        if (originalQuestion.type === "reading") {
+                            questionText = `${originalQuestion.kanji} - 您的答案: ${shuffledQuestion.options[userAnswerIndex].text} - 正確答案: ${shuffledQuestion.options[shuffledQuestion.correctAnswer].text}`;
+                        } else if (originalQuestion.type === "writing") {
+                            questionText = `${originalQuestion.kana} - 您的答案: ${shuffledQuestion.options[userAnswerIndex].text} - 正確答案: ${shuffledQuestion.options[shuffledQuestion.correctAnswer].text}`;
+                        } else {
+                            questionText = `問題 ${originalQuestion.id} - 您的答案: ${shuffledQuestion.options[userAnswerIndex].text} - 正確答案: ${shuffledQuestion.options[shuffledQuestion.correctAnswer].text}`;
+                        }
+                        
+                        resultHTML += `<li>${questionText}</li>`;
+                    }
+                });
+                
+                resultHTML += `
+                        </ul>
+                    </div>
+                `;
+            } else {
+                resultHTML += `<div class="success-message">恭喜！全部答對！</div>`;
             }
-        });
-        
-        resultHTML += `
-                </ul>
-            </div>
-        `;
-    } else {
-        resultHTML += `<div class="success-message">恭喜！全部答對！</div>`;
-    }
-    
-    resultElement.innerHTML = resultHTML;
-}
+            
+            resultElement.innerHTML = resultHTML;
+        }
 
         // 初始化應用程式
         function initApp() {
