@@ -1088,96 +1088,78 @@
         }
 
         // ========== 其他功能函數 ==========
+// 安全的題庫載入輔助函數
+async function safeLoadBank(url, bankName) {
+    try {
+        const response = await fetch(url + '?t=' + Date.now());
+        if (!response.ok) return false;
+        
+        const text = await response.text();
+        console.log(`${bankName} 原始內容長度:`, text.length);
+        
+        // 嘗試多種解析方式
+        try {
+            // 方式1: 直接作為 JavaScript 執行
+            if (text.includes(bankName) || text.includes('window.' + bankName)) {
+                eval(text);
+                return true;
+            }
+            
+            // 方式2: 作為 JSON 解析
+            const trimmed = text.trim();
+            if (trimmed.startsWith('[') || trimmed.startsWith('{')) {
+                window[bankName] = JSON.parse(trimmed);
+                return true;
+            }
+        } catch (e) {
+            console.log(`${bankName} 標準解析失敗:`, e);
+        }
+        
+        // 方式3: 強制賦值
+        try {
+            window[bankName] = eval('(' + text + ')');
+            return true;
+        } catch (e) {
+            console.log(`${bankName} 強制解析失敗:`, e);
+        }
+        
+    } catch (e) {
+        console.log(`${bankName} 載入失敗:`, e);
+    }
+    return false;
+}
 
-// 修改題庫載入函數
+// 完全修復的題庫載入函數
 async function loadQuestionBank() {
+    console.log('開始載入題庫...');
+    
+    // 先禁用開始測驗按鈕
+    startQuizBtn.disabled = true;
+    startQuizBtn.textContent = '題庫載入中...';
+    
+    let loadedCount = 0;
+    
     // 如果是線上環境，嘗試載入外部題庫
     if (!isLocal) {
-        try {
-            console.log('正在從伺服器加載題庫...');
-            // 先禁用開始測驗按鈕
-            startQuizBtn.disabled = true;
-            startQuizBtn.textContent = '題庫載入中...';
-            
-            let loadedCount = 0;
-            
-            // 嘗試載入一般題庫
-            try {
-                const questionBankResponse = await fetch('./question_bank.js');
-                if (questionBankResponse.ok) {
-                    const questionBankText = await questionBankResponse.text();
-                    // 嘗試解析為 JSON 或 JavaScript 物件
-                    if (questionBankText.trim().startsWith('window.questionBank')) {
-                        // 如果是 window.questionBank = [...] 格式
-                        eval(questionBankText);
-                    } else if (questionBankText.trim().startsWith('[')) {
-                        // 如果是純 JSON 陣列格式
-                        window.questionBank = JSON.parse(questionBankText);
-                    }
-                    loadedCount++;
-                    console.log('✅ 一般題庫載入成功');
-                }
-            } catch (e) {
-                console.log('❌ 一般題庫載入失敗:', e);
-            }
-            
-            // 嘗試載入歷屆考題庫
-            try {
-                const pastQuestionBankResponse = await fetch('./pastQuestionBank.js');
-                if (pastQuestionBankResponse.ok) {
-                    const pastQuestionBankText = await pastQuestionBankResponse.text();
-                    // 嘗試解析為 JSON 或 JavaScript 物件
-                    if (pastQuestionBankText.trim().startsWith('window.pastQuestionBank')) {
-                        eval(pastQuestionBankText);
-                    } else if (pastQuestionBankText.trim().startsWith('[')) {
-                        window.pastQuestionBank = JSON.parse(pastQuestionBankText);
-                    }
-                    loadedCount++;
-                    console.log('✅ 歷屆考題庫載入成功');
-                }
-            } catch (e) {
-                console.log('❌ 歷屆考題庫載入失敗:', e);
-            }
-            
-            // 嘗試載入單字題庫
-            try {
-                const vocabBankResponse = await fetch('./vocab_bank.js');
-                if (vocabBankResponse.ok) {
-                    const vocabBankText = await vocabBankResponse.text();
-                    // 嘗試解析為 JSON 或 JavaScript 物件
-                    if (vocabBankText.trim().startsWith('window.vocabBank')) {
-                        eval(vocabBankText);
-                    } else if (vocabBankText.trim().startsWith('[')) {
-                        window.vocabBank = JSON.parse(vocabBankText);
-                    }
-                    loadedCount++;
-                    console.log('✅ 單字題庫載入成功');
-                }
-            } catch (e) {
-                console.log('❌ 單字題庫載入失敗:', e);
-            }
-            
-            console.log('📊 題庫載入統計:');
-            console.log('- 一般題庫題目數量:', window.questionBank ? window.questionBank.length : 0);
-            console.log('- 歷屆考題題目數量:', window.pastQuestionBank ? window.pastQuestionBank.length : 0);
-            console.log('- 單字題庫題目數量:', window.vocabBank ? window.vocabBank.length : 0);
-            console.log('- 成功載入的外部題庫數量:', loadedCount);
-            
-            if (loadedCount > 0) {
-                showUpdateNotification(`成功載入 ${loadedCount} 個外部題庫`);
-            } else {
-                showUpdateNotification('使用內建題庫模式');
-            }
-            
-        } catch (error) {
-            console.log('外部題庫加載失敗，使用內建題庫:', error);
-            showUpdateNotification('外部題庫載入失敗，使用內建題庫');
+        console.log('線上環境：嘗試載入外部題庫');
+        
+        // 使用安全的載入方法
+        if (await safeLoadBank('./question_bank.js', 'questionBank')) {
+            loadedCount++;
+            console.log('✅ 一般題庫載入成功，題目數量:', window.questionBank.length);
+        }
+        
+        if (await safeLoadBank('./pastQuestionBank.js', 'pastQuestionBank')) {
+            loadedCount++;
+            console.log('✅ 歷屆考題庫載入成功，題目數量:', window.pastQuestionBank.length);
+        }
+        
+        if (await safeLoadBank('./vocab_bank.js', 'vocabBank')) {
+            loadedCount++;
+            console.log('✅ 單字題庫載入成功，題目數量:', window.vocabBank.length);
         }
     } else {
         console.log('本地環境：使用內建題庫');
-        console.log('- 一般題庫題目數量:', window.questionBank ? window.questionBank.length : 0);
-        console.log('- 歷屆考題題目數量:', window.pastQuestionBank ? window.pastQuestionBank.length : 0);
-        console.log('- 單字題庫題目數量:', window.vocabBank ? window.vocabBank.length : 0);
     }
     
     // 確保所有題庫都有預設值
@@ -1185,29 +1167,78 @@ async function loadQuestionBank() {
     window.pastQuestionBank = window.pastQuestionBank || [];
     window.vocabBank = window.vocabBank || [];
     
+    console.log('📊 最終題庫統計:');
+    console.log('- 一般題庫題目數量:', window.questionBank.length);
+    console.log('- 歷屆考題題目數量:', window.pastQuestionBank.length);
+    console.log('- 單字題庫題目數量:', window.vocabBank.length);
+    console.log('- 成功載入的外部題庫數量:', loadedCount);
+    
     // 啟用開始測驗按鈕
     startQuizBtn.disabled = false;
     startQuizBtn.textContent = '開始測驗';
     
     // 更新題目數量選擇器
     setQuestionCount(questionCount);
+    
+    if (loadedCount > 0) {
+        showUpdateNotification(`成功載入 ${loadedCount} 個外部題庫`);
+    } else {
+        showUpdateNotification('使用內建題庫模式');
+    }
+}
+// 清理題庫文字內容的輔助函數
+function cleanQuestionBankText(text, bankName) {
+    let cleaned = text.trim();
+    
+    // 移除可能的 BOM 字元
+    if (cleaned.charCodeAt(0) === 0xFEFF) {
+        cleaned = cleaned.substring(1);
+    }
+    
+    // 檢查是否已經是有效的變數賦值
+    if (cleaned.startsWith(`window.${bankName}`) || cleaned.startsWith(bankName)) {
+        return cleaned;
+    }
+    
+    // 如果是純陣列，包裝成變數賦值
+    if (cleaned.startsWith('[')) {
+        return `window.${bankName} = ${cleaned};`;
+    }
+    
+    // 如果是 JSON 物件，嘗試解析
+    if (cleaned.startsWith('{')) {
+        try {
+            const data = JSON.parse(cleaned);
+            if (data.questions) {
+                return `window.${bankName} = ${JSON.stringify(data.questions)};`;
+            } else {
+                return `window.${bankName} = ${cleaned};`;
+            }
+        } catch (e) {
+            console.log(`無法解析 ${bankName} 為 JSON:`, e);
+        }
+    }
+    
+    // 如果以上都不符合，嘗試直接包裝
+    console.log(`⚠️ ${bankName} 格式不確定，嘗試直接包裝`);
+    return `window.${bankName} = ${cleaned};`;
 }
 
-        // 檢查題庫版本更新
-        function checkQuestionBankUpdate() {
-            const now = new Date().getTime();
-            const oneDay = 24 * 60 * 60 * 1000; // 1天的毫秒數
-            
-            // 如果超過1天沒有檢查更新，或者強制更新
-            if (now - lastUpdateCheck > oneDay || !localStorage.getItem('cachedQuestionBank')) {
-                console.log('檢查題庫更新...');
-                updateQuestionBankCache();
-            } else {
-                console.log('使用緩存的題庫版本');
-            }
-            
-            localStorage.setItem('lastUpdateCheck', now.toString());
-        }
+// 檢查題庫版本更新
+function checkQuestionBankUpdate() {
+    const now = new Date().getTime();
+    const oneDay = 24 * 60 * 60 * 1000; // 1天的毫秒數
+    
+    // 如果超過1天沒有檢查更新，或者強制更新
+    if (now - lastUpdateCheck > oneDay || !localStorage.getItem('cachedQuestionBank')) {
+        console.log('檢查題庫更新...');
+        updateQuestionBankCache();
+    } else {
+        console.log('使用緩存的題庫版本');
+    }
+    
+    localStorage.setItem('lastUpdateCheck', now.toString());
+}
 
         // 更新題庫緩存
         function updateQuestionBankCache() {
