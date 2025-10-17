@@ -908,23 +908,38 @@ async function loadQuestionBank() {
             startQuizBtn.disabled = true;
             startQuizBtn.textContent = '題庫載入中...';
             
-            const response = await fetch('./question_bank.js');
+            // 同時載入一般題庫和歷屆考題庫
+            const [questionBankResponse, pastQuestionBankResponse] = await Promise.all([
+                fetch('./question_bank.js'),
+                fetch('./pastQuestionBank.js')
+            ]);
             
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            if (!questionBankResponse.ok) {
+                throw new Error(`一般題庫載入失敗! status: ${questionBankResponse.status}`);
             }
             
-            const scriptContent = await response.text();
+            if (!pastQuestionBankResponse.ok) {
+                throw new Error(`歷屆考題庫載入失敗! status: ${pastQuestionBankResponse.ok}`);
+            }
+            
+            const questionBankScript = await questionBankResponse.text();
+            const pastQuestionBankScript = await pastQuestionBankResponse.text();
             
             // 動態執行題庫腳本
-            const script = document.createElement('script');
-            script.textContent = scriptContent;
-            document.head.appendChild(script);
+            const script1 = document.createElement('script');
+            script1.textContent = questionBankScript;
+            document.head.appendChild(script1);
+            
+            const script2 = document.createElement('script');
+            script2.textContent = pastQuestionBankScript;
+            document.head.appendChild(script2);
             
             // 等待題庫載入完成
             await new Promise(resolve => setTimeout(resolve, 100));
             
-            console.log('外部題庫加載成功，題目數量:', window.questionBank ? window.questionBank.length : 0);
+            console.log('外部題庫加載成功:');
+            console.log('- 一般題庫題目數量:', window.questionBank ? window.questionBank.length : 0);
+            console.log('- 歷屆考題題目數量:', window.pastQuestionBank ? window.pastQuestionBank.length : 0);
             
             // 更新題庫緩存
             updateQuestionBankCache();
@@ -936,15 +951,20 @@ async function loadQuestionBank() {
                 // 如果內建題庫也不存在，使用預設題庫
                 window.questionBank = window.questionBank || [];
                 showUpdateNotification('使用內建題庫模式');
-            } else {
-                showUpdateNotification('使用緩存題庫模式');
+            }
+            if (!window.pastQuestionBank || window.pastQuestionBank.length === 0) {
+                // 如果歷屆考題庫也不存在，使用內建的
+                window.pastQuestionBank = window.pastQuestionBank || [];
+                showUpdateNotification('使用內建歷屆考題');
             }
         }
     } else {
-        console.log('本地環境：使用內建題庫，題目數量:', window.questionBank ? window.questionBank.length : 0);
+        console.log('本地環境：使用內建題庫');
+        console.log('- 一般題庫題目數量:', window.questionBank ? window.questionBank.length : 0);
+        console.log('- 歷屆考題題目數量:', window.pastQuestionBank ? window.pastQuestionBank.length : 0);
     }
     
-    // 檢查歷屆考題庫
+    // 檢查題庫狀態
     if (!window.pastQuestionBank || window.pastQuestionBank.length === 0) {
         console.log('歷屆考題庫為空，使用內建歷屆考題');
         // 如果沒有歷屆考題庫，使用內建的
@@ -958,7 +978,6 @@ async function loadQuestionBank() {
     // 更新題目數量選擇器
     setQuestionCount(questionCount);
 }
-
 // 檢查題庫版本更新
 function checkQuestionBankUpdate() {
     const now = new Date().getTime();
