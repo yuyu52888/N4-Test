@@ -1,5 +1,5 @@
 // 日文單字題庫
-window.vocabbank = [
+window.vocabBank = [
 {
 id: "V0001",
 type: "reading",

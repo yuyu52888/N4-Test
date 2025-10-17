@@ -1017,7 +1017,7 @@
                 showUpdateNotification(`單字測驗模式 (${maxAvailable}題)`);
             } else {
                 // 一般題庫模式
-                isPastQuestions = false
+                isPastQuestions = false;
                 isVocabMode = false;
                 const maxAvailable = window.questionBank ? window.questionBank.length : 0;
                 questionCount = Math.min(count, maxAvailable);
@@ -1054,7 +1054,7 @@
                     break;
                 case 'vocab':
                     countVocabBtn.classList.add('active');
-                    break
+                    break;
             }
         }
 
@@ -1088,7 +1088,25 @@
         }
 
         // ========== 其他功能函數 ==========
-// 安全的題庫載入輔助函數
+
+// 1. 首先添加缺失的 loadJSONBank 函數
+async function loadJSONBank(url, bankName) {
+    try {
+        const response = await fetch(url + '?t=' + Date.now());
+        if (!response.ok) return false;
+        
+        const data = await response.json();
+        if (Array.isArray(data)) {
+            window[bankName] = data;
+            console.log(`✅ ${bankName} JSON 載入成功`);
+            return true;
+        }
+    } catch (e) {
+        console.log(`${bankName} JSON 載入失敗:`, e);
+    }
+    return false;
+}
+
 async function safeLoadBank(url, bankName) {
     try {
         const response = await fetch(url + '?t=' + Date.now());
@@ -1098,38 +1116,77 @@ async function safeLoadBank(url, bankName) {
         console.log(`${bankName} 原始內容長度:`, text.length);
         
         // 嘗試多種解析方式
-        try {
-            // 方式1: 直接作為 JavaScript 執行
-            if (text.includes(bankName) || text.includes('window.' + bankName)) {
+        let parsedData = null;
+        
+        // 方式1: 直接作為 JavaScript 執行（如果包含變數賦值）
+        if (text.includes(`window.${bankName}`) || text.includes(`${bankName} =`)) {
+            try {
                 eval(text);
-                return true;
+                if (window[bankName] && Array.isArray(window[bankName])) {
+                    console.log(`✅ ${bankName} 透過 eval 載入成功`);
+                    return true;
+                }
+            } catch (e) {
+                console.log(`${bankName} eval 失敗:`, e);
             }
-            
-            // 方式2: 作為 JSON 解析
-            const trimmed = text.trim();
-            if (trimmed.startsWith('[') || trimmed.startsWith('{')) {
-                window[bankName] = JSON.parse(trimmed);
-                return true;
-            }
-        } catch (e) {
-            console.log(`${bankName} 標準解析失敗:`, e);
         }
         
-        // 方式3: 強制賦值
+        // 方式2: 作為純 JSON 解析
         try {
-            window[bankName] = eval('(' + text + ')');
-            return true;
+            const trimmed = text.trim();
+            // 移除可能的分號
+            const cleanText = trimmed.replace(/;+$/, '');
+            
+            if (cleanText.startsWith('[')) {
+                parsedData = JSON.parse(cleanText);
+            } else if (cleanText.startsWith('{')) {
+                const obj = JSON.parse(cleanText);
+                // 檢查是否是包含題目的物件
+                if (obj.questions && Array.isArray(obj.questions)) {
+                    parsedData = obj.questions;
+                } else if (Array.isArray(obj)) {
+                    parsedData = obj;
+                }
+            }
+            
+            if (parsedData && Array.isArray(parsedData)) {
+                window[bankName] = parsedData;
+                console.log(`✅ ${bankName} 透過 JSON 解析載入成功`);
+                return true;
+            }
         } catch (e) {
-            console.log(`${bankName} 強制解析失敗:`, e);
+            console.log(`${bankName} JSON 解析失敗:`, e);
+        }
+        
+        // 方式3: 嘗試提取陣列
+        try {
+            // 尋找陣列開始和結束的位置
+            const arrayStart = text.indexOf('[');
+            const arrayEnd = text.lastIndexOf(']') + 1;
+            
+            if (arrayStart !== -1 && arrayEnd !== -1 && arrayEnd > arrayStart) {
+                const arrayText = text.substring(arrayStart, arrayEnd);
+                parsedData = JSON.parse(arrayText);
+                
+                if (Array.isArray(parsedData)) {
+                    window[bankName] = parsedData;
+                    console.log(`✅ ${bankName} 透過陣列提取載入成功`);
+                    return true;
+                }
+            }
+        } catch (e) {
+            console.log(`${bankName} 陣列提取失敗:`, e);
         }
         
     } catch (e) {
         console.log(`${bankName} 載入失敗:`, e);
     }
+    
+    console.log(`❌ ${bankName} 所有解析方式都失敗`);
     return false;
 }
 
-// 完全修復的題庫載入函數
+// 3. 替換現有的 loadQuestionBank 函數
 async function loadQuestionBank() {
     console.log('開始載入題庫...');
     
@@ -1143,18 +1200,23 @@ async function loadQuestionBank() {
     if (!isLocal) {
         console.log('線上環境：嘗試載入外部題庫');
         
-        // 使用安全的載入方法
-        if (await safeLoadBank('./question_bank.js', 'questionBank')) {
+        // 嘗試載入一般題庫
+        if (await safeLoadBank('./question_bank.js', 'questionBank') || 
+            await loadJSONBank('./question_bank.json', 'questionBank')) {
             loadedCount++;
             console.log('✅ 一般題庫載入成功，題目數量:', window.questionBank.length);
         }
         
-        if (await safeLoadBank('./pastQuestionBank.js', 'pastQuestionBank')) {
+        // 嘗試載入歷屆考題
+        if (await safeLoadBank('./pastQuestionBank.js', 'pastQuestionBank') || 
+            await loadJSONBank('./pastQuestionBank.json', 'pastQuestionBank')) {
             loadedCount++;
             console.log('✅ 歷屆考題庫載入成功，題目數量:', window.pastQuestionBank.length);
         }
         
-        if (await safeLoadBank('./vocab_bank.js', 'vocabBank')) {
+        // 嘗試載入單字題庫
+        if (await safeLoadBank('./vocab_bank.js', 'vocabBank') || 
+            await loadJSONBank('./vocab_bank.json', 'vocabBank')) {
             loadedCount++;
             console.log('✅ 單字題庫載入成功，題目數量:', window.vocabBank.length);
         }
@@ -1186,6 +1248,7 @@ async function loadQuestionBank() {
         showUpdateNotification('使用內建題庫模式');
     }
 }
+
 // 清理題庫文字內容的輔助函數
 function cleanQuestionBankText(text, bankName) {
     let cleaned = text.trim();
@@ -1900,5 +1963,4 @@ function checkQuestionBankUpdate() {
         initApp();
     </script>
 </body>
-
 </html>
