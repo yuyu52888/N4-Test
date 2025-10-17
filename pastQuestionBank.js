@@ -974,7 +974,7 @@ window.pastQuestionBank = [
         {text: "雲", explanation: "錯誤：「雲」讀音是「くも」，意思是雲。\n中文翻譯：雲"}
     ],
     correctAnswer: 0
-}
+},
 {
     id: 76,
     type: "vocabulary",
