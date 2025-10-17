@@ -1017,7 +1017,7 @@
                 showUpdateNotification(`單字測驗模式 (${maxAvailable}題)`);
             } else {
                 // 一般題庫模式
-                isPastQuestions = false;
+                isPastQuestions = false
                 isVocabMode = false;
                 const maxAvailable = window.questionBank ? window.questionBank.length : 0;
                 questionCount = Math.min(count, maxAvailable);
@@ -1054,7 +1054,7 @@
                     break;
                 case 'vocab':
                     countVocabBtn.classList.add('active');
-                    break;
+                    break
             }
         }
 
@@ -1900,4 +1900,5 @@ function checkQuestionBankUpdate() {
         initApp();
     </script>
 </body>
+
 </html>
