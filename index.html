@@ -1089,110 +1089,97 @@
 
         // ========== 其他功能函數 ==========
 
-        // 題庫載入函數
-        async function loadQuestionBank() {
-            // 如果是線上環境，嘗試載入外部題庫
-            if (!isLocal) {
+// 最安全的題庫載入函數
+async function loadQuestionBank() {
+    // 如果是線上環境，嘗試載入外部題庫
+    if (!isLocal) {
+        try {
+            console.log('正在從伺服器加載題庫...');
+            startQuizBtn.disabled = true;
+            startQuizBtn.textContent = '題庫載入中...';
+            
+            let loadedCount = 0;
+            
+            // 使用更安全的方式載入題庫
+            const loadBank = async (url, targetVar) => {
                 try {
-                    console.log('正在從伺服器加載題庫...');
-                    // 先禁用開始測驗按鈕
-                    startQuizBtn.disabled = true;
-                    startQuizBtn.textContent = '題庫載入中...';
+                    const response = await fetch(url);
+                    if (!response.ok) return false;
                     
-                    // 同時載入所有題庫
-                    const [questionBankResponse, pastQuestionBankResponse, vocabBankResponse] = await Promise.all([
-                        fetch('./question_bank.js').catch(() => ({ ok: false })),
-                        fetch('./pastQuestionBank.js').catch(() => ({ ok: false })),
-                        fetch('./vocab_bank.js').catch(() => ({ ok: false }))
-                    ]);
+                    const text = await response.text();
+                    const cleanText = text.trim();
                     
-                    let loadedCount = 0;
-                    
-                    // 動態執行題庫腳本
-                    if (questionBankResponse.ok) {
-                        try {
-                            const questionBankScript = await questionBankResponse.text();
-                            const script1 = document.createElement('script');
-                            script1.textContent = questionBankScript;
-                            document.head.appendChild(script1);
-                            loadedCount++;
-                            console.log('✅ 一般題庫載入成功');
-                        } catch (e) {
-                            console.log('❌ 一般題庫載入失敗:', e);
-                        }
-                    } else {
-                        console.log('❌ 一般題庫檔案不存在，使用內建題庫');
+                    // 多種格式嘗試
+                    if (cleanText.startsWith('window.' + targetVar + ' =')) {
+                        // 格式: window.questionBank = [...]
+                        eval(cleanText);
+                        return true;
+                    } else if (cleanText.startsWith(targetVar + ' =')) {
+                        // 格式: questionBank = [...]
+                        eval(cleanText);
+                        return true;
+                    } else if (cleanText.startsWith('[')) {
+                        // 純 JSON 陣列格式
+                        window[targetVar] = JSON.parse(cleanText);
+                        return true;
+                    } else if (cleanText.startsWith('{') && cleanText.includes('"questions"')) {
+                        // 包含 questions 屬性的物件
+                        const data = JSON.parse(cleanText);
+                        window[targetVar] = data.questions || data;
+                        return true;
                     }
-                    
-                    if (pastQuestionBankResponse.ok) {
-                        try {
-                            const pastQuestionBankScript = await pastQuestionBankResponse.text();
-                            const script2 = document.createElement('script');
-                            script2.textContent = pastQuestionBankScript;
-                            document.head.appendChild(script2);
-                            loadedCount++;
-                            console.log('✅ 歷屆考題庫載入成功');
-                        } catch (e) {
-                            console.log('❌ 歷屆考題庫載入失敗:', e);
-                        }
-                    } else {
-                        console.log('❌ 歷屆考題庫檔案不存在，使用內建題庫');
-                    }
-                    
-                    if (vocabBankResponse.ok) {
-                        try {
-                            const vocabBankScript = await vocabBankResponse.text();
-                            const script3 = document.createElement('script');
-                            script3.textContent = vocabBankScript;
-                            document.head.appendChild(script3);
-                            loadedCount++;
-                            console.log('✅ 單字題庫載入成功');
-                        } catch (e) {
-                            console.log('❌ 單字題庫載入失敗:', e);
-                        }
-                    } else {
-                        console.log('❌ 單字題庫檔案不存在，使用內建題庫');
-                    }
-                    
-                    // 等待題庫載入完成
-                    await new Promise(resolve => setTimeout(resolve, 500));
-                    
-                    console.log('📊 題庫載入統計:');
-                    console.log('- 一般題庫題目數量:', window.questionBank ? window.questionBank.length : 0);
-                    console.log('- 歷屆考題題目數量:', window.pastQuestionBank ? window.pastQuestionBank.length : 0);
-                    console.log('- 單字題庫題目數量:', window.vocabBank ? window.vocabBank.length : 0);
-                    console.log('- 成功載入的外部題庫數量:', loadedCount);
-                    
-                    if (loadedCount > 0) {
-                        showUpdateNotification(`成功載入 ${loadedCount} 個外部題庫`);
-                    } else {
-                        showUpdateNotification('使用內建題庫模式');
-                    }
-                    
-                } catch (error) {
-                    console.log('外部題庫加載失敗，使用內建題庫:', error);
-                    showUpdateNotification('外部題庫載入失敗，使用內建題庫');
+                } catch (e) {
+                    console.log(`載入 ${targetVar} 失敗:`, e);
                 }
-            } else {
-                console.log('本地環境：使用內建題庫');
-                console.log('- 一般題庫題目數量:', window.questionBank ? window.questionBank.length : 0);
-                console.log('- 歷屆考題題目數量:', window.pastQuestionBank ? window.pastQuestionBank.length : 0);
-                console.log('- 單字題庫題目數量:', window.vocabBank ? window.vocabBank.length : 0);
+                return false;
+            };
+            
+            // 載入各題庫
+            if (await loadBank('./question_bank.js', 'questionBank')) {
+                loadedCount++;
+                console.log('✅ 一般題庫載入成功');
             }
             
-            // 確保所有題庫都有預設值
-            window.questionBank = window.questionBank || [];
-            window.pastQuestionBank = window.pastQuestionBank || [];
-            window.vocabBank = window.vocabBank || [];
+            if (await loadBank('./pastQuestionBank.js', 'pastQuestionBank')) {
+                loadedCount++;
+                console.log('✅ 歷屆考題庫載入成功');
+            }
             
-            // 啟用開始測驗按鈕
-            startQuizBtn.disabled = false;
-            startQuizBtn.textContent = '開始測驗';
+            if (await loadBank('./vocab_bank.js', 'vocabBank')) {
+                loadedCount++;
+                console.log('✅ 單字題庫載入成功');
+            }
             
-            // 更新題目數量選擇器
-            setQuestionCount(questionCount);
+            console.log('📊 題庫載入統計:');
+            console.log('- 一般題庫題目數量:', window.questionBank ? window.questionBank.length : 0);
+            console.log('- 歷屆考題題目數量:', window.pastQuestionBank ? window.pastQuestionBank.length : 0);
+            console.log('- 單字題庫題目數量:', window.vocabBank ? window.vocabBank.length : 0);
+            console.log('- 成功載入的外部題庫數量:', loadedCount);
+            
+            if (loadedCount > 0) {
+                showUpdateNotification(`成功載入 ${loadedCount} 個外部題庫`);
+            } else {
+                showUpdateNotification('使用內建題庫模式');
+            }
+            
+        } catch (error) {
+            console.log('外部題庫加載失敗，使用內建題庫:', error);
+            showUpdateNotification('外部題庫載入失敗，使用內建題庫');
         }
-
+    }
+    
+    // 確保所有題庫都有預設值
+    window.questionBank = window.questionBank || [];
+    window.pastQuestionBank = window.pastQuestionBank || [];
+    window.vocabBank = window.vocabBank || [];
+    
+    // 啟用開始測驗按鈕
+    startQuizBtn.disabled = false;
+    startQuizBtn.textContent = '開始測驗';
+    
+    // 更新題目數量選擇器
+    setQuestionCount(questionCount);
+}
         // 檢查題庫版本更新
         function checkQuestionBankUpdate() {
             const now = new Date().getTime();
