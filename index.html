@@ -783,55 +783,76 @@
 
         // 修改開始測驗函數
         function startQuiz() {
-            // 檢查題庫是否已加載
-            if (isVocabMode) {
-                // 單字測驗模式
-                if (!window.vocab_Bank || window.vocab_Bank.length === 0) {
-                    alert('單字題庫加載中，請稍後再試...');
-                    loadQuestionBank();
-                    return;
-                }
-                startVocabQuiz();
-            } else if (isPastQuestions) {
-                // 歷屆考題模式
-                if (!window.pastQuestionBank || window.pastQuestionBank.length === 0) {
-                    alert('歷屆考題庫加載中，請稍後再試...');
-                    loadQuestionBank();
-                    return;
-                }
-                startPastQuiz();
-            } else {
-                // 一般文法測驗模式
-                if (!window.questionBank || window.questionBank.length === 0) {
-                    alert('題庫加載中，請稍後再試...');
-                    loadQuestionBank();
-                    return;
-                }
-                startGrammarQuiz();
-            }
+    console.log('開始測驗，模式:', isVocabMode ? '單字測驗' : (isPastQuestions ? '歷屆考題' : '文法測驗'));
+    console.log('單字題庫狀態:', {
+        存在: !!window.vocabBank,
+        題數: window.vocabBank ? window.vocabBank.length : 0,
+        模式: isVocabMode
+    });
+    
+    // 檢查題庫是否已加載
+    if (isVocabMode) {
+        // 單字測驗模式
+        if (!window.vocabBank || window.vocabBank.length === 0) {
+            alert('單字題庫加載中，請稍後再試...');
+            loadQuestionBank();
+            return;
         }
+        startVocabQuiz();
+    } else if (isPastQuestions) {
+        // 歷屆考題模式
+        if (!window.pastQuestionBank || window.pastQuestionBank.length === 0) {
+            alert('歷屆考題庫加載中，請稍後再試...');
+            loadQuestionBank();
+            return;
+        }
+        startPastQuiz();
+    } else {
+        // 一般文法測驗模式
+        if (!window.questionBank || window.questionBank.length === 0) {
+            alert('題庫加載中，請稍後再試...');
+            loadQuestionBank();
+            return;
+        }
+        startGrammarQuiz();
+    }
+}
 
         // 單字測驗開始函數
         function startVocabQuiz() {
-            // 重置狀態
-            currentQuestionIndex = 0;
-            userAnswers = [];
-            isAnswered = [];
-            score = 0;
-            wrongQuestions = [];
-            selectedQuestions = [];
-            shuffledQuestions = [];
-            elapsedTime = 0;
+    // 重置狀態
+    currentQuestionIndex = 0;
+    userAnswers = [];
+    isAnswered = [];
+    score = 0;
+    wrongQuestions = [];
+    selectedQuestions = [];
+    shuffledQuestions = [];
+    elapsedTime = 0;
 
-            // 隨機選擇單字題目
-            const shuffled = shuffleArray([...window.vocab_Bank]);
-            selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.vocab_Bank.length));
-            
-            // 隨機打亂每個題目的選項順序
-            shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
-            
-            userAnswers = new Array(selectedQuestions.length).fill(null);
-            isAnswered = new Array(selectedQuestions.length).fill(false);
+    // 檢查題庫是否已載入
+    if (!window.vocabBank || window.vocab_Bank.length === 0) {
+        alert('單字題庫載入失敗，請稍後再試');
+        return;
+    }
+
+    // 使用載入的單字題庫
+    const availableQuestions = window.vocab_Bank.length;
+    const actualQuestionCount = Math.min(questionCount, availableQuestions);
+    
+    console.log(`可用題目: ${availableQuestions}, 選擇題數: ${actualQuestionCount}`);
+
+    // 隨機選擇單字題目
+    const shuffled = shuffleArray([...window.vocab_Bank]);
+    selectedQuestions = shuffled.slice(0, actualQuestionCount);
+    
+    // 隨機打亂每個題目的選項順序
+    shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
+    
+    userAnswers = new Array(selectedQuestions.length).fill(null);
+    isAnswered = new Array(selectedQuestions.length).fill(false);
+    
+    console.log('最終選擇題目數量:', selectedQuestions.length);
             
             // 開始計時
             startTimer();
@@ -982,56 +1003,58 @@
         }
 
         // 設定題目數量和測驗類型
-        function setQuestionCount(count) {
-            if (count === 'past') {
-                // 歷屆考題模式
-                isPastQuestions = true;
-                isVocabMode = false;
-                const maxAvailable = window.pastQuestionBank ? window.pastQuestionBank.length : 0;
-                questionCount = maxAvailable;
-                
-                // 更新按鈕狀態
-                updateCountButtonStates('past');
-                
-                if (maxAvailable === 0) {
-                    showUpdateNotification('歷屆考題庫為空');
-                    return;
-                }
-                
-                showUpdateNotification(`歷屆考題模式 (${maxAvailable}題)`);
-            } else if (count === 'vocab') {
-                // 單字測驗模式
-                isPastQuestions = false;
-                isVocabMode = true;
-                const maxAvailable = window.vocab_Bank ? window.vocab_Bank.length : 0;
-                questionCount = maxAvailable;
-                
-                // 更新按鈕狀態
-                updateCountButtonStates('vocab');
-                
-                if (maxAvailable === 0) {
-                    showUpdateNotification('單字題庫為空');
-                    return;
-                }
-                
-                showUpdateNotification(`單字測驗模式 (${maxAvailable}題)`);
-            } else {
-                // 一般題庫模式
-                isPastQuestions = false;
-                isVocabMode = false;
-                const maxAvailable = window.questionBank ? window.questionBank.length : 0;
-                questionCount = Math.min(count, maxAvailable);
-                
-                // 更新按鈕狀態
-                updateCountButtonStates(count);
-                
-                // 如果選擇的數量超過可用題目，顯示提示
-                if (count > maxAvailable && maxAvailable > 0) {
-                    showUpdateNotification(`可用題目只有 ${maxAvailable} 題`);
-                    questionCount = maxAvailable;
-                }
-            }
+ function setQuestionCount(count) {
+    if (count === 'past') {
+        // 歷屆考題模式
+        isPastQuestions = true;
+        isVocabMode = false;
+        const maxAvailable = window.pastQuestionBank ? window.pastQuestionBank.length : 0;
+        questionCount = maxAvailable;
+        
+        // 更新按鈕狀態
+        updateCountButtonStates('past');
+        
+        if (maxAvailable === 0) {
+            showUpdateNotification('歷屆考題庫為空');
+            return;
         }
+        
+        showUpdateNotification(`歷屆考題模式 (${maxAvailable}題)`);
+    } else if (count === 'vocab') {
+        // 單字測驗模式
+        isPastQuestions = false;
+        isVocabMode = true;
+        const maxAvailable = window.vocabBank ? window.vocabBank.length : 0;
+        questionCount = maxAvailable;
+        
+        // 更新按鈕狀態
+        updateCountButtonStates('vocab');
+        
+        if (maxAvailable === 0) {
+            showUpdateNotification('單字題庫為空');
+            return;
+        }
+        
+        showUpdateNotification(`單字測驗模式 (${maxAvailable}題)`);
+    } else {
+        // 一般題庫模式
+        isPastQuestions = false;
+        isVocabMode = false;
+        const maxAvailable = window.questionBank ? window.questionBank.length : 0;
+        questionCount = Math.min(count, maxAvailable);
+        
+        // 更新按鈕狀態
+        updateCountButtonStates(count);
+        
+        // 如果選擇的數量超過可用題目，顯示提示
+        if (count > maxAvailable && maxAvailable > 0) {
+            showUpdateNotification(`可用題目只有 ${maxAvailable} 題`);
+            questionCount = maxAvailable;
+        }
+    }
+    
+    console.log(`設定題目數量: ${questionCount}, 單字模式: ${isVocabMode}`);
+}
 
         // 更新數量選擇按鈕狀態
         function updateCountButtonStates(selectedType) {
