@@ -782,7 +782,7 @@
         // ========== 核心功能函數 ==========
 
         // 修改開始測驗函數
-        function startQuiz() {
+function startQuiz() {
     console.log('開始測驗，模式:', isVocabMode ? '單字測驗' : (isPastQuestions ? '歷屆考題' : '文法測驗'));
     console.log('單字題庫狀態:', {
         存在: !!window.vocabBank,
@@ -818,8 +818,9 @@
     }
 }
 
-        // 單字測驗開始函數
-        function startVocabQuiz() {
+function startVocabQuiz() {
+    console.log('開始單字測驗，題庫數量:', window.vocabBank ? window.vocabBank.length : 0);
+    
     // 重置狀態
     currentQuestionIndex = 0;
     userAnswers = [];
@@ -831,19 +832,19 @@
     elapsedTime = 0;
 
     // 檢查題庫是否已載入
-    if (!window.vocabBank || window.vocab_Bank.length === 0) {
+    if (!window.vocabBank || window.vocabBank.length === 0) {
         alert('單字題庫載入失敗，請稍後再試');
         return;
     }
 
     // 使用載入的單字題庫
-    const availableQuestions = window.vocab_Bank.length;
+    const availableQuestions = window.vocabBank.length;
     const actualQuestionCount = Math.min(questionCount, availableQuestions);
     
     console.log(`可用題目: ${availableQuestions}, 選擇題數: ${actualQuestionCount}`);
 
     // 隨機選擇單字題目
-    const shuffled = shuffleArray([...window.vocab_Bank]);
+    const shuffled = shuffleArray([...window.vocabBank]);
     selectedQuestions = shuffled.slice(0, actualQuestionCount);
     
     // 隨機打亂每個題目的選項順序
@@ -853,157 +854,81 @@
     isAnswered = new Array(selectedQuestions.length).fill(false);
     
     console.log('最終選擇題目數量:', selectedQuestions.length);
-            
-            // 開始計時
-            startTimer();
-            
-            // 顯示測驗頁面
-            showScreen(quizScreen);
-            displayQuestion(currentQuestionIndex);
-            updateButtons();
-            updateProgress();
-        }
+    
+    // 開始計時
+    startTimer();
+    
+    // 顯示測驗頁面
+    showScreen(quizScreen);
+    displayQuestion(currentQuestionIndex);
+    updateButtons();
+    updateProgress();
+}
+// 文法測驗開始函數
+function startGrammarQuiz() {
+    // 重置狀態
+    currentQuestionIndex = 0;
+    userAnswers = [];
+    isAnswered = [];
+    score = 0;
+    wrongQuestions = [];
+    selectedQuestions = [];
+    shuffledQuestions = [];
+    elapsedTime = 0;
 
-        // 文法測驗開始函數
-        function startGrammarQuiz() {
-            // 重置狀態
-            currentQuestionIndex = 0;
-            userAnswers = [];
-            isAnswered = [];
-            score = 0;
-            wrongQuestions = [];
-            selectedQuestions = [];
-            shuffledQuestions = [];
-            elapsedTime = 0;
+    // 隨機選擇題目
+    const shuffled = shuffleArray([...window.questionBank]);
+    selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.questionBank.length));
+    
+    // 隨機打亂每個題目的選項順序
+    shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
+    
+    userAnswers = new Array(selectedQuestions.length).fill(null);
+    isAnswered = new Array(selectedQuestions.length).fill(false);
+    
+    // 開始計時
+    startTimer();
+    
+    // 顯示測驗頁面
+    showScreen(quizScreen);
+    displayQuestion(currentQuestionIndex);
+    updateButtons();
+    updateProgress();
+}
+// 歷屆考題開始函數
+function startPastQuiz() {
+    // 重置狀態
+    currentQuestionIndex = 0;
+    userAnswers = [];
+    isAnswered = [];
+    score = 0;
+    wrongQuestions = [];
+    selectedQuestions = [];
+    shuffledQuestions = [];
+    elapsedTime = 0;
 
-            // 隨機選擇題目
-            const shuffled = shuffleArray([...window.questionBank]);
-            selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.questionBank.length));
-            
-            // 隨機打亂每個題目的選項順序
-            shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
-            
-            userAnswers = new Array(selectedQuestions.length).fill(null);
-            isAnswered = new Array(selectedQuestions.length).fill(false);
-            
-            // 開始計時
-            startTimer();
-            
-            // 顯示測驗頁面
-            showScreen(quizScreen);
-            displayQuestion(currentQuestionIndex);
-            updateButtons();
-            updateProgress();
-        }
+    // 隨機選擇題目
+    const shuffled = shuffleArray([...window.pastQuestionBank]);
+    selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.pastQuestionBank.length));
+    
+    // 隨機打亂每個題目的選項順序
+    shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
+    
+    userAnswers = new Array(selectedQuestions.length).fill(null);
+    isAnswered = new Array(selectedQuestions.length).fill(false);
+    
+    // 開始計時
+    startTimer();
+    
+    // 顯示測驗頁面
+    showScreen(quizScreen);
+    displayQuestion(currentQuestionIndex);
+    updateButtons();
+    updateProgress();
+}
 
-        // 歷屆考題開始函數
-        function startPastQuiz() {
-            // 重置狀態
-            currentQuestionIndex = 0;
-            userAnswers = [];
-            isAnswered = [];
-            score = 0;
-            wrongQuestions = [];
-            selectedQuestions = [];
-            shuffledQuestions = [];
-            elapsedTime = 0;
-
-            // 隨機選擇題目
-            const shuffled = shuffleArray([...window.pastQuestionBank]);
-            selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.pastQuestionBank.length));
-            
-            // 隨機打亂每個題目的選項順序
-            shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
-            
-            userAnswers = new Array(selectedQuestions.length).fill(null);
-            isAnswered = new Array(selectedQuestions.length).fill(false);
-            
-            // 開始計時
-            startTimer();
-            
-            // 顯示測驗頁面
-            showScreen(quizScreen);
-            displayQuestion(currentQuestionIndex);
-            updateButtons();
-            updateProgress();
-        }
-
-        // 顯示歷史紀錄
-        function showHistory() {
-            displayHistory();
-            showScreen(historyScreen);
-        }
-
-        // 結束應用程式
-        function exitApp() {
-            if (confirm('確定要結束測驗嗎？')) {
-                // 在瀏覽器中，我們無法直接關閉視窗，除非是PWA
-                if (window.navigator.standalone) {
-                    window.close();
-                } else {
-                    showUpdateNotification('請手動關閉瀏覽器標籤頁');
-                }
-            }
-        }
-
-        // 返回首頁
-        function backToHome() {
-            stopTimer();
-            showScreen(homeScreen);
-        }
-
-        // 上一題
-        function prevQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                displayQuestion(currentQuestionIndex);
-                updateButtons();
-                updateProgress();
-            }
-        }
-
-        // 下一題
-        function nextQuestion() {
-            if (currentQuestionIndex < shuffledQuestions.length - 1) {
-                currentQuestionIndex++;
-                displayQuestion(currentQuestionIndex);
-                updateButtons();
-                updateProgress();
-            }
-        }
-
-        // 提交測驗
-        function submitQuiz() {
-            stopTimer();
-            
-            // 儲存歷史紀錄
-            const record = {
-                date: new Date().toISOString(),
-                score: score,
-                total: shuffledQuestions.length,
-                time: elapsedTime,
-                wrongQuestions: [...wrongQuestions]
-            };
-            
-            history.unshift(record);
-            // 只保留最近10次紀錄
-            if (history.length > 10) {
-                history = history.slice(0, 10);
-            }
-            
-            localStorage.setItem('n4QuizHistory', JSON.stringify(history));
-            
-            showResults();
-            showScreen(resultScreen);
-        }
-
-        // 重新開始測驗
-        function restartQuiz() {
-            startQuiz();
-        }
-
-        // 設定題目數量和測驗類型
- function setQuestionCount(count) {
+// 設定題目數量和測驗類型
+function setQuestionCount(count) {
     if (count === 'past') {
         // 歷屆考題模式
         isPastQuestions = true;
@@ -1055,7 +980,6 @@
     
     console.log(`設定題目數量: ${questionCount}, 單字模式: ${isVocabMode}`);
 }
-
         // 更新數量選擇按鈕狀態
         function updateCountButtonStates(selectedType) {
             // 移除所有按鈕的active類別
