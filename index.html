@@ -684,7 +684,7 @@
             }
         ];
 
-        window.vocabBank = [
+        window.vocab_Bank = [
             {
                 id: "V0001",
                 type: "reading",
@@ -786,7 +786,7 @@
             // 檢查題庫是否已加載
             if (isVocabMode) {
                 // 單字測驗模式
-                if (!window.vocabBank || window.vocabBank.length === 0) {
+                if (!window.vocab_Bank || window.vocab_Bank.length === 0) {
                     alert('單字題庫加載中，請稍後再試...');
                     loadQuestionBank();
                     return;
@@ -824,8 +824,8 @@
             elapsedTime = 0;
 
             // 隨機選擇單字題目
-            const shuffled = shuffleArray([...window.vocabBank]);
-            selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.vocabBank.length));
+            const shuffled = shuffleArray([...window.vocab_Bank]);
+            selectedQuestions = shuffled.slice(0, Math.min(questionCount, window.vocab_Bank.length));
             
             // 隨機打亂每個題目的選項順序
             shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
@@ -1003,7 +1003,7 @@
                 // 單字測驗模式
                 isPastQuestions = false;
                 isVocabMode = true;
-                const maxAvailable = window.vocabBank ? window.vocabBank.length : 0;
+                const maxAvailable = window.vocab_Bank ? window.vocab_Bank.length : 0;
                 questionCount = maxAvailable;
                 
                 // 更新按鈕狀態
@@ -1215,10 +1215,10 @@ async function loadQuestionBank() {
         }
         
         // 嘗試載入單字題庫
-        if (await safeLoadBank('./vocab_bank.js', 'vocabBank') || 
-            await loadJSONBank('./vocab_bank.json', 'vocabBank')) {
+        if (await safeLoadBank('./vocab_bank.js', 'vocab_Bank') || 
+            await loadJSONBank('./vocab_bank.json', 'vocab_Bank')) {
             loadedCount++;
-            console.log('✅ 單字題庫載入成功，題目數量:', window.vocabBank.length);
+            console.log('✅ 單字題庫載入成功，題目數量:', window.vocab_Bank.length);
         }
     } else {
         console.log('本地環境：使用內建題庫');
@@ -1227,12 +1227,12 @@ async function loadQuestionBank() {
     // 確保所有題庫都有預設值
     window.questionBank = window.questionBank || [];
     window.pastQuestionBank = window.pastQuestionBank || [];
-    window.vocabBank = window.vocabBank || [];
+    window.vocab_Bank = window.vocab_Bank || [];
     
     console.log('📊 最終題庫統計:');
     console.log('- 一般題庫題目數量:', window.questionBank.length);
     console.log('- 歷屆考題題目數量:', window.pastQuestionBank.length);
-    console.log('- 單字題庫題目數量:', window.vocabBank.length);
+    console.log('- 單字題庫題目數量:', window.vocab_Bank.length);
     console.log('- 成功載入的外部題庫數量:', loadedCount);
     
     // 啟用開始測驗按鈕
