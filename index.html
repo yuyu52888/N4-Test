@@ -84,7 +84,7 @@
     /* 測驗類型選擇按鈕樣式 */
     .count-buttons-container {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 12px;
         margin-top: 15px;
     }
@@ -116,6 +116,26 @@
     }
     .count-btn.active:hover {
         background-color: #27ae60;
+    }
+    
+    /* 題目數量輸入框 */
+    .question-count-input {
+        margin: 20px 0;
+        text-align: center;
+    }
+    .question-count-input label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+    .question-count-input input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        text-align: center;
     }
     
     .question {
@@ -409,12 +429,16 @@
                 <button id="update-btn" class="home-btn update">檢查題庫更新</button>
                 
                 <div class="question-count-selector">
-                    <p>選擇測驗類型與題目數量：</p>
+                    <p>選擇測驗類型：</p>
                     <div class="count-buttons-container">
-                        <button id="count-30-btn" class="count-btn active">30題</button>
-                        <button id="count-50-btn" class="count-btn">50題</button>
+                        <button id="count-simulate-btn" class="count-btn active">模擬N4考題</button>
                         <button id="count-past-btn" class="count-btn">歷屆考題</button>
                         <button id="count-vocab-btn" class="count-btn">單字測驗</button>
+                    </div>
+                    
+                    <div class="question-count-input">
+                        <label for="question-count">題目數量：</label>
+                        <input type="number" id="question-count" min="1" max="100" value="30">
                     </div>
                 </div>
                 
@@ -486,140 +510,17 @@
         let startTime = null;
         let elapsedTime = 0;
         let history = JSON.parse(localStorage.getItem('n4QuizHistory')) || [];
-
-        // 題庫資料
-        const questionBank = [
-            {
-                id: 1,
-                type: "reading",
-                question: "請選擇下列漢字的正確讀音",
-                kanji: "学校",
-                options: [
-                    { text: "がっこう", explanation: "正確！「学校」的讀音是「がっこう」" },
-                    { text: "がくこう", explanation: "錯誤！「学」在複合詞中常讀作「がっ」" },
-                    { text: "がくきょう", explanation: "錯誤！這是「学習」的讀音" },
-                    { text: "がっきょう", explanation: "錯誤！這是「楽器」相關的讀音" }
-                ],
-                correctAnswer: 0
-            },
-            {
-                id: 2,
-                type: "writing",
-                question: "請選擇下列讀音的正確漢字",
-                kana: "ともだち",
-                options: [
-                    { text: "友達", explanation: "正確！「ともだち」的漢字是「友達」" },
-                    { text: "友立", explanation: "錯誤！「立」的讀音是「たち」" },
-                    { text: "共達", explanation: "錯誤！「共」的讀音是「とも」但意思不同" },
-                    { text: "知友", explanation: "錯誤！這是自創的組合" }
-                ],
-                correctAnswer: 0
-            },
-            {
-                id: 3,
-                type: "vocabulary",
-                question: "請選擇最適合的詞語填入空格",
-                sentence: "昨日、新しい本を＿＿＿＿。",
-                options: [
-                    { text: "買いました", explanation: "正確！表示購買了新的書" },
-                    { text: "売りました", explanation: "錯誤！「売りました」是賣出的意思" },
-                    { text: "読みました", explanation: "錯誤！雖然可以讀書，但與「新しい本」的語境不符" },
-                    { text: "書きました", explanation: "錯誤！「書きました」是寫的意思" }
-                ],
-                correctAnswer: 0
-            },
-            {
-                id: 4,
-                type: "synonym",
-                question: "請選擇與劃線詞語意思最接近的選項",
-                sentence: "この料理はとても美味しいです。",
-                options: [
-                    { text: "おいしい", explanation: "正確！「美味しい」和「おいしい」意思相同" },
-                    { text: "まずい", explanation: "錯誤！「まずい」是難吃的意思" },
-                    { text: "きれい", explanation: "錯誤！「きれい」是漂亮的意思" },
-                    { text: "あつい", explanation: "錯誤！「あつい」是熱的意思" }
-                ],
-                correctAnswer: 0
-            },
-            {
-                id: 5,
-                type: "grammar",
-                question: "請選擇正確的文法形式",
-                sentence: "私は毎日日本語＿＿＿＿勉強します。",
-                options: [
-                    { text: "を", explanation: "正確！表示學習的對象" },
-                    { text: "が", explanation: "錯誤！「が」用於主語或對象語" },
-                    { text: "に", explanation: "錯誤！「に」表示時間、地點或目的" },
-                    { text: "で", explanation: "錯誤！「で」表示手段或場所" }
-                ],
-                correctAnswer: 0
-            }
-        ];
-
-        const pastQuestionBank = [
-            {
-                id: 101,
-                type: "reading",
-                question: "請選擇下列漢字的正確讀音",
-                kanji: "勉強",
-                options: [
-                    { text: "べんきょう", explanation: "正確！「勉強」的讀音是「べんきょう」" },
-                    { text: "べんきょ", explanation: "錯誤！缺少長音" },
-                    { text: "べんきゅう", explanation: "錯誤！這是「研究」的讀音" },
-                    { text: "めんきょう", explanation: "錯誤！讀音不正確" }
-                ],
-                correctAnswer: 0,
-                year: "2023",
-                season: "夏季"
-            },
-            {
-                id: 102,
-                type: "grammar",
-                question: "請選擇正確的文法形式",
-                sentence: "この本は昨日＿＿＿＿。",
-                options: [
-                    { text: "買いました", explanation: "正確！表示昨天買了這本書" },
-                    { text: "買います", explanation: "錯誤！應該使用過去形" },
-                    { text: "買いましょう", explanation: "錯誤！這是勸誘形" },
-                    { text: "買ってください", explanation: "錯誤！這是請求形" }
-                ],
-                correctAnswer: 0,
-                year: "2023",
-                season: "春季"
-            }
-        ];
-
-        const vocabBank = [
-            {
-                id: "V0001",
-                type: "reading",
-                question: "次の漢字の読み方を選びなさい",
-                kanji: "自分",
-                options: [
-                    {text: "じぶん", explanation: "正確答案：「自」音讀為「じ」，「分」音讀為「ぶん」，合起來是「じぶん」。\n中文翻譯：自己"},
-                    {text: "じぷん", explanation: "錯誤：「分」的讀音是「ぶん」，不是「ぷん」。\n中文翻譯：自己"},
-                    {text: "じいぶん", explanation: "錯誤：「自」的讀音是「じ」，沒有長音。「分」的讀音是「ぶん」。\n中文翻譯：自己"},
-                    {text: "じふん", explanation: "錯誤：「分」的讀音是「ぶん」，不是「ふん」。\n中文翻譯：自己"}
-                ],
-                correctAnswer: 0
-            },
-            {
-                id: "V0002",
-                type: "writing",
-                question: "次の言葉の正しい漢字を選びなさい",
-                kana: "おきます",
-                options: [
-                    {text: "起きます", explanation: "正確答案：「おきます」在此語境下對應的漢字是「起きます」，意思是起床。\n中文翻譯：起床"},
-                    {text: "置きます", explanation: "錯誤：「置きます」意思是放置，雖然讀音相同，但語意不符。\n中文翻譯：放置"},
-                    {text: "描きます", explanation: "錯誤：「描きます」讀音是「えがきます」或「かきます」，意思是描繪。\n中文翻譯：描繪"},
-                    {text: "沖きます", explanation: "錯誤：「沖きます」讀音是「おきます」，但意思是沖洗，語意不符。\n中文翻譯：沖洗"}
-                ],
-                correctAnswer: 0
-            }
-        ];
+        
+        // 題庫資料 (將從外部JS文件載入)
+        let questionBank = [];
+        let pastQuestionBank = [];
+        let vocabBank = [];
 
         // DOM元素
+        const countSimulateBtn = document.getElementById('count-simulate-btn');
+        const countPastBtn = document.getElementById('count-past-btn');
         const countVocabBtn = document.getElementById('count-vocab-btn');
+        const questionCountInput = document.getElementById('question-count');
         const homeScreen = document.getElementById('home-screen');
         const quizScreen = document.getElementById('quiz-screen');
         const resultScreen = document.getElementById('result-screen');
@@ -630,9 +531,6 @@
         const viewHistoryBtn = document.getElementById('view-history-btn');
         const exitBtn = document.getElementById('exit-btn');
         const updateBtn = document.getElementById('update-btn');
-        const count30Btn = document.getElementById('count-30-btn');
-        const count50Btn = document.getElementById('count-50-btn');
-        const countPastBtn = document.getElementById('count-past-btn');
         
         const quizContainer = document.getElementById('quiz-container');
         const prevBtn = document.getElementById('prev-btn');
@@ -655,7 +553,7 @@
         // ========== 核心功能函數 ==========
 
         function startQuiz() {
-            console.log('開始測驗，模式:', isVocabMode ? '單字測驗' : (isPastQuestions ? '歷屆考題' : '文法測驗'));
+            console.log('開始測驗，模式:', isVocabMode ? '單字測驗' : (isPastQuestions ? '歷屆考題' : '模擬N4考題'));
             
             // 重置狀態
             currentQuestionIndex = 0;
@@ -688,9 +586,8 @@
             
             console.log(`可用題目: ${availableQuestions}, 選擇題數: ${actualQuestionCount}`);
 
-            // 隨機選擇題目
-            const shuffled = shuffleArray([...sourceBank]);
-            selectedQuestions = shuffled.slice(0, actualQuestionCount);
+            // 隨機選擇題目，確保題型平均分布
+            selectedQuestions = selectQuestionsWithBalancedTypes(sourceBank, actualQuestionCount);
             
             // 隨機打亂每個題目的選項順序
             shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
@@ -710,44 +607,92 @@
             updateProgress();
         }
 
-        function setQuestionCount(count) {
-            if (count === 'past') {
+        // 選擇題目並確保題型平均分布
+        function selectQuestionsWithBalancedTypes(sourceBank, count) {
+            // 按題型分組
+            const questionsByType = {};
+            sourceBank.forEach(question => {
+                if (!questionsByType[question.type]) {
+                    questionsByType[question.type] = [];
+                }
+                questionsByType[question.type].push(question);
+            });
+            
+            // 計算每種題型應該選擇的題目數量
+            const types = Object.keys(questionsByType);
+            const questionsPerType = Math.ceil(count / types.length);
+            
+            let selectedQuestions = [];
+            
+            // 從每種題型中選擇題目
+            types.forEach(type => {
+                const availableQuestions = questionsByType[type];
+                const shuffled = shuffleArray([...availableQuestions]);
+                const selected = shuffled.slice(0, Math.min(questionsPerType, availableQuestions.length));
+                selectedQuestions = selectedQuestions.concat(selected);
+            });
+            
+            // 如果選擇的題目多於所需，隨機移除多餘的題目
+            if (selectedQuestions.length > count) {
+                selectedQuestions = shuffleArray(selectedQuestions).slice(0, count);
+            }
+            
+            // 如果選擇的題目少於所需，從所有題目中隨機補充
+            if (selectedQuestions.length < count) {
+                const remainingCount = count - selectedQuestions.length;
+                const allQuestions = shuffleArray([...sourceBank]);
+                const additionalQuestions = allQuestions.filter(q => !selectedQuestions.includes(q)).slice(0, remainingCount);
+                selectedQuestions = selectedQuestions.concat(additionalQuestions);
+            }
+            
+            // 最後再隨機打亂一次
+            return shuffleArray(selectedQuestions);
+        }
+
+        function setQuestionType(type) {
+            if (type === 'past') {
                 isPastQuestions = true;
                 isVocabMode = false;
-                questionCount = pastQuestionBank.length;
                 updateCountButtonStates('past');
-                showUpdateNotification(`歷屆考題模式 (${questionCount}題)`);
-            } else if (count === 'vocab') {
+                showUpdateNotification(`歷屆考題模式`);
+            } else if (type === 'vocab') {
                 isPastQuestions = false;
                 isVocabMode = true;
-                questionCount = vocabBank.length;
                 updateCountButtonStates('vocab');
-                showUpdateNotification(`單字測驗模式 (${questionCount}題)`);
+                showUpdateNotification(`單字測驗模式`);
             } else {
                 isPastQuestions = false;
                 isVocabMode = false;
-                questionCount = Math.min(count, questionBank.length);
-                updateCountButtonStates(count);
-                
-                if (count > questionBank.length && questionBank.length > 0) {
-                    showUpdateNotification(`可用題目只有 ${questionBank.length} 題`);
-                    questionCount = questionBank.length;
-                }
+                updateCountButtonStates('simulate');
+                showUpdateNotification(`模擬N4考題模式`);
+            }
+            
+            // 根據題庫類型設置最大題數
+            let maxQuestions = 0;
+            if (isVocabMode) {
+                maxQuestions = vocabBank.length;
+            } else if (isPastQuestions) {
+                maxQuestions = pastQuestionBank.length;
+            } else {
+                maxQuestions = questionBank.length;
+            }
+            
+            questionCountInput.max = maxQuestions;
+            questionCountInput.placeholder = `最多可選 ${maxQuestions} 題`;
+            
+            if (questionCountInput.value > maxQuestions) {
+                questionCountInput.value = maxQuestions;
             }
         }
 
         function updateCountButtonStates(selectedType) {
-            count30Btn.classList.remove('active');
-            count50Btn.classList.remove('active');
+            countSimulateBtn.classList.remove('active');
             countPastBtn.classList.remove('active');
             countVocabBtn.classList.remove('active');
             
             switch(selectedType) {
-                case 30:
-                    count30Btn.classList.add('active');
-                    break;
-                case 50:
-                    count50Btn.classList.add('active');
+                case 'simulate':
+                    countSimulateBtn.classList.add('active');
                     break;
                 case 'past':
                     countPastBtn.classList.add('active');
@@ -761,15 +706,41 @@
         // ========== 事件監聽器 ==========
 
         function initEventListeners() {
-            startQuizBtn.addEventListener('click', startQuiz);
+            startQuizBtn.addEventListener('click', () => {
+                // 從輸入框獲取題目數量
+                questionCount = parseInt(questionCountInput.value) || 30;
+                
+                // 檢查題目數量是否有效
+                let maxQuestions = 0;
+                if (isVocabMode) {
+                    maxQuestions = vocabBank.length;
+                } else if (isPastQuestions) {
+                    maxQuestions = pastQuestionBank.length;
+                } else {
+                    maxQuestions = questionBank.length;
+                }
+                
+                if (questionCount < 1) {
+                    alert('題目數量必須大於0');
+                    return;
+                }
+                
+                if (questionCount > maxQuestions) {
+                    alert(`題目數量不能超過題庫總數 (${maxQuestions})`);
+                    questionCountInput.value = maxQuestions;
+                    questionCount = maxQuestions;
+                }
+                
+                startQuiz();
+            });
+            
             viewHistoryBtn.addEventListener('click', showHistory);
             exitBtn.addEventListener('click', exitApp);
             updateBtn.addEventListener('click', checkForUpdates);
             
-            count30Btn.addEventListener('click', () => setQuestionCount(30));
-            count50Btn.addEventListener('click', () => setQuestionCount(50));
-            countPastBtn.addEventListener('click', () => setQuestionCount('past'));
-            countVocabBtn.addEventListener('click', () => setQuestionCount('vocab'));
+            countSimulateBtn.addEventListener('click', () => setQuestionType('simulate'));
+            countPastBtn.addEventListener('click', () => setQuestionType('past'));
+            countVocabBtn.addEventListener('click', () => setQuestionType('vocab'));
             
             prevBtn.addEventListener('click', prevQuestion);
             nextBtn.addEventListener('click', nextQuestion);
@@ -1104,22 +1075,50 @@
         }
 
         function restartQuiz() {
-            startQuiz();
+            backToHome();
+            setTimeout(() => startQuiz(), 100);
         }
 
-        // ========== 歷史紀錄功能 ==========
+        function showHistory() {
+            historyListElement.innerHTML = '';
+            
+            if (history.length === 0) {
+                historyListElement.innerHTML = '<p>尚無測驗紀錄</p>';
+            } else {
+                history.forEach((record, index) => {
+                    const historyItem = document.createElement('div');
+                    historyItem.className = 'history-item';
+                    
+                    const date = new Date(record.date);
+                    const formattedDate = `${date.getFullYear()}/${(date.getMonth()+1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+                    
+                    historyItem.innerHTML = `
+                        <div class="history-date">${formattedDate} - ${record.mode}</div>
+                        <div class="history-stats">
+                            <div class="history-stat">得分: ${record.score}/${record.total}</div>
+                            <div class="history-stat">正確率: ${Math.round((record.score / record.total) * 100)}%</div>
+                            <div class="history-stat">用時: ${record.time}</div>
+                        </div>
+                    `;
+                    
+                    historyListElement.appendChild(historyItem);
+                });
+            }
+            
+            showScreen(historyScreen);
+        }
 
         function saveHistory() {
             const record = {
                 date: new Date().toISOString(),
                 score: score,
                 total: shuffledQuestions.length,
-                time: elapsedTime,
-                wrongQuestions: [...wrongQuestions],
-                type: isVocabMode ? 'vocab' : (isPastQuestions ? 'past' : 'grammar')
+                time: formatTime(elapsedTime),
+                mode: isVocabMode ? '單字測驗' : (isPastQuestions ? '歷屆考題' : '模擬N4考題')
             };
             
             history.unshift(record);
+            
             if (history.length > 50) {
                 history = history.slice(0, 50);
             }
@@ -1127,92 +1126,166 @@
             localStorage.setItem('n4QuizHistory', JSON.stringify(history));
         }
 
-        function showHistory() {
-            displayHistory();
-            showScreen(historyScreen);
-        }
-
-        function displayHistory() {
-            if (history.length === 0) {
-                historyListElement.innerHTML = '<p>尚無測驗紀錄</p>';
-                return;
-            }
-            
-            let historyHTML = '';
-            
-            history.forEach((record, index) => {
-                const date = new Date(record.date).toLocaleString('zh-TW');
-                const typeText = record.type === 'vocab' ? '單字測驗' : (record.type === 'past' ? '歷屆考題' : '文法測驗');
-                
-                historyHTML += `
-                    <div class="history-item">
-                        <div class="history-date">${typeText} - ${date}</div>
-                        <div class="history-stats">
-                            <div class="history-stat">答對題數: ${record.score}/${record.total}</div>
-                            <div class="history-stat">用時: ${formatTime(record.time)}</div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            historyListElement.innerHTML = historyHTML;
-        }
-
         function clearHistory() {
-            if (confirm('確定要清除所有歷史紀錄嗎？')) {
+            if (confirm('確定要清除所有測驗紀錄嗎？')) {
                 history = [];
-                localStorage.setItem('n4QuizHistory', JSON.stringify(history));
-                displayHistory();
+                localStorage.removeItem('n4QuizHistory');
+                showHistory();
             }
-        }
-
-        // ========== 其他功能 ==========
-
-        function showUpdateNotification(message) {
-            const toast = document.createElement('div');
-            toast.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: #3498db;
-                color: white;
-                padding: 10px 15px;
-                border-radius: 5px;
-                z-index: 1000;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            `;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                if (toast.parentNode) {
-                    document.body.removeChild(toast);
-                }
-            }, 3000);
-        }
-
-        function checkForUpdates() {
-            showUpdateNotification('已檢查更新，使用內建題庫');
-            updateIndicator.classList.remove('outdated');
         }
 
         function exitApp() {
             if (confirm('確定要結束測驗嗎？')) {
-                window.close();
+                // 如果是PWA，關閉應用
+                if (window.navigator.standalone) {
+                    window.close();
+                } else {
+                    alert('測驗已結束，您可以關閉此頁面');
+                }
             }
         }
 
-        // ========== 初始化應用程式 ==========
-
-        function initApp() {
-            console.log('初始化應用程式...');
-            initEventListeners();
-            setQuestionCount(30);
-            updateIndicator.classList.remove('outdated');
+        function showUpdateNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'success-message';
+            notification.textContent = message;
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.left = '50%';
+            notification.style.transform = 'translateX(-50%)';
+            notification.style.zIndex = '1000';
+            notification.style.maxWidth = '80%';
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 2000);
         }
 
-        // 啟動應用程式
-        initApp();
+        // ========== 題庫載入與更新 ==========
+
+        function loadQuestionBanks() {
+            // 嘗試從外部JS文件載入題庫
+            const scriptTags = document.querySelectorAll('script[src]');
+            let questionBankLoaded = false;
+            let pastQuestionBankLoaded = false;
+            let vocabBankLoaded = false;
+            
+            // 檢查是否已經載入了外部題庫
+            scriptTags.forEach(script => {
+                if (script.src.includes('question_bank.js')) questionBankLoaded = true;
+                if (script.src.includes('pastQuestionBank.js')) pastQuestionBankLoaded = true;
+                if (script.src.includes('vocab_bank.js')) vocabBankLoaded = true;
+            });
+            
+            // 如果沒有載入外部題庫，嘗試動態載入
+            if (!questionBankLoaded) {
+                loadScript('question_bank.js', () => {
+                    if (typeof window.questionBank !== 'undefined') {
+                        questionBank = window.questionBank;
+                        console.log('模擬N4考題題庫載入成功，題目數量:', questionBank.length);
+                    } else {
+                        console.error('無法載入模擬N4考題題庫');
+                    }
+                });
+            } else {
+                // 如果已經載入，直接使用全域變數
+                if (typeof window.questionBank !== 'undefined') {
+                    questionBank = window.questionBank;
+                    console.log('模擬N4考題題庫載入成功，題目數量:', questionBank.length);
+                }
+            }
+            
+            if (!pastQuestionBankLoaded) {
+                loadScript('pastQuestionBank.js', () => {
+                    if (typeof window.pastQuestionBank !== 'undefined') {
+                        pastQuestionBank = window.pastQuestionBank;
+                        console.log('歷屆考題題庫載入成功，題目數量:', pastQuestionBank.length);
+                    } else {
+                        console.error('無法載入歷屆考題題庫');
+                    }
+                });
+            } else {
+                if (typeof window.pastQuestionBank !== 'undefined') {
+                    pastQuestionBank = window.pastQuestionBank;
+                    console.log('歷屆考題題庫載入成功，題目數量:', pastQuestionBank.length);
+                }
+            }
+            
+            if (!vocabBankLoaded) {
+                loadScript('vocab_bank.js', () => {
+                    if (typeof window.vocabBank !== 'undefined') {
+                        vocabBank = window.vocabBank;
+                        console.log('單字測驗題庫載入成功，題目數量:', vocabBank.length);
+                    } else {
+                        console.error('無法載入單字測驗題庫');
+                    }
+                });
+            } else {
+                if (typeof window.vocabBank !== 'undefined') {
+                    vocabBank = window.vocabBank;
+                    console.log('單字測驗題庫載入成功，題目數量:', vocabBank.length);
+                }
+            }
+            
+            // 檢查是否有題庫載入失敗
+            setTimeout(() => {
+                if (questionBank.length === 0 || pastQuestionBank.length === 0 || vocabBank.length === 0) {
+                    console.warn('部分題庫載入失敗，請檢查題庫文件是否存在');
+                }
+            }, 1000);
+        }
+
+        function loadScript(src, callback) {
+            const script = document.createElement('script');
+            script.src = src;
+            script.onload = callback;
+            script.onerror = () => {
+                console.error(`載入題庫失敗: ${src}`);
+                callback();
+            };
+            document.head.appendChild(script);
+        }
+
+        function checkForUpdates() {
+            // 模擬檢查更新
+            const lastUpdate = localStorage.getItem('lastUpdateCheck');
+            const now = new Date().getTime();
+            
+            if (lastUpdate && (now - parseInt(lastUpdate)) < 60000) {
+                showUpdateNotification('已是最新版本');
+                return;
+            }
+            
+            showUpdateNotification('檢查更新中...');
+            
+            // 模擬更新過程
+            setTimeout(() => {
+                localStorage.setItem('lastUpdateCheck', now.toString());
+                showUpdateNotification('已是最新版本');
+            }, 1500);
+        }
+
+        // ========== 初始化應用 ==========
+
+        function initApp() {
+            console.log('初始化測驗系統...');
+            
+            // 載入題庫
+            loadQuestionBanks();
+            
+            // 初始化事件監聽器
+            initEventListeners();
+            
+            // 設置預設測驗類型
+            setQuestionType('simulate');
+            
+            console.log('測驗系統初始化完成');
+        }
+
+        // 當頁面載入完成後初始化應用
+        document.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
 </html>
