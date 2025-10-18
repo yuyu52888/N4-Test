@@ -1,5 +1,5 @@
 // 日文單字題庫
-window.vocabBank = [
+window.vocab_Bank = [
 {
 id: "V0001",
 type: "reading",
@@ -3902,4 +3902,5 @@ correctAnswer: 0
     "correctAnswer": 0
 }
 ];
+
 // 檔案結束
