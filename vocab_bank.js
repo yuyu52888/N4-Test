@@ -3250,7 +3250,6 @@ options: [
 ],
 correctAnswer: 0
 },
-[
 {
     "id": "V0251",
     "type": "reading",
@@ -3904,3 +3903,4 @@ correctAnswer: 0
 ];
 
 // 檔案結束
+
