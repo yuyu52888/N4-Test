@@ -1190,65 +1190,81 @@ async function safeLoadBank(url, bankName) {
 async function loadQuestionBank() {
     console.log('開始載入題庫...');
     
-    // 先禁用開始測驗按鈕
     startQuizBtn.disabled = true;
     startQuizBtn.textContent = '題庫載入中...';
     
     let loadedCount = 0;
     
-    // 如果是線上環境，嘗試載入外部題庫
     if (!isLocal) {
         console.log('線上環境：嘗試載入外部題庫');
         
-        // 嘗試載入一般題庫
+        // 一般題庫
         if (await safeLoadBank('./question_bank.js', 'questionBank') || 
             await loadJSONBank('./question_bank.json', 'questionBank')) {
             loadedCount++;
-            console.log('✅ 一般題庫載入成功，題目數量:', window.questionBank.length);
         }
         
-        // 嘗試載入歷屆考題
+        // 歷屆考題
         if (await safeLoadBank('./pastQuestionBank.js', 'pastQuestionBank') || 
             await loadJSONBank('./pastQuestionBank.json', 'pastQuestionBank')) {
             loadedCount++;
-            console.log('✅ 歷屆考題庫載入成功，題目數量:', window.pastQuestionBank.length);
         }
         
-        // 嘗試載入單字題庫
-        if (await safeLoadBank('./vocab_bank.js', 'vocab_Bank') || 
-            await loadJSONBank('./vocab_bank.json', 'vocab_Bank')) {
-            loadedCount++;
-            console.log('✅ 單字題庫載入成功，題目數量:', window.vocab_Bank.length);
+        // 單字題庫 - 添加詳細的錯誤處理
+        let vocabLoaded = false;
+        console.log('嘗試載入單字題庫...');
+        
+        // 嘗試多種可能的檔案名稱
+        const vocabFileNames = [
+            './vocab_bank.js',
+            './vocab_bank.json',
+            './vocabBank.js',
+            './vocabBank.json',
+            './vocab.js',
+            './vocab.json'
+        ];
+        
+        for (const fileName of vocabFileNames) {
+            console.log(`嘗試載入: ${fileName}`);
+            if (await safeLoadBank(fileName, 'vocabBank') || 
+                await loadJSONBank(fileName, 'vocabBank')) {
+                vocabLoaded = true;
+                loadedCount++;
+                console.log(`✅ 單字題庫從 ${fileName} 載入成功`);
+                break;
+            }
         }
-    } else {
-        console.log('本地環境：使用內建題庫');
+        
+        if (!vocabLoaded) {
+            console.log('❌ 所有單字題庫載入嘗試都失敗，使用內建題庫');
+            // 確保使用內建題庫
+            window.vocabBank = window.vocabBank || [];
+        }
     }
     
-    // 確保所有題庫都有預設值
+    // 確保所有題庫都有值
     window.questionBank = window.questionBank || [];
     window.pastQuestionBank = window.pastQuestionBank || [];
-    window.vocab_Bank = window.vocab_Bank || [];
+    window.vocabBank = window.vocabBank || [];
     
     console.log('📊 最終題庫統計:');
     console.log('- 一般題庫題目數量:', window.questionBank.length);
     console.log('- 歷屆考題題目數量:', window.pastQuestionBank.length);
-    console.log('- 單字題庫題目數量:', window.vocab_Bank.length);
+    console.log('- 單字題庫題目數量:', window.vocabBank.length);
     console.log('- 成功載入的外部題庫數量:', loadedCount);
     
-    // 啟用開始測驗按鈕
     startQuizBtn.disabled = false;
     startQuizBtn.textContent = '開始測驗';
     
-    // 更新題目數量選擇器
     setQuestionCount(questionCount);
     
-    if (loadedCount > 0) {
-        showUpdateNotification(`成功載入 ${loadedCount} 個外部題庫`);
+    // 顯示載入結果
+    if (window.vocabBank.length > 2) {
+        showUpdateNotification(`單字題庫載入成功 (${window.vocabBank.length}題)`);
     } else {
-        showUpdateNotification('使用內建題庫模式');
+        showUpdateNotification('使用內建單字題庫');
     }
 }
-
 // 清理題庫文字內容的輔助函數
 function cleanQuestionBankText(text, bankName) {
     let cleaned = text.trim();
