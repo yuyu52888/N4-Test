@@ -1,5 +1,5 @@
 // 日文N4歷史題庫
-window.pastQuestionBank = [
+pastQuestionBank = [
 {
     id: 1,
     type: "reading",
@@ -21,8 +21,8 @@ window.pastQuestionBank = [
     options: [
         {text: "りょかん", explanation: "正確答案：「旅」音讀為「りょ」，「館」音讀為「かん」，合起來是「りょかん」。\n中文翻譯：旅館"},
         {text: "りょうかん", explanation: "錯誤：「旅」的讀音是「りょ」，不是「りょう」。\n中文翻譯：旅館"},
-        {text: "りょかん", explanation: "錯誤：同選項1，但此為正確答案，此選項為重複。\n中文翻譯：旅館"},
-        {text: "りょうかん", explanation: "錯誤：同選項2，讀音錯誤。\n中文翻譯：旅館"}
+        {text: "りょこう", explanation: "錯誤：這是「旅行」的讀音，意思是旅行。\n中文翻譯：旅行"},
+        {text: "りゅうこう", explanation: "錯誤：這是「流行」的讀音，意思是流行。\n中文翻譯：流行"}
     ],
     correctAnswer: 0
 },
@@ -124,9 +124,9 @@ window.pastQuestionBank = [
     kana: "せつめい",
     options: [
         {text: "説明", explanation: "正確答案：「せつめい」對應的漢字是「説明」，意思是說明、解釋。\n中文翻譯：說明"},
-        {text: "縮明", explanation: "錯誤：此選項與正確答案相同，但在原題中為干擾項，字形不正確（可能為異體或誤寫）。\n中文翻譯：說明"},
-        {text: "说明", explanation: "錯誤：同選項2，為字形不正確的干擾項。\n中文翻譯：說明"},
-        {text: "記明", explanation: "錯誤：「記明」讀音通常為「きめい」，意思是記載、寫明。\n中文翻譯：記明"}
+        {text: "設明", explanation: "錯誤：此漢字組合不存在，「設」讀音為「せつ」但意思不同。\n中文翻譯：無"},
+        {text: "節明", explanation: "錯誤：此漢字組合不存在，「節」讀音為「せつ」但意思不同。\n中文翻譯：無"},
+        {text: "説命", explanation: "錯誤：此漢字組合不存在，「命」讀音為「めい」但意思不同。\n中文翻譯：無"}
     ],
     correctAnswer: 0
 },
@@ -176,9 +176,9 @@ window.pastQuestionBank = [
     kana: "とじて",
     options: [
         {text: "閉じて", explanation: "正確答案：「とじて」對應的漢字是「閉じて」，意思是閉上、關閉。\n中文翻譯：閉上"},
-        {text: "膳じて", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
+        {text: "綴じて", explanation: "錯誤：這是「とじて」的另一種漢字寫法，但通常用於裝訂文件。\n中文翻譯：裝訂"},
         {text: "開じて", explanation: "錯誤：「開じて」讀音是「ひらいて」，意思是打開。\n中文翻譯：打開"},
-        {text: "閉じて", explanation: "錯誤：此選項與正確答案相同，但在原題中為干擾項，字形可能不正確。\n中文翻譯：閉上"}
+        {text: "締めて", explanation: "錯誤：「締めて」讀音是「しめて」，意思是繫緊、關緊。\n中文翻譯：繫緊"}
     ],
     correctAnswer: 0
 },
@@ -189,9 +189,9 @@ window.pastQuestionBank = [
     kana: "えいぎょう",
     options: [
         {text: "営業", explanation: "正確答案：「えいぎょう」對應的漢字是「営業」，意思是營業、經營。\n中文翻譯：營業"},
-        {text: "営業", explanation: "錯誤：此選項與正確答案相同，但在原題中為干擾項，字形可能不正確。\n中文翻譯：營業"},
-        {text: "営事", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
-        {text: "営事", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"}
+        {text: "英業", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
+        {text: "衛業", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
+        {text: "永業", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"}
     ],
     correctAnswer: 0
 },
@@ -219,7 +219,7 @@ window.pastQuestionBank = [
         {text: "オープン", explanation: "錯誤：「オープン」意思是開張、開放，與語境不符。\n中文翻譯：開放"},
         {text: "スイッチ", explanation: "錯誤：「スイッチ」意思是開關，但「スイッチしました」語意不通。\n中文翻譯：開關"}
     ],
-    correctAnswer: 3
+    correctAnswer: 0
 },
 {
     id: 18,
@@ -375,7 +375,7 @@ window.pastQuestionBank = [
         {text: "やまもとさんの じは きたないです。", explanation: "錯誤：「きたない」意思是髒、不整潔，與字的大小無關。\n中文翻譯：山本先生的字很髒亂"},
         {text: "やまもとさんの じは おおきいです。", explanation: "錯誤：「おおきい」意思是大的，與「こまかい」意思相反。\n中文翻譯：山本先生的字很大"}
     ],
-    correctAnswer: 2
+    correctAnswer: 0
 },
 {
     id: 30,
@@ -388,7 +388,7 @@ window.pastQuestionBank = [
         {text: "きのうの かいぎには たなかさんが 来る 前に、ほかの 人が 来ました。", explanation: "錯誤：這句話是時間順序，與「除了…之外」意思不同。\n中文翻譯：昨天的會議在田中先生來之前，其他人就來了"},
         {text: "きのうの かいぎには たなかさんが 来た 後で、ほかの 人が 来ました。", explanation: "錯誤：這句話是時間順序，與「除了…之外」意思不同。\n中文翻譯：昨天的會議在田中先生來之後，其他人才來"}
     ],
-    correctAnswer: 1
+    correctAnswer: 0
 },
 {
     id: 31,
@@ -800,9 +800,9 @@ window.pastQuestionBank = [
     kanji: "経験",
     options: [
         {text: "けいけん", explanation: "正確答案：「経」音讀為「けい」，「験」音讀為「けん」，合起來是「けいけん」。\n中文翻譯：經驗"},
-        {text: "けいけん", explanation: "錯誤：此選項與正確答案相同，但在原題中為干擾項。\n中文翻譯：經驗"},
+        {text: "けいげん", explanation: "錯誤：「験」的讀音是「けん」，不是「げん」。\n中文翻譯：經驗"},
         {text: "けけん", explanation: "錯誤：讀音不完整，缺少「い」音。\n中文翻譯：經驗"},
-        {text: "けげん", explanation: "錯誤：「験」的讀音是「けん」，不是「げん」。\n中文翻譯：經驗"}
+        {text: "けんけい", explanation: "錯誤：順序錯誤，正確是「けいけん」。\n中文翻譯：經驗"}
     ],
     correctAnswer: 0
 },
@@ -817,7 +817,7 @@ window.pastQuestionBank = [
         {text: "てんにん", explanation: "錯誤：「にん」不是「員」的正確讀音。\n中文翻譯：店員"},
         {text: "ていん", explanation: "錯誤：「店」的讀音是「てん」，不是「て」。\n中文翻譯：店員"}
     ],
-    correctAnswer: 3
+    correctAnswer: 0
 },
 {
     id: 64,
@@ -830,7 +830,7 @@ window.pastQuestionBank = [
         {text: "しょくど", explanation: "錯誤：「堂」的讀音是「どう」，不是「ど」。\n中文翻譯：食堂"},
         {text: "しゅくどう", explanation: "錯誤：「食」的讀音是「しょく」，不是「しゅく」。\n中文翻譯：食堂"}
     ],
-    correctAnswer: 1
+    correctAnswer: 0
 },
 {
     id: 65,
@@ -895,7 +895,7 @@ window.pastQuestionBank = [
         {text: "なつ", explanation: "錯誤：「なつ」是「夏」的讀音，意思是夏天。\n中文翻譯：夏天"},
         {text: "はる", explanation: "錯誤：「はる」是「春」的讀音，意思是春天。\n中文翻譯：春天"}
     ],
-    correctAnswer: 3
+    correctAnswer: 0
 },
 {
     id: 70,
@@ -917,11 +917,11 @@ window.pastQuestionBank = [
     kana: "ばしょ",
     options: [
         {text: "場所", explanation: "正確答案：「ばしょ」對應的漢字是「場所」，意思是地點、場所。\n中文翻譯：場所"},
-        {text: "揚所", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
-        {text: "揚所", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
-        {text: "揚所", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"}
+        {text: "場書", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
+        {text: "場緒", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
+        {text: "場初", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"}
     ],
-    correctAnswer: 3
+    correctAnswer: 0
 },
 {
     id: 72,
@@ -943,11 +943,11 @@ window.pastQuestionBank = [
     kana: "べんり",
     options: [
         {text: "便利", explanation: "正確答案：「べんり」對應的漢字是「便利」，意思是方便。\n中文翻譯：方便"},
-        {text: "便宜", explanation: "錯誤：「便宜」讀音是「べんぎ」，意思是方便、適宜。\n中文翻譯：便宜"},
-        {text: "便理", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
-        {text: "便立", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"}
+        {text: "勉理", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
+        {text: "弁利", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
+        {text: "便離", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"}
     ],
-    correctAnswer: 3
+    correctAnswer: 0
 },
 {
     id: 74,
@@ -956,11 +956,11 @@ window.pastQuestionBank = [
     kana: "ねむかった",
     options: [
         {text: "眠かった", explanation: "正確答案：「ねむかった」對應的漢字是「眠かった」，意思是困的。\n中文翻譯：困的"},
-        {text: "睡むかった", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
         {text: "睡かった", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
-        {text: "眠むかった", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"}
+        {text: "寝かった", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
+        {text: "夢かった", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"}
     ],
-    correctAnswer: 3
+    correctAnswer: 0
 },
 {
     id: 75,
@@ -1671,11 +1671,11 @@ window.pastQuestionBank = [
     kana: "くすり",
     options: [
         {text: "薬", explanation: "正確答案：「くすり」對應的漢字是「薬」，意思是藥品。\n中文翻譯：藥"},
-        {text: "果", explanation: "錯誤：「果」讀音是「か」，意思是果實。\n中文翻譯：果實"},
-        {text: "菜", explanation: "錯誤：「菜」讀音是「さい」，意思是蔬菜。\n中文翻譯：蔬菜"},
+        {text: "草", explanation: "錯誤：「草」讀音是「くさ」，意思是草。\n中文翻譯：草"},
+        {text: "花", explanation: "錯誤：「花」讀音是「はな」，意思是花。\n中文翻譯：花"},
         {text: "葉", explanation: "錯誤：「葉」讀音是「は」，意思是葉子。\n中文翻譯：葉子"}
     ],
-    correctAnswer: 3
+    correctAnswer: 0
 },
 {
     id: 130,
@@ -1684,9 +1684,9 @@ window.pastQuestionBank = [
     kana: "おきました",
     options: [
         {text: "起きました", explanation: "正確答案：「おきました」在此語境下對應的漢字是「起きました」，意思是起床了。\n中文翻譯：起床了"},
-        {text: "赴きました", explanation: "錯誤：「赴きました」讀音是「おもむきました」，意思是前往。\n中文翻譯：前往了"},
-        {text: "題きました", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
-        {text: "起きました", explanation: "錯誤：此選項與正確答案相同，但在原題中為干擾項。\n中文翻譯：起床了"}
+        {text: "置きました", explanation: "錯誤：「置きました」意思是放置了。\n中文翻譯：放置了"},
+        {text: "沖きました", explanation: "錯誤：「沖きました」意思是沖洗了。\n中文翻譯：沖洗了"},
+        {text: "奥きました", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"}
     ],
     correctAnswer: 0
 },
@@ -1697,11 +1697,11 @@ window.pastQuestionBank = [
     kana: "だんせい",
     options: [
         {text: "男性", explanation: "正確答案：「だんせい」對應的漢字是「男性」，意思是男性。\n中文翻譯：男性"},
-        {text: "男姓", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
-        {text: "女性", explanation: "錯誤：「女性」讀音是「じょせい」，意思是女性。\n中文翻譯：女性"},
-        {text: "女性", explanation: "錯誤：同選項3，讀音和意思都錯誤。\n中文翻譯：女性"}
+        {text: "男声", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
+        {text: "男星", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
+        {text: "男製", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"}
     ],
-    correctAnswer: 2
+    correctAnswer: 0
 },
 {
     id: 132,
@@ -1723,11 +1723,11 @@ window.pastQuestionBank = [
     kana: "おくりました",
     options: [
         {text: "送りました", explanation: "正確答案：「おくりました」對應的漢字是「送りました」，意思是寄送了。\n中文翻譯：寄送了"},
-        {text: "返りました", explanation: "錯誤：「返りました」讀音是「かえりました」，意思是回來了。\n中文翻譯：回來了"},
-        {text: "返りました", explanation: "錯誤：同選項2，讀音和意思都錯誤。\n中文翻譯：回來了"},
-        {text: "送りました", explanation: "錯誤：此選項與正確答案相同，但在原題中為干擾項。\n中文翻譯：寄送了"}
+        {text: "贈りました", explanation: "錯誤：「贈りました」意思是贈送了。\n中文翻譯：贈送了"},
+        {text: "遅りました", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
+        {text: "遅れました", explanation: "錯誤：「遅れました」讀音是「おくれました」，意思是遲到了。\n中文翻譯：遲到了"}
     ],
-    correctAnswer: 3
+    correctAnswer: 0
 },
 {
     id: 134,
@@ -1736,9 +1736,9 @@ window.pastQuestionBank = [
     kana: "うんてん",
     options: [
         {text: "運転", explanation: "正確答案：「うんてん」對應的漢字是「運転」，意思是駕駛。\n中文翻譯：駕駛"},
-        {text: "運転", explanation: "錯誤：此選項與正確答案相同，但在原題中為干擾項。\n中文翻譯：駕駛"},
-        {text: "運転", explanation: "錯誤：此選項與正確答案相同，但在原題中為干擾項。\n中文翻譯：駕駛"},
-        {text: "運転", explanation: "錯誤：此選項與正確答案相同，但在原題中為干擾項。\n中文翻譯：駕駛"}
+        {text: "雲天", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
+        {text: "運天", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"},
+        {text: "雲転", explanation: "錯誤：此漢字組合不存在。\n中文翻譯：無"}
     ],
     correctAnswer: 0
 },
@@ -3268,5 +3268,6 @@ window.pastQuestionBank = [
     ],
     correctAnswer: 3
 }
-]
+];
+window.pastQuestionBank = pastQuestionBank;
 // 檔案結束

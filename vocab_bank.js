@@ -1,5 +1,5 @@
 // 日文單字題庫
-window.vocabBank = [
+vocabBank = [
 {
 id: "V0001",
 type: "reading",
@@ -3901,3 +3901,4 @@ correctAnswer: 0
     "correctAnswer": 0
 }
 ];  // 確保這裡有正確的結束括號和分號
+window.vocabBank = vocabBank;

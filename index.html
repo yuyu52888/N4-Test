@@ -344,8 +344,56 @@
         50% { opacity: 0.5; }
         100% { opacity: 1; }
     }
+
+
+.main-type-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+/* 新增子類型選擇器樣式 */
+/* 子類型選擇器樣式 */
+.subtype-selector {
+    margin: 0 0 15px 0;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+    width: 100%;
+}
+
+.subtype-title {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    font-size: 14px;
+}
+
+.subtype-buttons-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+}
+
+
+
     
     /* 手機版樣式 */
+@media (max-width: 768px) {
+    .subtype-buttons-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
     @media (max-width: 768px) {
         .container {
             padding: 15px;
@@ -439,6 +487,18 @@
         text-align: center;
     }
     </style>
+
+<!-- 載入分類型題庫 -->
+<script src="reading.js"></script>
+<script src="writing.js"></script>
+<script src="vocabulary.js"></script>
+<script src="synonym.js"></script>
+<script src="grammar.js"></script>
+<script src="reorder.js"></script>
+
+
+
+
 </head>
 <body>
     <div class="container">
@@ -451,20 +511,37 @@
                 <button id="start-quiz-btn" class="home-btn">開始測驗</button>
                 <button id="update-btn" class="home-btn update">檢查題庫更新</button>
                 
-                <div class="question-count-selector">
-                    <p>選擇測驗類型：</p>
-                    <div class="count-buttons-container">
-                        <button id="count-simulate-btn" class="count-btn active">模擬N4考題</button>
-                        <button id="count-past-btn" class="count-btn">歷屆考題</button>
-                        <button id="count-vocab-btn" class="count-btn">單字測驗</button>
-                    </div>
-                    
-                    <div class="question-count-input">
-                        <label for="question-count">題目數量：</label>
-                        <input type="number" id="question-count" min="1" max="100" value="30">
-                    </div>
-                </div>
-                
+<div class="question-count-selector">
+    <p>選擇測驗類型：</p>
+    
+    <!-- 第一行：主要類型按鈕 -->
+    <div class="main-type-buttons">
+        <button id="count-past-btn" class="count-btn">歷屆考題 (249題)</button>
+        <button id="count-vocab-btn" class="count-btn">單字測驗 (300題)</button>
+        <button id="count-simulate-btn" class="count-btn active">模擬N4考題 (410題)</button>
+    </div>
+    
+    <!-- 第二行：子類型選擇器（放在模擬考題下方） -->
+    <div id="subtype-selector" class="subtype-selector">
+        <p class="subtype-title">模擬考題細分類型：</p>
+        <div class="subtype-buttons-container">
+            <button id="subtype-reading" class="subtype-btn">漢字讀音</button>
+            <button id="subtype-writing" class="subtype-btn">漢字書寫</button>
+            <button id="subtype-vocabulary" class="subtype-btn">詞語填空</button>
+            <button id="subtype-synonym" class="subtype-btn">近義替換</button>
+            <button id="subtype-grammar" class="subtype-btn">文法選擇</button>
+            <button id="subtype-reorder" class="subtype-btn">句子重組</button>
+        </div>
+    </div>
+    
+    <div class="question-count-input">
+        <label for="question-count">請填寫測驗的題目數量(預設30題，每次最多100題)：</label>
+        <input type="number" id="question-count" min="1" max="100" value="30">
+    </div>
+</div>
+
+
+
                 <button id="view-history-btn" class="home-btn">歷史紀錄查詢</button>
                 <button id="exit-btn" class="home-btn exit">結束測驗</button>
             </div>
@@ -529,6 +606,7 @@
         let questionCount = 30;
         let isPastQuestions = false;
         let isVocabMode = false;
+        let selectedSubType = null; // 新增：記錄選擇的子題型
         let timerInterval = null;
         let startTime = null;
         let elapsedTime = 0;
@@ -544,6 +622,18 @@
         const countPastBtn = document.getElementById('count-past-btn');
         const countVocabBtn = document.getElementById('count-vocab-btn');
         const questionCountInput = document.getElementById('question-count');
+
+// 新增：子類型按鈕
+const subtypeReadingBtn = document.getElementById('subtype-reading');
+const subtypeWritingBtn = document.getElementById('subtype-writing');
+const subtypeVocabularyBtn = document.getElementById('subtype-vocabulary');
+const subtypeSynonymBtn = document.getElementById('subtype-synonym');
+const subtypeGrammarBtn = document.getElementById('subtype-grammar');
+const subtypeReorderBtn = document.getElementById('subtype-reorder');
+
+
+
+
         const homeScreen = document.getElementById('home-screen');
         const quizScreen = document.getElementById('quiz-screen');
         const resultScreen = document.getElementById('result-screen');
@@ -573,243 +663,346 @@
         const resultElement = document.getElementById('result');
         const historyListElement = document.getElementById('history-list');
 
-        // ========== 核心功能函數 ==========
+// ========== 核心功能函數 ==========
 
-        function startQuiz() {
-            console.log('開始測驗，模式:', isVocabMode ? '單字測驗' : (isPastQuestions ? '歷屆考題' : '模擬N4考題'));
-            
-            // 重置狀態
-            currentQuestionIndex = 0;
-            userAnswers = [];
-            isAnswered = [];
-            score = 0;
-            wrongQuestions = [];
-            selectedQuestions = [];
-            shuffledQuestions = [];
-            elapsedTime = 0;
+function startQuiz() {
+    console.log('開始測驗，模式:', isVocabMode ? '單字測驗' : (isPastQuestions ? '歷屆考題' : '模擬N4考題'));
+    if (selectedSubType) {
+        console.log('子題型:', selectedSubType);
+    }
+    
+    // 重置狀態
+    currentQuestionIndex = 0;
+    userAnswers = [];
+    isAnswered = [];
+    score = 0;
+    wrongQuestions = [];
+    selectedQuestions = [];
+    shuffledQuestions = [];
+    elapsedTime = 0;
 
-            // 選擇題庫
-            let sourceBank;
-            if (isVocabMode) {
-                sourceBank = vocabBank;
-            } else if (isPastQuestions) {
-                sourceBank = pastQuestionBank;
-            } else {
-                sourceBank = questionBank;
-            }
+    // 選擇題庫
+    let sourceBank;
+    if (isVocabMode) {
+        sourceBank = vocabBank;
+    } else if (isPastQuestions) {
+        sourceBank = pastQuestionBank;
+    } else {
+        sourceBank = questionBank;
+    }
 
-            // 檢查題庫是否可用
-            if (!sourceBank || sourceBank.length === 0) {
-                alert('題庫載入失敗，請稍後再試');
-                return;
-            }
+    // 檢查題庫是否可用
+    if (!sourceBank || sourceBank.length === 0) {
+        alert('題庫載入失敗，請稍後再試');
+        return;
+    }
 
-            const availableQuestions = sourceBank.length;
-            const actualQuestionCount = Math.min(questionCount, availableQuestions);
-            
-            console.log(`可用題目: ${availableQuestions}, 選擇題數: ${actualQuestionCount}`);
+    // 根據是否有選擇子題型來計算可用題目數量
+    let availableQuestions;
+    if (selectedSubType) {
+        availableQuestions = sourceBank.filter(q => q.type === selectedSubType).length;
+    } else {
+        availableQuestions = sourceBank.length;
+    }
+    
+    const actualQuestionCount = Math.min(questionCount, availableQuestions);
+    
+    console.log(`可用題目: ${availableQuestions}, 選擇題數: ${actualQuestionCount}`);
 
-            // 隨機選擇題目，確保題型平均分布
-            selectedQuestions = selectQuestionsWithBalancedTypes(sourceBank, actualQuestionCount);
-            
-            // 檢查選擇的題目是否有效
-            selectedQuestions = selectedQuestions.filter(question => isValidQuestion(question));
-            
-            if (selectedQuestions.length === 0) {
-                alert('沒有有效的題目可用，請檢查題庫格式');
-                return;
-            }
-            
-            // 隨機打亂每個題目的選項順序
-            shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
-            
-            userAnswers = new Array(selectedQuestions.length).fill(null);
-            isAnswered = new Array(selectedQuestions.length).fill(false);
-            
-            console.log('最終選擇題目數量:', selectedQuestions.length);
-            
-            // 開始計時
-            startTimer();
-            
-            // 顯示測驗頁面
-            showScreen(quizScreen);
-            displayQuestion(currentQuestionIndex);
-            updateButtons();
-            updateProgress();
+    // 選擇題目邏輯
+    if (selectedSubType) {
+        // 如果有選擇子題型，只選擇該類型的題目
+        selectedQuestions = selectQuestionsByType(sourceBank, selectedSubType, actualQuestionCount);
+    } else if (isVocabMode || isPastQuestions) {
+        // 單字測驗或歷屆考題，直接隨機選擇
+        selectedQuestions = selectRandomQuestions(sourceBank, actualQuestionCount);
+    } else {
+        // 模擬考題且沒有選擇子題型，確保題型平均分布
+        selectedQuestions = selectQuestionsWithBalancedTypes(sourceBank, actualQuestionCount);
+    }
+    
+    // 檢查選擇的題目是否有效
+    selectedQuestions = selectedQuestions.filter(question => isValidQuestion(question));
+    
+    if (selectedQuestions.length === 0) {
+        alert('沒有有效的題目可用，請檢查題庫格式');
+        return;
+    }
+    
+    // 隨機打亂每個題目的選項順序
+    shuffledQuestions = selectedQuestions.map(question => shuffleOptions(question));
+    
+    userAnswers = new Array(selectedQuestions.length).fill(null);
+    isAnswered = new Array(selectedQuestions.length).fill(false);
+    
+    console.log('最終選擇題目數量:', selectedQuestions.length);
+    
+    // 開始計時
+    startTimer();
+    
+    // 顯示測驗頁面
+    showScreen(quizScreen);
+    displayQuestion(currentQuestionIndex);
+    updateButtons();
+    updateProgress();
+}
+
+// 檢查題目是否有效
+function isValidQuestion(question) {
+    if (!question) return false;
+    if (!question.id) return false;
+    if (!question.type) return false;
+    if (!question.question) return false;
+    if (!question.options || !Array.isArray(question.options) || question.options.length === 0) return false;
+    if (typeof question.correctAnswer !== 'number' || question.correctAnswer < 0 || question.correctAnswer >= question.options.length) return false;
+    
+    // 檢查每個選項是否有必要的屬性
+    for (let option of question.options) {
+        if (!option.text) return false;
+        if (!option.explanation) return false;
+    }
+    
+    return true;
+}
+
+// 選擇特定類型的題目
+function selectQuestionsByType(sourceBank, type, count) {
+    const typeQuestions = sourceBank.filter(question => question.type === type && isValidQuestion(question));
+    
+    if (typeQuestions.length === 0) {
+        console.error(`沒有找到 ${type} 類型的有效題目`);
+        return [];
+    }
+    
+    const actualCount = Math.min(count, typeQuestions.length);
+    return shuffleArray([...typeQuestions]).slice(0, actualCount);
+}
+
+// 隨機選擇題目
+function selectRandomQuestions(sourceBank, count) {
+    const validQuestions = sourceBank.filter(question => isValidQuestion(question));
+    
+    if (validQuestions.length === 0) {
+        console.error('題庫中沒有有效的題目');
+        return [];
+    }
+    
+    const actualCount = Math.min(count, validQuestions.length);
+    return shuffleArray([...validQuestions]).slice(0, actualCount);
+}
+
+// 選擇題目並確保題型平均分布
+function selectQuestionsWithBalancedTypes(sourceBank, count) {
+    // 先過濾掉無效的題目
+    const validQuestions = sourceBank.filter(question => isValidQuestion(question));
+    
+    if (validQuestions.length === 0) {
+        console.error('題庫中沒有有效的題目');
+        return [];
+    }
+    
+    // 按題型分組
+    const questionsByType = {};
+    validQuestions.forEach(question => {
+        if (!questionsByType[question.type]) {
+            questionsByType[question.type] = [];
         }
+        questionsByType[question.type].push(question);
+    });
+    
+    // 計算每種題型應該選擇的題目數量
+    const types = Object.keys(questionsByType);
+    const questionsPerType = Math.ceil(count / types.length);
+    
+    let selectedQuestions = [];
+    
+    // 從每種題型中選擇題目
+    types.forEach(type => {
+        const availableQuestions = questionsByType[type];
+        const shuffled = shuffleArray([...availableQuestions]);
+        const selected = shuffled.slice(0, Math.min(questionsPerType, availableQuestions.length));
+        selectedQuestions = selectedQuestions.concat(selected);
+    });
+    
+    // 如果選擇的題目多於所需，隨機移除多餘的題目
+    if (selectedQuestions.length > count) {
+        selectedQuestions = shuffleArray(selectedQuestions).slice(0, count);
+    }
+    
+    // 如果選擇的題目少於所需，從所有題目中隨機補充
+    if (selectedQuestions.length < count) {
+        const remainingCount = count - selectedQuestions.length;
+        const allQuestions = shuffleArray([...validQuestions]);
+        const additionalQuestions = allQuestions.filter(q => !selectedQuestions.includes(q)).slice(0, remainingCount);
+        selectedQuestions = selectedQuestions.concat(additionalQuestions);
+    }
+    
+    // 最後再隨機打亂一次
+    return shuffleArray(selectedQuestions);
+}
 
-        // 檢查題目是否有效
-        function isValidQuestion(question) {
-            if (!question) return false;
-            if (!question.id) return false;
-            if (!question.type) return false;
-            if (!question.question) return false;
-            if (!question.options || !Array.isArray(question.options) || question.options.length === 0) return false;
-            if (typeof question.correctAnswer !== 'number' || question.correctAnswer < 0 || question.correctAnswer >= question.options.length) return false;
-            
-            // 檢查每個選項是否有必要的屬性
-            for (let option of question.options) {
-                if (!option.text) return false;
-                if (!option.explanation) return false;
-            }
-            
-            return true;
+function setQuestionType(type) {
+    if (type === 'past') {
+        isPastQuestions = true;
+        isVocabMode = false;
+        selectedSubType = null; // 重置子題型
+        updateCountButtonStates('past');
+        showUpdateNotification(`歷屆考題模式`);
+    } else if (type === 'vocab') {
+        isPastQuestions = false;
+        isVocabMode = true;
+        selectedSubType = null; // 重置子題型
+        updateCountButtonStates('vocab');
+        showUpdateNotification(`單字測驗模式`);
+    } else {
+        isPastQuestions = false;
+        isVocabMode = false;
+        updateCountButtonStates('simulate');
+        showUpdateNotification(`模擬N4考題模式`);
+    }
+    
+    // 移除所有子類型按鈕的active類別（當選擇其他主要類型時）
+    if (type !== 'simulate') {
+        const allSubtypeBtns = document.querySelectorAll('.subtype-btn');
+        allSubtypeBtns.forEach(btn => btn.classList.remove('active'));
+        selectedSubType = null;
+    }
+    
+    updateQuestionCountLimit();
+}
+
+// 設置子題型
+function setSubQuestionType(subType) {
+    // 移除所有子類型按鈕的active類別
+    const allSubtypeBtns = document.querySelectorAll('.subtype-btn');
+    allSubtypeBtns.forEach(btn => btn.classList.remove('active'));
+    
+    // 為當前點擊的按鈕添加active類別
+    const currentBtn = document.getElementById(`subtype-${subType}`);
+    if (currentBtn) {
+        currentBtn.classList.add('active');
+    }
+    
+    // 設置為模擬考題模式
+    setQuestionType('simulate');
+    
+    // 記錄選擇的子題型
+    selectedSubType = subType;
+    
+    // 更新題目數量限制
+    updateQuestionCountLimit();
+    
+    console.log(`選擇了子題型: ${subType}`);
+    showUpdateNotification(`選擇了 ${getSubTypeName(subType)} 題型`);
+}
+
+// 獲取子題型中文名稱
+function getSubTypeName(subType) {
+    const typeNames = {
+        'reading': '漢字讀音',
+        'writing': '漢字書寫',
+        'vocabulary': '詞語填空',
+        'synonym': '近義替換',
+        'grammar': '文法選擇',
+        'reorder': '句子重組'
+    };
+    return typeNames[subType] || subType;
+}
+
+// 更新題目數量限制
+function updateQuestionCountLimit() {
+    let maxQuestions = 0;
+    
+    if (isVocabMode) {
+        maxQuestions = vocabBank.length;
+    } else if (isPastQuestions) {
+        maxQuestions = pastQuestionBank.length;
+    } else {
+        // 模擬考題：如果有選擇子題型，只計算該子題型的題目數量
+        if (selectedSubType) {
+            // 從已合併的 questionBank 中過濾該類型的題目
+            const typeQuestions = questionBank.filter(q => q.type === selectedSubType);
+            maxQuestions = typeQuestions.length;
+        } else {
+            maxQuestions = questionBank.length;
         }
+    }
+    questionCountInput.max = maxQuestions;
+    questionCountInput.placeholder = `最多可選 ${maxQuestions} 題`;
+    
+    if (questionCountInput.value > maxQuestions) {
+        questionCountInput.value = maxQuestions;
+    }
+}
 
-        // 選擇題目並確保題型平均分布
-        function selectQuestionsWithBalancedTypes(sourceBank, count) {
-            // 先過濾掉無效的題目
-            const validQuestions = sourceBank.filter(question => isValidQuestion(question));
-            
-            if (validQuestions.length === 0) {
-                console.error('題庫中沒有有效的題目');
-                return [];
-            }
-            
-            // 按題型分組
-            const questionsByType = {};
-            validQuestions.forEach(question => {
-                if (!questionsByType[question.type]) {
-                    questionsByType[question.type] = [];
-                }
-                questionsByType[question.type].push(question);
-            });
-            
-            // 計算每種題型應該選擇的題目數量
-            const types = Object.keys(questionsByType);
-            const questionsPerType = Math.ceil(count / types.length);
-            
-            let selectedQuestions = [];
-            
-            // 從每種題型中選擇題目
-            types.forEach(type => {
-                const availableQuestions = questionsByType[type];
-                const shuffled = shuffleArray([...availableQuestions]);
-                const selected = shuffled.slice(0, Math.min(questionsPerType, availableQuestions.length));
-                selectedQuestions = selectedQuestions.concat(selected);
-            });
-            
-            // 如果選擇的題目多於所需，隨機移除多餘的題目
-            if (selectedQuestions.length > count) {
-                selectedQuestions = shuffleArray(selectedQuestions).slice(0, count);
-            }
-            
-            // 如果選擇的題目少於所需，從所有題目中隨機補充
-            if (selectedQuestions.length < count) {
-                const remainingCount = count - selectedQuestions.length;
-                const allQuestions = shuffleArray([...validQuestions]);
-                const additionalQuestions = allQuestions.filter(q => !selectedQuestions.includes(q)).slice(0, remainingCount);
-                selectedQuestions = selectedQuestions.concat(additionalQuestions);
-            }
-            
-            // 最後再隨機打亂一次
-            return shuffleArray(selectedQuestions);
-        }
-
-        function setQuestionType(type) {
-            if (type === 'past') {
-                isPastQuestions = true;
-                isVocabMode = false;
-                updateCountButtonStates('past');
-                showUpdateNotification(`歷屆考題模式`);
-            } else if (type === 'vocab') {
-                isPastQuestions = false;
-                isVocabMode = true;
-                updateCountButtonStates('vocab');
-                showUpdateNotification(`單字測驗模式`);
-            } else {
-                isPastQuestions = false;
-                isVocabMode = false;
-                updateCountButtonStates('simulate');
-                showUpdateNotification(`模擬N4考題模式`);
-            }
-            
-            // 根據題庫類型設置最大題數
-            let maxQuestions = 0;
-            if (isVocabMode) {
-                maxQuestions = vocabBank.length;
-            } else if (isPastQuestions) {
-                maxQuestions = pastQuestionBank.length;
-            } else {
-                maxQuestions = questionBank.length;
-            }
-            
-            questionCountInput.max = maxQuestions;
-            questionCountInput.placeholder = `最多可選 ${maxQuestions} 題`;
-            
-            if (questionCountInput.value > maxQuestions) {
-                questionCountInput.value = maxQuestions;
-            }
-        }
-
-        function updateCountButtonStates(selectedType) {
-            countSimulateBtn.classList.remove('active');
-            countPastBtn.classList.remove('active');
-            countVocabBtn.classList.remove('active');
-            
-            switch(selectedType) {
-                case 'simulate':
-                    countSimulateBtn.classList.add('active');
-                    break;
-                case 'past':
-                    countPastBtn.classList.add('active');
-                    break;
-                case 'vocab':
-                    countVocabBtn.classList.add('active');
-                    break;
-            }
-        }
-
+function updateCountButtonStates(selectedType) {
+    countSimulateBtn.classList.remove('active');
+    countPastBtn.classList.remove('active');
+    countVocabBtn.classList.remove('active');
+    
+    switch(selectedType) {
+        case 'simulate':
+            countSimulateBtn.classList.add('active');
+            break;
+        case 'past':
+            countPastBtn.classList.add('active');
+            break;
+        case 'vocab':
+            countVocabBtn.classList.add('active');
+            break;
+    }
+}
         // ========== 事件監聽器 ==========
 
-        function initEventListeners() {
-            startQuizBtn.addEventListener('click', () => {
-                // 從輸入框獲取題目數量
-                questionCount = parseInt(questionCountInput.value) || 30;
-                
-                // 檢查題目數量是否有效
-                let maxQuestions = 0;
-                if (isVocabMode) {
-                    maxQuestions = vocabBank.length;
-                } else if (isPastQuestions) {
-                    maxQuestions = pastQuestionBank.length;
-                } else {
-                    maxQuestions = questionBank.length;
-                }
-                
-                if (questionCount < 1) {
-                    alert('題目數量必須大於0');
-                    return;
-                }
-                
-                if (questionCount > maxQuestions) {
-                    alert(`題目數量不能超過題庫總數 (${maxQuestions})`);
-                    questionCountInput.value = maxQuestions;
-                    questionCount = maxQuestions;
-                }
-                
-                startQuiz();
-            });
-            
-            viewHistoryBtn.addEventListener('click', showHistory);
-            exitBtn.addEventListener('click', exitApp);
-            updateBtn.addEventListener('click', checkForUpdates);
-            
-            countSimulateBtn.addEventListener('click', () => setQuestionType('simulate'));
-            countPastBtn.addEventListener('click', () => setQuestionType('past'));
-            countVocabBtn.addEventListener('click', () => setQuestionType('vocab'));
-            
-            prevBtn.addEventListener('click', prevQuestion);
-            nextBtn.addEventListener('click', nextQuestion);
-            submitBtn.addEventListener('click', submitQuiz);
-            backHomeBtn.addEventListener('click', backToHome);
-            
-            restartBtn.addEventListener('click', restartQuiz);
-            resultBackHomeBtn.addEventListener('click', backToHome);
-            
-            historyBackHomeBtn.addEventListener('click', backToHome);
-            clearHistoryBtn.addEventListener('click', clearHistory);
+function initEventListeners() {
+    startQuizBtn.addEventListener('click', () => {
+        // 從輸入框獲取題目數量
+        questionCount = parseInt(questionCountInput.value) || 30;
+        
+        // 檢查題目數量是否有效（使用新的邏輯）
+        let maxQuestions = parseInt(questionCountInput.max) || 0;
+        
+        if (questionCount < 1) {
+            alert('題目數量必須大於0');
+            return;
         }
+        
+        if (questionCount > maxQuestions) {
+            alert(`題目數量不能超過題庫總數 (${maxQuestions})`);
+            questionCountInput.value = maxQuestions;
+            questionCount = maxQuestions;
+        }
+        
+        startQuiz();
+    });
+    
+    viewHistoryBtn.addEventListener('click', showHistory);
+    exitBtn.addEventListener('click', exitApp);
+    updateBtn.addEventListener('click', checkForUpdates);
+    
+    countSimulateBtn.addEventListener('click', () => setQuestionType('simulate'));
+    countPastBtn.addEventListener('click', () => setQuestionType('past'));
+    countVocabBtn.addEventListener('click', () => setQuestionType('vocab'));
+
+    // 新增：子類型按鈕的事件監聽器
+    document.getElementById('subtype-reading').addEventListener('click', () => setSubQuestionType('reading'));
+    document.getElementById('subtype-writing').addEventListener('click', () => setSubQuestionType('writing'));
+    document.getElementById('subtype-vocabulary').addEventListener('click', () => setSubQuestionType('vocabulary'));
+    document.getElementById('subtype-synonym').addEventListener('click', () => setSubQuestionType('synonym'));
+    document.getElementById('subtype-grammar').addEventListener('click', () => setSubQuestionType('grammar'));
+    document.getElementById('subtype-reorder').addEventListener('click', () => setSubQuestionType('reorder'));
+    
+    prevBtn.addEventListener('click', prevQuestion);
+    nextBtn.addEventListener('click', nextQuestion);
+    submitBtn.addEventListener('click', submitQuiz);
+    backHomeBtn.addEventListener('click', backToHome);
+    
+    restartBtn.addEventListener('click', restartQuiz);
+    resultBackHomeBtn.addEventListener('click', backToHome);
+    
+    historyBackHomeBtn.addEventListener('click', backToHome);
+    clearHistoryBtn.addEventListener('click', clearHistory);
+}
 
         // ========== 測驗流程函數 ==========
 
@@ -1273,126 +1466,183 @@ function generateDefaultQuestion(question, index) {
             }, 2000);
         }
 
-        // ========== 題庫載入與更新 ==========
+// ========== 題庫載入與更新 ==========
 
-        function loadQuestionBanks() {
-            // 嘗試從外部JS文件載入題庫
-            const scriptTags = document.querySelectorAll('script[src]');
-            let questionBankLoaded = false;
-            let pastQuestionBankLoaded = false;
-            let vocabBankLoaded = false;
-            
-            // 檢查是否已經載入了外部題庫
-            scriptTags.forEach(script => {
-                if (script.src.includes('question_bank.js')) questionBankLoaded = true;
-                if (script.src.includes('pastQuestionBank.js')) pastQuestionBankLoaded = true;
-                if (script.src.includes('vocab_bank.js')) vocabBankLoaded = true;
-            });
-            
-            // 如果沒有載入外部題庫，嘗試動態載入
-            if (!questionBankLoaded) {
-                loadScript('question_bank.js', () => {
-                    if (typeof window.questionBank !== 'undefined') {
-                        questionBank = window.questionBank;
-                        console.log('模擬N4考題題庫載入成功，題目數量:', questionBank.length);
-                    } else {
-                        console.error('無法載入模擬N4考題題庫');
-                    }
-                });
+function loadQuestionBanks() {
+    console.log('開始載入題庫...');
+    
+    // 合併所有模擬考題庫（這些是直接透過 <script> 載入的）
+    try {
+        questionBank = [];
+        
+        // 逐一檢查並合併6個分類題庫
+        const typeQuestions = [
+            { name: 'reading', var: readingQuestions },
+            { name: 'writing', var: writingQuestions },
+            { name: 'vocabulary', var: vocabularyQuestions },
+            { name: 'synonym', var: synonymQuestions },
+            { name: 'grammar', var: grammarQuestions },
+            { name: 'reorder', var: reorderQuestions }
+        ];
+        
+        typeQuestions.forEach(type => {
+            if (typeof type.var !== 'undefined') {
+                questionBank = questionBank.concat(type.var);
+                console.log(`✅ ${type.name} 題庫載入成功: ${type.var.length} 題`);
             } else {
-                // 如果已經載入，直接使用全域變數
-                if (typeof window.questionBank !== 'undefined') {
-                    questionBank = window.questionBank;
-                    console.log('模擬N4考題題庫載入成功，題目數量:', questionBank.length);
-                }
+                console.warn(`⚠️ ${type.name} 題庫未載入`);
             }
-            
-            if (!pastQuestionBankLoaded) {
-                loadScript('pastQuestionBank.js', () => {
-                    if (typeof window.pastQuestionBank !== 'undefined') {
-                        pastQuestionBank = window.pastQuestionBank;
-                        console.log('歷屆考題題庫載入成功，題目數量:', pastQuestionBank.length);
-                    } else {
-                        console.error('無法載入歷屆考題題庫');
-                    }
-                });
+        });
+        
+        console.log('模擬N4考題題庫合併完成，總題目數量:', questionBank.length);
+        
+    } catch (error) {
+        console.error('載入模擬考題庫時發生錯誤:', error);
+        questionBank = [];
+    }
+    
+// 載入歷屆考題（檢查所有可能的變數名稱）
+if (typeof window.pastQuestionBank !== 'undefined' && window.pastQuestionBank.length > 0) {
+    pastQuestionBank = window.pastQuestionBank;
+    console.log('✅ 歷屆考題題庫載入成功 (window)，題目數量:', pastQuestionBank.length);
+} else if (typeof pastQuestionBank !== 'undefined' && pastQuestionBank.length > 0) {
+    // 如果直接有全域變數
+    console.log('✅ 歷屆考題題庫載入成功 (global)，題目數量:', pastQuestionBank.length);
+} else {
+    console.warn('⚠️ 歷屆考題題庫未載入或為空，嘗試動態載入...');
+    pastQuestionBank = [];
+    
+    // 嘗試動態載入
+    loadScript('pastQuestionBank.js', () => {
+        // 載入後再次檢查所有可能的變數名稱
+        setTimeout(() => {
+            if (typeof window.pastQuestionBank !== 'undefined' && window.pastQuestionBank.length > 0) {
+                pastQuestionBank = window.pastQuestionBank;
+                console.log('✅ 歷屆考題題庫動態載入成功 (window)，題目數量:', pastQuestionBank.length);
+            } else if (typeof pastQuestionBank !== 'undefined' && pastQuestionBank.length > 0) {
+                console.log('✅ 歷屆考題題庫動態載入成功 (global)，題目數量:', pastQuestionBank.length);
             } else {
-                if (typeof window.pastQuestionBank !== 'undefined') {
-                    pastQuestionBank = window.pastQuestionBank;
-                    console.log('歷屆考題題庫載入成功，題目數量:', pastQuestionBank.length);
-                }
+                console.error('❌ 歷屆考題題庫動態載入失敗或為空陣列');
             }
-            
-            if (!vocabBankLoaded) {
-                loadScript('vocab_bank.js', () => {
-                    if (typeof window.vocabBank !== 'undefined') {
-                        vocabBank = window.vocabBank;
-                        console.log('單字測驗題庫載入成功，題目數量:', vocabBank.length);
-                    } else {
-                        console.error('無法載入單字測驗題庫');
-                    }
-                });
+            updateQuestionCountLimit(); // 更新題目數量限制
+        }, 100);
+    });
+}
+
+// 載入單字測驗題庫（檢查所有可能的變數名稱）
+if (typeof window.vocabBank !== 'undefined' && window.vocabBank.length > 0) {
+    vocabBank = window.vocabBank;
+    console.log('✅ 單字測驗題庫載入成功 (window)，題目數量:', vocabBank.length);
+} else if (typeof vocabBank !== 'undefined' && vocabBank.length > 0) {
+    // 如果直接有全域變數
+    console.log('✅ 單字測驗題庫載入成功 (global)，題目數量:', vocabBank.length);
+} else {
+    console.warn('⚠️ 單字測驗題庫未載入或為空，嘗試動態載入...');
+    vocabBank = [];
+    
+    // 嘗試動態載入
+    loadScript('vocab_bank.js', () => {
+        // 載入後再次檢查所有可能的變數名稱
+        setTimeout(() => {
+            if (typeof window.vocabBank !== 'undefined' && window.vocabBank.length > 0) {
+                vocabBank = window.vocabBank;
+                console.log('✅ 單字測驗題庫動態載入成功 (window)，題目數量:', vocabBank.length);
+            } else if (typeof vocabBank !== 'undefined' && vocabBank.length > 0) {
+                console.log('✅ 單字測驗題庫動態載入成功 (global)，題目數量:', vocabBank.length);
             } else {
-                if (typeof window.vocabBank !== 'undefined') {
-                    vocabBank = window.vocabBank;
-                    console.log('單字測驗題庫載入成功，題目數量:', vocabBank.length);
-                }
+                console.error('❌ 單字測驗題庫動態載入失敗或為空陣列');
             }
-            
-            // 檢查是否有題庫載入失敗
-            setTimeout(() => {
-                if (questionBank.length === 0 || pastQuestionBank.length === 0 || vocabBank.length === 0) {
-                    console.warn('部分題庫載入失敗，請檢查題庫文件是否存在');
-                }
-            }, 1000);
+            updateQuestionCountLimit(); // 更新題目數量限制
+        }, 100);
+    });
+}
+ 
+    // 檢查最終題庫狀態
+    setTimeout(() => {
+        console.log('=== 最終題庫載入狀態 ===');
+        console.log('模擬考題庫:', questionBank.length, '題');
+        console.log('歷屆考題庫:', pastQuestionBank.length, '題');
+        console.log('單字測驗題庫:', vocabBank.length, '題');
+        
+        if (questionBank.length === 0) {
+            console.error('❌ 模擬考題庫載入失敗，請檢查6個分類題庫檔案');
         }
+    }, 1000);
+}
 
-        function loadScript(src, callback) {
-            const script = document.createElement('script');
-            script.src = src;
-            script.onload = callback;
-            script.onerror = () => {
-                console.error(`載入題庫失敗: ${src}`);
-                callback();
-            };
-            document.head.appendChild(script);
-        }
+function loadScript(src, callback) {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = callback;
+    script.onerror = () => {
+        console.error(`❌ 載入題庫失敗: ${src}`);
+        callback();
+    };
+    document.head.appendChild(script);
+}
 
-        function checkForUpdates() {
-            // 模擬檢查更新
-            const lastUpdate = localStorage.getItem('lastUpdateCheck');
-            const now = new Date().getTime();
-            
-            if (lastUpdate && (now - parseInt(lastUpdate)) < 60000) {
-                showUpdateNotification('已是最新版本');
-                return;
+function checkForUpdates() {
+    // 模擬檢查更新
+    const lastUpdate = localStorage.getItem('lastUpdateCheck');
+    const now = new Date().getTime();
+    
+    if (lastUpdate && (now - parseInt(lastUpdate)) < 60000) {
+        showUpdateNotification('已是最新版本');
+        return;
+    }
+    
+    showUpdateNotification('檢查更新中...');
+    
+    // 模擬更新過程
+    setTimeout(() => {
+        localStorage.setItem('lastUpdateCheck', now.toString());
+        showUpdateNotification('已是最新版本');
+    }, 1500);
+}
+
+
+
+
+
+// ========== 初始化應用 ==========
+
+function initApp() {
+    console.log('初始化測驗系統...');
+    
+    // 初始化事件監聽器
+    initEventListeners();
+    
+    // 設置預設測驗類型
+    setQuestionType('simulate');
+    
+    // 延遲載入題庫，確保所有script都已載入
+    setTimeout(() => {
+        loadQuestionBanks();
+        
+        // 再次檢查題庫狀態
+        setTimeout(() => {
+            if (questionBank.length > 0) {
+                console.log('✅ 題庫合併成功，總題數:', questionBank.length);
+                // 更新題目數量限制
+                updateQuestionCountLimit();
+            } else {
+                console.error('❌ 題庫合併失敗，請檢查：');
+                console.error('1. 6個題庫檔案是否存在');
+                console.error('2. 題庫檔案中的變數名稱是否正確');
+                console.error('3. 檔案路徑是否正確');
+                
+                // 顯示錯誤訊息給使用者
+                const errorMsg = document.createElement('div');
+                errorMsg.className = 'error-message';
+                errorMsg.innerHTML = '題庫載入失敗，請檢查題庫檔案是否存在且格式正確';
+                document.querySelector('.container').insertBefore(errorMsg, document.querySelector('h1').nextSibling);
             }
-            
-            showUpdateNotification('檢查更新中...');
-            
-            // 模擬更新過程
-            setTimeout(() => {
-                localStorage.setItem('lastUpdateCheck', now.toString());
-                showUpdateNotification('已是最新版本');
-            }, 1500);
-        }
-
-        // ========== 初始化應用 ==========
-
-        function initApp() {
-            console.log('初始化測驗系統...');
-            
-            // 載入題庫
-            loadQuestionBanks();
-            
-            // 初始化事件監聽器
-            initEventListeners();
-            
-            // 設置預設測驗類型
-            setQuestionType('simulate');
-            
-            console.log('測驗系統初始化完成');
-        }
+        }, 1000);
+        
+    }, 100);
+    
+    console.log('測驗系統初始化完成');
+}
 
         // 當頁面載入完成後初始化應用
         document.addEventListener('DOMContentLoaded', initApp);
