@@ -879,6 +879,38 @@
             return generateQuestionHTML(question, index, sentenceContent);
         }
 
+
+function generateReadingQuestion(question, index) {
+    const kanjiContent = question.kanji ? `<div class="kanji">${question.kanji}</div>` : '';
+    return generateQuestionHTML(question, index, kanjiContent);
+}
+
+function generateWritingQuestion(question, index) {
+    const kanaContent = question.kana ? `<div class="kanji">${question.kana}</div>` : '';
+    return generateQuestionHTML(question, index, kanaContent);
+}
+
+function generateVocabularyQuestion(question, index) {
+    const sentenceContent = question.sentence ? `<div class="question-text">${question.sentence}</div>` : '';
+    return generateQuestionHTML(question, index, sentenceContent);
+}
+
+function generateSynonymQuestion(question, index) {
+    const sentenceContent = question.sentence ? `<div class="question-text">${question.sentence}</div>` : '';
+    return generateQuestionHTML(question, index, sentenceContent);
+}
+
+function generateGrammarQuestion(question, index) {
+    const sentenceContent = question.sentence ? `<div class="question-text">${question.sentence}</div>` : '';
+    return generateQuestionHTML(question, index, sentenceContent);
+}
+
+function generateDefaultQuestion(question, index) {
+    return generateQuestionHTML(question, index, '');
+}
+
+
+
         function generateQuestionHTML(question, index, extraContent) {
             let optionsHTML = '';
             const yearInfo = question.year && question.season ? 
