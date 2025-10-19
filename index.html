@@ -415,12 +415,35 @@
     button, .option {
         touch-action: manipulation;
     }
+    /* 新增重組句子題型的樣式 */
+    .sentence-with-gap {
+        font-size: 20px;
+        margin: 15px 0;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        text-align: center;
+        border: 2px dashed #3498db;
+        line-height: 1.8;
+    }
+    .gap {
+        color: #e74c3c;
+        font-weight: bold;
+        background-color: #fff;
+        padding: 4px 12px;
+        border-radius: 6px;
+        margin: 0 8px;
+        border: 2px solid #e74c3c;
+        display: inline-block;
+        min-width: 60px;
+        text-align: center;
+    }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="update-indicator" id="update-indicator"></div>
-        <h1>日文N4單字與文法測驗系統</h1>
+        <h1>日文測驗系統</h1>
         
         <!-- 首頁 -->
         <div id="home-screen" class="home-screen active">
@@ -821,6 +844,9 @@
                 case "grammar":
                     questionHTML = generateGrammarQuestion(question, index);
                     break;
+                case "reorder":  // 新增reorder類型的處理
+                    questionHTML = generateReorderQuestion(question, index);
+                    break;
                 default:
                     questionHTML = generateDefaultQuestion(question, index);
             }
@@ -838,39 +864,31 @@
             quizContainer.innerHTML = questionHTML;
         }
 
-        function generateReadingQuestion(question, index) {
-            const kanjiContent = question.kanji ? `<div class="kanji">${question.kanji}</div>` : '';
-            return generateQuestionHTML(question, index, kanjiContent);
-        }
-
-        function generateWritingQuestion(question, index) {
-            const kanaContent = question.kana ? `<div class="kanji">${question.kana}</div>` : '';
-            return generateQuestionHTML(question, index, kanaContent);
-        }
-
-        function generateVocabularyQuestion(question, index) {
-            const sentenceContent = question.sentence ? `<div class="question-text">${question.sentence}</div>` : '';
+        function generateReorderQuestion(question, index) {
+            // 如果有sentence屬性，顯示完整的句子
+            let sentenceContent = '';
+            if (question.sentence) {
+                // 使用正規表達式替換所有的 ★
+                const formattedSentence = question.sentence.replace(/★/g, '<span class="gap">★</span>');
+                sentenceContent = `<div class="sentence-with-gap">${formattedSentence}</div>`;
+            } else {
+                // 如果沒有sentence，顯示錯誤訊息
+                sentenceContent = `<div class="error-message">題目缺少句子內容</div>`;
+            }
+            
             return generateQuestionHTML(question, index, sentenceContent);
-        }
-
-        function generateSynonymQuestion(question, index) {
-            const sentenceContent = question.sentence ? `<div class="question-text">${question.sentence}</div>` : '';
-            return generateQuestionHTML(question, index, sentenceContent);
-        }
-
-        function generateGrammarQuestion(question, index) {
-            const sentenceContent = question.sentence ? `<div class="question-text">${question.sentence}</div>` : '';
-            return generateQuestionHTML(question, index, sentenceContent);
-        }
-
-        function generateDefaultQuestion(question, index) {
-            return generateQuestionHTML(question, index, '');
         }
 
         function generateQuestionHTML(question, index, extraContent) {
             let optionsHTML = '';
             const yearInfo = question.year && question.season ? 
                 `<div style="font-size: 14px; color: #666; margin-bottom: 10px;">${question.year}年 ${question.season}考題</div>` : '';
+
+            // 對於reorder類型的題目，顯示不同的提示文字
+            let questionText = question.question || '題目內容缺失';
+            if (question.type === "reorder") {
+                questionText = "請選擇最適合填入 ★ 位置的選項：";
+            }
             
             question.options.forEach((option, i) => {
                 const isSelected = userAnswers[index] === i;
@@ -895,7 +913,7 @@
                 <div class="question">
                     <div class="question-number">問題 ${index + 1}</div>
                     ${yearInfo}
-                    <div class="question-text">${question.question || '題目內容缺失'}</div>
+                    <div class="question-text">${questionText}</div>
                     ${extraContent}
                     <div class="options">
                         ${optionsHTML}
@@ -903,6 +921,7 @@
                 </div>
             `;
         }
+
 
         function generateOptionExplanations(question) {
             let explanationsHTML = '';
@@ -997,7 +1016,8 @@
                 writing: 0,
                 vocabulary: 0,
                 synonym: 0,
-                grammar: 0
+                grammar: 0,
+                reorder: 0  // 新增 reorder 類型
             };
             
             wrongQuestions.forEach(questionId => {
@@ -1021,6 +1041,7 @@
                         <li>詞語填空錯誤: ${errorTypes.vocabulary}</li>
                         <li>近義詞替換錯誤: ${errorTypes.synonym}</li>
                         <li>文法選擇錯誤: ${errorTypes.grammar}</li>
+                        <li>句子重組錯誤: ${errorTypes.reorder}</li> // 新增這一行
                     </ul>
                 </div>
             `;
