@@ -360,7 +360,7 @@ const readingQuestions = [
         {text: "ざんねん", explanation: "正確答案：残念（ざんねん）意思是遺憾、可惜。\n中文翻譯：遺憾、可惜"},
         {text: "ざんね", explanation: "錯誤：缺少了撥音，正確讀音是「ざんねん」。\n中文翻譯：遺憾、可惜"},
         {text: "さんねん", explanation: "錯誤：「残」的讀音是「ざん」，不是「さん」。\n中文翻譯：遺憾、可惜"},
-        {text: "ざんねん", explanation: "錯誤：與正確答案相同，但排版不同。\n中文翻譯：遺憾、可惜"}
+        {text: "ざんねんん", explanation: "錯誤：多餘的撥音，正確讀音是「ざんねん」。\n中文翻譯：遺憾、可惜"}
     ],
     correctAnswer: 0
 },
@@ -488,9 +488,9 @@ const readingQuestions = [
     kanji: "金",
     options: [
         {text: "きん", explanation: "正確答案：金（きん）意思是金錢、黃金。\n中文翻譯：金錢、黃金"},
-        {text: "かね", explanation: "錯誤：かね（金）意思是錢，但通常用假名。\n中文翻譯：金錢、黃金"},
+        {text: "きんい", explanation: "錯誤：多餘的「い」，正確讀音是「きん」。\n中文翻譯：金錢、黃金"},
         {text: "ぎん", explanation: "錯誤：ぎん（銀）意思是銀。\n中文翻譯：金錢、黃金"},
-        {text: "こがね", explanation: "錯誤：こがね（黄金）意思是黃金，但較少用。\n中文翻譯：金錢、黃金"}
+        {text: "こん", explanation: "錯誤：讀音錯誤。\n中文翻譯：金錢、黃金"}
     ],
     correctAnswer: 0
 },
@@ -563,12 +563,12 @@ const readingQuestions = [
     id: 226,
     type: "reading",
     question: "次の漢字の読み方を選びなさい",
-    kanji: "川",
+    kanji: "湖",
     options: [
-        {text: "かわ", explanation: "正確答案：川（かわ）意思是河流。\n中文翻譯：河流"},
-        {text: "がわ", explanation: "錯誤：濁音錯誤。\n中文翻譯：河流"},
-        {text: "せん", explanation: "錯誤：這是音讀。\n中文翻譯：河流"},
-        {text: "かん", explanation: "錯誤：讀音錯誤。\n中文翻譯：河流"}
+        {text: "みずうみ", explanation: "正確答案：湖（みずうみ）意思是湖泊。\n中文翻譯：湖泊"},
+        {text: "こ", explanation: "錯誤：這是音讀，但「湖」單獨時通常用訓讀。\n中文翻譯：湖泊"},
+        {text: "みずみ", explanation: "錯誤：缺少長音，正確讀音是「みずうみ」。\n中文翻譯：湖泊"},
+        {text: "みづうみ", explanation: "錯誤：「水」的讀音是「みず」，不是「みづ」。\n中文翻譯：湖泊"}
     ],
     correctAnswer: 0
 },
@@ -576,12 +576,12 @@ const readingQuestions = [
     id: 317,
     type: "reading",
     question: "次の漢字の読み方を選びなさい",
-    kanji: "駐車場",
+    kanji: "喫茶店",
     options: [
-        {text: "ちゅうしゃじょう", explanation: "正確答案：駐車場（ちゅうしゃじょう）意思是停車場。\n中文翻譯：停車場"},
-        {text: "ちゅうしゃば", explanation: "錯誤：「場」的讀音錯誤。\n中文翻譯：停車場"},
-        {text: "ちゅうくるまじょう", explanation: "錯誤：讀音不存在。\n中文翻譯：停車場"},
-        {text: "とめしゃじょう", explanation: "錯誤：讀音不存在。\n中文翻譯：停車場"}
+        {text: "きっさてん", explanation: "正確答案：喫茶店（きっさてん）意思是咖啡廳。\n中文翻譯：咖啡廳"},
+        {text: "きさてん", explanation: "錯誤：缺少促音，正確讀音是「きっさてん」。\n中文翻譯：咖啡廳"},
+        {text: "きっさでん", explanation: "錯誤：「店」的讀音是「てん」，不是「でん」。\n中文翻譯：咖啡廳"},
+        {text: "きつさてん", explanation: "錯誤：促音位置錯誤，正確讀音是「きっさてん」。\n中文翻譯：咖啡廳"}
     ],
     correctAnswer: 0
 },
@@ -589,12 +589,12 @@ const readingQuestions = [
     id: 318,
     type: "reading",
     question: "次の漢字の読み方を選びなさい",
-    kanji: "準備",
+    kanji: "復習",
     options: [
-        {text: "じゅんび", explanation: "正確答案：準備（じゅんび）意思是準備。\n中文翻譯：準備"},
-        {text: "じゅび", explanation: "錯誤：缺少撥音。\n中文翻譯：準備"},
-        {text: "じゅうび", explanation: "錯誤：讀音不存在。\n中文翻譯：準備"},
-        {text: "じゅんぴ", explanation: "錯誤：「備」的讀音錯誤。\n中文翻譯：準備"}
+        {text: "ふくしゅう", explanation: "正確答案：復習（ふくしゅう）意思是複習。\n中文翻譯：複習"},
+        {text: "ふくしゅ", explanation: "錯誤：缺少長音，正確讀音是「ふくしゅう」。\n中文翻譯：複習"},
+        {text: "ふうくしゅう", explanation: "錯誤：多餘的長音，正確讀音是「ふくしゅう」。\n中文翻譯：複習"},
+        {text: "ふくじゅう", explanation: "錯誤：「習」的讀音是「しゅう」，不是「じゅう」。\n中文翻譯：複習"}
     ],
     correctAnswer: 0
 },
@@ -602,12 +602,12 @@ const readingQuestions = [
     id: 319,
     type: "reading",
     question: "次の漢字の読み方を選びなさい",
-    kanji: "旅行",
+    kanji: "観光",
     options: [
-        {text: "りょこう", explanation: "正確答案：旅行（りょこう）意思是旅行。\n中文翻譯：旅行"},
-        {text: "りょうこう", explanation: "錯誤：「旅」的讀音錯誤。\n中文翻譯：旅行"},
-        {text: "りょこ", explanation: "錯誤：缺少長音。\n中文翻譯：旅行"},
-        {text: "りこう", explanation: "錯誤：「旅」的讀音錯誤。\n中文翻譯：旅行"}
+        {text: "かんこう", explanation: "正確答案：観光（かんこう）意思是觀光。\n中文翻譯：觀光"},
+        {text: "かんこ", explanation: "錯誤：缺少長音，正確讀音是「かんこう」。\n中文翻譯：觀光"},
+        {text: "がんこう", explanation: "錯誤：「観」的讀音是「かん」，不是「がん」。\n中文翻譯：觀光"},
+        {text: "かんごう", explanation: "錯誤：「光」的讀音是「こう」，不是「ごう」。\n中文翻譯：觀光"}
     ],
     correctAnswer: 0
 },
@@ -615,12 +615,12 @@ const readingQuestions = [
     id: 320,
     type: "reading",
     question: "次の漢字の読み方を選びなさい",
-    kanji: "質問",
+    kanji: "回答",
     options: [
-        {text: "しつもん", explanation: "正確答案：質問（しつもん）意思是問題。\n中文翻譯：問題"},
-        {text: "しちもん", explanation: "錯誤：「質」的讀音錯誤。\n中文翻譯：問題"},
-        {text: "しつも", explanation: "錯誤：缺少撥音。\n中文翻譯：問題"},
-        {text: "しつもう", explanation: "錯誤：「問」的讀音錯誤。\n中文翻譯：問題"}
+        {text: "かいとう", explanation: "正確答案：回答（かいとう）意思是回答。\n中文翻譯：回答"},
+        {text: "かいと", explanation: "錯誤：缺少長音，正確讀音是「かいとう」。\n中文翻譯：回答"},
+        {text: "かえとう", explanation: "錯誤：「回」的讀音是「かい」，不是「かえ」。\n中文翻譯：回答"},
+        {text: "かいどう", explanation: "錯誤：「答」的讀音是「とう」，不是「どう」。\n中文翻譯：回答"}
     ],
     correctAnswer: 0
 },
@@ -628,12 +628,12 @@ const readingQuestions = [
     id: 321,
     type: "reading",
     question: "次の漢字の読み方を選びなさい",
-    kanji: "掃除",
+    kanji: "洗濯",
     options: [
-        {text: "そうじ", explanation: "正確答案：掃除（そうじ）意思是打掃。\n中文翻譯：打掃"},
-        {text: "そうじい", explanation: "錯誤：多餘長音。\n中文翻譯：打掃"},
-        {text: "そじ", explanation: "錯誤：缺少長音。\n中文翻譯：打掃"},
-        {text: "そうち", explanation: "錯誤：「除」的讀音錯誤。\n中文翻譯：打掃"}
+        {text: "せんたく", explanation: "正確答案：洗濯（せんたく）意思是洗衣服。\n中文翻譯：洗衣服"},
+        {text: "せんた", explanation: "錯誤：缺少「く」，正確讀音是「せんたく」。\n中文翻譯：洗衣服"},
+        {text: "せんだく", explanation: "錯誤：「濯」的讀音是「たく」，不是「だく」。\n中文翻譯：洗衣服"},
+        {text: "せんたっく", explanation: "錯誤：多餘的促音，正確讀音是「せんたく」。\n中文翻譯：洗衣服"}
     ],
     correctAnswer: 0
 },
@@ -774,7 +774,7 @@ const readingQuestions = [
         kanji: "集合",
         options: [
             {text: "しゅうごう", explanation: "正確答案：集合（しゅうごう）意思是集合、聚集。\n中文翻譯：集合、聚集"},
-            {text: "しゅうこう", explanation: "錯誤：「合」的讀音是「ごう」，不是「こう」。\n中文翻譯：集合、聚集"},
+            {text: "しゅうこ", explanation: "錯誤：「合」的讀音是「ごう」，不是「こう」。\n中文翻譯：集合、聚集"},
             {text: "しゅごう", explanation: "錯誤：缺少長音，正確讀音是「しゅうごう」。\n中文翻譯：集合、聚集"},
             {text: "しゅうご", explanation: "錯誤：缺少長音，正確讀音是「しゅうごう」。\n中文翻譯：集合、聚集"}
         ],
@@ -805,5 +805,135 @@ const readingQuestions = [
             {text: "むりょうう", explanation: "錯誤：多餘的長音，正確讀音是「むりょう」。\n中文翻譯：免費"}
         ],
         correctAnswer: 0
-    }
+    },
+{
+    id: 501,
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい",
+    kanji: "募集",
+    options: [
+        {text: "ぼしゅう", explanation: "正確答案：募集（ぼしゅう）意思是招募、徵求。\n中文翻譯：招募"},
+        {text: "ぼしゅ", explanation: "錯誤：缺少長音，正確讀音是「ぼしゅう」。\n中文翻譯：招募"},
+        {text: "ぼうしゅう", explanation: "錯誤：多餘的長音，正確讀音是「ぼしゅう」。\n中文翻譯：招募"},
+        {text: "ぼじゅう", explanation: "錯誤：「集」的讀音是「しゅう」，不是「じゅう」。\n中文翻譯：招募"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: 502,
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい",
+    kanji: "確認",
+    options: [
+        {text: "かくにん", explanation: "正確答案：確認（かくにん）意思是確認。\n中文翻譯：確認"},
+        {text: "かくに", explanation: "錯誤：缺少撥音，正確讀音是「かくにん」。\n中文翻譯：確認"},
+        {text: "がくにん", explanation: "錯誤：「確」的讀音是「かく」，不是「がく」。\n中文翻譯：確認"},
+        {text: "かくにんん", explanation: "錯誤：多餘的撥音，正確讀音是「かくにん」。\n中文翻譯：確認"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: 503,
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい",
+    kanji: "規則",
+    options: [
+        {text: "きそく", explanation: "正確答案：規則（きそく）意思是規則。\n中文翻譯：規則"},
+        {text: "きそ", explanation: "錯誤：缺少「く」，正確讀音是「きそく」。\n中文翻譯：規則"},
+        {text: "ぎそく", explanation: "錯誤：「規」的讀音是「き」，不是「ぎ」。\n中文翻譯：規則"},
+        {text: "きぞく", explanation: "錯誤：「則」的讀音是「そく」，不是「ぞく」。\n中文翻譯：規則"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: 504,
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい",
+    kanji: "弁当",
+    options: [
+        {text: "べんとう", explanation: "正確答案：弁当（べんとう）意思是便當。\n中文翻譯：便當"},
+        {text: "べんと", explanation: "錯誤：缺少長音，正確讀音是「べんとう」。\n中文翻譯：便當"},
+        {text: "べんどう", explanation: "錯誤：「当」的讀音是「とう」，不是「どう」。\n中文翻譯：便當"},
+        {text: "ぺんとう", explanation: "錯誤：「弁」的讀音是「べん」，不是「ぺん」。\n中文翻譯：便當"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: 505,
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい",
+    kanji: "参考",
+    options: [
+        {text: "さんこう", explanation: "正確答案：参考（さんこう）意思是參考。\n中文翻譯：參考"},
+        {text: "さんこ", explanation: "錯誤：缺少長音，正確讀音是「さんこう」。\n中文翻譯：參考"},
+        {text: "ざんこう", explanation: "錯誤：「参」的讀音是「さん」，不是「ざん」。\n中文翻譯：參考"},
+        {text: "さんごう", explanation: "錯誤：「考」的讀音是「こう」，不是「ごう」。\n中文翻譯：參考"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: 506,
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい",
+    kanji: "都合",
+    options: [
+        {text: "つごう", explanation: "正確答案：都合（つごう）意思是方便、情況。\n中文翻譯：方便、情況"},
+        {text: "つご", explanation: "錯誤：缺少長音，正確讀音是「つごう」。\n中文翻譯：方便、情況"},
+        {text: "つこう", explanation: "錯誤：「合」的讀音是「ごう」，不是「こう」。\n中文翻譯：方便、情況"},
+        {text: "づごう", explanation: "錯誤：「都」的讀音是「つ」，不是「づ」。\n中文翻譯：方便、情況"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: 507,
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい",
+    kanji: "連絡",
+    options: [
+        {text: "れんらく", explanation: "正確答案：連絡（れんらく）意思是聯絡。\n中文翻譯：聯絡"},
+        {text: "れんら", explanation: "錯誤：缺少「く」，正確讀音是「れんらく」。\n中文翻譯：聯絡"},
+        {text: "れんらっく", explanation: "錯誤：多餘的促音，正確讀音是「れんらく」。\n中文翻譯：聯絡"},
+        {text: "れんろく", explanation: "錯誤：「絡」的讀音是「らく」，不是「ろく」。\n中文翻譯：聯絡"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: 508,
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい",
+    kanji: "案内",
+    options: [
+        {text: "あんない", explanation: "正確答案：案内（あんない）意思是引導、介紹。\n中文翻譯：引導、介紹"},
+        {text: "あない", explanation: "錯誤：缺少撥音，正確讀音是「あんない」。\n中文翻譯：引導、介紹"},
+        {text: "あんないい", explanation: "錯誤：多餘的長音，正確讀音是「あんない」。\n中文翻譯：引導、介紹"},
+        {text: "あんねい", explanation: "錯誤：「内」的讀音是「ない」，不是「ねい」。\n中文翻譯：引導、介紹"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: 509,
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい",
+    kanji: "利用",
+    options: [
+        {text: "りよう", explanation: "正確答案：利用（りよう）意思是利用。\n中文翻譯：利用"},
+        {text: "りよ", explanation: "錯誤：缺少長音，正確讀音是「りよう」。\n中文翻譯：利用"},
+        {text: "りゆう", explanation: "錯誤：「用」的讀音是「よう」，不是「ゆう」。\n中文翻譯：利用"},
+        {text: "りょう", explanation: "錯誤：「利」的讀音是「り」，不是「りょう」。\n中文翻譯：利用"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: 510,
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい",
+    kanji: "変更",
+    options: [
+        {text: "へんこう", explanation: "正確答案：変更（へんこう）意思是變更。\n中文翻譯：變更"},
+        {text: "へんこ", explanation: "錯誤：缺少長音，正確讀音是「へんこう」。\n中文翻譯：變更"},
+        {text: "ぺんこう", explanation: "錯誤：「変」的讀音是「へん」，不是「ぺん」。\n中文翻譯：變更"},
+        {text: "へんごう", explanation: "錯誤：「更」的讀音是「こう」，不是「ごう」。\n中文翻譯：變更"}
+    ],
+    correctAnswer: 0
+}
 ];  // ← 這是 readingQuestions 陣列的結束
