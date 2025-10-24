@@ -1,1302 +1,1302 @@
 // 日文單字題庫
-vocabBank = [
-{
-id: "V0001",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "自分",
-options: [
-{text: "じぶん", explanation: "正確答案：「自」音讀為「じ」，「分」音讀為「ぶん」，合起來是「じぶん」。\n中文翻譯：自己"},
-{text: "じぷん", explanation: "錯誤：「分」的讀音是「ぶん」，不是「ぷん」。\n中文翻譯：自己"},
-{text: "じいぶん", explanation: "錯誤：「自」的讀音是「じ」，沒有長音。「分」的讀音是「ぶん」。\n中文翻譯：自己"},
-{text: "しぶん", explanation: "錯誤：「自」在此不讀「し」。\n中文翻譯：自己"}
-],
-correctAnswer: 0
-},
-{
-id: "V0002",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "おきます",
-options: [
-{text: "起きます", explanation: "正確答案：「おきます」在此語境下對應的漢字是「起きます」，意思是起床。\n中文翻譯：起床"},
-{text: "置きます", explanation: "錯誤：「置きます」意思是放置，雖然讀音相同，但語意不符。\n中文翻譯：放置"},
-{text: "描きます", explanation: "錯誤：「描きます」讀音是「えがきます」或「かきます」，意思是描繪。\n中文翻譯：描繪"},
-{text: "奥きます", explanation: "錯誤：此漢字組合不正確，「奥」讀音是「おく」。\n中文翻譯：深處"}
-],
-correctAnswer: 0
-},
-{
-id: "V0003",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "学生",
-options: [
-{text: "がくせい", explanation: "正確答案：「学」音讀為「がく」，「生」音讀為「せい」。\n中文翻譯：學生"},
-{text: "がっせい", explanation: "錯誤：「学」的讀音是「がく」，不應促音化。\n中文翻譯：學生"},
-{text: "がくしょう", explanation: "錯誤：「生」的讀音是「せい」，不是「しょう」。\n中文翻譯：學生"},
-{text: "かくせい", explanation: "錯誤：「学」的讀音是「がく」，不是「かく」。\n中文翻譯：學生"}
-],
-correctAnswer: 0
-},
-{
-id: "V0004",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "にほん",
-options: [
-{text: "日本", explanation: "正確答案：「にほん」是「日本」的標準讀音。\n中文翻譯：日本"},
-{text: "二本", explanation: "錯誤：「二本」讀作「にほん」，意思是兩支，但漢字不同。\n中文翻譯：兩支"},
-{text: "仁本", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "爾本", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0005",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "先生",
-options: [
-{text: "せんせい", explanation: "正確答案：「先」音讀為「せん」，「生」音讀為「せい」。\n中文翻譯：老師"},
-{text: "せんせ", explanation: "錯誤：漏掉了「い」的音，是不正式的簡稱。\n中文翻譯：老師（簡稱）"},
-{text: "せいせん", explanation: "錯誤：順序完全顛倒。\n中文翻譯：老師"},
-{text: "せんせん", explanation: "錯誤：「生」的讀音是「せい」，不是「せん」。\n中文翻譯：老師"}
-],
-correctAnswer: 0
-},
-{
-id: "V0006",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "しごと",
-options: [
-{text: "仕事", explanation: "正確答案：「しごと」對應的漢字是「仕事」，意思是工作。\n中文翻譯：工作"},
-{text: "私事", explanation: "錯誤：「私事」讀作「しじ」，意思是私事。\n中文翻譯：私事"},
-{text: "指示", explanation: "錯誤：「指示」讀作「しじ」，意思是指示。\n中文翻譯：指示"},
-{text: "死後", explanation: "錯誤：「死後」讀作「しご」，意思是死後。\n中文翻譯：死後"}
-],
-correctAnswer: 0
-},
-{
-id: "V0007",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "映画",
-options: [
-{text: "えいが", explanation: "正確答案：「映」音讀為「えい」，「画」音讀為「が」。\n中文翻譯：電影"},
-{text: "えが", explanation: "錯誤：「映」的讀音是「えい」，不應省略長音。\n中文翻譯：電影"},
-{text: "ようが", explanation: "錯誤：「映」的讀音是「えい」，不是「よう」。\n中文翻譯：電影"},
-{text: "えいがく", explanation: "錯誤：「画」的讀音是「が」，不是「がく」。\n中文翻譯：電影"}
-],
-correctAnswer: 0
-},
-{
-id: "V0008",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "でんわ",
-options: [
-{text: "電話", explanation: "正確答案：「でんわ」對應的漢字是「電話」。\n中文翻譯：電話"},
-{text: "伝話", explanation: "錯誤：「伝話」不是標準詞彙。\n中文翻譯：傳話"},
-{text: "電話", explanation: "錯誤：此為中文簡體字，日文正字為「電話」。\n中文翻譯：電話"},
-{text: "殿和", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0009",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "音楽",
-options: [
-{text: "おんがく", explanation: "正確答案：「音」音讀為「おん」，「楽」音讀為「がく」。\n中文翻譯：音樂"},
-{text: "おんが", explanation: "錯誤：「楽」的讀音是「がく」，不應省略「く」。\n中文翻譯：音樂"},
-{text: "おうがく", explanation: "錯誤：「音」的讀音是「おん」，不是「おう」。\n中文翻譯：音樂"},
-{text: "おんかく", explanation: "錯誤：「楽」的讀音是「がく」，不是「かく」。\n中文翻譯：音樂"}
-],
-correctAnswer: 0
-},
-{
-id: "V0010",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "ともだち",
-options: [
-{text: "友達", explanation: "正確答案：「ともだち」最常見的漢字表記是「友達」。\n中文翻譯：朋友"},
-{text: "友だち", explanation: "錯誤：這是混合表記，雖然常用，但題目要求選擇「漢字」。\n中文翻譯：朋友"},
-{text: "供達", explanation: "錯誤：「供」讀作「とも」但意思不同，多指隨從。\n中文翻譯：隨從們"},
-{text: "共達", explanation: "錯誤：此漢字組合不正確。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0011",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "勉強",
-options: [
-{text: "べんきょう", explanation: "正確答案：「勉」音讀為「べん」，「強」音讀為「きょう」。\n中文翻譯：學習；用功"},
-{text: "べんきょ", explanation: "錯誤：「強」的讀音是「きょう」，不應省略長音。\n中文翻譯：學習"},
-{text: "べんこう", explanation: "錯誤：「強」的讀音是「きょう」，不是「こう」。\n中文翻譯：學習"},
-{text: "めんきょう", explanation: "錯誤：「勉」的讀音是「べん」，不是「めん」。\n中文翻譯：學習"}
-],
-correctAnswer: 0
-},
-{
-id: "V0012",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "りょこう",
-options: [
-{text: "旅行", explanation: "正確答案：「りょこう」對應的漢字是「旅行」。\n中文翻譯：旅行"},
-{text: "旅交", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "慮行", explanation: "錯誤：「慮」讀作「りょ」，但意思為顧慮，不適用。\n中文翻譯：顧慮之行"},
-{text: "呂行", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0013",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "料理",
-options: [
-{text: "りょうり", explanation: "正確答案：「料」音讀為「りょう」，「理」音讀為「り」。\n中文翻譯：料理；菜餚"},
-{text: "りょり", explanation: "錯誤：「料」的讀音是「りょう」，不應省略長音。\n中文翻譯：料理"},
-{text: "りょうりい", explanation: "錯誤：多了一個「い」的音。\n中文翻譯：料理"},
-{text: "りょりょう", explanation: "錯誤：讀音完全錯誤。\n中文翻譯：料理"}
-],
-correctAnswer: 0
-},
-{
-id: "V0014",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "しゅくだい",
-options: [
-{text: "宿題", explanation: "正確答案：「しゅくだい」對應的漢字是「宿題」。\n中文翻譯：作業；功課"},
-{text: "宿題", explanation: "錯誤：此為中文簡體字，日文正字為「宿題」。\n中文翻譯：作業"},
-{text: "縮題", explanation: "錯誤：「縮」讀作「しゅく」，但意思為縮小，不適用。\n中文翻譯：縮小的題目"},
-{text: "淑題", explanation: "錯誤：「淑」讀作「しゅく」，但意思為賢淑，不適用。\n中文翻譯：賢淑的題目"}
-],
-correctAnswer: 0
-},
-{
-id: "V0015",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "質問",
-options: [
-{text: "しつもん", explanation: "正確答案：「質」音讀為「しつ」，「問」音讀為「もん」。\n中文翻譯：問題；疑問"},
-{text: "しちもん", explanation: "錯誤：「質」在此讀音是「しつ」，不是「しち」。\n中文翻譯：問題"},
-{text: "しつも", explanation: "錯誤：「問」的讀音是「もん」，不應省略「ん」。\n中文翻譯：問題"},
-{text: "しつもう", explanation: "錯誤：「問」的讀音是「もん」，不是「もう」。\n中文翻譯：問題"}
-],
-correctAnswer: 0
-},
-{
-id: "V0016",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "きもち",
-options: [
-{text: "気持ち", explanation: "正確答案：「きもち」對應的漢字是「気持ち」，意思是心情；感覺。\n中文翻譯：心情；感覺"},
-{text: "着持ち", explanation: "錯誤：「着持ち」指穿著打扮，讀音雖可同，但語意不符。\n中文翻譯：穿著"},
-{text: "木持", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "機持ち", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0017",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "元気",
-options: [
-{text: "げんき", explanation: "正確答案：「元」音讀為「げん」，「気」音讀為「き」。\n中文翻譯：有精神；健康"},
-{text: "げんけ", explanation: "錯誤：「気」的讀音是「き」，不是「け」。\n中文翻譯：有精神"},
-{text: "がんき", explanation: "錯誤：「元」的讀音是「げん」，不是「がん」。\n中文翻譯：有精神"},
-{text: "げいき", explanation: "錯誤：「元」的讀音是「げん」，不是「げい」。\n中文翻譯：有精神"}
-],
-correctAnswer: 0
-},
-{
-id: "V0018",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "けんこう",
-options: [
-{text: "健康", explanation: "正確答案：「けんこう」對應的漢字是「健康」。\n中文翻譯：健康"},
-{text: "原稿", explanation: "錯誤：「原稿」讀作「げんこう」，意思是原稿。\n中文翻譯：原稿"},
-{text: "研究", explanation: "錯誤：「研究」讀作「けんきゅう」，意思是研究。\n中文翻譯：研究"},
-{text: "現行", explanation: "錯誤：「現行」讀作「げんこう」，意思是現行。\n中文翻譯：現行"}
-],
-correctAnswer: 0
-},
-{
-id: "V0019",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "卒業",
-options: [
-{text: "そつぎょう", explanation: "正確答案：「卒」音讀為「そつ」，「業」音讀為「ぎょう」。\n中文翻譯：畢業"},
-{text: "そつぎょ", explanation: "錯誤：「業」的讀音是「ぎょう」，不應省略長音。\n中文翻譯：畢業"},
-{text: "そっぎょう", explanation: "錯誤：「卒」的讀音是「そつ」，不應促音化。\n中文翻譯：畢業"},
-{text: "しゅつぎょう", explanation: "錯誤：「卒」的讀音是「そつ」，不是「しゅつ」。\n中文翻譯：畢業"}
-],
-correctAnswer: 0
-},
-{
-id: "V0020",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "ゆめ",
-options: [
-{text: "夢", explanation: "正確答案：「ゆめ」對應的漢字是「夢」。\n中文翻譯：夢；夢想"},
-{text: "弓", explanation: "錯誤：「弓」讀作「ゆみ」，意思是弓。\n中文翻譯：弓"},
-{text: "湯目", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "癒目", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0021",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "駐車場",
-options: [
-{text: "ちゅうしゃじょう", explanation: "正確答案：「駐」音讀為「ちゅう」，「車」音讀為「しゃ」，「場」音讀為「じょう」。\n中文翻譯：停車場"},
-{text: "ちゅうしゃば", explanation: "錯誤：「場」在此讀音是「じょう」，不是「ば」。\n中文翻譯：停車場"},
-{text: "ていしゃじょう", explanation: "錯誤：「駐」的讀音是「ちゅう」，不是「てい」。\n中文翻譯：停車場"},
-{text: "ちゅうくるまじょう", explanation: "錯誤：「車」的音讀是「しゃ」，不應使用訓讀「くるま」。\n中文翻譯：停車場"}
-],
-correctAnswer: 0
-},
-{
-id: "V0022",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "しんぱい",
-options: [
-{text: "心配", explanation: "正確答案：「しんぱい」對應的漢字是「心配」，意思是擔心。\n中文翻譯：擔心"},
-{text: "新配", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "親配", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "信配", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0023",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "準備",
-options: [
-{text: "じゅんび", explanation: "正確答案：「準」音讀為「じゅん」，「備」音讀為「び」。\n中文翻譯：準備"},
-{text: "じゅび", explanation: "錯誤：「準」的讀音是「じゅん」，不應省略「ん」。\n中文翻譯：準備"},
-{text: "じょうび", explanation: "錯誤：「準」的讀音是「じゅん」，不是「じょう」。\n中文翻譯：準備"},
-{text: "しゅんび", explanation: "錯誤：「準」的讀音是「じゅん」，不是「しゅん」。\n中文翻譯：準備"}
-],
-correctAnswer: 0
-},
-{
-id: "V0024",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "きんちょう",
-options: [
-{text: "緊張", explanation: "正確答案：「きんちょう」對應的漢字是「緊張」，意思是緊張。\n中文翻譯：緊張"},
-{text: "近調", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "金張", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "禁長", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0025",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "約束",
-options: [
-{text: "やくそく", explanation: "正確答案：「約」音讀為「やく」，「束」音讀為「そく」。\n中文翻譯：約定"},
-{text: "やくそ", explanation: "錯誤：「束」的讀音是「そく」，不應省略「く」。\n中文翻譯：約定"},
-{text: "やっそく", explanation: "錯誤：「約」的讀音是「やく」，不應促音化。\n中文翻譯：約定"},
-{text: "ようそく", explanation: "錯誤：「約」的讀音是「やく」，不是「よう」。\n中文翻譯：約定"}
-],
-correctAnswer: 0
-},
-{
-id: "V0026",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "ふべん",
-options: [
-{text: "不便", explanation: "正確答案：「ふべん」對應的漢字是「不便」，意思是不方便。\n中文翻譯：不方便"},
-{text: "不弁", explanation: "錯誤：「弁」讀作「べん」，但意思為辯解、閥門，不適用。\n中文翻譯：不辯解"},
-{text: "夫便", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "負便", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0027",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "掃除",
-options: [
-{text: "そうじ", explanation: "正確答案：「掃」音讀為「そう」，「除」音讀為「じ」。\n中文翻譯：打掃"},
-{text: "そじ", explanation: "錯誤：「掃」的讀音是「そう」，不應省略長音。\n中文翻譯：打掃"},
-{text: "しょうじ", explanation: "錯誤：「掃」的讀音是「そう」，不是「しょう」。\n中文翻譯：打掃"},
-{text: "そうじょ", explanation: "錯誤：「除」的讀音是「じ」，不是「じょ」。\n中文翻譯：打掃"}
-],
-correctAnswer: 0
-},
-{
-id: "V0028",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "きけん",
-options: [
-{text: "危険", explanation: "正確答案：「きけん」對應的漢字是「危険」，意思是危險。\n中文翻譯：危險"},
-{text: "機嫌", explanation: "錯誤：「機嫌」讀作「きげん」，意思是心情。\n中文翻譯：心情"},
-{text: "棄権", explanation: "錯誤：「棄権」讀作「きけん」，意思是棄權。\n中文翻譯：棄權"},
-{text: "紀元", explanation: "錯誤：「紀元」讀作「きげん」，意思是紀元。\n中文翻譯：紀元"}
-],
-correctAnswer: 0
-},
-{
-id: "V0029",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "親切",
-options: [
-{text: "しんせつ", explanation: "正確答案：「親」音讀為「しん」，「切」音讀為「せつ」。\n中文翻譯：親切"},
-{text: "しんせつ", explanation: "錯誤：雖然讀音相同，但「親節」不是正確的漢字組合。\n中文翻譯：親切"},
-{text: "おやせつ", explanation: "錯誤：「親」在此應讀音讀「しん」，不讀訓讀「おや」。\n中文翻譯：親切"},
-{text: "しんさい", explanation: "錯誤：「切」的讀音是「せつ」，不是「さい」。\n中文翻譯：親切"}
-],
-correctAnswer: 0
-},
-{
-id: "V0030",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "ゆうめい",
-options: [
-{text: "有名", explanation: "正確答案：「ゆうめい」對應的漢字是「有名」，意思是有名。\n中文翻譯：有名"},
-{text: "勇名", explanation: "錯誤：「勇名」讀作「ゆうめい」，意思是英勇的名聲，但「有名」更常見。\n中文翻譯：英勇的名聲"},
-{text: "夕名", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "友名", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0031",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "大切",
-options: [
-{text: "たいせつ", explanation: "正確答案：「大」音讀為「たい」，「切」音讀為「せつ」。\n中文翻譯：重要；珍惜"},
-{text: "たいせ", explanation: "錯誤：「切」的讀音是「せつ」，不應省略「つ」。\n中文翻譯：重要"},
-{text: "たいさい", explanation: "錯誤：「切」的讀音是「せつ」，不是「さい」。\n中文翻譯：重要"},
-{text: "だいせつ", explanation: "錯誤：「大」在此讀音是「たい」，不是「だい」。\n中文翻譯：重要"}
-],
-correctAnswer: 0
-},
-{
-id: "V0032",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "ふくしゅう",
-options: [
-{text: "復習", explanation: "正確答案：「ふくしゅう」對應的漢字是「復習」，意思是複習。\n中文翻譯：複習"},
-{text: "複習", explanation: "錯誤：日文中「復習」是正確表記，不使用「複」。\n中文翻譯：複習"},
-{text: "福習", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "服習", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0033",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "練習",
-options: [
-{text: "れんしゅう", explanation: "正確答案：「練」音讀為「れん」，「習」音讀為「しゅう」。\n中文翻譯：練習"},
-{text: "れんしゅ", explanation: "錯誤：「習」的讀音是「しゅう」，不應省略長音。\n中文翻譯：練習"},
-{text: "れんじゅう", explanation: "錯誤：「習」的讀音是「しゅう」，不是「じゅう」。\n中文翻譯：練習"},
-{text: "れいしゅう", explanation: "錯誤：「練」的讀音是「れん」，不是「れい」。\n中文翻譯：練習"}
-],
-correctAnswer: 0
-},
-{
-id: "V0034",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "せんもん",
-options: [
-{text: "専門", explanation: "正確答案：「せんもん」對應的漢字是「専門」，意思是專業；專門。\n中文翻譯：專業"},
-{text: "専問", explanation: "錯誤：雖然讀音相同，但「専問」不是正確的漢字組合。\n中文翻譯：專業"},
-{text: "千門", explanation: "錯誤：「千門」讀作「せんもん」，但意思為千扇門。\n中文翻譯：千扇門"},
-{text: "選門", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0035",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "経済",
-options: [
-{text: "けいざい", explanation: "正確答案：「経」音讀為「けい」，「済」音讀為「ざい」。\n中文翻譯：經濟"},
-{text: "けいさい", explanation: "錯誤：「済」在此讀音是「ざい」，不是「さい」。\n中文翻譯：經濟"},
-{text: "けざい", explanation: "錯誤：「経」的讀音是「けい」，不應省略長音。\n中文翻譯：經濟"},
-{text: "きょうざい", explanation: "錯誤：「経」的讀音是「けい」，不是「きょう」。\n中文翻譯：經濟"}
-],
-correctAnswer: 0
-},
-{
-id: "V0036",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "りゅうがく",
-options: [
-{text: "留学", explanation: "正確答案：「りゅうがく」對應的漢字是「留学」，意思是留學。\n中文翻譯：留學"},
-{text: "流学", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "隆学", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "立学", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0037",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "紹介",
-options: [
-{text: "しょうかい", explanation: "正確答案：「紹」音讀為「しょう」，「介」音讀為「かい」。\n中文翻譯：介紹"},
-{text: "しょかい", explanation: "錯誤：「紹」的讀音是「しょう」，不應省略長音。\n中文翻譯：介紹"},
-{text: "しょうがい", explanation: "錯誤：「介」的讀音是「かい」，不是「がい」。\n中文翻譯：介紹"},
-{text: "しゅうかい", explanation: "錯誤：「紹」的讀音是「しょう」，不是「しゅう」。\n中文翻譯：介紹"}
-],
-correctAnswer: 0
-},
-{
-id: "V0038",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "しょうらい",
-options: [
-{text: "将来", explanation: "正確答案：「しょうらい」對應的漢字是「将来」，意思是將來。\n中文翻譯：將來"},
-{text: "招来", explanation: "錯誤：「招来」讀作「しょうらい」，意思是招來。\n中文翻譯：招來"},
-{text: "升来", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "省来", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0039",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "一生懸命",
-options: [
-{text: "いっしょうけんめい", explanation: "正確答案：「一」音讀為「いっ」，「生」音讀為「しょう」，「懸」音讀為「けん」，「命」音讀為「めい」。\n中文翻譯：拼命；努力"},
-{text: "いっせいけんめい", explanation: "錯誤：「生」在此讀音是「しょう」，不是「せい」。\n中文翻譯：拼命"},
-{text: "いっしょうけめい", explanation: "錯誤：「懸」的讀音是「けん」，不是「け」。\n中文翻譯：拼命"},
-{text: "いちしょうけんめい", explanation: "錯誤：「一」在此讀音是「いっ」，不是「いち」。\n中文翻譯：拼命"}
-],
-correctAnswer: 0
-},
-{
-id: "V0040",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "だいぶ",
-options: [
-{text: "大分", explanation: "正確答案：「だいぶ」對應的漢字是「大分」，意思是很；相當。\n中文翻譯：很；相當"},
-{text: "大部", explanation: "錯誤：「大部」讀作「だいぶ」，意思是大部頭；大部分。\n中文翻譯：大部分"},
-{text: "代分", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "台分", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0041",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "無理",
-options: [
-{text: "むり", explanation: "正確答案：「無」音讀為「む」，「理」音讀為「り」。\n中文翻譯：勉強；不可能；無理"},
-{text: "ぶり", explanation: "錯誤：「無」的讀音是「む」，不是「ぶ」。\n中文翻譯：無理"},
-{text: "むりい", explanation: "錯誤：多了一個「い」的音。\n中文翻譯：無理"},
-{text: "むりょう", explanation: "錯誤：「理」的讀音是「り」，不是「りょう」。\n中文翻譯：無理"}
-],
-correctAnswer: 0
-},
-{
-id: "V0042",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "かんたん",
-options: [
-{text: "簡単", explanation: "正確答案：「かんたん」對應的漢字是「簡単」，意思是簡單。\n中文翻譯：簡單"},
-{text: "感嘆", explanation: "錯誤：「感嘆」讀作「かんたん」，意思是感嘆。\n中文翻譯：感嘆"},
-{text: "官単", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "簡単", explanation: "錯誤：日文中「簡単」是正確表記，不使用「単」。\n中文翻譯：簡單"}
-],
-correctAnswer: 0
-},
-{
-id: "V0043",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "卒業式",
-options: [
-{text: "そつぎょうしき", explanation: "正確答案：「卒」音讀為「そつ」，「業」音讀為「ぎょう」，「式」音讀為「しき」。\n中文翻譯：畢業典禮"},
-{text: "そつぎょうしき", explanation: "錯誤：雖然讀音相同，但「卒業式」是正確的漢字組合。\n中文翻譯：畢業典禮"},
-{text: "そつぎょしき", explanation: "錯誤：「業」的讀音是「ぎょう」，不應省略長音。\n中文翻譯：畢業典禮"},
-{text: "そっぎょうしき", explanation: "錯誤：「卒」的讀音是「そつ」，不應促音化。\n中文翻譯：畢業典禮"}
-],
-correctAnswer: 0
-},
-{
-id: "V0044",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "ぜひ",
-options: [
-{text: "是非", explanation: "正確答案：「ぜひ」對應的漢字是「是非」，意思是一定；務必。\n中文翻譯：務必"},
-{text: "是飛", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "税非", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "勢否", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0045",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "絶対",
-options: [
-{text: "ぜったい", explanation: "正確答案：「絶」音讀為「ぜっ」，「対」音讀為「たい」。\n中文翻譯：絕對"},
-{text: "ぜつたい", explanation: "錯誤：「絶」的讀音是「ぜっ」，不應省略促音。\n中文翻譯：絕對"},
-{text: "ぜった", explanation: "錯誤：「対」的讀音是「たい」，不應省略「い」。\n中文翻譯：絕對"},
-{text: "せったい", explanation: "錯誤：「絶」的讀音是「ぜっ」，不是「せっ」。\n中文翻譯：絕對"}
-],
-correctAnswer: 0
-},
-{
-id: "V0046",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "きびしい",
-options: [
-{text: "厳しい", explanation: "正確答案：「きびしい」對應的漢字是「厳しい」，意思是嚴格的；嚴厲的。\n中文翻譯：嚴格的"},
-{text: "木々しい", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "機微しい", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "貴美しい", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0047",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "変更",
-options: [
-{text: "へんこう", explanation: "正確答案：「変」音讀為「へん」，「更」音讀為「こう」。\n中文翻譯：變更；更改"},
-{text: "へんごう", explanation: "錯誤：「更」的讀音是「こう」，不是「ごう」。\n中文翻譯：變更"},
-{text: "べんこう", explanation: "錯誤：「変」的讀音是「へん」，不是「べん」。\n中文翻譯：變更"},
-{text: "へっこう", explanation: "錯誤：「変」的讀音是「へん」，不應促音化。\n中文翻譯：變更"}
-],
-correctAnswer: 0
-},
-{
-id: "V0048",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "ふじさん",
-options: [
-{text: "富士山", explanation: "正確答案：「ふじさん」對應的漢字是「富士山」，意思是富士山。\n中文翻譯：富士山"},
-{text: "不二山", explanation: "錯誤：雖然讀音相同，但「富士山」是正確的漢字組合。\n中文翻譯：富士山"},
-{text: "藤山", explanation: "錯誤：「藤山」讀作「ふじさん」，意思是藤山（姓氏）。\n中文翻譯：藤山"},
-{text: "婦地山", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0049",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "申請",
-options: [
-{text: "しんせい", explanation: "正確答案：「申」音讀為「しん」，「請」音讀為「せい」。\n中文翻譯：申請"},
-{text: "しんせ", explanation: "錯誤：「請」的讀音是「せい」，不應省略「い」。\n中文翻譯：申請"},
-{text: "しんしょう", explanation: "錯誤：「請」的讀音是「せい」，不是「しょう」。\n中文翻譯：申請"},
-{text: "もうせい", explanation: "錯誤：「申」在此應讀音讀「しん」，不讀訓讀「もう」。\n中文翻譯：申請"}
-],
-correctAnswer: 0
-},
-{
-id: "V0050",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "がんばって",
-options: [
-{text: "頑張って", explanation: "正確答案：「がんばって」是「頑張る」的て形，意思是加油。\n中文翻譯：加油"},
-{text: "眼張って", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "願張って", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "元張って", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0051",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "証明写真",
-options: [
-{text: "しょうめいしゃしん", explanation: "正確答案：「証」音讀為「しょう」，「明」音讀為「めい」，「写」音讀為「しゃ」，「真」音讀為「しん」。\n中文翻譯：證件照"},
-{text: "しょうめいしゃじん", explanation: "錯誤：「真」的讀音是「しん」，不是「じん」。\n中文翻譯：證件照"},
-{text: "しょめいしゃしん", explanation: "錯誤：「証」的讀音是「しょう」，不應省略長音。\n中文翻譯：證件照"},
-{text: "しょうめしゃしん", explanation: "錯誤：「明」的讀音是「めい」，不應省略「い」。\n中文翻譯：證件照"}
-],
-correctAnswer: 0
-},
-{
-id: "V0052",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "しゅっちょう",
-options: [
-{text: "出張", explanation: "正確答案：「しゅっちょう」對應的漢字是「出張」，意思是出差。\n中文翻譯：出差"},
-{text: "出長", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "術調", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "出徴", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0053",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "海外",
-options: [
-{text: "かいがい", explanation: "正確答案：「海」音讀為「かい」，「外」音讀為「がい」。\n中文翻譯：海外；國外"},
-{text: "かいげ", explanation: "錯誤：「外」的讀音是「がい」，不是「げ」。\n中文翻譯：海外"},
-{text: "かいご", explanation: "錯誤：「外」的讀音是「がい」，不是「ご」。\n中文翻譯：海外"},
-{text: "うみそと", explanation: "錯誤：不應使用訓讀「うみ」和「そと」。\n中文翻譯：海外"}
-],
-correctAnswer: 0
-},
-{
-id: "V0054",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "りれきしょ",
-options: [
-{text: "履歴書", explanation: "正確答案：「りれきしょ」對應的漢字是「履歴書」，意思是履歷表。\n中文翻譯：履歷表"},
-{text: "理歴書", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "利暦書", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "履歴所", explanation: "錯誤：「書」的讀音是「しょ」，不是「じょ」。\n中文翻譯：履歷所"}
-],
-correctAnswer: 0
-},
-{
-id: "V0055",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "面接",
-options: [
-{text: "めんせつ", explanation: "正確答案：「面」音讀為「めん」，「接」音讀為「せつ」。\n中文翻譯：面試"},
-{text: "めんせ", explanation: "錯誤：「接」的讀音是「せつ」，不應省略「つ」。\n中文翻譯：面試"},
-{text: "めせつ", explanation: "錯誤：「面」的讀音是「めん」，不應省略「ん」。\n中文翻譯：面試"},
-{text: "めんしょう", explanation: "錯誤：「接」的讀音是「せつ」，不是「しょう」。\n中文翻譯：面試"}
-],
-correctAnswer: 0
-},
-{
-id: "V0056",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "さいよう",
-options: [
-{text: "採用", explanation: "正確答案：「さいよう」對應的漢字是「採用」，意思是採用；錄用。\n中文翻譯：採用"},
-{text: "再用", explanation: "錯誤：「再用」讀作「さいよう」，意思是再次使用。\n中文翻譯：再次使用"},
-{text: "最要", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "財用", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0057",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "資格",
-options: [
-{text: "しかく", explanation: "正確答案：「資」音讀為「し」，「格」音讀為「かく」。\n中文翻譯：資格"},
-{text: "しこく", explanation: "錯誤：「格」的讀音是「かく」，不是「こく」。\n中文翻譯：資格"},
-{text: "じかく", explanation: "錯誤：「資」的讀音是「し」，不是「じ」。\n中文翻譯：資格"},
-{text: "しがく", explanation: "錯誤：「格」的讀音是「かく」，不是「がく」。\n中文翻譯：資格"}
-],
-correctAnswer: 0
-},
-{
-id: "V0058",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "めんきょ",
-options: [
-{text: "免許", explanation: "正確答案：「めんきょ」對應的漢字是「免許」，意思是執照；許可證。\n中文翻譯：執照"},
-{text: "面許", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "免去", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "面去", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0059",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "経験",
-options: [
-{text: "けいけん", explanation: "正確答案：「経」音讀為「けい」，「験」音讀為「けん」。\n中文翻譯：經驗"},
-{text: "けいげん", explanation: "錯誤：「験」的讀音是「けん」，不是「げん」。\n中文翻譯：經驗"},
-{text: "けけん", explanation: "錯誤：「経」的讀音是「けい」，不應省略長音。\n中文翻譯：經驗"},
-{text: "きょうけん", explanation: "錯誤：「経」的讀音是「けい」，不是「きょう」。\n中文翻譯：經驗"}
-],
-correctAnswer: 0
-},
-{
-id: "V0060",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "しゅうしょく",
-options: [
-{text: "就職", explanation: "正確答案：「しゅうしょく」對應的漢字是「就職」，意思是就業。\n中文翻譯：就業"},
-{text: "修職", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "終職", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "集職", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0061",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "面倒",
-options: [
-{text: "めんどう", explanation: "正確答案：「面」音讀為「めん」，「倒」音讀為「どう」。\n中文翻譯：麻煩；照顧"},
-{text: "めんとう", explanation: "錯誤：「倒」的讀音是「どう」，不是「とう」。\n中文翻譯：麻煩"},
-{text: "めどう", explanation: "錯誤：「面」的讀音是「めん」，不應省略「ん」。\n中文翻譯：麻煩"},
-{text: "めんどうう", explanation: "錯誤：多了一個「う」的音。\n中文翻譯：麻煩"}
-],
-correctAnswer: 0
-},
-{
-id: "V0062",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "きぼう",
-options: [
-{text: "希望", explanation: "正確答案：「きぼう」對應的漢字是「希望」，意思是希望。\n中文翻譯：希望"},
-{text: "企望", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "紀望", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "貴望", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0063",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "確認",
-options: [
-{text: "かくにん", explanation: "正確答案：「確」音讀為「かく」，「認」音讀為「にん」。\n中文翻譯：確認"},
-{text: "かくに", explanation: "錯誤：「認」的讀音是「にん」，不應省略「ん」。\n中文翻譯：確認"},
-{text: "がくにん", explanation: "錯誤：「確」的讀音是「かく」，不是「がく」。\n中文翻譯：確認"},
-{text: "かっにん", explanation: "錯誤：「確」的讀音是「かく」，不應促音化。\n中文翻譯：確認"}
-],
-correctAnswer: 0
-},
-{
-id: "V0064",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "ていあん",
-options: [
-{text: "提案", explanation: "正確答案：「ていあん」對應的漢字是「提案」，意思是提案；建議。\n中文翻譯：提案"},
-{text: "定案", explanation: "錯誤：「定案」讀作「ていあん」，意思是定案。\n中文翻譯：定案"},
-{text: "低案", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "廷案", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0065",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "開発",
-options: [
-{text: "かいはつ", explanation: "正確答案：「開」音讀為「かい」，「発」音讀為「はつ」。\n中文翻譯：開發"},
-{text: "かいほつ", explanation: "錯誤：「発」的讀音是「はつ」，不是「ほつ」。\n中文翻譯：開發"},
-{text: "がいはつ", explanation: "錯誤：「開」的讀音是「かい」，不是「がい」。\n中文翻譯：開發"},
-{text: "かいはっ", explanation: "錯誤：「発」的讀音是「はつ」，不應促音化。\n中文翻譯：開發"}
-],
-correctAnswer: 0
-},
-{
-id: "V0066",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "せつめい",
-options: [
-{text: "説明", explanation: "正確答案：「せつめい」對應的漢字是「説明」，意思是說明。\n中文翻譯：說明"},
-{text: "節明", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "説命", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "接明", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0067",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "環境",
-options: [
-{text: "かんきょう", explanation: "正確答案：「環」音讀為「かん」，「境」音讀為「きょう」。\n中文翻譯：環境"},
-{text: "かんきょ", explanation: "錯誤：「境」的讀音是「きょう」，不應省略長音。\n中文翻譯：環境"},
-{text: "がんきょう", explanation: "錯誤：「環」的讀音是「かん」，不是「がん」。\n中文翻譯：環境"},
-{text: "かんけい", explanation: "錯誤：「境」的讀音是「きょう」，不是「けい」。\n中文翻譯：環境"}
-],
-correctAnswer: 0
-},
-{
-id: "V0068",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "かくりつ",
-options: [
-{text: "確立", explanation: "正確答案：「かくりつ」對應的漢字是「確立」，意思是確立。\n中文翻譯：確立"},
-{text: "確率", explanation: "錯誤：「確率」讀作「かくりつ」，意思是機率。\n中文翻譯：機率"},
-{text: "格立", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "各立", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0069",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "影響",
-options: [
-{text: "えいきょう", explanation: "正確答案：「影」音讀為「えい」，「響」音讀為「きょう」。\n中文翻譯：影響"},
-{text: "えきょう", explanation: "錯誤：「影」的讀音是「えい」，不應省略「い」。\n中文翻譯：影響"},
-{text: "えいきょ", explanation: "錯誤：「響」的讀音是「きょう」，不應省略長音。\n中文翻譯：影響"},
-{text: "ようきょう", explanation: "錯誤：「影」的讀音是「えい」，不是「よう」。\n中文翻譯：影響"}
-],
-correctAnswer: 0
-},
-{
-id: "V0070",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "かんそう",
-options: [
-{text: "乾燥", explanation: "正確答案：「かんそう」對應的漢字是「乾燥」，意思是乾燥。\n中文翻譯：乾燥"},
-{text: "感想", explanation: "錯誤：「感想」讀作「かんそう」，意思是感想。\n中文翻譯：感想"},
-{text: "完走", explanation: "錯誤：「完走」讀作「かんそう」，意思是跑完全程。\n中文翻譯：跑完全程"},
-{text: "観想", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0071",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "設備",
-options: [
-{text: "せつび", explanation: "正確答案：「設」音讀為「せつ」，「備」音讀為「び」。\n中文翻譯：設備"},
-{text: "せつびい", explanation: "錯誤：多了一個「い」的音。\n中文翻譯：設備"},
-{text: "せっぴ", explanation: "錯誤：「設」的讀音是「せつ」，不應促音化。\n中文翻譯：設備"},
-{text: "せび", explanation: "錯誤：「設」的讀音是「せつ」，不應省略「つ」。\n中文翻譯：設備"}
-],
-correctAnswer: 0
-},
-{
-id: "V0072",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "かんり",
-options: [
-{text: "管理", explanation: "正確答案：「かんり」對應的漢字是「管理」，意思是管理。\n中文翻譯：管理"},
-{text: "監理", explanation: "錯誤：「監理」讀作「かんり」，意思是監理。\n中文翻譯：監理"},
-{text: "幹理", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "官理", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0073",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "製造",
-options: [
-{text: "せいぞう", explanation: "正確答案：「製」音讀為「せい」，「造」音讀為「ぞう」。\n中文翻譯：製造"},
-{text: "せいぞ", explanation: "錯誤：「造」的讀音是「ぞう」，不應省略長音。\n中文翻譯：製造"},
-{text: "せぞう", explanation: "錯誤：「製」的讀音是「せい」，不應省略「い」。\n中文翻譯：製造"},
-{text: "しょうぞう", explanation: "錯誤：「製」的讀音是「せい」，不是「しょう」。\n中文翻譯：製造"}
-],
-correctAnswer: 0
-},
-{
-id: "V0074",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "はってん",
-options: [
-{text: "発展", explanation: "正確答案：「はってん」對應的漢字是「発展」，意思是發展。\n中文翻譯：發展"},
-{text: "初展", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "八点", explanation: "錯誤：「八点」讀作「はってん」，意思是八點。\n中文翻譯：八點"},
-{text: "波転", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0075",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "技術",
-options: [
-{text: "ぎじゅつ", explanation: "正確答案：「技」音讀為「ぎ」，「術」音讀為「じゅつ」。\n中文翻譯：技術"},
-{text: "ぎじゅ", explanation: "錯誤：「術」的讀音是「じゅつ」，不應省略「つ」。\n中文翻譯：技術"},
-{text: "きじゅつ", explanation: "錯誤：「技」的讀音是「ぎ」，不是「き」。\n中文翻譯：技術"},
-{text: "ぎしゅつ", explanation: "錯誤：「術」的讀音是「じゅつ」，不是「しゅつ」。\n中文翻譯：技術"}
-],
-correctAnswer: 0
-},
-{
-id: "V0076",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "かがく",
-options: [
-{text: "科学", explanation: "正確答案：「かがく」對應的漢字是「科学」，意思是科學。\n中文翻譯：科學"},
-{text: "化学", explanation: "錯誤：「化学」讀作「かがく」，意思是化學。\n中文翻譯：化學"},
-{text: "価額", explanation: "錯誤：「価額」讀作「かがく」，意思是價額。\n中文翻譯：價額"},
-{text: "歌学", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0077",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "研究",
-options: [
-{text: "けんきゅう", explanation: "正確答案：「研」音讀為「けん」，「究」音讀為「きゅう」。\n中文翻譯：研究"},
-{text: "けんきゅ", explanation: "錯誤：「究」的讀音是「きゅう」，不應省略長音。\n中文翻譯：研究"},
-{text: "げんきゅう", explanation: "錯誤：「研」的讀音是「けん」，不是「げん」。\n中文翻譯：研究"},
-{text: "けんきょう", explanation: "錯誤：「究」的讀音是「きゅう」，不是「きょう」。\n中文翻譯：研究"}
-],
-correctAnswer: 0
-},
-{
-id: "V0078",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "しんぽ",
-options: [
-{text: "進歩", explanation: "正確答案：「しんぽ」對應的漢字是「進歩」，意思是進步。\n中文翻譯：進步"},
-{text: "新歩", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "信歩", explanation: "錯誤：「信歩」讀作「しんぽ」，意思是信步；漫步。\n中文翻譯：信步"},
-{text: "深歩", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
-},
-{
-id: "V0079",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "国際",
-options: [
-{text: "こくさい", explanation: "正確答案：「国」音讀為「こく」，「際」音讀為「さい」。\n中文翻譯：國際"},
-{text: "こくさいい", explanation: "錯誤：多了一個「い」的音。\n中文翻譯：國際"},
-{text: "ごくさい", explanation: "錯誤：「国」的讀音是「こく」，不是「ごく」。\n中文翻譯：國際"},
-{text: "こっさい", explanation: "錯誤：「国」的讀音是「こく」，不應促音化。\n中文翻譯：國際"}
-],
-correctAnswer: 0
-},
-{
-id: "V0080",
-type: "writing",
-question: "次の言葉の正しい漢字を選びなさい",
-kana: "きょうそう",
-options: [
-{text: "競争", explanation: "正確答案：「きょうそう」對應的漢字是「競争」，意思是競爭。\n中文翻譯：競爭"},
-{text: "競走", explanation: "錯誤：「競走」讀作「きょうそう」，意思是賽跑。\n中文翻譯：賽跑"},
-{text: "強壮", explanation: "錯誤：「強壮」讀作「きょうそう」，意思是強壯。\n中文翻譯：強壯"},
-{text: "共争", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-],
-correctAnswer: 0
+window.vocabBank = [
+{
+    id: "V0001",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N5)",
+    kanji: "自分",
+    options: [
+        {text: "じぶん", explanation: "正確答案：「自」音讀為「じ」，「分」音讀為「ぶん」，合起來是「じぶん」。\n中文翻譯：自己"},
+        {text: "じぷん", explanation: "錯誤：「分」的讀音是「ぶん」，不是「ぷん」。"},
+        {text: "じいぶん", explanation: "錯誤：「自」的讀音是「じ」，沒有長音。"},
+        {text: "しぶん", explanation: "錯誤：「自」在此不讀「し」。"}
+    ],
+    correctAnswer: 0
+},
+{
+        "id": "V0002",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N5) (意味：起床)",
+        "kana": "おきます",
+        "options": [
+            {"text": "起きます", "explanation": "正確答案：「おきます」在此語境下對應的漢字是「起きます」，意思是起床。"},
+            {"text": "置きます", "explanation": "錯誤：「置きます」讀音也是「おきます」，但意思是放置，語意不符。"},
+            {"text": "描きます", "explanation": "錯誤：「描きます」讀音是「えがきます」或「かきます」，意思是描繪。"},
+            {"text": "おきまず", "explanation": "錯誤：此為不存在的漢字組合。"}
+        ],
+        "correctAnswer": 0
+    },
+{
+    id: "V0003",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N5)",
+    kanji: "学生",
+    options: [
+        {text: "がくせい", explanation: "正確答案：「学」音讀為「がく」，「生」音讀為「せい」。\n中文翻譯：學生"},
+        {text: "がっせい", explanation: "錯誤：「学」的讀音是「がく」，不應促音化。"},
+        {text: "がくしょう", explanation: "錯誤：「生」的讀音是「せい」，不是「しょう」。"},
+        {text: "かくせい", explanation: "錯誤：「学」的讀音是「がく」，不是「かく」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0004",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N5)",
+    kana: "にほん",
+    options: [
+        {text: "日本", explanation: "正確答案：「にほん」是「日本」的標準讀音。"},
+        {text: "二本", explanation: "錯誤：「二本」讀作「にほん」，意思是兩支，但語意不符。"},
+        {text: "仁本", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "爾本", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0005",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N5)",
+    kanji: "先生",
+    options: [
+        {text: "せんせい", explanation: "正確答案：「先」音讀為「せん」，「生」音讀為「せい」。\n中文翻譯：老師"},
+        {text: "せんせ", explanation: "錯誤：漏掉了「い」的長音。"},
+        {text: "せいせん", explanation: "錯誤：順序完全顛倒。"},
+        {text: "せんせん", explanation: "錯誤：「生」的讀音是「せい」，不是「せん」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0006",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N5)",
+    kana: "しごと",
+    options: [
+        {text: "仕事", explanation: "正確答案：「しごと」對應的漢字是「仕事」，意思是工作。"},
+        {text: "私事", explanation: "錯誤：「私事」讀作「しじ」，意思是私事。"},
+        {text: "指示", explanation: "錯誤：「指示」讀作「しじ」，意思是指示。"},
+        {text: "死後", explanation: "錯誤：「死後」讀作「しご」，意思是死後。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0007",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N5)",
+    kanji: "映画",
+    options: [
+        {text: "えいが", explanation: "正確答案：「映」音讀為「えい」，「画」音讀為「が」。\n中文翻譯：電影"},
+        {text: "えが", explanation: "錯誤：「映」的讀音是「えい」，不應省略長音。"},
+        {text: "ようが", explanation: "錯誤：「映」的讀音是「えい」，不是「よう」。"},
+        {text: "えいがく", explanation: "錯誤：「画」的讀音是「が」，不是「がく」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0008",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N5)",
+    kana: "でんわ",
+    options: [
+        {text: "電話", explanation: "正確答案：「でんわ」對應的漢字是「電話」。"},
+        {text: "伝話", explanation: "錯誤：「伝話」不是標準詞彙。"},
+        {text: "電和", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "殿話", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+        "id": "V0009",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N5) (意味：回家)",
+        "kana": "かえります",
+        "options": [
+            {"text": "帰ります", "explanation": "正確答案：「かえります」在此語境下對應的漢字是「帰ります」，意思是回家。"},
+            {"text": "返ります", "explanation": "錯誤：「返ります」讀音也是「かえります」，但意思是歸還、退回，語意不符。"},
+            {"text": "変ります", "explanation": "錯誤：「変ります」讀音是「かわります」，意思是改變。"},
+            {"text": "解ります", "explanation": "錯誤：「解ります」讀音是「わかります」，意思是了解。"}
+        ],
+        "correctAnswer": 0
+    },
+{
+    id: "V0010",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N5)",
+    kana: "ともだち",
+    options: [
+        {text: "友達", explanation: "正確答案：「ともだち」最常見的漢字表記是「友達」。"},
+        {text: "友だち", explanation: "錯誤：這是混合表記，非純漢字。"},
+        {text: "供達", explanation: "錯誤：「供」讀作「とも」但意思不同，多指隨從。"},
+        {text: "共達", explanation: "錯誤：此漢字組合不正確。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0011",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N5)",
+    kanji: "勉強",
+    options: [
+        {text: "べんきょう", explanation: "正確答案：「勉」音讀為「べん」，「強」音讀為「きょう」。\n中文翻譯：學習；用功"},
+        {text: "べんきょ", explanation: "錯誤：「強」的讀音是「きょう」，不應省略長音。"},
+        {text: "べんこう", explanation: "錯誤：「強」的讀音是「きょう」，不是「こう」。"},
+        {text: "めんきょう", explanation: "錯誤：「勉」的讀音是「べん」，不是「めん」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0012",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N5)",
+    kana: "りょこう",
+    options: [
+        {text: "旅行", explanation: "正確答案：「りょこう」對應的漢字是「旅行」。"},
+        {text: "旅交", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "慮行", explanation: "錯誤：「慮」的意思為顧慮，不適用。"},
+        {text: "呂行", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+        "id": "V0013",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N5) (意味：會議)",
+        "kana": "かいぎ",
+        "options": [
+            {"text": "会議", "explanation": "正確答案：「かいぎ」對應的漢字是「会議」，意思是會議。"},
+            {"text": "回議", "explanation": "錯誤：「回議」讀音也是「かいぎ」，但在本題語境中通常使用「会議」。"},
+            {"text": "開技", "explanation": "錯誤：此為不存在的漢字組合。"},
+            {"text": "皆議", "explanation": "錯誤：此為不存在的漢字組合。"}
+        ],
+        "correctAnswer": 0
+    },
+{
+    id: "V0014",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N5)",
+    kana: "しゅくだい",
+    options: [
+        {text: "宿題", explanation: "正確答案：「しゅくだい」對應的漢字是「宿題」，意思是作業；功課。"},
+        {text: "縮題", explanation: "錯誤：「縮」的意思為縮小，不適用。"},
+        {text: "淑題", explanation: "錯誤：「淑」的意思為賢淑，不適用。"},
+        {text: "祝題", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0015",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N5)",
+    kanji: "質問",
+    options: [
+        {text: "しつもん", explanation: "正確答案：「質」音讀為「しつ」，「問」音讀為「もん」。\n中文翻譯：問題；疑問"},
+        {text: "しちもん", explanation: "錯誤：「質」在此讀音是「しつ」，不是「しち」。"},
+        {text: "しつも", explanation: "錯誤：「問」的讀音是「もん」，不應省略「ん」。"},
+        {text: "しつもう", explanation: "錯誤：「問」的讀音是「もん」，不是「もう」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0016",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "きもち",
+    options: [
+        {text: "気持ち", explanation: "正確答案：「きもち」對應的漢字是「気持ち」，意思是心情；感覺。"},
+        {text: "着持ち", explanation: "錯誤：「着持ち」意思為穿著打扮，語意不符。"},
+        {text: "木持", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "機持ち", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0017",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "元気",
+    options: [
+        {text: "げんき", explanation: "正確答案：「元」音讀為「げん」，「気」音讀為「き」。\n中文翻譯：有精神；健康"},
+        {text: "げんけ", explanation: "錯誤：「気」的讀音是「き」，不是「け」。"},
+        {text: "がんき", explanation: "錯誤：「元」的讀音是「げん」，不是「がん」。"},
+        {text: "げいき", explanation: "錯誤：「元」的讀音是「げん」，不是「げい」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0018",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "けんこう",
+    options: [
+        {text: "健康", explanation: "正確答案：「けんこう」對應的漢字是「健康」。"},
+        {text: "原稿", explanation: "錯誤：「原稿」讀作「げんこう」，意思是原稿。"},
+        {text: "研究", explanation: "錯誤：「研究」讀作「けんきゅう」，意思是研究。"},
+        {text: "現行", explanation: "錯誤：「現行」讀作「げんこう」，意思是現行。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0019",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N5)",
+    kanji: "家族",
+    options: [
+        {text: "かぞく", explanation: "正確答案：「家」音讀為「か」，「族」音讀為「ぞく」。\n中文翻譯：家人"},
+        {text: "かぞうく", explanation: "錯誤：多了一個「う」的長音。"},
+        {text: "けぞく", explanation: "錯誤：「家」的讀音是「か」，不是「け」。"},
+        {text: "かさく", explanation: "錯誤：「族」的讀音是「ぞく」，不是「さく」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0020",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "ゆめ",
+    options: [
+        {text: "夢", explanation: "正確答案：「ゆめ」對應的漢字是「夢」。"},
+        {text: "弓", explanation: "錯誤：「弓」讀作「ゆみ」，意思是弓。"},
+        {text: "湯目", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "癒目", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0021",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N5)",
+    kanji: "週末",
+    options: [
+        {text: "しゅうまつ", explanation: "正確答案：「週」音讀為「しゅう」，「末」音讀為「まつ」。\n中文翻譯：週末"},
+        {text: "しゅまつ", explanation: "錯誤：「週」的讀音是「しゅう」，不應省略長音。"},
+        {text: "しゅうすえ", explanation: "錯誤：「末」在此不讀訓讀「すえ」。"},
+        {text: "しゅうまい", explanation: "錯誤：「末」的讀音是「まつ」，不是「まい」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0022",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "しんぱい",
+    options: [
+        {text: "心配", explanation: "正確答案：「しんぱい」對應的漢字是「心配」，意思是擔心。"},
+        {text: "新配", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "親配", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "信配", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0023",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "準備",
+    options: [
+        {text: "じゅんび", explanation: "正確答案：「準」音讀為「じゅん」，「備」音讀為「び」。\n中文翻譯：準備"},
+        {text: "じゅび", explanation: "錯誤：「準」的讀音是「じゅん」，不應省略「ん」。"},
+        {text: "じょうび", explanation: "錯誤：「準」的讀音是「じゅん」，不是「じょう」。"},
+        {text: "しゅんび", explanation: "錯誤：「準」的讀音是「じゅん」，不是「しゅん」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0024",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "うんてん",
+    options: [
+        {text: "運転", explanation: "正確答案：「うんてん」對應的漢字是「運転」，意思是駕駛。"},
+        {text: "運天", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "雲転", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "恩典", explanation: "錯誤：「恩典」讀作「おんてん」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0025",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "約束",
+    options: [
+        {text: "やくそく", explanation: "正確答案：「約」音讀為「やく」，「束」音讀為「そく」。\n中文翻譯：約定"},
+        {text: "やくそ", explanation: "錯誤：「束」的讀音是「そく」，不應省略「く」。"},
+        {text: "やっそく", explanation: "錯誤：「約」的讀音是「やく」，不應促音化。"},
+        {text: "ようそく", explanation: "錯誤：「約」的讀音是「やく」，不是「よう」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0026",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "ふべん",
+    options: [
+        {text: "不便", explanation: "正確答案：「ふべん」對應的漢字是「不便」，意思是不方便。"},
+        {text: "不弁", explanation: "錯誤：「弁」的意思為辯解、閥門，不適用。"},
+        {text: "夫便", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "負便", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0027",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N5)",
+    kanji: "掃除",
+    options: [
+        {text: "そうじ", explanation: "正確答案：「掃」音讀為「そう」，「除」音讀為「じ」。\n中文翻譯：打掃"},
+        {text: "そじ", explanation: "錯誤：「掃」的讀音是「そう」，不應省略長音。"},
+        {text: "しょうじ", explanation: "錯誤：「掃」的讀音是「そう」，不是「しょう」。"},
+        {text: "そうじょ", explanation: "錯誤：「除」的讀音是「じ」，不是「じょ」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0028",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N5)",
+    kana: "びょういん",
+    options: [
+        {text: "病院", explanation: "正確答案：「びょういん」對應的漢字是「病院」，意思是醫院。"},
+        {text: "病員", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "秒院", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "備院", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0029",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "親切",
+    options: [
+        {text: "しんせつ", explanation: "正確答案：「親」音讀為「しん」，「切」音讀為「せつ」。\n中文翻譯：親切"},
+        {text: "しんさい", explanation: "錯誤：「切」的讀音是「せつ」，不是「さい」。"},
+        {text: "おやせつ", explanation: "錯誤：「親」在此應讀音讀「しん」，不讀訓讀「おや」。"},
+        {text: "しんせい", explanation: "錯誤：「切」的讀音是「せつ」，不是「せい」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0030",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N5)",
+    kana: "ゆうめい",
+    options: [
+        {text: "有名", explanation: "正確答案：「ゆうめい」對應的漢字是「有名」，意思是有名。"},
+        {text: "勇名", explanation: "錯誤：「勇名」意思是英勇的名聲，語意不符。"},
+        {text: "夕名", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "友名", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0031",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "大切",
+    options: [
+        {text: "たいせつ", explanation: "正確答案：「大」音讀為「たい」，「切」音讀為「せつ」。\n中文翻譯：重要；珍惜"},
+        {text: "たいせ", explanation: "錯誤：「切」的讀音是「せつ」，不應省略「つ」。"},
+        {text: "たいさい", explanation: "錯誤：「切」的讀音是「せつ」，不是「さい」。"},
+        {text: "だいせつ", explanation: "錯誤：「大」在此讀音是「たい」，不是「だい」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0032",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "きょうしつ",
+    options: [
+        {text: "教室", explanation: "正確答案：「きょうしつ」對應的漢字是「教室」。"},
+        {text: "教習", explanation: "錯誤：「教習」讀作「きょうしゅう」。"},
+        {text: "教失", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "競室", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0033",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N5)",
+    kanji: "練習",
+    options: [
+        {text: "れんしゅう", explanation: "正確答案：「練」音讀為「れん」，「習」音讀為「しゅう」。\n中文翻譯：練習"},
+        {text: "れんしゅ", explanation: "錯誤：「習」的讀音是「しゅう」，不應省略長音。"},
+        {text: "れんじゅう", explanation: "錯誤：「習」的讀音是「しゅう」，不是「じゅう」。"},
+        {text: "れいしゅう", explanation: "錯誤：「練」的讀音是「れん」，不是「れい」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0034",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "にもつ",
+    options: [
+        {text: "荷物", explanation: "正確答案：「にもつ」對應的漢字是「荷物」，意思是行李、物品。"},
+        {text: "二物", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "荷元", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "仁物", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0035",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "経験",
+    options: [
+        {text: "けいけん", explanation: "正確答案：「経」音讀為「けい」，「験」音讀為「けん」。\n中文翻譯：經驗"},
+        {text: "けいげん", explanation: "錯誤：「験」的讀音是「けん」，不是「げん」。"},
+        {text: "けけん", explanation: "錯誤：「経」的讀音是「けい」，不應省略長音。"},
+        {text: "きょうけん", explanation: "錯誤：「経」的讀音是「けい」，不是「きょう」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0036",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "ひこうき",
+    options: [
+        {text: "飛行機", explanation: "正確答案：「ひこうき」對應的漢字是「飛行機」，意思是飛機。"},
+        {text: "飛幸機", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "飛考機", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "否行機", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0037",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "紹介",
+    options: [
+        {text: "しょうかい", explanation: "正確答案：「紹」音讀為「しょう」，「介」音讀為「かい」。\n中文翻譯：介紹"},
+        {text: "しょかい", explanation: "錯誤：「紹」的讀音是「しょう」，不應省略長音。"},
+        {text: "しょうがい", explanation: "錯誤：「介」的讀音是「かい」，不是「がい」。"},
+        {text: "しゅうかい", explanation: "錯誤：「紹」的讀音是「しょう」，不是「しゅう」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0038",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N5)",
+    kana: "しょくじ",
+    options: [
+        {text: "食事", explanation: "正確答案：「しょくじ」對應的漢字是「食事」，意思是吃飯。"},
+        {text: "飾事", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "職事", explanation: "錯誤：「職事」讀作「しょくじ」，但意思為職務上的事。"},
+        {text: "食字", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0039",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "一生懸命",
+    options: [
+        {text: "いっしょうけんめい", explanation: "正確答案：「一」音讀為「いっ」，「生」音讀為「しょう」，「懸」音讀為「けん」，「命」音讀為「めい」。\n中文翻譯：拼命；努力"},
+        {text: "いっせいけんめい", explanation: "錯誤：「生」在此讀音是「しょう」，不是「せい」。"},
+        {text: "いっしょうけめい", explanation: "錯誤：「懸」的讀音是「けん」，不是「け」。"},
+        {text: "いちしょうけんめい", explanation: "錯誤：「一」在此讀音是「いっ」，不應為「いち」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0040",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "じゅぎょう",
+    options: [
+        {text: "授業", explanation: "正確答案：「じゅぎょう」對應的漢字是「授業」，意思是課程、上課。"},
+        {text: "受業", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "授行", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "受行", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0041",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "無理",
+    options: [
+        {text: "むり", explanation: "正確答案：「無」音讀為「む」，「理」音讀為「り」。\n中文翻譯：勉強；不可能；無理"},
+        {text: "ぶり", explanation: "錯誤：「無」的讀音是「む」，不是「ぶ」。"},
+        {text: "むりい", explanation: "錯誤：多了一個「い」的音。"},
+        {text: "むりょう", explanation: "錯誤：「理」的讀音是「り」，不是「りょう」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0042",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N5)",
+    kana: "かんたん",
+    options: [
+        {text: "簡単", explanation: "正確答案：「かんたん」對應的漢字是「簡単」，意思是簡單。"},
+        {text: "感嘆", explanation: "錯誤：「感嘆」讀作「かんたん」，意思是感嘆。"},
+        {text: "官単", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "簡丹", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0043",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "運転",
+    options: [
+        {text: "うんてん", explanation: "正確答案：「運」音讀為「うん」，「転」音讀為「てん」。\n中文翻譯：駕駛；開車"},
+        {text: "うんでん", explanation: "錯誤：「転」的讀音是「てん」，不是「でん」。"},
+        {text: "うんてい", explanation: "錯誤：「転」的讀音是「てん」，不是「てい」。"},
+        {text: "うてん", explanation: "錯誤：「運」的讀音是「うん」，不應省略「ん」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0044",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "ぜひ",
+    options: [
+        {text: "是非", explanation: "正確答案：「ぜひ」對應的漢字是「是非」，意思是一定；務必。"},
+        {text: "是飛", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "税非", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "勢否", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0045",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N5)",
+    kanji: "毎日",
+    options: [
+        {text: "まいにち", explanation: "正確答案：「毎」音讀為「まい」，「日」音讀為「にち」。\n中文翻譯：每天"},
+        {text: "まいひ", explanation: "錯誤：「日」在此應讀音讀「にち」，不讀「ひ」。"},
+        {text: "まいつ", explanation: "錯誤：讀音錯誤。"},
+        {text: "まいに", explanation: "錯誤：「日」的讀音是「にち」，不應省略「ち」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0046",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "うわぎ",
+    options: [
+        {text: "上着", explanation: "正確答案：「うわぎ」對應的漢字是「上着」，意思是外套。"},
+        {text: "上衣", explanation: "錯誤：「上衣」讀作「じょうい」。"},
+        {text: "上木", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "浮気", explanation: "錯誤：「浮気」讀作「うわき」，意思是外遇。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0047",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "連絡",
+    options: [
+        {text: "れんらく", explanation: "正確答案：「連」音讀為「れん」，「絡」音讀為「らく」。\n中文翻譯：聯絡"},
+        {text: "れんがく", explanation: "錯誤：「絡」的讀音是「らく」，不是「がく」。"},
+        {text: "れいらく", explanation: "錯誤：「連」的讀音是「れん」，不是「れい」。"},
+        {text: "れんら", explanation: "錯誤：「絡」的讀音是「らく」，不應省略「く」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0048",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N5)",
+    kana: "じかん",
+    options: [
+        {text: "時間", explanation: "正確答案：「じかん」對應的漢字是「時間」，意思是時間。"},
+        {text: "時感", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "地間", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "示間", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0049",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "申請",
+    options: [
+        {text: "しんせい", explanation: "正確答案：「申」音讀為「しん」，「請」音讀為「せい」。\n中文翻譯：申請"},
+        {text: "しんせ", explanation: "錯誤：「請」的讀音是「せい」，不應省略「い」。"},
+        {text: "しんしょう", explanation: "錯誤：「請」的讀音是「せい」，不是「しょう」。"},
+        {text: "もうせい", explanation: "錯誤：「申」在此應讀音讀「しん」，不讀訓讀「もう」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0050",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "てつだう",
+    options: [
+        {text: "手伝う", explanation: "正確答案：「てつだう」對應的漢字是「手伝う」，意思是幫忙。"},
+        {text: "手達う", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "哲陀う", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "鉄だう", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0051",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "景色",
+    options: [
+        {text: "けしき", explanation: "正確答案：「景」音讀為「けい」，但此處特讀為「け」；「色」音讀為「しき」。\n中文翻譯：景色；風景"},
+        {text: "けいしき", explanation: "錯誤：通常不讀作長音。"},
+        {text: "かげいろ", explanation: "錯誤：這是訓讀，不是標準讀音。"},
+        {text: "けしょく", explanation: "錯誤：「色」的讀音是「しき」，不是「しょく」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0052",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "がわ",
+    options: [
+        {text: "側", explanation: "正確答案：「がわ」對應的漢字是「側」，意思是邊、旁邊。"},
+        {text: "顔", explanation: "錯誤：「顔」讀作「かお」，意思是臉。"},
+        {text: "河", explanation: "錯誤：「河」讀作「かわ」，意思是河。"},
+        {text: "皮", explanation: "錯誤：「皮」讀作「かわ」，意思是皮。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0053",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "海外",
+    options: [
+        {text: "かいがい", explanation: "正確答案：「海」音讀為「かい」，「外」音讀為「がい」。\n中文翻譯：海外；國外"},
+        {text: "かいげ", explanation: "錯誤：「外」的讀音是「がい」，不是「げ」。"},
+        {text: "かいご", explanation: "錯誤：「外」的讀音是「がい」，不是「ご」。"},
+        {text: "うみそと", explanation: "錯誤：不應使用訓讀「うみ」和「そと」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0054",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N5)",
+    kana: "てんき",
+    options: [
+        {text: "天気", explanation: "正確答案：「てんき」對應的漢字是「天気」，意思是天氣。"},
+        {text: "天機", explanation: "錯誤：「天機」讀作「てんき」，但意思是天機，不適用。"},
+        {text: "展期", explanation: "錯誤：「展期」讀作「てんき」。"},
+        {text: "点記", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0055",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "面接",
+    options: [
+        {text: "めんせつ", explanation: "正確答案：「面」音讀為「めん」，「接」音讀為「せつ」。\n中文翻譯：面試"},
+        {text: "めんせ", explanation: "錯誤：「接」的讀音是「せつ」，不應省略「つ」。"},
+        {text: "めせつ", explanation: "錯誤：「面」的讀音是「めん」，不應省略「ん」。"},
+        {text: "めんしょう", explanation: "錯誤：「接」的讀音是「せつ」，不是「しょう」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0056",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N5)",
+    kana: "しゅみ",
+    options: [
+        {text: "趣味", explanation: "正確答案：「しゅみ」對應的漢字是「趣味」，意思是興趣。"},
+        {text: "首味", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "集味", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "朱味", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0057",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "理由",
+    options: [
+        {text: "りゆう", explanation: "正確答案：「理」音讀為「り」，「由」音讀為「ゆう」。\n中文翻譯：理由"},
+        {text: "りゆ", explanation: "錯誤：「由」的讀音是「ゆう」，不應省略長音。"},
+        {text: "りりゅう", explanation: "錯誤：讀音錯誤。"},
+        {text: "りょゆう", explanation: "錯誤：「理」的讀音是「り」，不是「りょ」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0058",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "ようす",
+    options: [
+        {text: "様子", explanation: "正確答案：「ようす」對應的漢字是「様子」，意思是樣子、情況。"},
+        {text: "容子", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "洋子", explanation: "錯誤：「洋子」讀作「ようこ」，是人名。"},
+        {text: "要す", explanation: "錯誤：「要す」是動詞，意思為需要。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0059",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "係員",
+    options: [
+        {text: "かかりいん", explanation: "正確答案：訓讀「係（かかり）」接音讀「員（いん）」。\n中文翻譯：工作人員、負責人"},
+        {text: "けいいん", explanation: "錯誤：讀音錯誤。"},
+        {text: "かかりん", explanation: "錯誤：「員」的讀音是「いん」，不應省略「い」。"},
+        {text: "かんいん", explanation: "錯誤：「係」在此不讀「かん」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0060",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "うけつけ",
+    options: [
+        {text: "受付", explanation: "正確答案：「うけつけ」對應的漢字是「受付」，意思是櫃檯、接待處。"},
+        {text: "受け付け", explanation: "錯誤：這是混合表記。"},
+        {text: "受付", explanation: "錯誤：日文中通常寫作「受付」。"},
+        {text: "受け漬け", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0061",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "故障",
+    options: [
+        {text: "こしょう", explanation: "正確答案：「故」音讀為「こ」，「障」音讀為「しょう」。\n中文翻譯：故障"},
+        {text: "こしょ", explanation: "錯誤：「障」的讀音是「しょう」，不應省略長音。"},
+        {text: "ごしょう", explanation: "錯誤：「故」的讀音是「こ」，不是「ご」。"},
+        {text: "こぼう", explanation: "錯誤：「障」的讀音是「しょう」，不是「ぼう」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0062",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "けんこう",
+    options: [
+        {text: "健康", explanation: "正確答案：「けんこう」對應的漢字是「健康」，意思為健康。"},
+        {text: "現行", explanation: "錯誤：「現行」讀作「げんこう」。"},
+        {text: "原稿", explanation: "錯誤：「原稿」讀作「げんこう」。"},
+        {text: "憲行", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0063",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N5)",
+    kanji: "銀行",
+    options: [
+        {text: "ぎんこう", explanation: "正確答案：「銀」音讀為「ぎん」，「行」音讀為「こう」。\n中文翻譯：銀行"},
+        {text: "ぎんこ", explanation: "錯誤：「行」的讀音是「こう」，不應省略長音。"},
+        {text: "きんこう", explanation: "錯誤：「銀」的讀音是「ぎん」，不是「きん」。"},
+        {text: "ぎんぎょう", explanation: "錯誤：「行」的讀音是「こう」，不是「ぎょう」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0064",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N5)",
+    kana: "やさい",
+    options: [
+        {text: "野菜", explanation: "正確答案：「やさい」對應的漢字是「野菜」，意思是蔬菜。"},
+        {text: "野才", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "矢菜", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "谷菜", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0065",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "相談",
+    options: [
+        {text: "そうだん", explanation: "正確答案：「相」音讀為「そう」，「談」音讀為「だん」。\n中文翻譯：商量、討論"},
+        {text: "そだん", explanation: "錯誤：「相」的讀音是「そう」，不應省略長音。"},
+        {text: "しょうだん", explanation: "錯誤：「相」的讀音是「そう」，不是「しょう」。"},
+        {text: "そうたん", explanation: "錯誤：「談」的讀音是「だん」，不是「たん」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0066",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "けしき",
+    options: [
+        {text: "景色", explanation: "正確答案：「けしき」對應的漢字是「景色」，意思是景色、風景。"},
+        {text: "景気", explanation: "錯誤：「景気」讀作「けいき」，意思是景氣。"},
+        {text: "家色", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "気色", explanation: "錯誤：「気色」讀作「きしょく」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0067",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N5)",
+    kanji: "辞書",
+    options: [
+        {text: "じしょ", explanation: "正確答案：「辞」音讀為「じ」，「書」音讀為「しょ」。\n中文翻譯：字典"},
+        {text: "じっしょ", explanation: "錯誤：「辞」的讀音是「じ」，不應促音化。"},
+        {text: "じしょお", explanation: "錯誤：多了一個「お」的音。"},
+        {text: "ししょ", explanation: "錯誤：「辞」的讀音是「じ」，不是「し」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0068",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "やさしい",
+    options: [
+        {text: "優しい", explanation: "正確答案：「やさしい」對應的漢字是「優しい」，意思是溫柔的、和藹的。"},
+        {text: "易しい", explanation: "錯誤：「易しい」讀作「やさしい」，意思是簡單的，但與「溫柔」語意不符。"},
+        {text: "矢さしい", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "優し", explanation: "錯誤：不完整動詞變化。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0069",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "受付",
+    options: [
+        {text: "うけつけ", explanation: "正確答案：訓讀動詞「受ける（うけ）」的連用形接「付く（つく）」的連用形。\n中文翻譯：櫃檯；接待處"},
+        {text: "じゅふ", explanation: "錯誤：音讀錯誤。"},
+        {text: "うけつ", explanation: "錯誤：讀音不完整。"},
+        {text: "じゅけつ", explanation: "錯誤：讀音錯誤。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0070",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "よごれる",
+    options: [
+        {text: "汚れる", explanation: "正確答案：「よごれる」對應的漢字是「汚れる」，意思是弄髒（自）。"},
+        {text: "除れる", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "依れる", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "善れる", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0071",
+    type: "reading",
+    question: "「賑やか（にぎやか）」的中文意思是什麼？ (N4)",
+    kanji: "賑やか",
+    options: [
+        {text: "熱鬧的", explanation: "正確答案：「賑やか」是 $\text{Na}$ 形容詞，意思是熱鬧的。"},
+        {text: "安靜的", explanation: "錯誤：「安靜的」是「静か（しずか）」。"},
+        {text: "重要的", explanation: "錯誤：「重要的」是「大切（たいせつ）」。"},
+        {text: "方便的", explanation: "錯誤：「方便的」是「便利（べんり）」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0072",
+    type: "reading",
+    question: "「美味しい（おいしい）」的相反詞，對應的中文意思是什麼？ (N5)",
+    kanji: "不味い",
+    options: [
+        {text: "難吃的", explanation: "正確答案：「不味い（まずい）」是 $\text{I}$ 形容詞，意思是難吃的、難受的。"},
+        {text: "很鹹的", explanation: "錯誤：「很鹹的」是「塩辛い（しおからい）」。"},
+        {text: "很苦的", explanation: "錯誤：「很苦的」是「苦い（にがい）」。"},
+        {text: "很辣的", explanation: "錯誤：「很辣的」是「辛い（からい）」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0073",
+    type: "reading",
+    question: "「優しい（やさしい）」在形容一個人時，中文意思是什麼？ (N4)",
+    kanji: "優しい",
+    options: [
+        {text: "溫柔的、和藹的", explanation: "正確答案：「優しい」意思是溫柔的、和藹的。"},
+        {text: "簡單的、容易的", explanation: "錯誤：「簡單的」是「易しい（やさしい）」(同音異義，但漢字不同)。"},
+        {text: "嚴厲的、嚴格的", explanation: "錯誤：「嚴厲的」是「厳しい（きびしい）」。"},
+        {text: "健談的、多話的", explanation: "錯誤：「健談的」是「話好き（はなしずき）」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0074",
+    type: "reading",
+    question: "「荷物（にもつ）」的中文意思是什麼？ (N5)",
+    kanji: "荷物",
+    options: [
+        {text: "行李、物品", explanation: "正確答案：「荷物」是名詞，意思是行李、物品。"},
+        {text: "錢包", explanation: "錯誤：「錢包」是「財布（さいふ）」。"},
+        {text: "地址", explanation: "錯誤：「地址」是「住所（じゅうしょ）」。"},
+        {text: "字典", explanation: "錯誤：「字典」是「辞書（じしょ）」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0075",
+    type: "reading",
+    question: "「慣れる（なれる）」的中文意思是什麼？ (N4)",
+    kanji: "慣れる",
+    options: [
+        {text: "習慣、適應", explanation: "正確答案：「慣れる」是動詞，意思是習慣、適應。"},
+        {text: "忘記", explanation: "錯誤：「忘記」是「忘れる（わすれる）」。"},
+        {text: "記住", explanation: "錯誤：「記住」是「覚える（おぼえる）」。"},
+        {text: "決定", explanation: "錯誤：「決定」是「決める（きめる）」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0076",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "部長",
+    options: [
+        {text: "ぶちょう", explanation: "正確答案：「部」音讀為「ぶ」，「長」音讀為「ちょう」。\n中文翻譯：部長"},
+        {text: "ぶじょう", explanation: "錯誤：「長」的讀音是「ちょう」，不是「じょう」。"},
+        {text: "ぶっとう", explanation: "錯誤：讀音錯誤。"},
+        {text: "ふちょう", explanation: "錯誤：「部」的讀音是「ぶ」，不是「ふ」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0077",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "しゅくだい",
+    options: [
+        {text: "宿題", explanation: "正確答案：「しゅくだい」對應的漢字是「宿題」，意思是作業。"},
+        {text: "祝題", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "習題", explanation: "錯誤：「習題」讀作「しゅうだい」。"},
+        {text: "塾題", explanation: "錯誤：「塾題」讀作「じゅくだい」。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0078",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N5)",
+    kanji: "卵",
+    options: [
+        {text: "たまご", explanation: "正確答案：「卵」訓讀為「たまご」。\n中文翻譯：蛋"},
+        {text: "らん", explanation: "錯誤：「卵」的音讀是「らん」，但作為單詞通常讀訓讀。"},
+        {text: "きょう", explanation: "錯誤：讀音錯誤。"},
+        {text: "まる", explanation: "錯誤：讀音錯誤。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0079",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "ざんねん",
+    options: [
+        {text: "残念", explanation: "正確答案：「ざんねん」對應的漢字是「残念」，意思是遺憾、可惜。"},
+        {text: "残念", explanation: "錯誤：此為中文簡體字，日文正字為「残念」。"},
+        {text: "産念", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "斬念", explanation: "錯誤：此為不存在的漢字組合。"}
+    ],
+    correctAnswer: 0
+},
+{
+    id: "V0080",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "規則",
+    options: [
+        {text: "きそく", explanation: "正確答案：「規」音讀為「き」，「則」音讀為「そく」。\n中文翻譯：規則"},
+        {text: "きぞく", explanation: "錯誤：「則」的讀音是「そく」，不是「ぞく」。"},
+        {text: "きっそく", explanation: "錯誤：「規」的讀音是「き」，不應促音化。"},
+        {text: "きしょく", explanation: "錯誤：「則」的讀音是「そく」，不是「しょく」。"}
+    ],
+    correctAnswer: 0
 },
 {
     id: "V0081",
-    type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "観光",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "まじめ",
     options: [
-        {text: "かんこう", explanation: "正確答案：「観」音讀為「かん」，「光」音讀為「こう」。\n中文翻譯：觀光"},
-        {text: "かんごう", explanation: "錯誤：「光」的讀音是「こう」，不是「ごう」。\n中文翻譯：觀光"},
-        {text: "がんこう", explanation: "錯誤：「観」的讀音是「かん」，不是「がん」。\n中文翻譯：觀光"},
-        {text: "かんこ", explanation: "錯誤：「光」的讀音是「こう」，不應省略長音。\n中文翻譯：觀光"}
+        {text: "真面目", explanation: "正確答案：「まじめ」對應的漢字是「真面目」，意思是認真的。"},
+        {text: "真目", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "正面目", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "真実", explanation: "錯誤：「真実」讀作「しんじつ」。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0082",
-    type: "writing",
-    question: "次の言葉の正しい漢字を選びなさい",
-    kana: "ゆにゅう",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "夢中",
     options: [
-        {text: "輸入", explanation: "正確答案：「ゆにゅう」對應的漢字是「輸入」，意思是進口。\n中文翻譯：進口"},
-        {text: "輸乳", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "由入", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "湯入", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
+        {text: "むちゅう", explanation: "正確答案：「夢」音讀為「む」，「中」音讀為「ちゅう」。\n中文翻譯：著迷、入迷"},
+        {text: "ゆめちゅう", explanation: "錯誤：「夢」在此讀音讀「む」，不讀訓讀「ゆめ」。"},
+        {text: "もちゅう", explanation: "錯誤：「夢」的讀音是「む」，不是「も」。"},
+        {text: "むなか", explanation: "錯誤：「中」在此應讀音讀「ちゅう」，不讀「なか」。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0083",
-    type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "輸出",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "わすれる",
     options: [
-        {text: "ゆしゅつ", explanation: "正確答案：「輸」音讀為「ゆ」，「出」音讀為「しゅつ」。\n中文翻譯：出口"},
-        {text: "ゆしゅ", explanation: "錯誤：「出」的讀音是「しゅつ」，不應省略「つ」。\n中文翻譯：出口"},
-        {text: "ゆうしゅつ", explanation: "錯誤：「輸」的讀音是「ゆ」，不是「ゆう」。\n中文翻譯：出口"},
-        {text: "よしゅつ", explanation: "錯誤：「輸」的讀音是「ゆ」，不是「よ」。\n中文翻譯：出口"}
+        {text: "忘れる", explanation: "正確答案：「わすれる」對應的漢字是「忘れる」，意思是忘記。"},
+        {text: "忘れる", explanation: "錯誤：此為中文簡體字，日文正字為「忘れる」。"},
+        {text: "和連れる", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "輪連れる", explanation: "錯誤：此為不存在的漢字組合。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0084",
-    type: "writing",
-    question: "次の言葉の正しい漢字を選びなさい",
-    kana: "ぼうえき",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "故障",
     options: [
-        {text: "貿易", explanation: "正確答案：「ぼうえき」對應的漢字是「貿易」，意思是貿易。\n中文翻譯：貿易"},
-        {text: "防役", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "暴益", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "忙易", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
+        {text: "こしょう", explanation: "正確答案：「故」音讀為「こ」，「障」音讀為「しょう」。\n中文翻譯：故障"},
+        {text: "こしょ", explanation: "錯誤：「障」的讀音是「しょう」，不應省略長音。"},
+        {text: "ごしょう", explanation: "錯誤：「故」的讀音是「こ」，不是「ご」。"},
+        {text: "こぼう", explanation: "錯誤：「障」的讀音是「しょう」，不是「ぼう」。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0085",
-    type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "価格",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "ふしぎ",
     options: [
-        {text: "かかく", explanation: "正確答案：「価」音讀為「か」，「格」音讀為「かく」。\n中文翻譯：價格"},
-        {text: "かがく", explanation: "錯誤：「格」的讀音是「かく」，不是「がく」。\n中文翻譯：價格"},
-        {text: "がかく", explanation: "錯誤：「価」的讀音是「か」，不是「が」。\n中文翻譯：價格"},
-        {text: "かかっ", explanation: "錯誤：「格」的讀音是「かく」，不應促音化。\n中文翻譯：價格"}
+        {text: "不思議", explanation: "正確答案：「ふしぎ」對應的漢字是「不思議」，意思是不可思議的。"},
+        {text: "不思義", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "布敷義", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "不司議", explanation: "錯誤：此為不存在的漢字組合。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0086",
-    type: "writing",
-    question: "次の言葉の正しい漢字を選びなさい",
-    kana: "かんけい",
+    type: "reading",
+    question: "「一生懸命（いっしょうけんめい）」的中文意思是什麼？ (N4)",
+    kanji: "一生懸命",
     options: [
-        {text: "関係", explanation: "正確答案：「かんけい」對應的漢字是「関係」，意思是關係。\n中文翻譯：關係"},
-        {text: "官警", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "環形", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "簡計", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
+        {text: "拼命地、努力地", explanation: "正確答案：「一生懸命」是 $\text{Na}$ 形容詞/副詞，意思是拼命地、努力地。"},
+        {text: "永遠、一輩子", explanation: "錯誤：「永遠」是「永遠（えいえん）」。"},
+        {text: "非常有趣", explanation: "錯誤：「非常有趣」是「とても面白い（おもしろい）」。"},
+        {text: "非常簡單", explanation: "錯誤：「非常簡單」是「とても簡単（かんたん）」。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0087",
     type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "政治",
+    question: "動詞「手伝う（てつだう）」的中文意思是什麼？ (N4)",
+    kanji: "手伝う",
     options: [
-        {text: "せいじ", explanation: "正確答案：「政」音讀為「せい」，「治」音讀為「じ」。\n中文翻譯：政治"},
-        {text: "せいち", explanation: "錯誤：「治」的讀音是「じ」，不是「ち」。\n中文翻譯：政治"},
-        {text: "せじ", explanation: "錯誤：「政」的讀音是「せい」，不應省略「い」。\n中文翻譯：政治"},
-        {text: "しょうじ", explanation: "錯誤：「政」的讀音是「せい」，不是「しょう」。\n中文翻譯：政治"}
+        {text: "幫忙、協助", explanation: "正確答案：「手伝う」是動詞，意思是幫忙、協助。"},
+        {text: "傳達、告知", explanation: "錯誤：「傳達」是「伝える（つたえる）」。"},
+        {text: "約定、承諾", explanation: "錯誤：「約定」是「約束（やくそく）」。"},
+        {text: "打掃", explanation: "錯誤：「打掃」是「掃除する（そうじする）」。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0088",
-    type: "writing",
-    question: "次の言葉の正しい漢字を選びなさい",
-    kana: "ほうりつ",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "意見",
     options: [
-        {text: "法律", explanation: "正確答案：「ほうりつ」對應的漢字是「法律」，意思是法律。\n中文翻譯：法律"},
-        {text: "法率", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "報律", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "放立", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
+        {text: "いけん", explanation: "正確答案：「意」音讀為「い」，「見」音讀為「けん」。\n中文翻譯：意見"},
+        {text: "いげん", explanation: "錯誤：「見」的讀音是「けん」，不是「げん」。"},
+        {text: "いきん", explanation: "錯誤：「見」的讀音是「けん」，不是「きん」。"},
+        {text: "おもいみ", explanation: "錯誤：不應使用訓讀。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0089",
-    type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "教育",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "じしん",
     options: [
-        {text: "きょういく", explanation: "正確答案：「教」音讀為「きょう」，「育」音讀為「いく」。\n中文翻譯：教育"},
-        {text: "きょうゆ", explanation: "錯誤：「育」的讀音是「いく」，不是「ゆ」。\n中文翻譯：教育"},
-        {text: "きょいく", explanation: "錯誤：「教」的讀音是「きょう」，不應省略長音。\n中文翻譯：教育"},
-        {text: "こういく", explanation: "錯誤：「教」的讀音是「きょう」，不是「こう」。\n中文翻譯：教育"}
+        {text: "地震", explanation: "正確答案：「じしん」對應的漢字是「地震」，意思是地震。"},
+        {text: "時針", explanation: "錯誤：「時針」讀作「じしん」。"},
+        {text: "自信", explanation: "錯誤：「自信」讀作「じしん」，意思是自信。"},
+        {text: "持心", explanation: "錯誤：此為不存在的漢字組合。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0090",
-    type: "writing",
-    question: "次の言葉の正しい漢字を選びなさい",
-    kana: "ぶんか",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "発表",
     options: [
-        {text: "文化", explanation: "正確答案：「ぶんか」對應的漢字是「文化」，意思是文化。\n中文翻譯：文化"},
-        {text: "文科", explanation: "錯誤：「文科」讀作「ぶんか」，意思是文科。\n中文翻譯：文科"},
-        {text: "分科", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "聞化", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
+        {text: "はっぴょう", explanation: "正確答案：「発」音讀為「はっ」，「表」音讀為「ぴょう」。\n中文翻譯：發表"},
+        {text: "はっぴょ", explanation: "錯誤：「表」的讀音是「ぴょう」，不應省略長音。"},
+        {text: "はつぴょう", explanation: "錯誤：「発」的讀音是「はっ」，應促音化。"},
+        {text: "ひょうはつ", explanation: "錯誤：順序顛倒。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0091",
-    type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "社会",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "ひつよう",
     options: [
-        {text: "しゃかい", explanation: "正確答案：「社」音讀為「しゃ」，「会」音讀為「かい」。\n中文翻譯：社會"},
-        {text: "しゃがい", explanation: "錯誤：「会」的讀音是「かい」，不是「がい」。\n中文翻譯：社會"},
-        {text: "しゃかいい", explanation: "錯誤：多了一個「い」的音。\n中文翻譯：社會"},
-        {text: "じゃかい", explanation: "錯誤：「社」的讀音是「しゃ」，不是「じゃ」。\n中文翻譯：社會"}
+        {text: "必要", explanation: "正確答案：「ひつよう」對應的漢字是「必要」，意思是必要的。"},
+        {text: "畢要", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "必然", explanation: "錯誤：「必然」讀作「ひつぜん」。"},
+        {text: "必用", explanation: "錯誤：此為不存在的漢字組合。"}
     ],
     correctAnswer: 0
 },
 {
-    id: "V0092",
-    type: "writing",
-    question: "次の言葉の正しい漢字を選びなさい",
-    kana: "れきし",
-    options: [
-        {text: "歴史", explanation: "正確答案：「れきし」對應的漢字是「歴史」，意思是歷史。\n中文翻譯：歷史"},
-        {text: "暦史", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "烈史", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "礫史", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-    ],
-    correctAnswer: 0
-},
+        "id": "V0092",
+        "type": "reading",
+        "question": "次の漢字の読み方を選びなさい (N4) (意味：應盡的責任)",
+        "kanji": "義務",
+        "options": [
+            {"text": "ぎむ", "explanation": "正確答案：「義」音讀為「ぎ」，「務」音讀為「む」。\n中文翻譯：義務"},
+            {"text": "ぎぶ", "explanation": "錯誤：「務」的讀音是「む」，不是「ぶ」。\n中文翻譯：義務"},
+            {"text": "きむ", "explanation": "錯誤：「義」的讀音是「ぎ」，不是「き」。\n中文翻譯：義務"},
+            {"text": "いむ", "explanation": "錯誤：「義」在此不讀「い」。\n中文翻譯：義務"}
+        ],
+        "correctAnswer": 0
+    },
 {
     id: "V0093",
-    type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "伝統",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "へんこう",
     options: [
-        {text: "でんとう", explanation: "正確答案：「伝」音讀為「でん」，「統」音讀為「とう」。\n中文翻譯：傳統"},
-        {text: "でんと", explanation: "錯誤：「統」的讀音是「とう」，不應省略長音。\n中文翻譯：傳統"},
-        {text: "てんとう", explanation: "錯誤：「伝」的讀音是「でん」，不是「てん」。\n中文翻譯：傳統"},
-        {text: "でんどう", explanation: "錯誤：「統」的讀音是「とう」，不是「どう」。\n中文翻譯：傳統"}
+        {text: "変更", explanation: "正確答案：「へんこう」對應的漢字是「変更」，意思是變更、更改。"},
+        {text: "変行", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "辺行", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "編號", explanation: "錯誤：「編號」讀作「へんごう」。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0094",
-    type: "writing",
-    question: "次の言葉の正しい漢字を選びなさい",
-    kana: "しゅうかん",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "習慣",
     options: [
-        {text: "習慣", explanation: "正確答案：「しゅうかん」對應的漢字是「習慣」，意思是習慣。\n中文翻譯：習慣"},
-        {text: "週間", explanation: "錯誤：「週間」讀作「しゅうかん」，意思是～週。\n中文翻譯：～週"},
-        {text: "終刊", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "収監", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
+        {text: "しゅうかん", explanation: "正確答案：「習」音讀為「しゅう」，「慣」音讀為「かん」。\n中文翻譯：習慣"},
+        {text: "しゅうがん", explanation: "錯誤：「慣」的讀音是「かん」，不是「がん」。"},
+        {text: "しゅかん", explanation: "錯誤：「習」的讀音是「しゅう」，不應省略長音。"},
+        {text: "しゅつかん", explanation: "錯誤：「習」的讀音是「しゅう」，不是「しゅつ」。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0095",
-    type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "宗教",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "おなじ",
     options: [
-        {text: "しゅうきょう", explanation: "正確答案：「宗」音讀為「しゅう」，「教」音讀為「きょう」。\n中文翻譯：宗教"},
-        {text: "しゅきょう", explanation: "錯誤：「宗」的讀音是「しゅう」，不應省略長音。\n中文翻譯：宗教"},
-        {text: "しゅうきょ", explanation: "錯誤：「教」的讀音是「きょう」，不應省略長音。\n中文翻譯：宗教"},
-        {text: "じゅうきょう", explanation: "錯誤：「宗」的讀音是「しゅう」，不是「じゅう」。\n中文翻譯：宗教"}
+        {text: "同じ", explanation: "正確答案：「おなじ」對應的漢字是「同じ」，意思是相同的。"},
+        {text: "同じ", explanation: "錯誤：此為不規範的表記。"},
+        {text: "小なじ", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "尾名寺", explanation: "錯誤：此為不存在的漢字組合。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0096",
-    type: "writing",
-    question: "次の言葉の正しい漢字を選びなさい",
-    kana: "しんねん",
+    type: "reading",
+    question: "副詞「なかなか」在接否定時，中文意思是什麼？ (N4)",
+    kanji: "なかなか (〜ない)",
     options: [
-        {text: "新年", explanation: "正確答案：「しんねん」對應的漢字是「新年」，意思是新年。\n中文翻譯：新年"},
-        {text: "信念", explanation: "錯誤：「信念」讀作「しんねん」，意思是信念。\n中文翻譯：信念"},
-        {text: "親念", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "深年", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
+        {text: "不容易、怎麼也（不）", explanation: "正確答案：「なかなか～ない」表示不容易、怎麼也（不）。"},
+        {text: "非常地、很", explanation: "錯誤：「非常地」是「とても」或「非常に（ひじょうに）」。"},
+        {text: "立刻、馬上", explanation: "錯誤：「立刻」是「すぐ」。"},
+        {text: "時常地、總是", explanation: "錯誤：「時常地」是「いつも」。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0097",
     type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "祭り",
+    question: "形容詞「詰まらない（つまらない）」的中文意思是什麼？ (N4)",
+    kanji: "詰まらない",
     options: [
-        {text: "まつり", explanation: "正確答案：「祭」訓讀為「まつり」。\n中文翻譯：祭典；節日"},
-        {text: "さいり", explanation: "錯誤：不應使用音讀「さい」。\n中文翻譯：祭典"},
-        {text: "まつ", explanation: "錯誤：漏掉了「り」的音。\n中文翻譯：祭典"},
-        {text: "まちり", explanation: "錯誤：「祭」的讀音是「まつり」，不是「まちり」。\n中文翻譯：祭典"}
+        {text: "無聊的、沒意思的", explanation: "正確答案：「詰まらない」是 $\text{I}$ 形容詞，意思是無聊的、沒意思的。"},
+        {text: "令人困擾的", explanation: "錯誤：「困擾的」是「困る（こまる）」。"},
+        {text: "令人害羞的", explanation: "錯誤：「害羞的」是「恥ずかしい（はずかしい）」。"},
+        {text: "有趣的", explanation: "錯誤：「有趣的」是「面白い（おもしろい）」。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0098",
-    type: "writing",
-    question: "次の言葉の正しい漢字を選びなさい",
-    kana: "ぎょうじ",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "泥棒",
     options: [
-        {text: "行事", explanation: "正確答案：「ぎょうじ」對應的漢字是「行事」，意思是活動；儀式。\n中文翻譯：活動"},
-        {text: "業事", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "行司", explanation: "錯誤：「行司」讀作「ぎょうじ」，意思是相撲裁判。\n中文翻譯：相撲裁判"},
-        {text: "形事", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
+        {text: "どろぼう", explanation: "正確答案：「泥」訓讀為「どろ」，「棒」音讀為「ぼう」。\n中文翻譯：小偷"},
+        {text: "でいぼう", explanation: "錯誤：「泥」在此不讀音讀「でい」。"},
+        {text: "どろぼ", explanation: "錯誤：「棒」的讀音是「ぼう」，不應省略長音。"},
+        {text: "でいほう", explanation: "錯誤：讀音錯誤。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0099",
-    type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "美術館",
+    type: "writing",
+    question: "次の言葉の正しい漢字を選びなさい (N4)",
+    kana: "くわしい",
     options: [
-        {text: "びじゅつかん", explanation: "正確答案：「美」音讀為「び」，「術」音讀為「じゅつ」，「館」音讀為「かん」。\n中文翻譯：美術館"},
-        {text: "びじゅつがん", explanation: "錯誤：「館」的讀音是「かん」，不是「がん」。\n中文翻譯：美術館"},
-        {text: "びじゅかん", explanation: "錯誤：「術」的讀音是「じゅつ」，不應省略「つ」。\n中文翻譯：美術館"},
-        {text: "みじゅつかん", explanation: "錯誤：「美」的讀音是「び」，不是「み」。\n中文翻譯：美術館"}
+        {text: "詳しい", explanation: "正確答案：「くわしい」對應的漢字是「詳しい」，意思是詳細的。"},
+        {text: "苦しい", explanation: "錯誤：「苦しい」讀作「くるしい」，意思是痛苦的。"},
+        {text: "具しい", explanation: "錯誤：此為不存在的漢字組合。"},
+        {text: "句話しい", explanation: "錯誤：此為不存在的漢字組合。"}
     ],
     correctAnswer: 0
 },
 {
     id: "V0100",
-    type: "writing",
-    question: "次の言葉の正しい漢字を選びなさい",
-    kana: "えいがかん",
+    type: "reading",
+    question: "次の漢字の読み方を選びなさい (N4)",
+    kanji: "匂い",
     options: [
-        {text: "映画館", explanation: "正確答案：「えいがかん」對應的漢字是「映画館」，意思是電影院。\n中文翻譯：電影院"},
-        {text: "栄画館", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "永画館", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "影画館", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
+        {text: "におい", explanation: "正確答案：「匂い」訓讀為「におい」。\n中文翻譯：氣味"},
+        {text: "かおり", explanation: "錯誤：「香り」讀作「かおり」，意思為香味，語意上較為限定。"},
+        {text: "におう", explanation: "錯誤：「におう」是動詞，意思為聞到。"},
+        {text: "こうい", explanation: "錯誤：讀音錯誤。"}
     ],
     correctAnswer: 0
 },
@@ -1444,18 +1444,18 @@ correctAnswer: 0
     correctAnswer: 0
 },
 {
-    id: "V0112",
-    type: "writing",
-    question: "次の言葉の正しい漢字を選びなさい",
-    kana: "べんごし",
-    options: [
-        {text: "弁護士", explanation: "正確答案：「べんごし」對應的漢字是「弁護士」，意思是律師。\n中文翻譯：律師"},
-        {text: "弁護師", explanation: "錯誤：雖然讀音相同，但「弁護士」是正確的漢字組合。\n中文翻譯：律師"},
-        {text: "弁護司", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "勉護士", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-    ],
-    correctAnswer: 0
-},
+        "id": "V0112",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N4) (意味：薪水)",
+        "kana": "きゅうりょう",
+        "options": [
+            {"text": "給料", "explanation": "正確答案：「きゅうりょう」在此語境下對應的漢字是「給料」，意思是薪水。"},
+            {"text": "休漁", "explanation": "錯誤：「休漁」讀音也是「きゅうりょう」，但意思是停止捕魚，語意不符。"},
+            {"text": "急量", "explanation": "錯誤：此為不存在的漢字組合。"},
+            {"text": "究量", "explanation": "錯誤：此為不存在的漢字組合。"}
+        ],
+        "correctAnswer": 0
+    },
 {
     id: "V0113",
     type: "reading",
@@ -1496,18 +1496,18 @@ correctAnswer: 0
     correctAnswer: 0
 },
 {
-    id: "V0116",
-    type: "writing",
-    question: "次の言葉の正しい漢字を選びなさい",
-    kana: "せんもんか",
-    options: [
-        {text: "専門家", explanation: "正確答案：「せんもんか」對應的漢字是「専門家」，意思是專家。\n中文翻譯：專家"},
-        {text: "専問家", explanation: "錯誤：雖然讀音相同，但「専門家」是正確的漢字組合。\n中文翻譯：專家"},
-        {text: "千門家", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "選門家", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-    ],
-    correctAnswer: 0
-},
+        "id": "V0116",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N4) (意味：出席)",
+        "kana": "しゅっせき",
+        "options": [
+            {"text": "出席", "explanation": "正確答案：「しゅっせき」對應的漢字是「出席」，意思是出席。"},
+            {"text": "出籍", "explanation": "錯誤：此為不常用的漢字組合。"},
+            {"text": "手籍", "explanation": "錯誤：此為不存在的漢字組合。"},
+            {"text": "出跡", "explanation": "錯誤：此為不存在的漢字組合。"}
+        ],
+        "correctAnswer": 0
+    },
 {
     id: "V0117",
     type: "reading",
@@ -1574,18 +1574,18 @@ correctAnswer: 0
     correctAnswer: 0
 },
 {
-    id: "V0122",
-    type: "writing",
-    question: "次の言葉の正しい漢字を選びなさい",
-    kana: "はっけん",
-    options: [
-        {text: "発見", explanation: "正確答案：「はっけん」對應的漢字是「発見」，意思是發現。\n中文翻譯：發現"},
-        {text: "発券", explanation: "錯誤：「発券」讀作「はっけん」，意思是發行證券。\n中文翻譯：發行證券"},
-        {text: "八件", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "初見", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-    ],
-    correctAnswer: 0
-},
+        "id": "V0122",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N4) (意味：交通)",
+        "kana": "こうつう",
+        "options": [
+            {"text": "交通", "explanation": "正確答案：「こうつう」對應的漢字是「交通」，意思是交通。"},
+            {"text": "公通", "explanation": "錯誤：此為不常用的漢字組合。"},
+            {"text": "口通", "explanation": "錯誤：此為不常用的漢字組合。"},
+            {"text": "交痛", "explanation": "錯誤：「痛」的讀音是「つう」或「いた」，但意思不符，通常用於『痛苦』。"}
+        ],
+        "correctAnswer": 0
+    },
 {
     id: "V0123",
     type: "reading",
@@ -1730,18 +1730,18 @@ correctAnswer: 0
     correctAnswer: 0
 },
 {
-    id: "V0134",
-    type: "writing",
-    question: "次の言葉の正しい漢字を選びなさい",
-    kana: "さいがい",
-    options: [
-        {text: "災害", explanation: "正確答案：「さいがい」對應的漢字是「災害」，意思是災害。\n中文翻譯：災害"},
-        {text: "才害", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "際害", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "済害", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-    ],
-    correctAnswer: 0
-},
+        "id": "V0134",
+        "type": "reading",
+        "question": "次の漢字の読み方を選びなさい (N4)",
+        "kanji": "情報",
+        "options": [
+            {"text": "じょうほう", "explanation": "正確答案：「情」音讀為「じょう」，「報」音讀為「ほう」。\n中文翻譯：資訊、情報"},
+            {"text": "じょうぼう", "explanation": "錯誤：「報」的讀音是「ほう」，不是「ぼう」。\n中文翻譯：資訊、情報"},
+            {"text": "じょうほうう", "explanation": "錯誤：多餘的長音讀法。\n中文翻譯：資訊、情報"},
+            {"text": "しょうほう", "explanation": "錯誤：「情」的讀音是「じょう」，不是「しょう」。\n中文翻譯：資訊、情報"}
+        ],
+        "correctAnswer": 0
+    },
 {
     id: "V0135",
     type: "reading",
@@ -1821,18 +1821,18 @@ correctAnswer: 0
     correctAnswer: 0
 },
 {
-    id: "V0141",
-    type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "避難",
-    options: [
-        {text: "ひなん", explanation: "正確答案：「避」音讀為「ひ」，「難」音讀為「なん」。\n中文翻譯：避難"},
-        {text: "ひなん", explanation: "錯誤：雖然讀音相同，但「避難」是正確的漢字組合。\n中文翻譯：避難"},
-        {text: "ひなん", explanation: "錯誤：同選項2，讀音正確但漢字錯誤。\n中文翻譯：避難"},
-        {text: "びなん", explanation: "錯誤：「避」的讀音是「ひ」，不是「び」。\n中文翻譯：避難"}
-    ],
-    correctAnswer: 0
-},
+        "id": "V0141",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N4) (意味：小心、留意)",
+        "kana": "ちゅうい",
+        "options": [
+            {"text": "注意", "explanation": "正確答案：「ちゅうい」在此語境下對應的漢字是「注意」，意思是小心、留意。"},
+            {"text": "中尉", "explanation": "錯誤：「中尉」讀音也是「ちゅうい」，但意思是軍銜『中尉』，語意不符。"},
+            {"text": "仲意", "explanation": "錯誤：此為不存在的漢字組合。"},
+            {"text": "中位", "explanation": "錯誤：「中位」讀音是「ちゅうい」，但意思是中間的位置，語意不符。"}
+        ],
+        "correctAnswer": 0
+    },
 {
     id: "V0142",
     type: "writing",
@@ -2185,18 +2185,18 @@ correctAnswer: 0
     correctAnswer: 0
 },
 {
-    id: "V0169",
-    type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "贈与",
-    options: [
-        {text: "ぞうよ", explanation: "正確答案：「贈」音讀為「ぞう」，「与」音讀為「よ」。\n中文翻譯：贈與"},
-        {text: "ぞうよ", explanation: "錯誤：雖然讀音相同，但「贈与」是正確的漢字組合。\n中文翻譯：贈與"},
-        {text: "ぞよ", explanation: "錯誤：「贈」的讀音是「ぞう」，不應省略長音。\n中文翻譯：贈與"},
-        {text: "そうよ", explanation: "錯誤：「贈」的讀音是「ぞう」，不是「そう」。\n中文翻譯：贈與"}
-    ],
-    correctAnswer: 0
-},
+        "id": "V0169",
+        "type": "reading",
+        "question": "次の漢字の読み方を選びなさい (N4)",
+        "kanji": "責任",
+        "options": [
+            {"text": "せきにん", "explanation": "正確答案：「責」音讀為「せき」，「任」音讀為「にん」。\n中文翻譯：責任"},
+            {"text": "せきいん", "explanation": "錯誤：「任」的讀音是「にん」，不是「いん」。\n中文翻譯：責任"},
+            {"text": "さくにん", "explanation": "錯誤：「責」的讀音是「せき」，不是「さく」。\n中文翻譯：責任"},
+            {"text": "せいにん", "explanation": "錯誤：「責」的讀音是「せき」，不是「せい」。\n中文翻譯：責任"}
+        ],
+        "correctAnswer": 0
+    },
 {
     id: "V0170",
     type: "writing",
@@ -2289,18 +2289,18 @@ correctAnswer: 0
     correctAnswer: 0
 },
 {
-    id: "V0177",
-    type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "利回り",
-    options: [
-        {text: "りまわり", explanation: "正確答案：「利」音讀為「り」，「回」訓讀為「まわり」。\n中文翻譯：收益率"},
-        {text: "りかいり", explanation: "錯誤：不應使用音讀「かい」。\n中文翻譯：收益率"},
-        {text: "りまわり", explanation: "錯誤：雖然讀音相同，但「利回り」是正確的漢字組合。\n中文翻譯：收益率"},
-        {text: "りまわり", explanation: "錯誤：同選項3，讀音正確但漢字錯誤。\n中文翻譯：收益率"}
-    ],
-    correctAnswer: 0
-},
+        "id": "V0177",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N4) (意味：檢查)",
+        "kana": "けんさ",
+        "options": [
+            {"text": "検査", "explanation": "正確答案：「けんさ」對應的漢字是「検査」，意思是檢查。"},
+            {"text": "研削", "explanation": "錯誤：「研削」讀音也是「けんさく」，雖然意思接近（研磨），但讀音不完全吻合。此處應為「検査」。"},
+            {"text": "検差", "explanation": "錯誤：此為不常用的漢字組合。"},
+            {"text": "見差", "explanation": "錯誤：此為不存在的漢字組合。"}
+        ],
+        "correctAnswer": 0
+    },
 {
     id: "V0178",
     type: "writing",
@@ -2315,18 +2315,18 @@ correctAnswer: 0
     correctAnswer: 0
 },
 {
-    id: "V0179",
-    type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "株式",
-    options: [
-        {text: "かぶしき", explanation: "正確答案：「株」音讀為「かぶ」，「式」音讀為「しき」。\n中文翻譯：股份"},
-        {text: "かぶしき", explanation: "錯誤：雖然讀音相同，但「株式」是正確的漢字組合。\n中文翻譯：股份"},
-        {text: "かぶし", explanation: "錯誤：「式」的讀音是「しき」，不應省略「き」。\n中文翻譯：股份"},
-        {text: "かぶじき", explanation: "錯誤：「式」的讀音是「しき」，不是「じき」。\n中文翻譯：股份"}
-    ],
-    correctAnswer: 0
-},
+        "id": "V0179",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N5)",
+        "kana": "かいだん",
+        "options": [
+            {"text": "階段", "explanation": "正確答案：「かいだん」對應的漢字是「階段」，意思是樓梯。"},
+            {"text": "階談", "explanation": "錯誤：「談」的讀音是「だん」或「だんご」，但意思是談話，語意不符。"},
+            {"text": "会談", "explanation": "錯誤：「会談」讀音是「かいだん」，但意思是會談，語意不符。"},
+            {"text": "開壇", "explanation": "錯誤：此為不常用的漢字組合。"}
+        ],
+        "correctAnswer": 0
+    },
 {
     id: "V0180",
     type: "writing",
@@ -2367,18 +2367,18 @@ correctAnswer: 0
     correctAnswer: 0
 },
 {
-    id: "V0183",
-    type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "保険",
-    options: [
-        {text: "ほけん", explanation: "正確答案：「保」音讀為「ほ」，「険」音讀為「けん」。\n中文翻譯：保險"},
-        {text: "ほけん", explanation: "錯誤：雖然讀音相同，但「保険」是正確的漢字組合。\n中文翻譯：保險"},
-        {text: "ほけ", explanation: "錯誤：「険」的讀音是「けん」，不應省略「ん」。\n中文翻譯：保險"},
-        {text: "ぼけん", explanation: "錯誤：「保」的讀音是「ほ」，不是「ぼ」。\n中文翻譯：保險"}
-    ],
-    correctAnswer: 0
-},
+        "id": "V0183",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N4) (意味：交通)",
+        "kana": "こうつう",
+        "options": [
+            {"text": "交通", "explanation": "正確答案：「こうつう」對應的漢字是「交通」，意思是交通。"},
+            {"text": "公通", "explanation": "錯誤：此為不常用的漢字組合。"},
+            {"text": "口通", "explanation": "錯誤：此為不常用的漢字組合。"},
+            {"text": "交痛", "explanation": "錯誤：「痛」的讀音是「つう」或「いた」，但意思不符，通常用於『痛苦』。"}
+        ],
+        "correctAnswer": 0
+    },
 {
     id: "V0184",
     type: "writing",
@@ -2523,18 +2523,18 @@ correctAnswer: 0
     correctAnswer: 0
 },
 {
-    id: "V0195",
-    type: "reading",
-    question: "次の漢字の読み方を選びなさい",
-    kanji: "賞味期限",
-    options: [
-        {text: "しょうみきげん", explanation: "正確答案：「賞」音讀為「しょう」，「味」音讀為「み」，「期」音讀為「き」，「限」音讀為「げん」。\n中文翻譯：賞味期限"},
-        {text: "しょうみきげん", explanation: "錯誤：雖然讀音相同，但「賞味期限」是正確的漢字組合。\n中文翻譯：賞味期限"},
-        {text: "しょうみきけん", explanation: "錯誤：「限」的讀音是「げん」，不是「けん」。\n中文翻譯：賞味期限"},
-        {text: "しょみきげん", explanation: "錯誤：「賞」的讀音是「しょう」，不應省略長音。\n中文翻譯：賞味期限"}
-    ],
-    correctAnswer: 0
-},
+        "id": "V0195",
+        "type": "reading",
+        "question": "次の漢字の読み方を選びなさい (N4)",
+        "kanji": "情報",
+        "options": [
+            {"text": "じょうほう", "explanation": "正確答案：「情」音讀為「じょう」，「報」音讀為「ほう」。\n中文翻譯：資訊、情報"},
+            {"text": "じょうぼう", "explanation": "錯誤：「報」的讀音是「ほう」，不是「ぼう」。\n中文翻譯：資訊、情報"},
+            {"text": "じょうほうう", "explanation": "錯誤：多餘的長音讀法。\n中文翻譯：資訊、情報"},
+            {"text": "しょうほう", "explanation": "錯誤：「情」的讀音是「じょう」，不是「しょう」。\n中文翻譯：資訊、情報"}
+        ],
+        "correctAnswer": 0
+    },
 {
     id: "V0196",
     type: "writing",
@@ -2653,18 +2653,30 @@ options: [
 correctAnswer: 0
 },
 {
-id: "V0205",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "利益",
-options: [
-{text: "りえき", explanation: "正確答案：「利」音讀為「り」，「益」音讀為「えき」。\n中文翻譯：利益"},
-{text: "りえき", explanation: "錯誤：雖然讀音相同，但「利益」是正確的漢字組合。\n中文翻譯：利益"},
-{text: "りえ", explanation: "錯誤：「益」的讀音是「えき」，不應省略「き」。\n中文翻譯：利益"},
-{text: "りえっき", explanation: "錯誤：「益」的讀音是「えき」，不應促音化。\n中文翻譯：利益"}
-],
-correctAnswer: 0
-},
+        "id": "V0205",
+        "type": "reading",
+        "question": "副詞「かたづける」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "片付ける",
+        "options": [
+            {
+                "text": "整理、收拾、處理完畢",
+                "explanation": "正確答案：「片付ける」表示整理環境或處理事務，翻譯為『整理、收拾』。"
+            },
+            {
+                "text": "開始、啟動",
+                "explanation": "錯誤：「開始、啟動」是「始める（はじめる）」的意思。"
+            },
+            {
+                "text": "放置、擺放",
+                "explanation": "錯誤：「放置、擺放」是「置く（おく）」的意思。"
+            },
+            {
+                "text": "破壞、弄亂",
+                "explanation": "錯誤：「破壞、弄亂」是「壊す（こわす）」或「散らかす（ちらかす）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
 id: "V0206",
 type: "writing",
@@ -2757,18 +2769,18 @@ options: [
 correctAnswer: 0
 },
 {
-id: "V0213",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "株式会社",
-options: [
-{text: "かぶしきがいしゃ", explanation: "正確答案：「株」音讀為「かぶ」，「式」音讀為「しき」，「会」音讀為「かい」，「社」音讀為「しゃ」。\n中文翻譯：股份有限公司"},
-{text: "かぶしきかいしゃ", explanation: "錯誤：雖然讀音相同，但「株式会社」是正確的漢字組合。\n中文翻譯：股份有限公司"},
-{text: "かぶしきがいじゃ", explanation: "錯誤：「社」的讀音是「しゃ」，不是「じゃ」。\n中文翻譯：股份有限公司"},
-{text: "かぶしきかいじゃ", explanation: "錯誤：「社」的讀音是「しゃ」，不是「じゃ」。\n中文翻譯：股份有限公司"}
-],
-correctAnswer: 0
-},
+        "id": "V0213",
+        "type": "reading",
+        "question": "次の漢字の読み方を選びなさい (N4)",
+        "kanji": "製造",
+        "options": [
+            {"text": "せいぞう", "explanation": "正確答案：「製」音讀為「せい」，「造」音讀為「ぞう」。\n中文翻譯：製造"},
+            {"text": "せいぞうう", "explanation": "錯誤：「造」的長音為「ぞう」，不須多加一個「う」。\n中文翻譯：製造"},
+            {"text": "せいうぞう", "explanation": "錯誤：「製」的長音為「せい」，不是「せいう」。\n中文翻譯：製造"},
+            {"text": "さくぞう", "explanation": "錯誤：「製」的讀音是「せい」，不是「さく」。\n中文翻譯：製造"}
+        ],
+        "correctAnswer": 0
+    },
 {
 id: "V0214",
 type: "writing",
@@ -3069,18 +3081,18 @@ options: [
 correctAnswer: 0
 },
 {
-id: "V0237",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "貸付",
-options: [
-{text: "かしつけ", explanation: "正確答案：「貸」訓讀為「かし」，「付」訓讀為「つけ」。\n中文翻譯：貸款"},
-{text: "かしつけ", explanation: "錯誤：雖然讀音相同，但「貸付」是正確的漢字組合。\n中文翻譯：貸款"},
-{text: "たいふ", explanation: "錯誤：不應使用音讀「たい」和「ふ」。\n中文翻譯：貸款"},
-{text: "かしづけ", explanation: "錯誤：「付」的讀音是「つけ」，不是「づけ」。\n中文翻譯：貸款"}
-],
-correctAnswer: 0
-},
+        "id": "V0237",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N4) (意味：有效)",
+        "kana": "ゆうこう",
+        "options": [
+            {"text": "有効", "explanation": "正確答案：「ゆうこう」在此語境下對應的漢字是「有効」，意思是有效。"},
+            {"text": "友好", "explanation": "錯誤：「友好」讀音也是「ゆうこう」，但意思是友好，語意不符。"},
+            {"text": "優光", "explanation": "錯誤：此為不存在的漢字組合。"},
+            {"text": "有向", "explanation": "錯誤：此為不存在的漢字組合。"}
+        ],
+        "correctAnswer": 0
+    },
 {
 id: "V0238",
 type: "writing",
@@ -3121,18 +3133,18 @@ options: [
 correctAnswer: 0
 },
 {
-id: "V0241",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "元利",
-options: [
-{text: "がんり", explanation: "正確答案：「元」音讀為「がん」，「利」音讀為「り」。\n中文翻譯：本金和利息"},
-{text: "がんり", explanation: "錯誤：雖然讀音相同，但「元利」是正確的漢字組合。\n中文翻譯：本金和利息"},
-{text: "げんり", explanation: "錯誤：「元」的讀音是「がん」，不是「げん」。\n中文翻譯：本金和利息"},
-{text: "がんりい", explanation: "錯誤：多了一個「い」的音。\n中文翻譯：本金和利息"}
-],
-correctAnswer: 0
-},
+        "id": "V0241",
+        "type": "reading",
+        "question": "次の漢字の読み方を選びなさい (N4)",
+        "kanji": "手続き",
+        "options": [
+            {"text": "てつづき", "explanation": "正確答案：「手」訓讀為「て」，「続」訓讀為「つづ」，「き」是送假名。\n中文翻譯：手續"},
+            {"text": "てつつき", "explanation": "錯誤：「続」的讀音是「つづ」，不是「つつ」。\n中文翻譯：手續"},
+            {"text": "てつき", "explanation": "錯誤：少了促音「つ」。\n中文翻譯：手續"},
+            {"text": "てつづぎ", "explanation": "錯誤：「き」不應讀作「ぎ」。\n中文翻譯：手續"}
+        ],
+        "correctAnswer": 0
+    },
 {
 id: "V0242",
 type: "writing",
@@ -3147,18 +3159,18 @@ options: [
 correctAnswer: 0
 },
 {
-id: "V0243",
-type: "reading",
-question: "次の漢字の読み方を選びなさい",
-kanji: "担保",
-options: [
-{text: "たんぽ", explanation: "正確答案：「担」音讀為「たん」，「保」音讀為「ぽ」。\n中文翻譯：擔保"},
-{text: "たんぽ", explanation: "錯誤：雖然讀音相同，但「担保」是正確的漢字組合。\n中文翻譯：擔保"},
-{text: "たんほ", explanation: "錯誤：「保」的讀音是「ぽ」，不是「ほ」。\n中文翻譯：擔保"},
-{text: "だんぽ", explanation: "錯誤：「担」的讀音是「たん」，不是「だん」。\n中文翻譯：擔保"}
-],
-correctAnswer: 0
-},
+        "id": "V0243",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N4) (意味：重要)",
+        "kana": "たいせつ",
+        "options": [
+            {"text": "大切", "explanation": "正確答案：「たいせつ」在此語境下對應的漢字是「大切」，意思是重要。"},
+            {"text": "大雪", "explanation": "錯誤：「大雪」讀音也是「たいせつ」，但意思是下大雪，語意不符。"},
+            {"text": "対設", "explanation": "錯誤：此為不存在的漢字組合。"},
+            {"text": "耐切", "explanation": "錯誤：此為不存在的漢字組合。"}
+        ],
+        "correctAnswer": 0
+    },
 {
 id: "V0244",
 type: "writing",
@@ -3251,18 +3263,18 @@ options: [
 correctAnswer: 0
 },
 {
-    "id": "V0251",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "船荷証券",
-    "options": [
-        {"text": "ふなにしょうけん", "explanation": "正確答案：「船」訓讀為「ふな」，「荷」訓讀為「に」，「証」音讀為「しょう」，「券」音讀為「けん」。\n中文翻譯：提單"},
-        {"text": "ふなにしょうけん", "explanation": "錯誤：雖然讀音相同，但「船荷証券」是正確的漢字組合。\n中文翻譯：提單"},
-        {"text": "せんにしょうけん", "explanation": "錯誤：「船」的讀音是「ふな」，不應使用音讀「せん」。\n中文翻譯：提單"},
-        {"text": "ふなにじょうけん", "explanation": "錯誤：「証」的讀音是「しょう」，不是「じょう」。\n中文翻譯：提單"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0251",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N4) (意味：心理狀態)",
+        "kana": "しんり",
+        "options": [
+            {"text": "心理", "explanation": "正確答案：「しんり」在此語境下對應的漢字是「心理」，意思是心理狀態。"},
+            {"text": "真理", "explanation": "錯誤：「真理」讀音也是「しんり」，但意思是真理，語意不符。"},
+            {"text": "心利", "explanation": "錯誤：此為不存在的漢字組合。"},
+            {"text": "信理", "explanation": "錯誤：此為不存在的漢字組合。"}
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0252",
     "type": "writing",
@@ -3277,18 +3289,18 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0253",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "運賃",
-    "options": [
-        {"text": "うんちん", "explanation": "正確答案：「運」音讀為「うん」，「賃」音讀為「ちん」。\n中文翻譯：運費"},
-        {"text": "うんちん", "explanation": "錯誤：雖然讀音相同，但「運賃」是正確的漢字組合。\n中文翻譯：運費"},
-        {"text": "うんじん", "explanation": "錯誤：「賃」的讀音是「ちん」，不是「じん」。\n中文翻譯：運費"},
-        {"text": "うんち", "explanation": "錯誤：「賃」的讀音是「ちん」，不應省略「ん」。\n中文翻譯：運費"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0253",
+        "type": "reading",
+        "question": "次の漢字の読み方を選びなさい (N4)",
+        "kanji": "手続",
+        "options": [
+            {"text": "てつづき", "explanation": "正確答案：「手」訓讀為「て」，「続」訓讀為「つづき」。\n中文翻譯：手續"},
+            {"text": "てつずき", "explanation": "錯誤：「つづき」的濁音在第二個「つ」，不是「ず」。\n中文翻譯：手續"},
+            {"text": "てつき", "explanation": "錯誤：少了促音「つ」。\n中文翻譯：手續"},
+            {"text": "てつづぎ", "explanation": "錯誤：「き」不應讀作「ぎ」。\n中文翻譯：手續"}
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0254",
     "type": "writing",
@@ -3303,18 +3315,18 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0255",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "請負",
-    "options": [
-        {"text": "うけおい", "explanation": "正確答案：「請」訓讀為「うけ」，「負」訓讀為「おい」。\n中文翻譯：承包"},
-        {"text": "うけおい", "explanation": "錯誤：雖然讀音相同，但「請負」是正確的漢字組合。\n中文翻譯：承包"},
-        {"text": "しょうふ", "explanation": "錯誤：不應使用音讀「しょう」和「ふ」。\n中文翻譯：承包"},
-        {"text": "うけまい", "explanation": "錯誤：「負」的讀音是「おい」，不是「まい」。\n中文翻譯：承包"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0255",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N4) (意味：擔保、保證)",
+        "kana": "ほしょう",
+        "options": [
+            {"text": "保証", "explanation": "正確答案：「ほしょう」在此語境下對應的漢字是「保証」，意思是擔保。"},
+            {"text": "補償", "explanation": "錯誤：「補償」讀音也是「ほしょう」，但意思是補償、賠償，語意不符。"},
+            {"text": "補章", "explanation": "錯誤：此為不存在的漢字組合。"},
+            {"text": "保將", "explanation": "錯誤：此為不存在的漢字組合。"}
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0256",
     "type": "writing",
@@ -3329,18 +3341,18 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0257",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "違約金",
-    "options": [
-        {"text": "いやくきん", "explanation": "正確答案：「違」音讀為「い」，「約」音讀為「やく」，「金」音讀為「きん」。\n中文翻譯：違約金"},
-        {"text": "いやくきん", "explanation": "錯誤：雖然讀音相同，但「違約金」是正確的漢字組合。\n中文翻譯：違約金"},
-        {"text": "いやっきん", "explanation": "錯誤：「約」的讀音是「やく」，不應促音化。\n中文翻譯：違約金"},
-        {"text": "いやくぎん", "explanation": "錯誤：「金」的讀音是「きん」，不是「ぎん」。\n中文翻譯：違約金"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0257",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N4)",
+        "kana": "たいりょく",
+        "options": [
+            {"text": "体力", "explanation": "正確答案：「たいりょく」對應的漢字是「体力」，意思是體力。"},
+            {"text": "退力", "explanation": "錯誤：此為不存在的漢字組合。"},
+            {"text": "大翼", "explanation": "錯誤：此為不存在的漢字組合。"},
+            {"text": "耐力", "explanation": "錯誤：「耐力」讀音為「たいりょく」，但意思是耐力/忍耐力，語意作為干擾項。"}
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0258",
     "type": "writing",
@@ -3355,18 +3367,18 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0259",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "賠償",
-    "options": [
-        {"text": "ばいしょう", "explanation": "正確答案：「賠」音讀為「ばい」，「償」音讀為「しょう」。\n中文翻譯：賠償"},
-        {"text": "ばいしょう", "explanation": "錯誤：雖然讀音相同，但「賠償」是正確的漢字組合。\n中文翻譯：賠償"},
-        {"text": "ばいしょう", "explanation": "錯誤：同選項2，讀音正確但漢字錯誤。\n中文翻譯：賠償"},
-        {"text": "はいしょう", "explanation": "錯誤：「賠」的讀音是「ばい」，不是「はい」。\n中文翻譯：賠償"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0259",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N4) (意味：城市首長)",
+        "kana": "しちょう",
+        "options": [
+            {"text": "市長", "explanation": "正確答案：「しちょう」在此語境下對應的漢字是「市長」，意思是城市首長。"},
+            {"text": "視聴", "explanation": "錯誤：「視聴」讀音也是「しちょう」，但意思是視聽，語意不符。"},
+            {"text": "始張", "explanation": "錯誤：此為不存在的漢字組合。"},
+            {"text": "市調", "explanation": "錯誤：此為不存在的漢字組合。"}
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0260",
     "type": "writing",
@@ -3381,18 +3393,18 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0261",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "免責",
-    "options": [
-        {"text": "めんせき", "explanation": "正確答案：「免」音讀為「めん」，「責」音讀為「せき」。\n中文翻譯：免責"},
-        {"text": "めんせき", "explanation": "錯誤：雖然讀音相同，但「免責」是正確的漢字組合。\n中文翻譯：免責"},
-        {"text": "めんせ", "explanation": "錯誤：「責」的讀音是「せき」，不應省略「き」。\n中文翻譯：免責"},
-        {"text": "めんしゃく", "explanation": "錯誤：「責」的讀音是「せき」，不是「しゃく」。\n中文翻譯：免責"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0261",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N4) (意味：執行、實施)",
+        "kana": "じっこう",
+        "options": [
+            {"text": "実行", "explanation": "正確答案：「じっこう」在此語境下對應的漢字是「実行」，意思是執行、實施。"},
+            {"text": "実効", "explanation": "錯誤：「実効」讀音也是「じっこう」，但意思是實際功效，語意不符。"},
+            {"text": "実考", "explanation": "錯誤：漢字組合錯誤，應為「実」和「行」。"},
+            {"text": "日考", "explanation": "錯誤：此為不存在的漢字組合。"}
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0262",
     "type": "writing",
@@ -3407,18 +3419,18 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0263",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "過失",
-    "options": [
-        {"text": "かしつ", "explanation": "正確答案：「過」音讀為「か」，「失」音讀為「しつ」。\n中文翻譯：過失"},
-        {"text": "かしつ", "explanation": "錯誤：雖然讀音相同，但「過失」是正確的漢字組合。\n中文翻譯：過失"},
-        {"text": "かしっ", "explanation": "錯誤：「失」的讀音是「しつ」，不應促音化。\n中文翻譯：過失"},
-        {"text": "がしつ", "explanation": "錯誤：「過」的讀音是「か」，不是「が」。\n中文翻譯：過失"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0263",
+        "type": "writing",
+        "question": "次の言葉の正しい漢字を選びなさい (N4) (意味：停止、終止)",
+        "kana": "ていし",
+        "options": [
+            {"text": "停止", "explanation": "正確答案：「ていし」在此語境下對應的漢字是「停止」，意思是停止。"},
+            {"text": "艇首", "explanation": "錯誤：「艇首」讀音也是「ていし」，但意思是船頭，語意不符。"},
+            {"text": "程示", "explanation": "錯誤：此為不存在的漢字組合。"},
+            {"text": "訂紙", "explanation": "錯誤：此為不存在的漢字組合。"}
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0264",
     "type": "writing",
@@ -3433,18 +3445,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0265",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "故意",
-    "options": [
-        {"text": "こい", "explanation": "正確答案：「故」音讀為「こ」，「意」音讀為「い」。\n中文翻譯：故意"},
-        {"text": "こい", "explanation": "錯誤：雖然讀音相同，但「故意」是正確的漢字組合。\n中文翻譯：故意"},
-        {"text": "ごい", "explanation": "錯誤：「故」的讀音是「こ」，不是「ご」。\n中文翻譯：故意"},
-        {"text": "こうい", "explanation": "錯誤：「故」的讀音是「こ」，不是「こう」。\n中文翻譯：故意"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0265",
+        "type": "reading",
+        "question": "副詞「むしろ」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "寧ろ",
+        "options": [
+            {
+                "text": "寧可、倒不如",
+                "explanation": "正確答案：「寧ろ」用於比較後，選擇/建議後者，翻譯為『寧可、倒不如』。"
+            },
+            {
+                "text": "或許、說不定",
+                "explanation": "錯誤：「或許、說不定」是「たぶん」或「もしかしたら」的意思。"
+            },
+            {
+                "text": "因此、所以",
+                "explanation": "錯誤：「因此、所以」是「だから」的意思。"
+            },
+            {
+                "text": "偶爾、不時",
+                "explanation": "錯誤：「偶爾、不時」是「たまに」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0266",
     "type": "writing",
@@ -3459,18 +3483,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0267",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "損傷",
-    "options": [
-        {"text": "そんしょう", "explanation": "正確答案：「損」音讀為「そん」，「傷」音讀為「しょう」。\n中文翻譯：損傷"},
-        {"text": "そんしょう", "explanation": "錯誤：雖然讀音相同，但「損傷」是正確的漢字組合。\n中文翻譯：損傷"},
-        {"text": "そんしょ", "explanation": "錯誤：「傷」的讀音是「しょう」，不應省略長音。\n中文翻譯：損傷"},
-        {"text": "ぞんしょう", "explanation": "錯誤：「損」的讀音是「そん」，不是「ぞん」。\n中文翻譯：損傷"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0267",
+        "type": "reading",
+        "question": "副詞「とうてい」在接否定時，中文意思是什麼？ (N4)",
+        "kanji": "到底 (〜ない)",
+        "options": [
+            {
+                "text": "無論如何也（不）、絕不可能（不）",
+                "explanation": "正確答案：「到底～ない」表示在程度上或能力上完全無法做到，翻譯為『絕不可能（不）』。"
+            },
+            {
+                "text": "最終、終究",
+                "explanation": "錯誤：「最終、終究」是「とうとう」的意思，但通常用於肯定結果。"
+            },
+            {
+                "text": "或許、大概",
+                "explanation": "錯誤：「或許、大概」是「たぶん」的意思。"
+            },
+            {
+                "text": "總而言之",
+                "explanation": "錯誤：「總而言之」是「とにかく」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0268",
     "type": "writing",
@@ -3485,18 +3521,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0269",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "瑕疵",
-    "options": [
-        {"text": "かし", "explanation": "正確答案：「瑕」音讀為「か」，「疵」音讀為「し」。\n中文翻譯：瑕疵"},
-        {"text": "かし", "explanation": "錯誤：雖然讀音相同，但「瑕疵」是正確的漢字組合。\n中文翻譯：瑕疵"},
-        {"text": "かじ", "explanation": "錯誤：「疵」的讀音是「し」，不是「じ」。\n中文翻譯：瑕疵"},
-        {"text": "がし", "explanation": "錯誤：「瑕」的讀音是「か」，不是「が」。\n中文翻譯：瑕疵"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0269",
+        "type": "reading",
+        "question": "接續詞「しかも」在句子中通常表達什麼功能？ (N4)",
+        "kanji": "しかも",
+        "options": [
+            {
+                "text": "而且、並且（加強語氣的補充）",
+                "explanation": "正確答案：「しかも」用於在補充資訊時，表達更進一層的關係，有『更甚者』、『連…都』的意味。"
+            },
+            {
+                "text": "雖然...但是",
+                "explanation": "錯誤：「雖然...但是」是「けれども」的意思。"
+            },
+            {
+                "text": "總而言之",
+                "explanation": "錯誤：「總而言之」是「とにかく」的意思。"
+            },
+            {
+                "text": "例如、比方說",
+                "explanation": "錯誤：「例如、比方說」是「たとえば」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0270",
     "type": "writing",
@@ -3511,18 +3559,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0271",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "危険負担",
-    "options": [
-        {"text": "きけんふたん", "explanation": "正確答案：「危」音讀為「き」，「険」音讀為「けん」，「負」音讀為「ふ」，「担」音讀為「たん」。\n中文翻譯：風險承擔"},
-        {"text": "きけんふたん", "explanation": "錯誤：雖然讀音相同，但「危険負担」是正確的漢字組合。\n中文翻譯：風險承擔"},
-        {"text": "きけんぶたん", "explanation": "錯誤：「負」的讀音是「ふ」，不是「ぶ」。\n中文翻譯：風險承擔"},
-        {"text": "きげんふたん", "explanation": "錯誤：「険」的讀音是「けん」，不是「げん」。\n中文翻譯：風險承擔"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0271",
+        "type": "reading",
+        "question": "副詞「かまわない」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "構わない",
+        "options": [
+            {
+                "text": "沒關係、不要緊、無所謂",
+                "explanation": "正確答案：「構わない」表示不在意、沒有問題，翻譯為『沒關係、無所謂』。"
+            },
+            {
+                "text": "很擔心、很在乎",
+                "explanation": "錯誤：「很擔心」是「心配だ（しんぱいだ）」的意思。"
+            },
+            {
+                "text": "請讓步、請原諒",
+                "explanation": "錯誤：「請讓步」是「譲って（ゆずって）」的意思。"
+            },
+            {
+                "text": "不能原諒",
+                "explanation": "錯誤：「不能原諒」是「許さない（ゆるさない）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0272",
     "type": "writing",
@@ -3537,18 +3597,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0273",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "危殆",
-    "options": [
-        {"text": "きたい", "explanation": "正確答案：「危」音讀為「き」，「殆」音讀為「たい」。\n中文翻譯：危殆"},
-        {"text": "きたい", "explanation": "錯誤：雖然讀音相同，但「危殆」是正確的漢字組合。\n中文翻譯：危殆"},
-        {"text": "きだい", "explanation": "錯誤：「殆」的讀音是「たい」，不是「だい」。\n中文翻譯：危殆"},
-        {"text": "ぎたい", "explanation": "錯誤：「危」的讀音是「き」，不是「ぎ」。\n中文翻譯：危殆"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0273",
+        "type": "reading",
+        "question": "副詞「せいぜい」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "精々",
+        "options": [
+            {
+                "text": "充其量、頂多、盡量",
+                "explanation": "正確答案：「精々」表示最高限度，翻譯為『充其量、頂多』，也可翻譯為『盡量』。"
+            },
+            {
+                "text": "完全、徹底",
+                "explanation": "錯誤：「完全、徹底」是「すっかり」的意思。"
+            },
+            {
+                "text": "馬上、立刻",
+                "explanation": "錯誤：「馬上、立刻」是「すぐに」的意思。"
+            },
+            {
+                "text": "隨意地、輕鬆地",
+                "explanation": "錯誤：「隨意地、輕鬆地」是「気楽に（きらくに）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0274",
     "type": "writing",
@@ -3563,18 +3635,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0275",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "緊急",
-    "options": [
-        {"text": "きんきゅう", "explanation": "正確答案：「緊」音讀為「きん」，「急」音讀為「きゅう」。\n中文翻譯：緊急"},
-        {"text": "きんきゅう", "explanation": "錯誤：雖然讀音相同，但「緊急」是正確的漢字組合。\n中文翻譯：緊急"},
-        {"text": "きんきゅ", "explanation": "錯誤：「急」的讀音是「きゅう」，不應省略長音。\n中文翻譯：緊急"},
-        {"text": "ぎんきゅう", "explanation": "錯誤：「緊」的讀音是「きん」，不是「ぎん」。\n中文翻譯：緊急"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0275",
+        "type": "reading",
+        "question": "接續詞「あるいは」在句子中通常表達什麼功能？ (N4)",
+        "kanji": "或いは",
+        "options": [
+            {
+                "text": "或者、也許、否則",
+                "explanation": "正確答案：「或いは」表示選擇關係，翻譯為『或者』，或用於表示推測的可能性，翻譯為『也許』。"
+            },
+            {
+                "text": "順便一提",
+                "explanation": "錯誤：「順便一提」是「ところで」的意思。"
+            },
+            {
+                "text": "總而言之",
+                "explanation": "錯誤：「總而言之」是「要するに（ようするに）」的意思。"
+            },
+            {
+                "text": "因此、所以",
+                "explanation": "錯誤：「因此、所以」是「だから」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0276",
     "type": "writing",
@@ -3589,18 +3673,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0277",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "不可抗力",
-    "options": [
-        {"text": "ふかこうりょく", "explanation": "正確答案：「不」音讀為「ふ」，「可」音讀為「か」，「抗」音讀為「こう」，「力」音讀為「りょく」。\n中文翻譯：不可抗力"},
-        {"text": "ふかこうりょく", "explanation": "錯誤：雖然讀音相同，但「不可抗力」是正確的漢字組合。\n中文翻譯：不可抗力"},
-        {"text": "ふかごうりょく", "explanation": "錯誤：「抗」的讀音是「こう」，不是「ごう」。\n中文翻譯：不可抗力"},
-        {"text": "ふかこうりょ", "explanation": "錯誤：「力」的讀音是「りょく」，不應省略「く」。\n中文翻譯：不可抗力"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0277",
+        "type": "reading",
+        "question": "副詞「しばらく」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "暫く",
+        "options": [
+            {
+                "text": "暫時、一段時間",
+                "explanation": "正確答案：「暫く」表示時間並不長，翻譯為『暫時、一段時間』，或久違地（好久不見）。"
+            },
+            {
+                "text": "立刻、馬上",
+                "explanation": "錯誤：「立刻、馬上」是「すぐに」的意思。"
+            },
+            {
+                "text": "永遠地、永久地",
+                "explanation": "錯誤：「永遠地、永久地」是「永久に（えいきゅうに）」的意思。"
+            },
+            {
+                "text": "經常地、時常地",
+                "explanation": "錯誤：「經常地、時常地」是「いつも」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0278",
     "type": "writing",
@@ -3615,18 +3711,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0279",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "免責事項",
-    "options": [
-        {"text": "めんせきじこう", "explanation": "正確答案：「免」音讀為「めん」，「責」音讀為「せき」，「事」音讀為「じ」，「項」音讀為「こう」。\n中文翻譯：免責事項"},
-        {"text": "めんせきじこう", "explanation": "錯誤：雖然讀音相同，但「免責事項」是正確的漢字組合。\n中文翻譯：免責事項"},
-        {"text": "めんせきじこ", "explanation": "錯誤：「項」的讀音是「こう」，不應省略長音。\n中文翻譯：免責事項"},
-        {"text": "めんせきじごう", "explanation": "錯誤：「項」的讀音是「こう」，不是「ごう」。\n中文翻譯：免責事項"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0379",
+        "type": "reading",
+        "question": "副詞「まもなく」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "間もなく",
+        "options": [
+            {
+                "text": "馬上、不久、不一會兒",
+                "explanation": "正確答案：「間もなく」表示很快就會發生，翻譯為『馬上、不久』。"
+            },
+            {
+                "text": "終於、總算",
+                "explanation": "錯誤：「終於、總算」是「やっと」的意思。"
+            },
+            {
+                "text": "長時間、很久",
+                "explanation": "錯誤：「長時間、很久」是「長い間（ながいあいだ）」的意思。"
+            },
+            {
+                "text": "從未、從來不",
+                "explanation": "錯誤：「從未、從來不」是「一度も（いちども）～ない」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0280",
     "type": "writing",
@@ -3641,18 +3749,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0281",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "解除",
-    "options": [
-        {"text": "かいじょ", "explanation": "正確答案：「解」音讀為「かい」，「除」音讀為「じょ」。\n中文翻譯：解除"},
-        {"text": "かいじょ", "explanation": "錯誤：雖然讀音相同，但「解除」是正確的漢字組合。\n中文翻譯：解除"},
-        {"text": "かいじょう", "explanation": "錯誤：「除」的讀音是「じょ」，不是「じょう」。\n中文翻譯：解除"},
-        {"text": "げじょ", "explanation": "錯誤：「解」的讀音是「かい」，不是「げ」。\n中文翻譯：解除"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0281",
+        "type": "reading",
+        "question": "副詞「じっと」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "じっと",
+        "options": [
+            {
+                "text": "靜止不動地、聚精會神地",
+                "explanation": "正確答案：「じっと」表示保持不動或集中注意力，翻譯為『靜止不動地、聚精會神地』。"
+            },
+            {
+                "text": "輕輕地、悄悄地",
+                "explanation": "錯誤：「輕輕地、悄悄地」是「そっと」的意思。"
+            },
+            {
+                "text": "猛烈地、激烈地",
+                "explanation": "錯誤：「猛烈地、激烈地」是「激しく（はげしく）」的意思。"
+            },
+            {
+                "text": "一步一步地、慢慢地",
+                "explanation": "錯誤：「一步一步地、慢慢地」是「だんだん」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0282",
     "type": "writing",
@@ -3667,18 +3787,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0283",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "合意",
-    "options": [
-        {"text": "ごうい", "explanation": "正確答案：「合」音讀為「ごう」，「意」音讀為「い」。\n中文翻譯：合意"},
-        {"text": "ごうい", "explanation": "錯誤：雖然讀音相同，但「合意」是正確的漢字組合。\n中文翻譯：合意"},
-        {"text": "ごい", "explanation": "錯誤：「合」的讀音是「ごう」，不應省略長音。\n中文翻譯：合意"},
-        {"text": "こうい", "explanation": "錯誤：「合」的讀音是「ごう」，不是「こう」。\n中文翻譯：合意"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0283",
+        "type": "reading",
+        "question": "副詞「かえって」強調的是什麼樣的結果？ (N4)",
+        "kanji": "却って",
+        "options": [
+            {
+                "text": "結果與預期相反",
+                "explanation": "正確答案：「却って」表示發生的結果與原本的預期、希望或目的相反，翻譯為『反而、反倒』。"
+            },
+            {
+                "text": "結果符合預期",
+                "explanation": "錯誤：「結果符合預期」是「やはり」或「案の定（あんのじょう）」的意思。"
+            },
+            {
+                "text": "結果突然發生",
+                "explanation": "錯誤：「結果突然發生」是「とつぜん」的意思。"
+            },
+            {
+                "text": "結果緩慢地達成",
+                "explanation": "錯誤：「結果緩慢地達成」是「徐々に（じょじょに）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0284",
     "type": "writing",
@@ -3693,18 +3825,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0285",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "任意",
-    "options": [
-        {"text": "にんい", "explanation": "正確答案：「任」音讀為「にん」，「意」音讀為「い」。\n中文翻譯：任意"},
-        {"text": "にんい", "explanation": "錯誤：雖然讀音相同，但「任意」是正確的漢字組合。\n中文翻譯：任意"},
-        {"text": "にい", "explanation": "錯誤：「任」的讀音是「にん」，不應省略「ん」。\n中文翻譯：任意"},
-        {"text": "じんい", "explanation": "錯誤：「任」的讀音是「にん」，不是「じん」。\n中文翻譯：任意"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0285",
+        "type": "reading",
+        "question": "副詞「そっと」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "そっと",
+        "options": [
+            {
+                "text": "輕輕地、悄悄地、靜靜地",
+                "explanation": "正確答案：「そっと」表示動作輕柔、不發出聲音或不打擾別人，翻譯為『輕輕地、悄悄地』。"
+            },
+            {
+                "text": "用力地、大聲地",
+                "explanation": "錯誤：「用力地、大聲地」是「強く（つよく）」或「大声で（おおごえで）」的意思。"
+            },
+            {
+                "text": "快速地、迅速地",
+                "explanation": "錯誤：「快速地、迅速地」是「すぐに」或「速やかに（すみやかに）」的意思。"
+            },
+            {
+                "text": "故意地、特地地",
+                "explanation": "錯誤：「故意地、特地地」是「わざと」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0286",
     "type": "writing",
@@ -3719,18 +3863,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0287",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "強行",
-    "options": [
-        {"text": "きょうこう", "explanation": "正確答案：「強」音讀為「きょう」，「行」音讀為「こう」。\n中文翻譯：強行"},
-        {"text": "きょうこう", "explanation": "錯誤：雖然讀音相同，但「強行」是正確的漢字組合。\n中文翻譯：強行"},
-        {"text": "きょこう", "explanation": "錯誤：「強」的讀音是「きょう」，不應省略長音。\n中文翻譯：強行"},
-        {"text": "きょうごう", "explanation": "錯誤：「行」的讀音是「こう」，不是「ごう」。\n中文翻譯：強行"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0287",
+        "type": "reading",
+        "question": "副詞「わざと」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "態と",
+        "options": [
+            {
+                "text": "故意地、特地地",
+                "explanation": "正確答案：「態と」表示有意識、有目的地去做某事，翻譯為『故意地』。"
+            },
+            {
+                "text": "不經意地、無意間",
+                "explanation": "錯誤：「不經意地」是「うっかり」的意思。"
+            },
+            {
+                "text": "隨意地、自由地",
+                "explanation": "錯誤：「隨意地、自由地」是「自由に（じゆうに）」的意思。"
+            },
+            {
+                "text": "很快地、一下子",
+                "explanation": "錯誤：「很快地」是「あっという間に」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0288",
     "type": "writing",
@@ -3750,10 +3906,22 @@ correctAnswer: 0
     "question": "次の漢字の読み方を選びなさい",
     "kanji": "無効",
     "options": [
-        {"text": "むこう", "explanation": "正確答案：「無」音讀為「む」，「効」音讀為「こう」。\n中文翻譯：無效"},
-        {"text": "むこう", "explanation": "錯誤：雖然讀音相同，但「無効」是正確的漢字組合。\n中文翻譯：無效"},
-        {"text": "むこ", "explanation": "錯誤：「効」的讀音是「こう」，不應省略長音。\n中文翻譯：無效"},
-        {"text": "ぶこう", "explanation": "錯誤：「無」的讀音是「む」，不是「ぶ」。\n中文翻譯：無效"}
+        {
+            "text": "むこう",
+            "explanation": "正確答案：「無」音讀為「む」，「効」音讀為「こう」。\n中文翻譯：無效"
+        },
+        {
+            "text": "むこうう", // 替換為錯誤的長音寫法，或其他干擾項
+            "explanation": "錯誤：日文中「効」的長音為「こう」不須多加一個「う」。\n中文翻譯：無效"
+        },
+        {
+            "text": "むこ",
+            "explanation": "錯誤：「効」的讀音是「こう」，不應省略長音。\n中文翻譯：無效"
+        },
+        {
+            "text": "ぶこう",
+            "explanation": "錯誤：「無」的讀音是「む」，不是「ぶ」。\n中文翻譯：無效"
+        }
     ],
     "correctAnswer": 0
 },
@@ -3771,18 +3939,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0291",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "取消権",
-    "options": [
-        {"text": "とりけしけん", "explanation": "正確答案：「取」訓讀為「とり」，「消」訓讀為「けし」，「権」音讀為「けん」。\n中文翻譯：取消權"},
-        {"text": "とりけしけん", "explanation": "錯誤：雖然讀音相同，但「取消権」是正確的漢字組合。\n中文翻譯：取消權"},
-        {"text": "とりしょうけん", "explanation": "錯誤：不應使用音讀「しょう」。\n中文翻譯：取消權"},
-        {"text": "とりけしげん", "explanation": "錯誤：「権」的讀音是「けん」，不是「げん」。\n中文翻譯：取消權"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0291",
+        "type": "reading",
+        "question": "副詞「やはり」和「やっぱり」的差異是什麼？ (N4)",
+        "kanji": "やはり／やっぱり",
+        "options": [
+            {
+                "text": "「やはり」較正式；「やっぱり」較口語",
+                "explanation": "正確答案：兩者意思相同（果然、還是），但「やはり」更常用於書面或正式場合，「やっぱり」更常用於口語。"
+            },
+            {
+                "text": "「やっぱり」用於肯定；「やはり」用於否定",
+                "explanation": "錯誤：兩者皆可通用於肯定句，意思無差別。"
+            },
+            {
+                "text": "「やはり」用於過去；「やっぱり」用於未來",
+                "explanation": "錯誤：兩者皆不具備時間限制。"
+            },
+            {
+                "text": "「やっぱり」強調意外；「やはり」強調推測",
+                "explanation": "錯誤：兩者都強調結果符合預期。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0292",
     "type": "writing",
@@ -3797,18 +3977,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0293",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "解除権",
-    "options": [
-        {"text": "かいじょけん", "explanation": "正確答案：「解」音讀為「かい」，「除」音讀為「じょ」，「権」音讀為「けん」。\n中文翻譯：解除權"},
-        {"text": "かいじょけん", "explanation": "錯誤：雖然讀音相同，但「解除権」是正確的漢字組合。\n中文翻譯：解除權"},
-        {"text": "かいじょうけん", "explanation": "錯誤：「除」的讀音是「じょ」，不是「じょう」。\n中文翻譯：解除權"},
-        {"text": "げじょけん", "explanation": "錯誤：「解」的讀音是「かい」，不是「げ」。\n中文翻譯：解除權"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0293",
+        "type": "reading",
+        "question": "表達『如果、萬一』的假設語氣時，最常使用哪個副詞？ (N4)",
+        "kanji": "もし",
+        "options": [
+            {
+                "text": "もし (もし)",
+                "explanation": "正確答案：「もし」用於開啟假設句，常搭配「～たら」、「～なら」，翻譯為『如果、萬一』。"
+            },
+            {
+                "text": "きっと (きっと)",
+                "explanation": "錯誤：「きっと」表示『一定、必定』。"
+            },
+            {
+                "text": "もちろん (もちろん)",
+                "explanation": "錯誤：「もちろん」表示『當然』。"
+            },
+            {
+                "text": "ずっと (ずっと)",
+                "explanation": "錯誤：「ずっと」表示『一直、始終』。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0294",
     "type": "writing",
@@ -3823,18 +4015,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0295",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "時効",
-    "options": [
-        {"text": "じこう", "explanation": "正確答案：「時」音讀為「じ」，「効」音讀為「こう」。\n中文翻譯：時效"},
-        {"text": "じこう", "explanation": "錯誤：雖然讀音相同，但「時効」是正確的漢字組合。\n中文翻譯：時效"},
-        {"text": "じこ", "explanation": "錯誤：「効」的讀音是「こう」，不應省略長音。\n中文翻譯：時效"},
-        {"text": "ちこう", "explanation": "錯誤：「時」的讀音是「じ」，不是「ち」。\n中文翻譯：時效"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0295",
+        "type": "reading",
+        "question": "副詞「たぶん」通常搭配什麼樣的句型和意思？ (N4)",
+        "kanji": "多分",
+        "options": [
+            {
+                "text": "大概、或許（多搭配「でしょう」「と思います」）",
+                "explanation": "正確答案：「多分」表示不確定性較高的推測，常與推量表達搭配，翻譯為『大概、或許』。"
+            },
+            {
+                "text": "絕對、一定",
+                "explanation": "錯誤：「絕對、一定」是「必ず（かならず）」的意思。"
+            },
+            {
+                "text": "偶然、碰巧",
+                "explanation": "錯誤：「偶然、碰巧」是「たまたま」的意思。"
+            },
+            {
+                "text": "一點也不",
+                "explanation": "錯誤：「一點也不」是「少しも～ない」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0296",
     "type": "writing",
@@ -3849,18 +4053,30 @@ correctAnswer: 0
     "correctAnswer": 0
 },
 {
-    "id": "V0297",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "取得時効",
-    "options": [
-        {"text": "しゅとくじこう", "explanation": "正確答案：「取」音讀為「しゅ」，「得」音讀為「とく」，「時」音讀為「じ」，「効」音讀為「こう」。\n中文翻譯：取得時效"},
-        {"text": "しゅとくじこう", "explanation": "錯誤：雖然讀音相同，但「取得時効」是正確的漢字組合。\n中文翻譯：取得時效"},
-        {"text": "しゅとくじこ", "explanation": "錯誤：「効」的讀音是「こう」，不應省略長音。\n中文翻譯：取得時效"},
-        {"text": "しゅとくちこう", "explanation": "錯誤：「時」的讀音是「じ」，不是「ち」。\n中文翻譯：取得時效"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0297",
+        "type": "reading",
+        "question": "副詞「いよいよ」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "愈々",
+        "options": [
+            {
+                "text": "終於、總算、越發",
+                "explanation": "正確答案：「愈々」有兩種意思：一是表示最終結果，翻譯為『終於』；二是表示程度漸增，翻譯為『越發』。"
+            },
+            {
+                "text": "一時地、暫時地",
+                "explanation": "錯誤：「一時地、暫時地」是「一時的（いちじてき）」的意思。"
+            },
+            {
+                "text": "偶爾、有時",
+                "explanation": "錯誤：「偶爾、有時」是「たまに」的意思。"
+            },
+            {
+                "text": "隨意地、輕鬆地",
+                "explanation": "錯誤：「隨意地、輕鬆地」是「気楽に（きらくに）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
     "id": "V0298",
     "type": "writing",
@@ -3868,37 +4084,1085 @@ correctAnswer: 0
     "kana": "しゅとく",
     "options": [
         {"text": "取得", "explanation": "正確答案：「しゅとく」對應的漢字是「取得」，意思是取得。\n中文翻譯：取得"},
-        {"text": "取得", "explanation": "錯誤：日文中「取得」是正確表記，不使用「得」。\n中文翻譯：取得"},
+        {"text": "取德", "explanation": "錯誤：日文中「取得」是正確表記，不使用「得」。\n中文翻譯：取得"},
         {"text": "主得", "explanation": "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
         {"text": "種得", "explanation": "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
     ],
     "correctAnswer": 0
 },
 {
-    "id": "V0299",
-    "type": "reading",
-    "question": "次の漢字の読み方を選びなさい",
-    "kanji": "消滅時効",
-    "options": [
-        {"text": "しょうめつじこう", "explanation": "正確答案：「消」音讀為「しょう」，「滅」音讀為「めつ」，「時」音讀為「じ」，「効」音讀為「こう」。\n中文翻譯：消滅時效"},
-        {"text": "しょうめつじこう", "explanation": "錯誤：雖然讀音相同，但「消滅時効」是正確的漢字組合。\n中文翻譯：消滅時效"},
-        {"text": "しょうめつじこ", "explanation": "錯誤：「効」的讀音是「こう」，不應省略長音。\n中文翻譯：消滅時效"},
-        {"text": "しょうめつちこう", "explanation": "錯誤：「時」的讀音是「じ」，不是「ち」。\n中文翻譯：消滅時效"}
-    ],
-    "correctAnswer": 0
-},
+        "id": "V0299",
+        "type": "reading",
+        "question": "副詞「あまり」在接否定時，中文意思是什麼？ (N4)",
+        "kanji": "余り (〜ない)",
+        "options": [
+            {
+                "text": "不怎麼、不太（程度低）",
+                "explanation": "正確答案：「余り～ない」表示程度不深，翻譯為『不怎麼、不太』。"
+            },
+            {
+                "text": "絕對不、從來不",
+                "explanation": "錯誤：「絕對不」是「決して～ない」的意思。"
+            },
+            {
+                "text": "完全不、一點也不",
+                "explanation": "錯誤：「完全不、一點也不」是「全然～ない」的意思。"
+            },
+            {
+                "text": "難以置信地",
+                "explanation": "錯誤：「難以置信地」是「まさか」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
 {
-    "id": "V0300",
-    "type": "writing",
-    "question": "次の言葉の正しい漢字を選びなさい",
-    "kana": "しょうめつ",
-    "options": [
-        {"text": "消滅", "explanation": "正確答案：「しょうめつ」對應的漢字是「消滅」，意思是消滅。\n中文翻譯：消滅"},
-        {"text": "消滅", "explanation": "錯誤：日文中「消滅」是正確表記，不使用「滅」。\n中文翻譯：消滅"},
-        {"text": "焼滅", "explanation": "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {"text": "称滅", "explanation": "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
-    ],
-    "correctAnswer": 0
-}
+        "id": "V0300",
+        "type": "reading",
+        "question": "以下の副詞「別に」在接否定句時，最恰當的中文意思是什麼？",
+        "kanji": "別に (〜ない)",
+        "options": [
+            {
+                "text": "並不是、沒有什麼特別的",
+                "explanation": "正確答案：「別に～ない」常表示『並不是特別地…』、『沒什麼…』，用於否定語氣。"
+            },
+            {
+                "text": "分開地、另外",
+                "explanation": "錯誤：「分開地、另外」是「別に」的基本意思，但通常用於肯定句，如「別々に払う」（分開付錢）。"
+            },
+            {
+                "text": "總是、經常",
+                "explanation": "錯誤：「總是、經常」是「いつも」的意思。"
+            },
+            {
+                "text": "一定會、必然",
+                "explanation": "錯誤：「一定會、必然」是「必ず（かならず）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0301",
+        "type": "reading",
+        "question": "副詞「きっと」通常表達什麼樣的語氣和意思？",
+        "kanji": "きっと",
+        "options": [
+            {
+                "text": "一定、必定（確信度高）",
+                "explanation": "正確答案：「きっと」表示對某事的發生有極高的確信，翻譯為『一定、必定』。"
+            },
+            {
+                "text": "或許、說不定",
+                "explanation": "錯誤：「或許、說不定」是「たぶん」或「もしかしたら」的意思。"
+            },
+            {
+                "text": "突然、忽然",
+                "explanation": "錯誤：「突然、忽然」是「急に（きゅうに）」的意思。"
+            },
+            {
+                "text": "有點、稍微",
+                "explanation": "錯誤：「有點、稍微」是「ちょっと」或「少し（すこし）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0302",
+        "type": "reading",
+        "question": "副詞「そろそろ」最恰當的中文意思是什麼？",
+        "kanji": "そろそろ",
+        "options": [
+            {
+                "text": "差不多該、漸漸地",
+                "explanation": "正確答案：「そろそろ」表示時間或情況漸漸到了某個點，如「そろそろ帰る」（差不多該回去了）。"
+            },
+            {
+                "text": "小心地、悄悄地",
+                "explanation": "錯誤：『ゆっくり』或『そっと』表達『慢慢地、悄悄地』的意思。"
+            },
+            {
+                "text": "每次、隨時",
+                "explanation": "錯誤：『每次、隨時』是『いつでも』的意思。"
+            },
+            {
+                "text": "一起、一同",
+                "explanation": "錯誤：『一起、一同』是『一緒に（いっしょに）』的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0303",
+        "type": "reading",
+        "question": "以下哪個詞彙表示「總有一天、將來」的意思？",
+        "kanji": "いつか",
+        "options": [
+            {
+                "text": "總有一天、將來",
+                "explanation": "正確答案：「いつか」表示不確定的未來時間點，翻譯為『總有一天、將來』。"
+            },
+            {
+                "text": "一直、持續",
+                "explanation": "錯誤：「一直、持續」是「ずっと」的意思。"
+            },
+            {
+                "text": "總是、經常",
+                "explanation": "錯誤：「總是、經常」是「いつも」的意思。"
+            },
+            {
+                "text": "隨時都可以",
+                "explanation": "錯誤：「隨時都可以」是「いつでも」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0304",
+        "type": "reading",
+        "question": "在表達「完全不...、一點也不...」的否定語氣時，最適合搭配哪個副詞？",
+        "kanji": "全然 (〜ない)",
+        "options": [
+            {
+                "text": "全然 (ぜんぜん)",
+                "explanation": "正確答案：「全然～ない」表示完全否定，翻譯為『完全不…、一點也不…』。"
+            },
+            {
+                "text": "たぶん",
+                "explanation": "錯誤：「たぶん」表示『或許、大概』，用於推測，不搭配完全否定。"
+            },
+            {
+                "text": "たまに",
+                "explanation": "錯誤：「たまに」表示『偶爾』，與完全否定無關。"
+            },
+            {
+                "text": "もしかしたら",
+                "explanation": "錯誤：「もしかしたら」表示『搞不好、或許』，用於推測，不搭配完全否定。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+{
+        "id": "V0305",
+        "type": "reading",
+        "question": "副詞「めったに」在接否定時，中文意思是什麼？ (N4)",
+        "kanji": "滅多に (〜ない)",
+        "options": [
+            {
+                "text": "很少、難得（不）",
+                "explanation": "正確答案：「滅多に～ない」表示頻率低，翻譯為『很少、難得（不）』。"
+            },
+            {
+                "text": "經常、總是",
+                "explanation": "錯誤：「經常、總是」是「いつも」或「よく」的意思。"
+            },
+            {
+                "text": "無論如何、一定要",
+                "explanation": "錯誤：「無論如何」是「どうしても」的意思。"
+            },
+            {
+                "text": "立刻、馬上",
+                "explanation": "錯誤：「立刻、馬上」是「すぐに」或「まもなく」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0306",
+        "type": "reading",
+        "question": "接續詞「それに」在句子中通常表達什麼功能？ (N4)",
+        "kanji": "それに",
+        "options": [
+            {
+                "text": "此外、而且（補充資訊）",
+                "explanation": "正確答案：「それに」用於在已有的資訊上添加或補充新的資訊，翻譯為『此外、而且』。"
+            },
+            {
+                "text": "雖然...但是",
+                "explanation": "錯誤：「雖然...但是」是「けれども」或「しかし」的意思。"
+            },
+            {
+                "text": "因此、所以",
+                "explanation": "錯誤：「因此、所以」是「だから」或「ですから」的意思。"
+            },
+            {
+                "text": "順便一提（轉換話題）",
+                "explanation": "錯誤：「順便一提」是「ところで」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0307",
+        "type": "reading",
+        "question": "副詞「いっぺんに」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "一遍に",
+        "options": [
+            {
+                "text": "一下子、一次性地",
+                "explanation": "正確答案：「いっぺんに」表示在同一時間完成某事或發生某事，翻譯為『一下子、一次性地』。"
+            },
+            {
+                "text": "一次又一次地",
+                "explanation": "錯誤：「一次又一次地」是「何度も（なんども）」的意思。"
+            },
+            {
+                "text": "一起、一同",
+                "explanation": "錯誤：「一起、一同」是「一緒に（いっしょに）」的意思。"
+            },
+            {
+                "text": "偶爾、不時",
+                "explanation": "錯誤：「偶爾、不時」是「たまに」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0308",
+        "type": "reading",
+        "question": "副詞「たしかに」表達什麼樣的語氣和意思？ (N4)",
+        "kanji": "確かに",
+        "options": [
+            {
+                "text": "的確、確實（有確鑿證據或記憶）",
+                "explanation": "正確答案：「たしかに」表示憑藉記憶或證據確認某事屬實，翻譯為『的確、確實』。"
+            },
+            {
+                "text": "大概、也許",
+                "explanation": "錯誤：「大概、也許」是「たぶん」或「もしかしたら」的意思。"
+            },
+            {
+                "text": "驚訝地、意外地",
+                "explanation": "錯誤：「驚訝地、意外地」是「びっくりして」的意思。"
+            },
+            {
+                "text": "偶然、碰巧",
+                "explanation": "錯誤：「偶然、碰巧」是「たまたま」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0309",
+        "type": "reading",
+        "question": "副詞「さっそく」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "早速",
+        "options": [
+            {
+                "text": "馬上、立刻、趕快",
+                "explanation": "正確答案：「早速」表示不等候、迅速地開始做某事，翻譯為『馬上、立刻』。"
+            },
+            {
+                "text": "不小心地、無意間",
+                "explanation": "錯誤：「不小心地」是「うっかり」的意思。"
+            },
+            {
+                "text": "仔細地、詳細地",
+                "explanation": "錯誤：「仔細地」是「詳しく（くわしく）」的意思。"
+            },
+            {
+                "text": "一點一點地、慢慢地",
+                "explanation": "錯誤：「一點一點地」是「だんだん」或「少しずつ」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0310",
+        "type": "reading",
+        "question": "副詞「ずいぶん」通常用來形容什麼樣的程度？ (N4)",
+        "kanji": "随分",
+        "options": [
+            {
+                "text": "相當、非常（比預想的程度高）",
+                "explanation": "正確答案：「随分」表示程度超過預期，翻譯為『相當、非常』。"
+            },
+            {
+                "text": "稍微、一點點",
+                "explanation": "錯誤：「稍微、一點點」是「少し（すこし）」的意思。"
+            },
+            {
+                "text": "也許、大概",
+                "explanation": "錯誤：「也許、大概」是「たぶん」的意思。"
+            },
+            {
+                "text": "從未、從來不",
+                "explanation": "錯誤：「從未、從來不」是「いまだかつて（～ない）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0311",
+        "type": "reading",
+        "question": "表達『萬一、假使發生…』時，最常使用哪個副詞？ (N4)",
+        "kanji": "万一 (まんいち)",
+        "options": [
+            {
+                "text": "万一（まんいち）",
+                "explanation": "正確答案：「万一」表示可能性很低的情況發生時，多用於假設句。"
+            },
+            {
+                "text": "いつでも",
+                "explanation": "錯誤：「いつでも」表示『隨時、無論何時』。"
+            },
+            {
+                "text": "いつか",
+                "explanation": "錯誤：「いつか」表示『總有一天、某個時候』。"
+            },
+            {
+                "text": "たいてい",
+                "explanation": "錯誤：「たいてい」表示『通常、多半』。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0312",
+        "type": "reading",
+        "question": "當想要表達『雖然...但是』的轉折語氣時，哪個接續詞最常用於書面或正式場合？ (N4)",
+        "kanji": "しかし",
+        "options": [
+            {
+                "text": "しかし",
+                "explanation": "正確答案：「しかし」比「でも」更正式，多用於書面或正式談話中，表示轉折。"
+            },
+            {
+                "text": "でも",
+                "explanation": "錯誤：「でも」是口語中常用的轉折語，正式程度低於「しかし」。"
+            },
+            {
+                "text": "そして",
+                "explanation": "錯誤：「そして」表示『然後、接著』，用於順接。"
+            },
+            {
+                "text": "それから",
+                "explanation": "錯誤：「それから」表示『之後、然後』，用於時間順序的連接。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0313",
+        "type": "reading",
+        "question": "表達『完全不夠、根本不行』的強烈否定時，最適合搭配哪個副詞？ (N4)",
+        "kanji": "とても (〜ない)",
+        "options": [
+            {
+                "text": "とても (〜ない)",
+                "explanation": "正確答案：「とても～ない」表示程度上的強烈否定，意為『完全不可能、根本辦不到』。"
+            },
+            {
+                "text": "たぶん (〜ない)",
+                "explanation": "錯誤：「たぶん」表示推測，不與強烈否定搭配。"
+            },
+            {
+                "text": "まあ (〜ない)",
+                "explanation": "錯誤：「まあ」表示『算了、還過得去』，與強烈否定語氣不符。"
+            },
+            {
+                "text": "もし (〜ない)",
+                "explanation": "錯誤：「もし」表示『如果、萬一』，用於假設。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0314",
+        "type": "reading",
+        "question": "副詞「ずうっと」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "ずうっと",
+        "options": [
+            {
+                "text": "一直、始終、遠得多",
+                "explanation": "正確答案：「ずうっと」強調時間的持續（一直）或程度/距離的巨大差異（遠得多）。"
+            },
+            {
+                "text": "突然地、瞬間地",
+                "explanation": "錯誤：「突然地」是「急に（きゅうに）」的意思。"
+            },
+            {
+                "text": "慢慢地、緩緩地",
+                "explanation": "錯誤：「慢慢地」是「ゆっくり」的意思。"
+            },
+            {
+                "text": "大約、左右",
+                "explanation": "錯誤：「大約、左右」是「ぐらい」或「約（やく）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+{
+        "id": "V0315",
+        "type": "reading",
+        "question": "副詞「あいかわらず」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "相変わらず",
+        "options": [
+            {
+                "text": "一如往常、仍然、依然",
+                "explanation": "正確答案：「相変わらず」表示狀態沒有改變，翻譯為『一如往常、依然』。"
+            },
+            {
+                "text": "難得地、很少",
+                "explanation": "錯誤：「難得地、很少」是「めったに」的意思。"
+            },
+            {
+                "text": "同時、一起",
+                "explanation": "錯誤：「同時、一起」是「一緒に（いっしょに）」的意思。"
+            },
+            {
+                "text": "恰好、剛好",
+                "explanation": "錯誤：「恰好、剛好」是「ちょうど」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0316",
+        "type": "reading",
+        "question": "副詞「どうしても」在接否定時，中文意思是什麼？ (N4)",
+        "kanji": "どうしても (〜ない)",
+        "options": [
+            {
+                "text": "無論如何也（不）、怎麼也（不）",
+                "explanation": "正確答案：「どうしても～ない」表示盡了全力仍無法達成，翻譯為『無論如何也（不）』。"
+            },
+            {
+                "text": "一定、必定",
+                "explanation": "錯誤：「一定、必定」是「きっと」或「必ず（かならず）」的意思。"
+            },
+            {
+                "text": "隨意地、隨便",
+                "explanation": "錯誤：「隨意地、隨便」是「勝手に（かってに）」的意思。"
+            },
+            {
+                "text": "不知不覺地",
+                "explanation": "錯誤：「不知不覺地」是「いつの間にか（いつのまにか）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0317",
+        "type": "reading",
+        "question": "副詞「たいてい」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "大抵",
+        "options": [
+            {
+                "text": "通常、一般來說、多半",
+                "explanation": "正確答案：「たいてい」表示在一般情況下的頻率或範圍，翻譯為『通常、多半』。"
+            },
+            {
+                "text": "突然、出乎意料",
+                "explanation": "錯誤：「突然、出乎意料」是「急に（きゅうに）」的意思。"
+            },
+            {
+                "text": "偶爾、不時",
+                "explanation": "錯誤：「偶爾、不時」是「たまに」的意思。"
+            },
+            {
+                "text": "總是、一直",
+                "explanation": "錯誤：「總是、一直」是「いつも」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0318",
+        "type": "reading",
+        "question": "接續詞「それにしても」通常用於什麼樣的語氣和情境？ (N4)",
+        "kanji": "それにしても",
+        "options": [
+            {
+                "text": "即便如此、話說回來（表示轉折或驚訝）",
+                "explanation": "正確答案：「それにしても」用於對前述內容表示理解，但仍對其程度或事實感到驚訝或表示轉折。"
+            },
+            {
+                "text": "順便一提（轉換話題）",
+                "explanation": "錯誤：「順便一提」是「ところで」的意思。"
+            },
+            {
+                "text": "也就是說（總結說明）",
+                "explanation": "錯誤：「也就是說」是「つまり」的意思。"
+            },
+            {
+                "text": "因為、由於",
+                "explanation": "錯誤：「因為、由於」是「なぜなら」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0319",
+        "type": "reading",
+        "question": "副詞「いっそう」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "一層",
+        "options": [
+            {
+                "text": "更加、越發",
+                "explanation": "正確答案：「一層」表示程度的增加，翻譯為『更加、越發』。"
+            },
+            {
+                "text": "一層樓（建築）",
+                "explanation": "錯誤：「一層樓」是「一階（いっかい）」的意思。"
+            },
+            {
+                "text": "一下子、一次性地",
+                "explanation": "錯誤：「一下子」是「いっぺんに」的意思。"
+            },
+            {
+                "text": "有點、稍微",
+                "explanation": "錯誤：「有點、稍微」是「少し（すこし）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0320",
+        "type": "reading",
+        "question": "副詞「かえって」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "却って",
+        "options": [
+            {
+                "text": "反而、反倒、倒是",
+                "explanation": "正確答案：「却って」表示結果與預期相反，翻譯為『反而、反倒』。"
+            },
+            {
+                "text": "當然、理所當然",
+                "explanation": "錯誤：「當然、理所當然」是「もちろん」的意思。"
+            },
+            {
+                "text": "再次、重新",
+                "explanation": "錯誤：「再次、重新」是「再び（ふたたび）」的意思。"
+            },
+            {
+                "text": "難以置信地",
+                "explanation": "錯誤：「難以置信地」是「まさか」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0321",
+        "type": "reading",
+        "question": "副詞「なるべく」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "成る可く",
+        "options": [
+            {
+                "text": "盡量、盡可能地",
+                "explanation": "正確答案：「成る可く」表示在能力或條件允許範圍內最大程度地做某事，翻譯為『盡量』。"
+            },
+            {
+                "text": "果然、不出所料",
+                "explanation": "錯誤：「果然、不出所料」是「やはり」的意思。"
+            },
+            {
+                "text": "不小心、無意間",
+                "explanation": "錯誤：「不小心、無意間」是「うっかり」的意思。"
+            },
+            {
+                "text": "慢慢地、悠閒地",
+                "explanation": "錯誤：「慢慢地、悠閒地」是「ゆっくり」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0322",
+        "type": "reading",
+        "question": "副詞「たとえば」通常用於什麼樣的語氣和情境？ (N4)",
+        "kanji": "例えば",
+        "options": [
+            {
+                "text": "例如、舉個例子",
+                "explanation": "正確答案：「例えば」用於引導例句或事例。"
+            },
+            {
+                "text": "總而言之、簡而言之",
+                "explanation": "錯誤：「總而言之」是「つまり」的意思。"
+            },
+            {
+                "text": "無論如何、總是",
+                "explanation": "錯誤：「無論如何」是「どうしても」的意思。"
+            },
+            {
+                "text": "而且、此外",
+                "explanation": "錯誤：「而且、此外」是「それに」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0323",
+        "type": "reading",
+        "question": "副詞「もしかしたら」通常搭配什麼樣的句型和意思？ (N4)",
+        "kanji": "もしかしたら",
+        "options": [
+            {
+                "text": "或許、說不定（多搭配「かもしれない」）",
+                "explanation": "正確答案：「もしかしたら」表示可能性，常與推量助動詞「かもしれない」搭配，翻譯為『或許、說不定』。"
+            },
+            {
+                "text": "一定、絕對",
+                "explanation": "錯誤：「一定、絕對」是「必ず（かならず）」的意思。"
+            },
+            {
+                "text": "難以置信地",
+                "explanation": "錯誤：「難以置信地」是「まさか」的意思。"
+            },
+            {
+                "text": "仔細地、詳細地",
+                "explanation": "錯誤：「仔細地、詳細地」是「詳しく（くわしく）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0324",
+        "type": "reading",
+        "question": "副詞「やはり」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "やはり",
+        "options": [
+            {
+                "text": "果然、還是（不出所料）",
+                "explanation": "正確答案：「やはり」表示結果符合預期或回歸到原來的狀態，翻譯為『果然、還是』。"
+            },
+            {
+                "text": "一下子、突然",
+                "explanation": "錯誤：「一下子、突然」是「急に（きゅうに）」的意思。"
+            },
+            {
+                "text": "或許、大概",
+                "explanation": "錯誤：「或許、大概」是「たぶん」的意思。"
+            },
+            {
+                "text": "雖然...但是",
+                "explanation": "錯誤：「雖然...但是」是「けれども」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0325",
+        "type": "reading",
+        "question": "副詞「つい」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "つい",
+        "options": [
+            {
+                "text": "不經意地、忍不住地",
+                "explanation": "正確答案：「つい」表示在沒有意識到的情況下做了某事，翻譯為『不經意地、忍不住地』。"
+            },
+            {
+                "text": "最終地、最後",
+                "explanation": "錯誤：「最終地、最後」是「とうとう」的意思。"
+            },
+            {
+                "text": "暫時地、一時",
+                "explanation": "錯誤：「暫時地、一時」是「一時的（いちじてき）」的意思。"
+            },
+            {
+                "text": "強烈地、猛烈地",
+                "explanation": "錯誤：「強烈地、猛烈地」是「激しく（はげしく）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0326",
+        "type": "reading",
+        "question": "副詞「なかなか」接肯定句時，中文意思是什麼？ (N4)",
+        "kanji": "なかなか",
+        "options": [
+            {
+                "text": "相當地、非常地（稱讚）",
+                "explanation": "正確答案：「なかなか」接肯定時表示程度高，用於稱讚，翻譯為『相當地、非常地』。"
+            },
+            {
+                "text": "不容易、怎麼也（不）",
+                "explanation": "錯誤：「不容易、怎麼也（不）」是「なかなか～ない」的意思。"
+            },
+            {
+                "text": "有時、偶爾",
+                "explanation": "錯誤：「有時、偶爾」是「時々（ときどき）」的意思。"
+            },
+            {
+                "text": "從未、從來不",
+                "explanation": "錯誤：「從未、從來不」是「一度も（いちども）～ない」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0327",
+        "type": "reading",
+        "question": "接續詞「だって」在句子開頭通常表達什麼功能？ (N4)",
+        "kanji": "だって",
+        "options": [
+            {
+                "text": "因為、還不是因為（提出理由、辯解）",
+                "explanation": "正確答案：「だって」多用於口語，用來提出理由或進行辯解，翻譯為『因為、還不是因為』。"
+            },
+            {
+                "text": "此外、而且",
+                "explanation": "錯誤：「此外、而且」是「それに」的意思。"
+            },
+            {
+                "text": "然而、但是",
+                "explanation": "錯誤：「然而、但是」是「しかし」的意思。"
+            },
+            {
+                "text": "總之、反正",
+                "explanation": "錯誤：「總之、反正」是「とにかく」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0328",
+        "type": "reading",
+        "question": "副詞「やっと」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "漸と",
+        "options": [
+            {
+                "text": "總算、終於（經過努力或漫長等待）",
+                "explanation": "正確答案：「やっと」強調經過一番努力或長時間的等待，最終達成某事，翻譯為『總算、終於』。"
+            },
+            {
+                "text": "立刻、馬上",
+                "explanation": "錯誤：「立刻、馬上」是「すぐに」的意思。"
+            },
+            {
+                "text": "馬上就要（時間短暫）",
+                "explanation": "錯誤：「馬上就要」是「まもなく」的意思。"
+            },
+            {
+                "text": "不知不覺地",
+                "explanation": "錯誤：「不知不覺地」是「いつの間にか（いつのまにか）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0329",
+        "type": "reading",
+        "question": "副詞「きっと」和「必ず」的區別是什麼？ (N4)",
+        "kanji": "きっと／必ず",
+        "options": [
+            {
+                "text": "「必ず」是必然性；「きっと」是說話者的確信",
+                "explanation": "正確答案：「必ず（かならず）」強調客觀必然性或義務；「きっと」強調說話者主觀上的強烈推測或確信。"
+            },
+            {
+                "text": "「必ず」是推測；「きっと」是義務",
+                "explanation": "錯誤：兩者的功能正好相反。「必ず」強調義務和客觀必然性。"
+            },
+            {
+                "text": "兩者都可以用於否定句",
+                "explanation": "錯誤：「きっと」一般不接否定；「必ずしも（〜ない）」才能接否定。"
+            },
+            {
+                "text": "「きっと」比「必ず」更正式",
+                "explanation": "錯誤：「必ず」在書面語或正式場合中更為常用，更正式。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0330",
+        "type": "reading",
+        "question": "副詞「うっかり」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "うっかり",
+        "options": [
+            {
+                "text": "不小心、粗心、疏忽",
+                "explanation": "正確答案：「うっかり」表示因疏忽或粗心而導致錯誤，翻譯為『不小心、粗心』。"
+            },
+            {
+                "text": "生氣地、憤怒地",
+                "explanation": "錯誤：「生氣地、憤怒地」是「怒って（おこって）」的意思。"
+            },
+            {
+                "text": "失望地、沮喪地",
+                "explanation": "錯誤：「失望地」是「がっかり」的意思。"
+            },
+            {
+                "text": "突然、一下子",
+                "explanation": "錯誤：「突然、一下子」是「急に（きゅうに）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0331",
+        "type": "reading",
+        "question": "接續詞「すると」在句子中通常表達什麼功能？ (N4)",
+        "kanji": "すると",
+        "options": [
+            {
+                "text": "於是、這麼一來（前因後果）",
+                "explanation": "正確答案：「すると」表示前項行為發生後，接著出現後項結果或新情況，翻譯為『於是、這麼一來』。"
+            },
+            {
+                "text": "但是、然而",
+                "explanation": "錯誤：「但是、然而」是「しかし」的意思。"
+            },
+            {
+                "text": "順便一提、換個話題",
+                "explanation": "錯誤：「順便一提」是「ところで」的意思。"
+            },
+            {
+                "text": "總而言之、總結來說",
+                "explanation": "錯誤：「總而言之」是「要するに（ようするに）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0332",
+        "type": "reading",
+        "question": "副詞「たびたび」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "度々",
+        "options": [
+            {
+                "text": "屢次、再三、常常",
+                "explanation": "正確答案：「度々」表示次數多，頻繁地，翻譯為『屢次、常常』。"
+            },
+            {
+                "text": "有時、偶爾",
+                "explanation": "錯誤：「有時、偶爾」是「たまに」的意思。"
+            },
+            {
+                "text": "每次、每當",
+                "explanation": "錯誤：「每次、每當」是「ごとに」的意思。"
+            },
+            {
+                "text": "一次性地、一下子",
+                "explanation": "錯誤：「一次性地」是「いっぺんに」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0333",
+        "type": "reading",
+        "question": "副詞「だいたい」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "大体",
+        "options": [
+            {
+                "text": "大致上、大體上、基本上",
+                "explanation": "正確答案：「大体」表示主要部分或大致範圍，翻譯為『大致上、基本上』。"
+            },
+            {
+                "text": "詳細地、仔細地",
+                "explanation": "錯誤：「詳細地、仔細地」是「詳しく（くわしく）」的意思。"
+            },
+            {
+                "text": "總而言之、總之",
+                "explanation": "錯誤：「總而言之」是「とにかく」的意思。"
+            },
+            {
+                "text": "總算、終於",
+                "explanation": "錯誤：「總算、終於」是「やっと」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0334",
+        "type": "reading",
+        "question": "副詞「さっぱり」在接否定時，中文意思是什麼？ (N4)",
+        "kanji": "さっぱり (〜ない)",
+        "options": [
+            {
+                "text": "完全不、一點也不",
+                "explanation": "正確答案：「さっぱり～ない」表示完全否定，翻譯為『完全不、一點也不』，比「全然～ない」口語化。"
+            },
+            {
+                "text": "清爽地、乾脆地",
+                "explanation": "錯誤：「清爽地、乾脆地」是「さっぱり」的基本意思，用於肯定句。"
+            },
+            {
+                "text": "很快地、一下子",
+                "explanation": "錯誤：「很快地」是「あっという間に」的意思。"
+            },
+            {
+                "text": "大概、也許",
+                "explanation": "錯誤：「大概、也許」是「たぶん」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0335",
+        "type": "reading",
+        "question": "副詞「とつぜん」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "突然",
+        "options": [
+            {
+                "text": "突然、忽然、出乎意料",
+                "explanation": "正確答案：「突然」表示事情發生得非常意外和迅速，翻譯為『突然、忽然』。"
+            },
+            {
+                "text": "安靜地、悄悄地",
+                "explanation": "錯誤：「安靜地、悄悄地」是「そっと」的意思。"
+            },
+            {
+                "text": "總算、終於",
+                "explanation": "錯誤：「總算、終於」是「やっと」的意思。"
+            },
+            {
+                "text": "慢慢地、漸漸地",
+                "explanation": "錯誤：「慢慢地、漸漸地」是「だんだん」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0336",
+        "type": "reading",
+        "question": "當想要表達『總而言之、總之』來總結話題時，哪個詞最常用？ (N4)",
+        "kanji": "とにかく",
+        "options": [
+            {
+                "text": "とにかく (とにかく)",
+                "explanation": "正確答案：「とにかく」用於省略細節，直接切入重點或結論，翻譯為『總而言之、總之』。"
+            },
+            {
+                "text": "たしかに (たしかに)",
+                "explanation": "錯誤：「たしかに」表示『的確、確實』。"
+            },
+            {
+                "text": "なるべく (なるべく)",
+                "explanation": "錯誤：「なるべく」表示『盡量、盡可能』。"
+            },
+            {
+                "text": "もしかしたら (もしかしたら)",
+                "explanation": "錯誤：「もしかしたら」表示『或許、說不定』。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0337",
+        "type": "reading",
+        "question": "副詞「とうとう」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "到底",
+        "options": [
+            {
+                "text": "最終、終究、終於（經歷曲折後）",
+                "explanation": "正確答案：「とうとう」表示經過長時間或許多轉折後達成的最終結果，翻譯為『最終、終於』。"
+            },
+            {
+                "text": "偶爾、不時",
+                "explanation": "錯誤：「偶爾、不時」是「たまに」的意思。"
+            },
+            {
+                "text": "不經意地、忍不住地",
+                "explanation": "錯誤：「不經意地」是「つい」的意思。"
+            },
+            {
+                "text": "最初、起初",
+                "explanation": "錯誤：「最初、起初」是「初めは（はじめは）」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0338",
+        "type": "reading",
+        "question": "表達『偶然地、碰巧』的意思時，最適合用哪個詞？ (N4)",
+        "kanji": "たまたま",
+        "options": [
+            {
+                "text": "たまたま (たまたま)",
+                "explanation": "正確答案：「たまたま」表示事情在沒有預期的情況下發生，翻譯為『偶然地、碰巧』。"
+            },
+            {
+                "text": "どうしても (どうしても)",
+                "explanation": "錯誤：「どうしても」表示『無論如何也』。"
+            },
+            {
+                "text": "きっと (きっと)",
+                "explanation": "錯誤：「きっと」表示『一定、必定』。"
+            },
+            {
+                "text": "さっそく (さっそく)",
+                "explanation": "錯誤：「さっそく」表示『馬上、立刻』。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0339",
+        "type": "reading",
+        "question": "當想要表達『當然、理所當然』時，最適合用哪個詞？ (N4)",
+        "kanji": "もちろん",
+        "options": [
+            {
+                "text": "もちろん (もちろん)",
+                "explanation": "正確答案：「もちろん」表示無需懷疑或討論的事實，翻譯為『當然、理所當然』。"
+            },
+            {
+                "text": "まるで (まるで)",
+                "explanation": "錯誤：「まるで」表示『簡直、好像』，用於比喻。"
+            },
+            {
+                "text": "なかなか (なかなか)",
+                "explanation": "錯誤：「なかなか」表示『相當地』或『不容易』。"
+            },
+            {
+                "text": "めったに (めったに)",
+                "explanation": "錯誤：「めったに」表示『很少、難得』。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "id": "V0340",
+        "type": "reading",
+        "question": "副詞「できるだけ」最恰當的中文意思是什麼？ (N4)",
+        "kanji": "出来るだけ",
+        "options": [
+            {
+                "text": "盡可能地、在可能範圍內",
+                "explanation": "正確答案：「出来るだけ」表示在客觀條件允許的最大範圍內做某事，與「なるべく」意思相近。"
+            },
+            {
+                "text": "總算、終於",
+                "explanation": "錯誤：「總算、終於」是「やっと」的意思。"
+            },
+            {
+                "text": "一定、絕對",
+                "explanation": "錯誤：「一定、絕對」是「必ず（かならず）」的意思。"
+            },
+            {
+                "text": "也許、說不定",
+                "explanation": "錯誤：「也許、說不定」是「たぶん」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    },
+{
+        "id": "V0341",
+        "type": "reading",
+        "question": "接續詞「そこで」在句子中通常表達什麼功能？ (N4)",
+        "kanji": "そこで",
+        "options": [
+            {
+                "text": "因此、於是（承接前文提出對策或新行動）",
+                "explanation": "正確答案：「そこで」用於承接前文的狀況，並引出針對該狀況採取的行動或提出的對策，翻譯為『因此、於是』。"
+            },
+            {
+                "text": "雖然...但是",
+                "explanation": "錯誤：「雖然...但是」是「けれども」的意思。"
+            },
+            {
+                "text": "順便一提",
+                "explanation": "錯誤：「順便一提」是「ところで」的意思。"
+            },
+            {
+                "text": "總而言之",
+                "explanation": "錯誤：「總而言之」是「とにかく」的意思。"
+            }
+        ],
+        "correctAnswer": 0
+    }
 ];  // 確保這裡有正確的結束括號和分號
-window.vocabBank = vocabBank;
