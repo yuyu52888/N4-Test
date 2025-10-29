@@ -775,7 +775,7 @@ window.vocabBank = [
     options: [
         {text: "受付", explanation: "正確答案：「うけつけ」對應的漢字是「受付」，意思是櫃檯、接待處。"},
         {text: "受け付け", explanation: "錯誤：這是混合表記。"},
-        {text: "受付", explanation: "錯誤：日文中通常寫作「受付」。"},
+        {text: "收付", explanation: "錯誤：日文中通常寫作「受付」。"},
         {text: "受け漬け", explanation: "錯誤：此為不存在的漢字組合。"}
     ],
     correctAnswer: 0
@@ -1021,7 +1021,7 @@ window.vocabBank = [
     kana: "ざんねん",
     options: [
         {text: "残念", explanation: "正確答案：「ざんねん」對應的漢字是「残念」，意思是遺憾、可惜。"},
-        {text: "残念", explanation: "錯誤：此為中文簡體字，日文正字為「残念」。"},
+        {text: "蠶念", explanation: "錯誤"},
         {text: "産念", explanation: "錯誤：此為不存在的漢字組合。"},
         {text: "斬念", explanation: "錯誤：此為不存在的漢字組合。"}
     ],
@@ -1073,7 +1073,7 @@ window.vocabBank = [
     kana: "わすれる",
     options: [
         {text: "忘れる", explanation: "正確答案：「わすれる」對應的漢字是「忘れる」，意思是忘記。"},
-        {text: "忘れる", explanation: "錯誤：此為中文簡體字，日文正字為「忘れる」。"},
+        {text: "忘れ", explanation: "錯誤：此為中文簡體字，日文正字為「忘れる」。"},
         {text: "和連れる", explanation: "錯誤：此為不存在的漢字組合。"},
         {text: "輪連れる", explanation: "錯誤：此為不存在的漢字組合。"}
     ],
@@ -1710,7 +1710,7 @@ window.vocabBank = [
     kana: "おせん",
     options: [
         {text: "汚染", explanation: "正確答案：「おせん」對應的漢字是「汚染」，意思是污染。\n中文翻譯：污染"},
-        {text: "汚染", explanation: "錯誤：日文中「汚染」是正確表記，不使用「污」。\n中文翻譯：污染"},
+        {text: "汙染", explanation: "錯誤：日文中「汚染」是正確表記，不使用「污」。\n中文翻譯：污染"},
         {text: "温染", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
         {text: "押染", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
     ],
@@ -1867,7 +1867,7 @@ window.vocabBank = [
     options: [
         {text: "消防車", explanation: "正確答案：「しょうぼうしゃ」對應的漢字是「消防車」，意思是消防車。\n中文翻譯：消防車"},
         {text: "消防者", explanation: "錯誤：「者」的讀音是「しゃ」，但「消防者」不是正確的漢字組合。\n中文翻譯：消防員"},
-        {text: "消防車", explanation: "錯誤：日文中「消防」是正確表記，不使用「消防」。\n中文翻譯：消防車"},
+        {text: "消房車", explanation: "錯誤：日文中「消防」是正確表記，不使用「消防」。\n中文翻譯：消防車"},
         {text: "小防車", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
     ],
     correctAnswer: 0
@@ -2336,7 +2336,7 @@ window.vocabBank = [
         {text: "株価", explanation: "正確答案：「かぶか」對應的漢字是「株価」，意思是股價。\n中文翻譯：股價"},
         {text: "株科", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
         {text: "株過", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-        {text: "株価", explanation: "錯誤：日文中「株価」是正確表記，不使用「価」。\n中文翻譯：股價"}
+        {text: "書価", explanation: "錯誤：日文中「株価」是正確表記，不使用「価」。\n中文翻譯：股價"}
     ],
     correctAnswer: 0
 },
@@ -2387,7 +2387,7 @@ window.vocabBank = [
     options: [
         {text: "保険料", explanation: "正確答案：「ほけんりょう」對應的漢字是「保険料」，意思是保險費。\n中文翻譯：保險費"},
         {text: "保健料", explanation: "錯誤：「保健」讀作「ほけん」，意思是保健。\n中文翻譯：保健費"},
-        {text: "保険料", explanation: "錯誤：日文中「保険」是正確表記，不使用「険」。\n中文翻譯：保險費"},
+        {text: "寶険料", explanation: "錯誤：日文中「保険」是正確表記，不使用「険」。\n中文翻譯：保險費"},
         {text: "補健料", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
     ],
     correctAnswer: 0
@@ -2866,7 +2866,7 @@ question: "次の言葉の正しい漢字を選びなさい",
 kana: "ゆしゅつ",
 options: [
 {text: "輸出", explanation: "正確答案：「ゆしゅつ」對應的漢字是「輸出」，意思是出口。\n中文翻譯：出口"},
-{text: "輸出", explanation: "錯誤：日文中「輸出」是正確表記，不使用「出」。\n中文翻譯：出口"},
+{text: "蘇出", explanation: "錯誤：日文中「輸出」是正確表記，不使用「出」。\n中文翻譯：出口"},
 {text: "由出", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
 {text: "湯出", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
 ],
@@ -3024,7 +3024,7 @@ options: [
 {text: "手形", explanation: "正確答案：「てがた」對應的漢字是「手形」，意思是票據。\n中文翻譯：票據"},
 {text: "手型", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
 {text: "手方", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
-{text: "手形", explanation: "錯誤：日文中「手形」是正確表記，不使用「形」。\n中文翻譯：票據"}
+{text: "手行", explanation: "錯誤：日文中「手形」是正確表記，不使用「形」。\n中文翻譯：票據"}
 ],
 correctAnswer: 0
 },
@@ -3048,7 +3048,7 @@ question: "次の言葉の正しい漢字を選びなさい",
 kana: "つうちょう",
 options: [
 {text: "通帳", explanation: "正確答案：「つうちょう」對應的漢字是「通帳」，意思是存摺。\n中文翻譯：存摺"},
-{text: "通帳", explanation: "錯誤：日文中「通帳」是正確表記，不使用「帳」。\n中文翻譯：存摺"},
+{text: "通脹", explanation: "錯誤：日文中「通帳」是正確表記，不使用「帳」。\n中文翻譯：存摺"},
 {text: "通長", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
 {text: "通調", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
 ],
@@ -3178,7 +3178,7 @@ question: "次の言葉の正しい漢字を選びなさい",
 kana: "ていとう",
 options: [
 {text: "抵当", explanation: "正確答案：「ていとう」對應的漢字是「抵当」，意思是抵押。\n中文翻譯：抵押"},
-{text: "抵当", explanation: "錯誤：日文中「抵当」是正確表記，不使用「当」。\n中文翻譯：抵押"},
+{text: "抵當", explanation: "錯誤：日文中「抵当」是正確表記，不使用「当」。\n中文翻譯：抵押"},
 {text: "低当", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
 {text: "底当", explanation: "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
 ],
@@ -3308,7 +3308,7 @@ correctAnswer: 0
     "kana": "ちんたい",
     "options": [
         {"text": "賃貸", "explanation": "正確答案：「ちんたい」對應的漢字是「賃貸」，意思是租賃。\n中文翻譯：租賃"},
-        {"text": "賃貸", "explanation": "錯誤：日文中「賃貸」是正確表記，不使用「貸」。\n中文翻譯：租賃"},
+        {"text": "賃帶", "explanation": "錯誤：日文中「賃貸」是正確表記，不使用「貸」。\n中文翻譯：租賃"},
         {"text": "珍貸", "explanation": "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
         {"text": "陳貸", "explanation": "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
     ],
@@ -3360,7 +3360,7 @@ correctAnswer: 0
     "kana": "そんがい",
     "options": [
         {"text": "損害", "explanation": "正確答案：「そんがい」對應的漢字是「損害」，意思是損害。\n中文翻譯：損害"},
-        {"text": "損害", "explanation": "錯誤：日文中「損害」是正確表記，不使用「害」。\n中文翻譯：損害"},
+        {"text": "損駭", "explanation": "錯誤：日文中「損害」是正確表記，不使用「害」。\n中文翻譯：損害"},
         {"text": "村害", "explanation": "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
         {"text": "尊害", "explanation": "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
     ],
@@ -3388,7 +3388,7 @@ correctAnswer: 0
         {"text": "保証", "explanation": "正確答案：「ほしょう」對應的漢字是「保証」，意思是保證。\n中文翻譯：保證"},
         {"text": "保障", "explanation": "錯誤：「保障」讀作「ほしょう」，意思是保障。\n中文翻譯：保障"},
         {"text": "補償", "explanation": "錯誤：「補償」讀作「ほしょう」，意思是補償。\n中文翻譯：補償"},
-        {"text": "保証", "explanation": "錯誤：日文中「保証」是正確表記，不使用「証」。\n中文翻譯：保證"}
+        {"text": "保證", "explanation": "錯誤：日文中「保証」是正確表記，不使用「証」。\n中文翻譯：保證"}
     ],
     "correctAnswer": 0
 },
@@ -3412,7 +3412,7 @@ correctAnswer: 0
     "kana": "せきにん",
     "options": [
         {"text": "責任", "explanation": "正確答案：「せきにん」對應的漢字是「責任」，意思是責任。\n中文翻譯：責任"},
-        {"text": "責任", "explanation": "錯誤：日文中「責任」是正確表記，不使用「責」。\n中文翻譯：責任"},
+        {"text": "責認", "explanation": "錯誤：日文中「責任」是正確表記，不使用「責」。\n中文翻譯：責任"},
         {"text": "積任", "explanation": "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
         {"text": "績任", "explanation": "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
     ],
@@ -3590,7 +3590,7 @@ correctAnswer: 0
     "kana": "ふたん",
     "options": [
         {"text": "負担", "explanation": "正確答案：「ふたん」對應的漢字是「負担」，意思是負擔。\n中文翻譯：負擔"},
-        {"text": "負担", "explanation": "錯誤：日文中「負担」是正確表記，不使用「担」。\n中文翻譯：負擔"},
+        {"text": "負擔", "explanation": "錯誤：日文中「負担」是正確表記，不使用「担」。\n中文翻譯：負擔"},
         {"text": "不断", "explanation": "錯誤：「不断」讀作「ふだん」，意思是不斷。\n中文翻譯：不斷"},
         {"text": "布団", "explanation": "錯誤：「布団」讀作「ふとん」，意思是被褥。\n中文翻譯：被褥"}
     ],
@@ -3932,7 +3932,7 @@ correctAnswer: 0
     "kana": "むこう",
     "options": [
         {"text": "無効", "explanation": "正確答案：「むこう」對應的漢字是「無効」，意思是無效。\n中文翻譯：無效"},
-        {"text": "無効", "explanation": "錯誤：日文中「無効」是正確表記，不使用「効」。\n中文翻譯：無效"},
+        {"text": "吳効", "explanation": "錯誤：日文中「無効」是正確表記，不使用「効」。\n中文翻譯：無效"},
         {"text": "向う", "explanation": "錯誤：「向う」讀作「むこう」，意思是對面。\n中文翻譯：對面"},
         {"text": "無光", "explanation": "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
     ],
@@ -3970,7 +3970,7 @@ correctAnswer: 0
     "kana": "とりけし",
     "options": [
         {"text": "取消", "explanation": "正確答案：「とりけし」對應的漢字是「取消」，意思是取消。\n中文翻譯：取消"},
-        {"text": "取消", "explanation": "錯誤：日文中「取消」是正確表記，不使用「消」。\n中文翻譯：取消"},
+        {"text": "取蕭", "explanation": "錯誤：日文中「取消」是正確表記，不使用「消」。\n中文翻譯：取消"},
         {"text": "取り消し", "explanation": "錯誤：這是完整表記，但「取消」是正確的簡寫。\n中文翻譯：取消"},
         {"text": "取崩し", "explanation": "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
     ],
@@ -4008,7 +4008,7 @@ correctAnswer: 0
     "kana": "かいじょ",
     "options": [
         {"text": "解除", "explanation": "正確答案：「かいじょ」對應的漢字是「解除」，意思是解除。\n中文翻譯：解除"},
-        {"text": "解除", "explanation": "錯誤：日文中「解除」是正確表記，不使用「除」。\n中文翻譯：解除"},
+        {"text": "解廚", "explanation": "錯誤：日文中「解除」是正確表記，不使用「除」。\n中文翻譯：解除"},
         {"text": "開除", "explanation": "錯誤：此為不存在的漢字組合。\n中文翻譯：無"},
         {"text": "回除", "explanation": "錯誤：此為不存在的漢字組合。\n中文翻譯：無"}
     ],
@@ -4046,7 +4046,7 @@ correctAnswer: 0
     "kana": "じこう",
     "options": [
         {"text": "時効", "explanation": "正確答案：「じこう」對應的漢字是「時効」，意思是時效。\n中文翻譯：時效"},
-        {"text": "時効", "explanation": "錯誤：日文中「時効」是正確表記，不使用「効」。\n中文翻譯：時效"},
+        {"text": "蒔効", "explanation": "錯誤：日文中「時効」是正確表記，不使用「効」。\n中文翻譯：時效"},
         {"text": "事項", "explanation": "錯誤：「事項」讀作「じこう」，意思是事項。\n中文翻譯：事項"},
         {"text": "次項", "explanation": "錯誤：「次項」讀作「じこう」，意思是下項。\n中文翻譯：下項"}
     ],
