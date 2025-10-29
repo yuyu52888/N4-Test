@@ -165,7 +165,7 @@ const writingQuestions = [
             {text: "案内", explanation: "正確答案：あんないの漢字は「案内」，意思是引導、介紹。\n中文翻譯：引導、介紹"},
             {text: "安内", explanation: "錯誤：「安」讀音是「あん」但意思不對，正確漢字是「案」。\n中文翻譯：引導、介紹"},
             {text: "暗内", explanation: "錯誤：「暗」讀音是「あん」但意思不對，正確漢字是「案」。\n中文翻譯：引導、介紹"},
-            {text: "案內", explanation: "錯誤：「內」是舊字體，現代日文使用「内」。\n中文翻譯：引導、介紹"}
+            {text: "案那", explanation: "錯誤：「內」是舊字體，現代日文使用「内」。\n中文翻譯：引導、介紹"}
         ],
         correctAnswer: 0
     },
@@ -399,7 +399,7 @@ const writingQuestions = [
             {text: "学校", explanation: "正確答案：がっこう的漢字は「学校」，意思是學校。\n中文翻譯：學校"},
             {text: "学行", explanation: "錯誤：「行」讀音是「こう」但意思不對。\n中文翻譯：學校"},
             {text: "楽校", explanation: "錯誤：「楽」讀音是「がく」但意思不對。\n中文翻譯：學校"},
-            {text: "学校", explanation: "錯誤：簡體字，日文不適用。\n中文翻譯：學校"}
+            {text: "学笑", explanation: "錯誤：簡體字，日文不適用。\n中文翻譯：學校"}
         ],
         correctAnswer: 0
     },
@@ -451,7 +451,7 @@ const writingQuestions = [
             {text: "休み", explanation: "正確答案：やすみ的漢字は「休み」，意思是休息。\n中文翻譯：休息"},
             {text: "安み", explanation: "錯誤：「安」讀音是「やす」但意思不對。\n中文翻譯：休息"},
             {text: "靖み", explanation: "錯誤：這個詞不存在。\n中文翻譯：休息"},
-            {text: "休み", explanation: "錯誤：簡體字，日文不適用。\n中文翻譯：休息"}
+            {text: "修み", explanation: "錯誤：簡體字，日文不適用。\n中文翻譯：休息"}
         ],
         correctAnswer: 0
     },
@@ -545,7 +545,7 @@ const writingQuestions = [
             {text: "車", explanation: "正確答案：くるま的漢字は「車」，意思是汽車。\n中文翻譯：汽車"},
             {text: "来馬", explanation: "錯誤：「馬」讀音是「ま」但意思不對，正確漢字是「車」。\n中文翻譯：汽車"},
             {text: "来間", explanation: "錯誤：「間」讀音是「ま」但意思不對。\n中文翻譯：汽車"},
-            {text: "車", explanation: "錯誤：這是簡體字，日文不適用。\n中文翻譯：汽車"}
+            {text: "车", explanation: "錯誤：這是簡體字，日文不適用。\n中文翻譯：汽車"}
         ],
         correctAnswer: 0
     },
@@ -642,7 +642,7 @@ const writingQuestions = [
         options: [
             {text: "来年", explanation: "正確答案：らいねん的漢字是「来年」，意思是明年。\n中文翻譯：明年"},
             {text: "来念", explanation: "錯誤：「念」讀音是「ねん」但意思不對，正確漢字是「年」。\n中文翻譯：明年"},
-            {text: "来年", explanation: "錯誤：「来」是舊字體，現代日文使用「来」。\n中文翻譯：明年"},
+            {text: "萊年", explanation: "錯誤：「来」是舊字體，現代日文使用「来」。\n中文翻譯：明年"},
             {text: "雷年", explanation: "錯誤：「雷」讀音是「らい」但意思不對，正確漢字是「来」。\n中文翻譯：明年"}
         ],
         correctAnswer: 0
@@ -826,7 +826,7 @@ const writingQuestions = [
         kana: "つかれる",
         options: [
             {text: "疲れる", explanation: "正確答案：つかれる的漢字是「疲れる」，意思是疲倦。\n中文翻譯：疲倦"},
-            {text: "疲れる", explanation: "錯誤：這是簡體字，日文不適用。\n中文翻譯：疲倦"},
+            {text: "皮れる", explanation: "錯誤：這是簡體字，日文不適用。\n中文翻譯：疲倦"},
             {text: "彼れる", explanation: "錯誤：「彼」讀音是「かれ」但不對，正確漢字是「疲」。\n中文翻譯：疲倦"},
             {text: "疲る", explanation: "錯誤：送假名錯誤，正確寫法是「疲れる」。\n中文翻譯：疲倦"}
         ],
